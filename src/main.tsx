@@ -4,12 +4,14 @@ import DemoTSX from "./components/DemoTSX";
 import DemoComponent from "./components/DemoComponent";
 import Gallery from "./components/DemoUseState";
 import RenderList from "./components/DemoRenderList";
+import FormLogin from "./components/DemoFormLogin";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     {/* <DemoTSX /> */}
     {/* <DemoComponent /> */}
     {/* <Gallery /> */}
-    <RenderList />
+    {/* <RenderList /> */}
+    <FormLogin />
   </React.StrictMode>
 );
