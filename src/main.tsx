@@ -6,6 +6,8 @@ import Gallery from "./components/DemoUseState";
 import RenderList from "./components/DemoRenderList";
 import FormLogin from "./components/DemoFormLogin";
 import DemoUseEffect from "./components/DemoUseEffect";
+import DemoUseContext from "./components/DemoUseContext";
+import DemoUseRef from "./components/DemoUseRef";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
@@ -14,6 +16,8 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
     {/* <Gallery /> */}
     {/* <RenderList /> */}
     {/* <FormLogin /> */}
-    <DemoUseEffect />
+    {/* <DemoUseEffect /> */}
+    {/* <DemoUseContext /> */}
+    <DemoUseRef />
   </React.StrictMode>
 );
