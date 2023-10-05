@@ -8,6 +8,7 @@ import FormLogin from "./components/DemoFormLogin";
 import DemoUseEffect from "./components/DemoUseEffect";
 import DemoUseContext from "./components/DemoUseContext";
 import DemoUseRef from "./components/DemoUseRef";
+import DemoFecthDataWithSWR from "./components/DemoFetchDataWithSWR";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
@@ -17,7 +18,8 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
     {/* <RenderList /> */}
     {/* <FormLogin /> */}
     {/* <DemoUseEffect /> */}
-    <DemoUseContext />
+    {/* <DemoUseContext /> */}
     {/* <DemoUseRef /> */}
+    <DemoFecthDataWithSWR />
   </React.StrictMode>
 );
