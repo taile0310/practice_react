@@ -17,7 +17,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
     {/* <RenderList /> */}
     {/* <FormLogin /> */}
     {/* <DemoUseEffect /> */}
-    {/* <DemoUseContext /> */}
-    <DemoUseRef />
+    <DemoUseContext />
+    {/* <DemoUseRef /> */}
   </React.StrictMode>
 );
