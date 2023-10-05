@@ -1,13 +1,22 @@
-import { createContext, useContext } from "react";
+import React, { createContext, useContext, useState } from "react";
 import { theme } from "./context/Theme";
 
 export const Box = () => {
+  const [isPrimary, setIsPrimary] = useState(false);
+
   const theme = useContext(ThemeContext);
+
+  const toggleColor = () => {
+    setIsPrimary((prevIsPrimary) => !prevIsPrimary);
+  };
+
   return (
     <div
+      onClick={toggleColor}
       style={{
-        backgroundColor: theme.secondary.main,
+        backgroundColor: isPrimary ? theme.primary.main : theme.secondary.main,
         color: theme.secondary.text,
+        cursor: "pointer",
       }}>
       Theme context
     </div>
@@ -17,6 +26,7 @@ export const Box = () => {
 type ThemeContextProviderProp = {
   children: React.ReactNode;
 };
+
 const ThemeContext = createContext(theme);
 
 export const ThemeContextProvider = ({
@@ -27,7 +37,7 @@ export const ThemeContextProvider = ({
   );
 };
 
-function DemoUseContext() {
+const DemoUseContext = () => {
   return (
     <div>
       <ThemeContextProvider>
@@ -35,6 +45,6 @@ function DemoUseContext() {
       </ThemeContextProvider>
     </div>
   );
-}
+};
 
 export default DemoUseContext;
