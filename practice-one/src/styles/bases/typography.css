@@ -1,0 +1,46 @@
+/* Mulish Extra Light */
+@font-face {
+  font-family: "Mulish";
+  font-style: normal;
+  font-weight: 200;
+  src: url("../../asset/font/Mulish-ExtraLight.ttf") format("truetype");
+}
+
+/* Mulish Light */
+@font-face {
+  font-family: "Mulish";
+  font-style: normal;
+  font-weight: 300;
+  src: url("../../asset/font/Mulish-Light.ttf") format("truetype");
+}
+
+/* Mulish Regular */
+@font-face {
+  font-family: "Mulish";
+  font-style: normal;
+  font-weight: 400;
+  src: url("../../asset/font/Mulish-Regular.ttf") format("truetype");
+}
+
+/* Mulish SemiBold */
+@font-face {
+  font-family: "Mulish";
+  font-style: normal;
+  font-weight: 600;
+  src: url("../../asset/font/Mulish-SemiBold.ttf") format("truetype");
+}
+/* Mulish ExtraBold */
+@font-face {
+  font-family: "Mulish";
+  font-style: normal;
+  font-weight: 800;
+  src: url("../../asset/font/Mulish-ExtraBold.ttf") format("truetype");
+}
+
+/* BalooBhai2 Regular */
+@font-face {
+  font-family: "BalooBhai";
+  font-style: normal;
+  font-weight: 400;
+  src: url("../../asset/font/BalooBhai2-Bold.ttf") format("truetype");
+}
