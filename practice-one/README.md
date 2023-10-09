@@ -1,4 +1,4 @@
-# REACT PRACTICE TWO
+# REACT PRACTICE ONE
 
 ## Description:
 
