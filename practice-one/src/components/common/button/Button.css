@@ -1,0 +1,24 @@
+.btn-primary {
+  padding: 21px 0;
+  border-radius: 2px;
+  background: var(--text-primary-color);
+  text-transform: uppercase;
+  width: 250px;
+  border: 0;
+}
+
+.btn-secondary {
+  background: var(--secondary-color);
+  text-transform: capitalize;
+}
+
+.btn-nav {
+  padding: 41px 47px;
+  background: var(--primary-color);
+}
+
+.btn-transparent {
+  background-color: transparent;
+  border: 0;
+}
+

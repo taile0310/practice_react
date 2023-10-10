@@ -1,0 +1,16 @@
+.card-primary {
+  background-color: var(--primary-color);
+  padding: 22px 38px 30px 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.card-secondary {
+  background-color: var(--text-primary-color);
+  padding: 28px 38px 33px 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  border: 1px solid var(--primary-color);
+}

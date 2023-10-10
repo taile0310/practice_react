@@ -1,0 +1,25 @@
+.nav-menu {
+  display: flex;
+  flex-direction: column;
+  border-radius: 24px;
+  background: var(--secondary-color);
+  gap: 21px;
+  height: 852px;
+}
+
+.nav-item {
+  padding: 41px 47px;
+}
+
+.active-link {
+  background-color: var(--primary-color);
+  pointer-events: none;
+  cursor: default;
+}
+
+.cart-number {
+  color: var(--text-primary-color);
+  position: absolute;
+  margin-top: -10px;
+  margin-left: 40px;
+}
