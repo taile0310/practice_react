@@ -52,12 +52,7 @@
   color: var(--secondary-color);
 }
 
-.btn-apply {
-  padding: 20px 42px;
-  border: 0;
-  max-width: 166px;
-  margin-top: 2px;
-}
+
 
 .grid-container {
   display: grid;
