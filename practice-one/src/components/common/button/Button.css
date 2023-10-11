@@ -1,14 +1,14 @@
 .btn-primary {
   padding: 21px 0;
   border-radius: 2px;
-  background: var(--text-primary-color);
+  background-color: var(--text-primary-color);
   text-transform: uppercase;
   width: 250px;
   border: 0;
 }
 
 .btn-secondary {
-  background: var(--secondary-color);
+  background-color: var(--secondary-color);
   text-transform: capitalize;
 }
 
@@ -22,3 +22,9 @@
   border: 0;
 }
 
+.btn-apply {
+  padding: 20px 42px;
+  border: 0;
+  max-width: 166px;
+  margin-top: 2px;
+}
