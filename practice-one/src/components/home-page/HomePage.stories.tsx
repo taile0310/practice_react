@@ -1,10 +1,10 @@
 import { Meta, StoryObj } from "@storybook/react";
 import { MemoryRouter } from "react-router-dom";
-import Navbar from "./Navbar";
+import HomePage from "./HomePage";
 
 export default {
-  title: "Components/Navbar",
-  component: Navbar,
+  title: "Components/HomePage",
+  component: HomePage,
   decorators: [
     (Story) => (
       <MemoryRouter>
@@ -14,10 +14,8 @@ export default {
   ],
 } as Meta;
 
-type Story = StoryObj<typeof Navbar>;
+type Story = StoryObj<typeof HomePage>;
 
 export const Default: Story = {
-  args: {
-    width: 134,
-  },
+  args: {},
 };

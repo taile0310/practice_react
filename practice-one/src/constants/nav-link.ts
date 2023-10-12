@@ -29,7 +29,7 @@ const NAV_LINKS = [
     id: 5,
     name: "Checkout",
     icon: checkout,
-    path: "/Checkout",
+    path: "/checkout",
   },
   {
     id: 6,

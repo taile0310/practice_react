@@ -4,3 +4,4 @@ export { default as menu } from "./menu.svg";
 export { default as cart } from "./cart.svg";
 export { default as checkout } from "./place.svg";
 export { default as back } from "./exit.svg";
+export { default as remove } from "./remove-icon.svg";

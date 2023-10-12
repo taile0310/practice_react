@@ -1,22 +1,15 @@
 import { Meta, StoryObj } from "@storybook/react";
 import Input from "./Input";
-import { CustomInputProps } from "../../../types/interface";
 
-const meta: Meta<typeof Input> = {
-  title: "Input",
+export default {
+  title: "Components/Input",
   component: Input,
-  argTypes: {
-    placeholder: { control: "text" },
-  },
-};
-
-export default meta;
+} as Meta;
 
 type Story = StoryObj<typeof Input>;
-export const Default: Story = (args: CustomInputProps) => {
-  return <Input {...args} />;
-};
 
-Default.args = {
-  placeholder: "enter promo code",
+export const Default: Story = {
+  args: {
+    placeholder: "enter promo code",
+  },
 };

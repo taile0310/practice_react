@@ -197,3 +197,8 @@ img {
   font-weight: 400;
   src: url("./assets/font/BalooBhai2-Bold.ttf") format("truetype");
 }
+
+.container {
+  max-width: 1440px;
+  margin: auto;
+}

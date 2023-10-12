@@ -1,0 +1,33 @@
+.textarea-size {
+  resize: vertical;
+  line-height: 23px;
+}
+
+.card-checkout {
+  max-width: 433px;
+  width: 100%;
+}
+
+.total-checkout {
+  margin-top: 12px;
+  display: flex;
+  gap: 29px;
+}
+
+.total-checkout > span {
+  color: var(--secondary-color);
+}
+
+.btn-checkout {
+  padding: 20px 113px;
+  border: 0;
+}
+
+.error {
+  display: flex;
+  color: red;
+}
+
+.required-input {
+  color: red;
+}

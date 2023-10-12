@@ -1,10 +1,10 @@
-import React from "react";
-import { NavLink } from "react-router-dom";
-import NAV_LINKS from "../../../constants/navLink";
+import { Link } from "react-router-dom";
+import NAV_LINKS from "../../../constants/nav-link";
 import "./navbar.css";
 import { CustomNavbarProps } from "../../../types/interface";
+import Image from "../image/Image";
 
-const Navbar = ({width}: CustomNavbarProps) => {
+const Navbar = ({ width }: CustomNavbarProps) => {
   const widthNavbar = {
     width: `${width}px`,
   };
@@ -14,11 +14,12 @@ const Navbar = ({width}: CustomNavbarProps) => {
       {NAV_LINKS.map((navLinks) => {
         const { id, name, icon, path } = navLinks;
         return (
-          <a className="nav-item" key={id}>
-            <NavLink to={path}>
-              <img className="icon" src={icon} alt={name} />
-            </NavLink>
-          </a>
+          // <a >
+          <Link className="nav-item" key={id} to={path}>
+            {/* <img className="icon" src={icon} alt={name} /> */}
+            <Image className="icon" src={icon} alt={name} />
+          </Link>
+          // </a>
         );
       })}
     </nav>
