@@ -1,0 +1,29 @@
+.list-menu {
+  display: flex;
+  flex-wrap: wrap;
+  row-gap: 36px;
+  column-gap: 65px;
+  margin-top: 43px;
+}
+
+.section-menu {
+  display: flex;
+  flex-direction: column;
+}
+
+.btn-item {
+  padding: 14.5px 38px;
+  border: 0;
+  margin: 35px auto 0 auto;
+}
+
+.menu-item {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  gap: 8px;
+}
+
+.copyright-text {
+  margin-top: 56px;
+}

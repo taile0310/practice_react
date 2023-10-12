@@ -1,13 +1,13 @@
-import Button from "../common/button/Button";
-import Input from "../common/input/Input";
+import Navbar from "../common/navbar/Navbar";
+import ListProduct from "../list-product/ListProduct";
 import "./Menu.css";
 
 const Menu = () => {
   return (
-    <>
-      <Button textBtn="Load more" className="btn-item secondary-text-btn " />
-      <Input />
-    </>
+    <section className="component-layout ">
+      <Navbar />
+      <ListProduct />
+    </section>
   );
 };
 

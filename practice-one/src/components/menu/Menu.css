@@ -1,25 +1,23 @@
-.menu {
-  display: none;
-  flex-direction: column;
+.container {
+  max-width: 1440px;
+  margin: auto;
 }
 
-.menu-item {
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-  gap: 8px;
-}
 
-.copyright-text {
-  margin-top: 56px;
-}
-
-.added-to-cart {
-  border: 2px solid red;
-}
-
-.btn-item {
-  padding: 14.5px 38px;
+.dash {
+  background-color: var(--primary-color);
+  width: 306px;
+  height: 5px;
+  margin: 0;
   border: 0;
-  margin: 35px auto 0 auto;
+}
+
+.dash-menu {
+  width: 306px;
+}
+
+
+
+.copyright {
+  margin-top: 208px;
 }

@@ -1,25 +1,16 @@
-import React from "react";
 import { Meta, StoryObj } from "@storybook/react";
 import Card from "./Card";
-import { CustomCardProps } from "../../../types/interface";
 
-const meta: Meta<typeof Card> = {
-  title: "Card",
+export default {
+  title: "Components/Card",
   component: Card,
-  argTypes: {
-    titleCard: { control: "text" },
-    width: { control: "number", defaultValue: 443 },
-  },
-};
+} as Meta;
 
-export default meta;
 type Story = StoryObj<typeof Card>;
 
-export const Default: Story = (args: CustomCardProps) => {
-  return <Card {...args} />;
-};
-
-Default.args = {
-  titleCard: "Promo Code",
-  width: 443,
+export const Default: Story = {
+  args: {
+    titleCard: "Promo code",
+    width: 443,
+  },
 };

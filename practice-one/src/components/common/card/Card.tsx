@@ -1,21 +1,30 @@
-import React from "react";
 import "./card.css";
-import Input from "../input/Input";
-import Button from "../button/Button";
 import { CustomCardProps } from "../../../types/interface";
+import Button from "../button/Button";
+import Input from "../input/Input";
 
-const Card = ({ titleCard, width }: CustomCardProps) => {
-  const widthCard = {
-    width: `${width}px`,
-  };
-
+const Card = ({
+  className,
+  titleCard,
+  titleButton,
+  showInput,
+}: CustomCardProps) => {
+  const isPrimary = className
+    ? "btn-secondary text-large font-family btn-confirm"
+    : "btn-secondary text-large font-family btn-apply";
   return (
-    <section className="card-secondary font-family" style={widthCard}>
+    <div className={className}>
       <h4 className="text-h4">{titleCard}</h4>
-      <Input placeholder="enter promo code" />
-      <div className="message"></div>
-      <Button textBtn="Apply" className="text-large btn-apply" />
-    </section>
+      {showInput ? (
+        <Input placeholder="enter promo code" className="card-input" />
+      ) : (
+        <div className="detail-total">
+          <span className="text-large">Subtotal</span>
+          <span className="text-large subtotal">$50.00</span>
+        </div>
+      )}
+      <Button textBtn={titleButton} className={isPrimary} />
+    </div>
   );
 };
 

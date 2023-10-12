@@ -1,9 +1,13 @@
-import React from "react";
 import "./input.css";
 import { CustomInputProps } from "../../../types/interface";
 
-const Input = ({ placeholder }: CustomInputProps) => {
-  return <input className="card-input" type="text" placeholder={placeholder} />;
+const Input = ({ placeholder, className }: CustomInputProps) => {
+  return (
+    <>
+      <input className={className} type="text" placeholder={placeholder} />
+      <div className="message"></div>
+    </>
+  );
 };
 
 export default Input;

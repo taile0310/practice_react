@@ -28,3 +28,8 @@
   max-width: 166px;
   margin-top: 2px;
 }
+
+.btn-confirm {
+  padding: 20px 84px;
+  border: 0;
+}

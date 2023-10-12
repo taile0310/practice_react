@@ -1,0 +1,46 @@
+.list-cart {
+  background-color: var(--primary-color);
+  flex-direction: column;
+  grid-area: list-cart;
+  gap: 56px;
+  padding: 37px 23px 43px 20px;
+  display: flex;
+}
+.cart-item {
+  gap: 36px;
+  display: flex;
+}
+
+.order-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 43px;
+}
+.detail-dish {
+  display: flex;
+  flex-direction: column;
+  min-width: 201px;
+  gap: 17px;
+}
+
+.detail-dish > :nth-child(1) {
+  width: 201px;
+}
+
+.quantity-input {
+  display: flex;
+  gap: 12px;
+}
+
+.quantity-input > button {
+  width: 12px;
+}
+
+.quantity {
+  padding: 5px 17px;
+  background-color: var(--text-primary-color);
+  margin: auto;
+}
+.btn-remove {
+  margin-left: 38px;
+}

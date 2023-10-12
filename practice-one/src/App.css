@@ -116,3 +116,9 @@
 .font-family {
   font-family: var(--primary-font);
 }
+
+.component-layout {
+  display: flex;
+  gap: 55px;
+  padding: 43px 103px 30px 57px;
+}
