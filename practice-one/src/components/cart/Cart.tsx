@@ -1,5 +1,3 @@
-import React from "react";
-import Card from "../common/card/Card";
 import ListCart from "../list-cart/ListCart";
 import Navbar from "../common/navbar/Navbar";
 

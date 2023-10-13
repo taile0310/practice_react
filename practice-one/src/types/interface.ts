@@ -1,10 +1,10 @@
-import React from "react";
+import { MouseEventHandler } from "react";
 
 export interface CustomBtnProps {
   textBtn?: string;
   className?: string;
   isHomePage?: boolean;
-  onClick?: () => void;
+  onClick?: MouseEventHandler<HTMLButtonElement>;
 }
 
 export interface CustomCardProps {
@@ -25,14 +25,16 @@ export interface CustomInputProps {
 }
 
 export interface CustomNavbarProps {
-  isActice?: boolean;
+  isActive?: boolean;
   width?: number;
+  className?: string;
 }
 
 export interface CustomImageProps {
   src: string;
   alt?: string;
   className?: string;
+  onClick?: MouseEventHandler<HTMLImageElement>;
 }
 
 export interface CustomProductProps {
@@ -40,6 +42,8 @@ export interface CustomProductProps {
   name: string;
   price?: number;
   image?: string;
+  quantity?: number;
+  className?: string;
 }
 
 export interface CustomFooterProps {
@@ -49,4 +53,8 @@ export interface CustomFooterProps {
 export interface CustomLabelProps {
   className?: string;
   titleLabel?: string;
+}
+
+export interface CustomCartProps {
+  [productId: string]: CustomProductProps;
 }

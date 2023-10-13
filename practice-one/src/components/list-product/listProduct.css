@@ -27,3 +27,12 @@
 .copyright-text {
   margin-top: 56px;
 }
+
+.spinner {
+  width: 150px;
+  height: 150px;
+}
+
+.added-to-cart {
+  border: 2px solid red;
+}
