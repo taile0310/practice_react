@@ -1,25 +1,43 @@
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import NAV_LINKS from "../../../constants/nav-link";
 import "./navbar.css";
-import { CustomNavbarProps } from "../../../types/interface";
+import { CustomCartProps, CustomNavbarProps } from "../../../types/interface";
 import Image from "../image/Image";
+import useLocalStorageState from "use-local-storage-state";
 
 const Navbar = ({ width }: CustomNavbarProps) => {
+  const [cart] = useLocalStorageState<CustomCartProps>("CartProducts", {});
+  const productsCount: number = Object.keys(cart || {}).length;
+
   const widthNavbar = {
     width: `${width}px`,
   };
 
+  const navLinkStyles = ({ isActive }: CustomNavbarProps) => {
+    return {
+      backgroundColor: isActive ? "#F1D5BB" : "",
+      PointerEvent: isActive ? "none" : "",
+      cursor: isActive ? "default" : "",
+    };
+  };
+
   return (
-    <nav className="nav-menu" style={widthNavbar}>
+    <nav className="nav-menu font-family" style={widthNavbar}>
       {NAV_LINKS.map((navLinks) => {
         const { id, name, icon, path } = navLinks;
         return (
-          // <a >
-          <Link className="nav-item" key={id} to={path}>
-            {/* <img className="icon" src={icon} alt={name} /> */}
+          <NavLink
+            className="nav-item"
+            key={id}
+            to={path}
+            style={navLinkStyles}>
+            {name == "Cart" ? (
+              <div className="cart-number">{productsCount}</div>
+            ) : (
+              ""
+            )}
             <Image className="icon" src={icon} alt={name} />
-          </Link>
-          // </a>
+          </NavLink>
         );
       })}
     </nav>

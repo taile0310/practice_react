@@ -24,3 +24,8 @@
 .detail-total > span {
   color: var(--secondary-color);
 }
+
+.card-checkout {
+  max-width: 433px;
+  width: 100%;
+}

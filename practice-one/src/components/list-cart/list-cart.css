@@ -6,6 +6,7 @@
   padding: 37px 23px 43px 20px;
   display: flex;
 }
+
 .cart-item {
   gap: 36px;
   display: flex;
@@ -13,7 +14,7 @@
 
 .order-group {
   display: flex;
-  flex-wrap: wrap;
+  /* flex-wrap: wrap; */
   gap: 43px;
 }
 .detail-dish {
@@ -41,6 +42,26 @@
   background-color: var(--text-primary-color);
   margin: auto;
 }
+
 .btn-remove {
   margin-left: 38px;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-areas: "list-cart card-group";
+  gap: 41px;
+  margin-top: 24px;
+}
+
+.card-group {
+  grid-area: card-group;
+}
+
+.carts {
+  display: block;
+}
+
+.dash-cart {
+  width: 134px;
 }

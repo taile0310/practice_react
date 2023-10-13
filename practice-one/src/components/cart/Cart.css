@@ -1,17 +1,3 @@
-.card-group {
-  grid-area: card-group;
-}
-
-.grid-container {
-  display: grid;
-  grid-template-areas: "list-cart card-group";
-  gap: 41px;
-  margin-top: 24px;
-}
-
-.carts {
-  display: none;
-}
 
 .notify-empty {
   padding: 54px;
@@ -19,6 +5,3 @@
   font-size: 54px;
 }
 
-.dash-cart {
-  width: 134px;
-}

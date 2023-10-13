@@ -1,5 +1,5 @@
-import "./input.css";
 import { CustomInputProps } from "../../../types/interface";
+import "./input.css";
 
 const Input = ({ placeholder, className }: CustomInputProps) => {
   return (
