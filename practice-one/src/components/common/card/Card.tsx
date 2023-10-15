@@ -1,12 +1,7 @@
 import "./card.css";
-import {
-  CustomCardProps,
-  CustomCartProps,
-  CustomProductProps,
-} from "../../../types/interface";
+import { CustomCardProps } from "../../../types/interface";
 import Button from "../button/Button";
 import Input from "../input/Input";
-import useLocalStorageState from "use-local-storage-state";
 
 const Card = ({
   className,
@@ -14,11 +9,12 @@ const Card = ({
   titleButton,
   showInput,
 }: CustomCardProps) => {
-  const [cart] = useLocalStorageState<CustomCartProps>("CartProducts", {});
-
-  const getProducts = () => Object.values(cart || {});
-  const totalPrice = getProducts().reduce(
-    (accumulator, item) => accumulator + item.price * item.quantity,
+  const items = JSON.parse(localStorage.getItem("CartProducts") || "[]");
+  const totalPrice = items.reduce(
+    (accumulator: number, item: number): number => {
+      const itemTotal = item.quantity * item.price;
+      return accumulator + itemTotal;
+    },
     0
   );
 
@@ -26,6 +22,11 @@ const Card = ({
     className == "card-primary"
       ? "btn-secondary text-large font-family btn-confirm"
       : "btn-secondary text-large font-family btn-apply";
+
+  const handleConfirmOrder = () => {
+    const checkoutUrl = `${window.location.origin}/checkout`;
+    window.location.replace(checkoutUrl);
+  };
 
   return (
     <div className={className}>
@@ -40,7 +41,11 @@ const Card = ({
           <span className="text-large subtotal">${totalPrice}.00</span>
         </div>
       )}
-      <Button textBtn={titleButton} className={isPrimary} />
+      <Button
+        textBtn={titleButton}
+        className={isPrimary}
+        onClick={handleConfirmOrder}
+      />
     </div>
   );
 };

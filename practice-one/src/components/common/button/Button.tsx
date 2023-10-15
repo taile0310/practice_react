@@ -12,8 +12,7 @@ const Button = ({
     <button
       className={`${buttonClassName} ${className}`}
       font-family
-      onClick={onClick}
-      >
+      onClick={onClick}>
       {textBtn}
     </button>
   );

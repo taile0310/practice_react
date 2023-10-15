@@ -1,4 +1,4 @@
-import { MouseEventHandler } from "react";
+import { ChangeEventHandler, MouseEventHandler } from "react";
 
 export interface CustomBtnProps {
   textBtn?: string;
@@ -22,6 +22,9 @@ export interface CustomInputProps {
   type?: string;
   id?: string;
   name?: string;
+  value?: string;
+  onChange?: ChangeEventHandler<HTMLInputElement>;
+  onBlur?: ChangeEventHandler<HTMLInputElement>;
 }
 
 export interface CustomNavbarProps {
@@ -44,6 +47,7 @@ export interface CustomProductProps {
   image?: string;
   quantity?: number;
   isExist?: boolean;
+  errorQuantity?: string;
 }
 
 export interface CustomFooterProps {
@@ -53,8 +57,4 @@ export interface CustomFooterProps {
 export interface CustomLabelProps {
   className?: string;
   titleLabel?: string;
-}
-
-export interface CustomCartProps {
-  [productId: string]: CustomProductProps;
 }
