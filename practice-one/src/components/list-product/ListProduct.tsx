@@ -12,31 +12,49 @@ import { spinner } from "../../assets/image";
 const ListProduct = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [products, setProducts] = useState<CustomProductProps[]>([]);
-  const [visible, setVisible] = useState(8);
+  const [defaultValue, setDefaultValue] = useState(8);
   const [error, setError] = useState(false);
   const [cart, setCart] = useLocalStorageState<CustomCartProps>(
     "CartProducts",
     {}
   );
+  const [isFull, setIsFull] = useState(false);
 
   const showMorePoducts = () => {
-    setVisible((prevValue) => prevValue + 4);
-    console.log("showMorePoducts");
+    const newValue = defaultValue + 4;
+    setDefaultValue(newValue);
   };
 
   const addToCart = (product: CustomProductProps): void => {
     alert("Thêm sản phẩm vào giỏ hàng");
     product.quantity = 1;
+    (product.isExist = true),
+      setCart((prevCart) => ({
+        ...prevCart,
+        [product.id]: product,
+      }));
+  };
 
-    setCart((prevCart) => ({
-      ...prevCart,
-      [product.id]: product,
-    }));
+  const removeFromCart = (productId: string) => {
+    alert("Xóa sản phẩm khỏi giỏ hàng");
+    setCart((prevCart: CustomCartProps | undefined) => {
+      const updatedCart = { ...prevCart };
+      delete updatedCart[productId];
+      return updatedCart;
+    });
+  };
+
+  const isInCart = (productId: string): boolean => {
+    return Object.keys(cart || {}).includes(productId);
   };
 
   useEffect(() => {
     fetchData(BASE_URL);
   }, []);
+
+  useEffect(() => {
+    setIsFull(products.length <= defaultValue);
+  }, [products, defaultValue]);
 
   async function fetchData(url: string) {
     try {
@@ -72,14 +90,20 @@ const ListProduct = () => {
       <h3 className="text-h3">Sushi food</h3>
       <hr className="dash dash-menu"></hr>
       <ul className="list-menu">
-        {products.slice(0, visible).map((product) => {
+        {products.slice(0, defaultValue).map((product) => {
           return (
             <li className="menu-item" key={product.id}>
               <Image
-                className="img-rectangle"
+                className={` img-rectangle ${
+                  isInCart(product.id) ? "added-to-cart" : ""
+                }`}
                 src={`${product.image}`}
                 alt={product.name}
-                onClick={() => addToCart(product)}
+                onClick={() => {
+                  isInCart(product.id)
+                    ? removeFromCart(product.id)
+                    : addToCart(product);
+                }}
               />
               <span className="text-small">{product.name}</span>
             </li>
@@ -87,8 +111,8 @@ const ListProduct = () => {
         })}
       </ul>
       <Button
-        textBtn="Load more"
-        className="btn-item secondary-text-btn"
+        textBtn="Load more "
+        className={`btn-item secondary-text-btn ${isFull ? "isFull" : ""}`}
         onClick={showMorePoducts}
       />
 
