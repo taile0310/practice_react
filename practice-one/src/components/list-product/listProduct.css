@@ -36,3 +36,8 @@
 .added-to-cart {
   border: 2px solid red;
 }
+
+.isFull {
+  opacity: 0.7;
+  pointer-events: none;
+}

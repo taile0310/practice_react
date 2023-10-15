@@ -43,7 +43,7 @@ export interface CustomProductProps {
   price?: number;
   image?: string;
   quantity?: number;
-  className?: string;
+  isExist?: boolean;
 }
 
 export interface CustomFooterProps {
