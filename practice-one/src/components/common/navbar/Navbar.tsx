@@ -1,10 +1,18 @@
-import { NavLink } from "react-router-dom";
-import NAV_LINKS from "../../../constants/nav-link";
+// CSS
 import "./navbar.css";
-import { CustomNavbarProps } from "../../../types/interface";
+
+// React router
+import { NavLink } from "react-router-dom";
+
+// Constants and inteface
+import NAV_LINKS from "../../../constants/nav-link";
+import { CustomNavbarProps, NavbarProps } from "../../../types/interface";
+
+// Image
 import Image from "../image/Image";
 
-const Navbar = ({ width }: CustomNavbarProps) => {
+// Component Navbar
+const Navbar: React.FC<NavbarProps> = ({ width, cartLength }) => {
   const widthNavbar = {
     width: `${width}px`,
   };
@@ -27,7 +35,11 @@ const Navbar = ({ width }: CustomNavbarProps) => {
             key={id}
             to={path}
             style={navLinkStyles}>
-            {name == "Cart" ? <div className="cart-number">10</div> : ""}
+            {name == "Cart" ? (
+              <div className="cart-number">{cartLength}</div>
+            ) : (
+              ""
+            )}
             <Image className="icon" src={icon} alt={name} />
           </NavLink>
         );

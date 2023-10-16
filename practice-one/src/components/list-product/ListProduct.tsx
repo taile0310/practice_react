@@ -1,23 +1,30 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import "./listProduct.css";
 import Button from "../common/button/Button";
 import { BASE_URL } from "../../constants/base-url";
-import { CustomProductProps } from "../../types/interface";
+import { CustomProductProps, ListProductProps } from "../../types/interface";
 import Image from "../common/image/Image";
 import Footer from "../footer/Footer";
 import { spinner } from "../../assets/image";
 import { ERROR_MESSAGES } from "../../constants/error";
 
-const ListProduct = () => {
+const ListProduct: React.FC<ListProductProps> = ({ setCartLength }) => {
+  const items = JSON.parse(localStorage.getItem("CartProducts") || "[]");
+
   const [isLoading, setIsLoading] = useState(true);
   const [products, setProducts] = useState<CustomProductProps[]>([]);
   const [defaultValue, setDefaultValue] = useState(8);
   const [error, setError] = useState(false);
-
-  const items = JSON.parse(localStorage.getItem("CartProducts") || "[]");
-
   const [carts, setCarts] = useState<CustomProductProps[]>(items);
+
+  useEffect(() => {
+    fetchData(BASE_URL);
+  }, []);
+
+  useEffect(() => {
+    setIsFull(products.length <= defaultValue);
+  }, [products, defaultValue]);
 
   useEffect(() => {
     localStorage.setItem("CartProducts", JSON.stringify(carts));
@@ -34,29 +41,24 @@ const ListProduct = () => {
     alert("Thêm sản phẩm vào giỏ hàng");
     product.quantity = 1;
     product.isExist = true;
-    setCarts((prevCart) => [...prevCart, product]);
+    setCarts((prevCart) => {
+      const newCart = [...prevCart, product];
+      setCartLength(newCart.length);
+      return newCart;
+    });
   };
 
   const removeFromCart = (productId: string) => {
     alert("Xóa sản phẩm khỏi giỏ hàng");
-    setCarts(() => {
-      const updatedCart = carts.filter((item) => item.id !== productId);
-      return updatedCart;
-    });
+    const updatedCart = carts.filter((item) => item.id !== productId);
+    setCarts(updatedCart);
+    setCartLength(updatedCart.length);
   };
 
   const isInCart = (productId: string) => {
     const checkInCart = carts.find((product) => product.id == productId);
     return checkInCart;
   };
-
-  useEffect(() => {
-    fetchData(BASE_URL);
-  }, []);
-
-  useEffect(() => {
-    setIsFull(products.length <= defaultValue);
-  }, [products, defaultValue]);
 
   async function fetchData(url: string) {
     try {

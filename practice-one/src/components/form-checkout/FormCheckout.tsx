@@ -1,11 +1,19 @@
-import { useState } from "react";
-import Card from "../common/card/Card";
-import Input from "../common/input/Input";
-import Label from "../common/label/Label";
+// CSS
 import "./form-checkout.css";
+
+// React Hooks
+import { useState } from "react";
+
+// Constants
 import { ERROR_MESSAGES } from "../../constants/error";
 import { REGEX } from "../../constants/regex";
 
+// Component
+import Card from "../common/card/Card";
+import Input from "../common/input/Input";
+import Label from "../common/label/Label";
+
+// Component FormCheckout
 const FormCheckout = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -16,21 +24,25 @@ const FormCheckout = () => {
   const [phoneError, setPhoneError] = useState("");
   const [addressError, setAddressError] = useState("");
 
-  const isValidName = (name: string) => {
+  // Method checks input for name
+  const isValidName = (name: string): boolean | undefined => {
     const regexName = REGEX.name;
     return regexName.test(name);
   };
 
+  // Method checks input for email
   const isValidEmail = (email: string) => {
     const regexEmail = REGEX.email;
     return regexEmail.test(email);
   };
 
+  // Method checks input for phone
   const isValidPhone = (phone: string) => {
     const regexPhone = REGEX.phone;
     return regexPhone.test(phone);
   };
 
+  // Method checks input for address
   const isValidAddress = (address: string) => {
     const regexAddress = REGEX.address;
     return regexAddress.test(address);
@@ -81,6 +93,24 @@ const FormCheckout = () => {
       setAddressError(ERROR_MESSAGES.addressError);
     } else {
       setAddressError("");
+    }
+  };
+
+  const handleSubmit = () => {
+    const isNameEmpty = name.trim() === "";
+    const isEmailEmpty = email.trim() === "";
+    const isPhoneEmpty = phone.trim() === "";
+    const isAddressEmpty = address.trim() === "";
+
+    if (isNameEmpty || isEmailEmpty || isPhoneEmpty || isAddressEmpty) {
+      alert("Vui lòng nhập đầy đủ thông tin");
+    } else if (nameError || emailError || phoneError || addressError) {
+      alert("Vui lòng nhập thông tin chính xác");
+    } else {
+      const homeUrl = `${window.location.origin}/`;
+      window.location.replace(homeUrl);
+
+      alert("Checkout thành công");
     }
   };
 
@@ -163,6 +193,7 @@ const FormCheckout = () => {
             titleCard="Your total"
             className="card-primary"
             titleButton="Checkout"
+            onSubmit={handleSubmit}
           />
         </div>
       </div>

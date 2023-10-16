@@ -1,6 +1,10 @@
-import { CustomInputProps } from "../../../types/interface";
+// CSS
 import "./input.css";
 
+// interface
+import { CustomInputProps } from "../../../types/interface";
+
+// Component Input
 const Input = ({
   placeholder,
   className,

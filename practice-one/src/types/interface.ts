@@ -5,6 +5,7 @@ export interface CustomBtnProps {
   className?: string;
   isHomePage?: boolean;
   onClick?: MouseEventHandler<HTMLButtonElement>;
+  disabled?: boolean;
 }
 
 export interface CustomCardProps {
@@ -14,6 +15,7 @@ export interface CustomCardProps {
   total?: string;
   width?: number;
   titleButton: string;
+  onSubmit?: (() => void) | undefined;
 }
 
 export interface CustomInputProps {
@@ -57,4 +59,16 @@ export interface CustomFooterProps {
 export interface CustomLabelProps {
   className?: string;
   titleLabel?: string;
+}
+
+export interface ListCartProps {
+  setCartLength: (length: number) => void;
+}
+
+export interface ListProductProps {
+  setCartLength: (length: number) => void;
+}
+
+export interface NavbarProps extends CustomNavbarProps {
+  cartLength?: number;
 }

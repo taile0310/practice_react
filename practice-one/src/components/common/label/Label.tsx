@@ -1,5 +1,7 @@
+// interface
 import { CustomLabelProps } from "../../../types/interface";
 
+// Component Label
 const Label = ({ className, titleLabel }: CustomLabelProps) => {
   return (
     <label className={className}>

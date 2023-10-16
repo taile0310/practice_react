@@ -1,7 +1,7 @@
 import { remove } from "../../assets/image";
 import Card from "../common/card/Card";
 import Image from "../common/image/Image";
-import { CustomProductProps } from "../../types/interface";
+import { CustomProductProps, ListCartProps } from "../../types/interface";
 import "./list-cart.css";
 import Button from "../common/button/Button";
 import { useEffect, useState } from "react";
@@ -9,7 +9,7 @@ import { ERROR_MESSAGES } from "../../constants/error";
 
 type Action = "increase" | "decrease";
 
-const ListCart = () => {
+const ListCart: React.FC<ListCartProps> = ({ setCartLength }) => {
   const [carts, setCarts] = useState<CustomProductProps[]>([]);
 
   useEffect(() => {
@@ -29,6 +29,7 @@ const ListCart = () => {
     setCarts((prevCarts) => {
       const updatedCart = prevCarts.filter((item) => item.id !== productId);
       localStorage.setItem("CartProducts", JSON.stringify(updatedCart));
+      setCartLength(updatedCart.length); // Cập nhật độ dài của giỏ hàng khi xóa sản phẩm
       return updatedCart;
     });
   };
