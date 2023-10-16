@@ -122,3 +122,11 @@
   gap: 55px;
   padding: 43px 103px 30px 57px;
 }
+
+.messages-error {
+  color: red;
+}
+
+.display-error {
+  text-align: center;
+}

@@ -1,10 +1,27 @@
-import { CustomInputProps } from "../../../types/interface";
+// CSS
 import "./input.css";
 
-const Input = ({ placeholder, className }: CustomInputProps) => {
+// interface
+import { CustomInputProps } from "../../../types/interface";
+
+// Component Input
+const Input = ({
+  placeholder,
+  className,
+  value,
+  onChange,
+  onBlur,
+}: CustomInputProps) => {
   return (
     <>
-      <input className={className} type="text" placeholder={placeholder} />
+      <input
+        className={className}
+        type="text"
+        placeholder={placeholder}
+        value={value}
+        onChange={onChange}
+        onBlur={onBlur}
+      />
       <div className="message"></div>
     </>
   );

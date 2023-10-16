@@ -1,11 +1,11 @@
 // Component
-import FormCheckout from "../../form-checkout/FormCheckout";
-import Navbar from "../navbar/Navbar";
+import Navbar from "../common/navbar/Navbar";
+import FormCheckout from "../form-checkout/FormCheckout";
 
 // Component Checkout
 const Checkout = () => {
   return (
-    <section className="component-layout font-family">
+    <section>
       <Navbar />
       <FormCheckout />
     </section>

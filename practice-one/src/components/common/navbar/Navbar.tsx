@@ -1,14 +1,18 @@
-import { NavLink } from "react-router-dom";
-import NAV_LINKS from "../../../constants/nav-link";
+// CSS
 import "./navbar.css";
-import { CustomCartProps, CustomNavbarProps } from "../../../types/interface";
+
+// React router
+import { NavLink } from "react-router-dom";
+
+// Constants and inteface
+import NAV_LINKS from "../../../constants/nav-link";
+import { CustomNavbarProps, NavbarProps } from "../../../types/interface";
+
+// Image
 import Image from "../image/Image";
-import useLocalStorageState from "use-local-storage-state";
 
-const Navbar = ({ width }: CustomNavbarProps) => {
-  const [cart] = useLocalStorageState<CustomCartProps>("CartProducts", {});
-  const productsCount: number = Object.keys(cart || {}).length;
-
+// Component Navbar
+const Navbar: React.FC<NavbarProps> = ({ width, cartLength }) => {
   const widthNavbar = {
     width: `${width}px`,
   };
@@ -32,7 +36,7 @@ const Navbar = ({ width }: CustomNavbarProps) => {
             to={path}
             style={navLinkStyles}>
             {name == "Cart" ? (
-              <div className="cart-number">{productsCount}</div>
+              <div className="cart-number">{cartLength}</div>
             ) : (
               ""
             )}

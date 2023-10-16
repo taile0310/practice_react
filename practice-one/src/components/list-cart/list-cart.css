@@ -14,9 +14,9 @@
 
 .order-group {
   display: flex;
-  /* flex-wrap: wrap; */
   gap: 43px;
 }
+
 .detail-dish {
   display: flex;
   flex-direction: column;
@@ -64,4 +64,10 @@
 
 .dash-cart {
   width: 134px;
+}
+
+.notify-empty {
+  padding: 54px;
+  margin: 0 auto;
+  font-size: 54px;
 }

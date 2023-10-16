@@ -1,10 +1,11 @@
-import { MouseEventHandler } from "react";
+import { ChangeEventHandler, MouseEventHandler } from "react";
 
 export interface CustomBtnProps {
   textBtn?: string;
   className?: string;
   isHomePage?: boolean;
   onClick?: MouseEventHandler<HTMLButtonElement>;
+  disabled?: boolean;
 }
 
 export interface CustomCardProps {
@@ -14,6 +15,7 @@ export interface CustomCardProps {
   total?: string;
   width?: number;
   titleButton: string;
+  onSubmit?: (() => void) | undefined;
 }
 
 export interface CustomInputProps {
@@ -22,6 +24,9 @@ export interface CustomInputProps {
   type?: string;
   id?: string;
   name?: string;
+  value?: string;
+  onChange?: ChangeEventHandler<HTMLInputElement>;
+  onBlur?: ChangeEventHandler<HTMLInputElement>;
 }
 
 export interface CustomNavbarProps {
@@ -44,6 +49,7 @@ export interface CustomProductProps {
   image?: string;
   quantity?: number;
   isExist?: boolean;
+  errorQuantity?: string;
 }
 
 export interface CustomFooterProps {
@@ -55,6 +61,14 @@ export interface CustomLabelProps {
   titleLabel?: string;
 }
 
-export interface CustomCartProps {
-  [productId: string]: CustomProductProps;
+export interface ListCartProps {
+  setCartLength: (length: number) => void;
+}
+
+export interface ListProductProps {
+  setCartLength: (length: number) => void;
+}
+
+export interface NavbarProps extends CustomNavbarProps {
+  cartLength?: number;
 }

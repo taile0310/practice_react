@@ -1,5 +1,7 @@
+// interface
 import { CustomFooterProps } from "../../types/interface";
 
+// Component Footer
 const Footer = ({ className }: CustomFooterProps) => {
   return (
     <div className={className}>
