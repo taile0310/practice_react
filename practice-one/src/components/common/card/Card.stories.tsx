@@ -10,7 +10,10 @@ type Story = StoryObj<typeof Card>;
 
 export const Default: Story = {
   args: {
-    titleCard: "Promo code",
     width: 443,
+    titleCard: "Promo Code",
+    titleButton: "Apply",
+    className: "card-secondary font-family",
+    showInput: true,
   },
 };

@@ -2,11 +2,13 @@
 import "./card.css";
 
 // interface
-import { CustomCardProps } from "../../../types/interface";
+import { CustomCardProps, CustomProductProps } from "../../../types/interface";
 
 // Component
 import Button from "../button/Button";
 import Input from "../input/Input";
+import { carts, getListCart } from "../../../helper/data-localStorage";
+import { useState } from "react";
 
 // Component Card
 const Card = ({
@@ -15,14 +17,16 @@ const Card = ({
   titleButton,
   showInput,
   onSubmit,
+  width,
 }: CustomCardProps) => {
-  // Get data CartProduct from localStorage
-  const items = JSON.parse(localStorage.getItem("CartProducts") || "[]");
+  const widthCard = {
+    width: `${width}px`,
+  };
 
   // Calculate total value
-  const totalPrice = items.reduce(
-    (accumulator: number, item: number): number => {
-      const itemTotal = item.quantity * item.price;
+  const totalPrice = getListCart().reduce(
+    (accumulator: number, item: CustomProductProps) => {
+      const itemTotal = (item.quantity || 0) * (item.price || 0);
       return accumulator + itemTotal;
     },
     0
@@ -44,20 +48,20 @@ const Card = ({
 
     // If you are on the checkout page, call the onSubmit function
     if (currentUrl.includes("checkout")) {
-      onSubmit();
+      onSubmit?.();
     }
     // Conversely, if you are in the cart, you will check the length of the cart.
     // If it is larger, you will be able to checkout and vice versa
-    else if (currentUrl.includes("cart")) {
-      const carts = Array.isArray(items) ? items.length : 0;
+    if (currentUrl.includes("cart")) {
+      const carts = getListCart().length;
       carts > 0
         ? window.location.replace(checkoutUrl)
-        : alert("giỏ hàng đang trống không thể checkout");
+        : alert("Your shopping cart is empty, cannot checkout.");
     }
   };
 
   return (
-    <div className={className}>
+    <div className={className} style={widthCard}>
       <h4 className="text-h4">{titleCard}</h4>
       {showInput ? (
         <Input placeholder="enter promo code" className="card-input" />

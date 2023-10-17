@@ -17,5 +17,7 @@ export default {
 type Story = StoryObj<typeof Checkout>;
 
 export const Default: Story = {
-  args: {},
+  args: {
+    
+  },
 };

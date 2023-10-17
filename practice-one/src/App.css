@@ -130,3 +130,11 @@
 .display-error {
   text-align: center;
 }
+
+.dash {
+  background-color: var(--primary-color);
+  width: 306px;
+  height: 5px;
+  margin: 0;
+  border: 0;
+}

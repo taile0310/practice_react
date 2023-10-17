@@ -63,6 +63,7 @@ export interface CustomLabelProps {
 
 export interface ListCartProps {
   setCartLength: (length: number) => void;
+  className?: string;
 }
 
 export interface ListProductProps {

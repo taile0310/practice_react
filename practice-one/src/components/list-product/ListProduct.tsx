@@ -1,22 +1,31 @@
+// CSS
+import "./listProduct.css";
+
+//React Hooks
 import React, { useEffect, useState } from "react";
 
-import "./listProduct.css";
-import Button from "../common/button/Button";
-import { BASE_URL } from "../../constants/base-url";
-import { CustomProductProps, ListProductProps } from "../../types/interface";
+// Component
 import Image from "../common/image/Image";
 import Footer from "../footer/Footer";
+import Button from "../common/button/Button";
+
+// Interface
+import { CustomProductProps, ListProductProps } from "../../types/interface";
+
+// Constants, Image, Message error
 import { spinner } from "../../assets/image";
+import { BASE_URL } from "../../constants/base-url";
 import { ERROR_MESSAGES } from "../../constants/error";
+import { getListCart } from "../../helper/data-localStorage";
 
+// Component ListProduct
 const ListProduct: React.FC<ListProductProps> = ({ setCartLength }) => {
-  const items = JSON.parse(localStorage.getItem("CartProducts") || "[]");
-
   const [isLoading, setIsLoading] = useState(true);
   const [products, setProducts] = useState<CustomProductProps[]>([]);
   const [defaultValue, setDefaultValue] = useState(8);
   const [error, setError] = useState(false);
-  const [carts, setCarts] = useState<CustomProductProps[]>(items);
+  const [carts, setCarts] = useState<CustomProductProps[]>(getListCart);
+  const [isFull, setIsFull] = useState(false);
 
   useEffect(() => {
     fetchData(BASE_URL);
@@ -30,37 +39,54 @@ const ListProduct: React.FC<ListProductProps> = ({ setCartLength }) => {
     localStorage.setItem("CartProducts", JSON.stringify(carts));
   }, [carts]);
 
-  const [isFull, setIsFull] = useState(false);
-
+  // Method Loadmore
   const showMorePoducts = () => {
     const newValue = defaultValue + 4;
     setDefaultValue(newValue);
   };
 
+  /**
+   * Function addToCart to add products to the cart
+   * @param product
+   */
   const addToCart = (product: CustomProductProps): void => {
-    alert("Thêm sản phẩm vào giỏ hàng");
+    alert("Are you sure you want to add this product to your cart?");
     product.quantity = 1;
     product.isExist = true;
     setCarts((prevCart) => {
       const newCart = [...prevCart, product];
+      // Update the length of the shopping cart
       setCartLength(newCart.length);
       return newCart;
     });
   };
 
+  /**
+   * Method to remove product from cart
+   * @param productId
+   */
   const removeFromCart = (productId: string) => {
-    alert("Xóa sản phẩm khỏi giỏ hàng");
+    alert("Are you sure to remove this product from your cart?");
     const updatedCart = carts.filter((item) => item.id !== productId);
     setCarts(updatedCart);
     setCartLength(updatedCart.length);
   };
 
+  /**
+   * isInCart function to check if the product is already in the cart
+   * @param productId
+   * @returns
+   */
   const isInCart = (productId: string) => {
     const checkInCart = carts.find((product) => product.id == productId);
     return checkInCart;
   };
 
-  async function fetchData(url: string) {
+  /**
+   * FetchData function to fetch data from URL and process results
+   * @param url
+   */
+  const fetchData = async (url: string) => {
     try {
       const response = await fetch(url);
       if (response.ok) {
@@ -75,14 +101,16 @@ const ListProduct: React.FC<ListProductProps> = ({ setCartLength }) => {
       setError(true);
       setIsLoading(false);
     }
-  }
+  };
 
+  // If there is an error, display the error message
   if (error) {
     return (
       <p className="messages-error text-medium">{ERROR_MESSAGES.fetchError}</p>
     );
   }
 
+  // If loading data, display the loading icon
   if (isLoading) {
     return (
       <div className="spinner">
@@ -121,7 +149,6 @@ const ListProduct: React.FC<ListProductProps> = ({ setCartLength }) => {
         className={`btn-item secondary-text-btn ${isFull ? "isFull" : ""}`}
         onClick={showMorePoducts}
       />
-
       <Footer className="copyright-text" />
     </section>
   );

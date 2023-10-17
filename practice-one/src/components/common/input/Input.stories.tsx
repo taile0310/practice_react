@@ -11,5 +11,6 @@ type Story = StoryObj<typeof Input>;
 export const Default: Story = {
   args: {
     placeholder: "enter promo code",
+    className: "card-input promo-code",
   },
 };

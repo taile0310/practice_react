@@ -1,64 +1,91 @@
-import { remove } from "../../assets/image";
+// CSS
+import "./list-cart.css";
+
+// React Hooks
+import { useEffect, useState } from "react";
+
+// Interfaces
+import { CustomProductProps, ListCartProps } from "../../types/interface";
+
+// Component
+import Button from "../common/button/Button";
 import Card from "../common/card/Card";
 import Image from "../common/image/Image";
-import { CustomProductProps, ListCartProps } from "../../types/interface";
-import "./list-cart.css";
-import Button from "../common/button/Button";
-import { useEffect, useState } from "react";
-import { ERROR_MESSAGES } from "../../constants/error";
 
+// Error Messages and Image
+import { ERROR_MESSAGES } from "../../constants/error";
+import { remove } from "../../assets/image";
+import { getListCart } from "../../helper/data-localStorage";
+
+// Declare the action type
 type Action = "increase" | "decrease";
 
-const ListCart: React.FC<ListCartProps> = ({ setCartLength }) => {
+// Component ListCart
+const ListCart: React.FC<ListCartProps> = ({ setCartLength, className }) => {
   const [carts, setCarts] = useState<CustomProductProps[]>([]);
 
+  // Use useEffect to update cart from localStorage
   useEffect(() => {
-    const items = JSON.parse(localStorage.getItem("CartProducts") || "[]");
-    if (items) {
-      setCarts(
-        items.map((item: CustomProductProps) => ({
-          ...item,
-          errorQuantity: null,
-        }))
-      );
-    }
+    // Set the value of state 'carts' based on data from localStorage
+    setCarts(
+      getListCart().map((item: CustomProductProps) => ({
+        ...item,
+      }))
+    );
   }, [setCarts]);
 
+  /**
+   * Method to remove product from cart
+   * @param productId
+   */
   const removeFromCart = (productId: string) => {
-    alert("Xóa sản phẩm khỏi giỏ hàng");
+    alert("Are you sure to remove this product from your cart?");
+    // Update the new cart by removing products with corresponding 'productId'
     setCarts((prevCarts) => {
       const updatedCart = prevCarts.filter((item) => item.id !== productId);
+
+      // Save the new cart to localStorage
       localStorage.setItem("CartProducts", JSON.stringify(updatedCart));
-      setCartLength(updatedCart.length); // Cập nhật độ dài của giỏ hàng khi xóa sản phẩm
+
+      // Update the length of the shopping cart
+      setCartLength(updatedCart.length);
       return updatedCart;
     });
   };
 
+  /**
+   * Method to update the number of products in the cart
+   * @param productId
+   * @param action
+   */
   const handleUpdateQuantity = (productId: string, action: Action) => {
     setCarts((prevCarts) => {
       const updatedCarts = prevCarts.map((item) => {
+        // Check if the product has an id that matches productId
         if (item.id === productId) {
+          // Calculate new quantity based on action (increase or decrease)
           const increment = action === "increase" ? 1 : -1;
           const newQuantity = (item.quantity || 0) + increment;
+
+          // Update products with new quantity and check for errors if any
           const updatedItem = {
             ...item,
             quantity: newQuantity >= 1 ? newQuantity : 1,
             errorQuantity:
               newQuantity < 1 ? ERROR_MESSAGES.quantityNegative : "",
           };
-
           return updatedItem;
         }
         return item;
       });
-
+      // Save the new cart to localStorage after updating the quantity
       localStorage.setItem("CartProducts", JSON.stringify(updatedCarts));
       return updatedCarts;
     });
   };
 
   return (
-    <section className="carts">
+    <section className={`carts ${className}`}>
       <h3 className="text-h3">CART</h3>
       <hr className="dash dash-cart"></hr>
       <div className="grid-container">
