@@ -1,12 +1,18 @@
+// CSS
+import "./Menu.css";
+// React Hook
 import { useState } from "react";
+
+// Component
 import Navbar from "../common/navbar/Navbar";
 import ListProduct from "../list-product/ListProduct";
-import "./Menu.css";
+import { getListCart } from "../../helper/data-localStorage";
 
+// Component Menu
 const Menu = () => {
-  const items = JSON.parse(localStorage.getItem("CartProducts") || "[]");
+  // Initialize state cartLength to store the length of the cart from LocalStorage
+  const [cartLength, setCartLength] = useState<number>(getListCart().length);
 
-  const [cartLength, setCartLength] = useState<number>(items.length);
   return (
     <section className="component-layout ">
       <Navbar cartLength={cartLength} />

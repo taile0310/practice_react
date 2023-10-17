@@ -6,23 +6,23 @@ import { NavLink } from "react-router-dom";
 
 // Constants and inteface
 import NAV_LINKS from "../../../constants/nav-link";
-import { CustomNavbarProps, NavbarProps } from "../../../types/interface";
+import { NavbarProps } from "../../../types/interface";
 
 // Image
 import Image from "../image/Image";
+import { MouseEvent } from "react";
 
 // Component Navbar
-const Navbar: React.FC<NavbarProps> = ({ width, cartLength }) => {
+const Navbar: React.FC<NavbarProps> = ({ width, cartLength, isActive }) => {
   const widthNavbar = {
     width: `${width}px`,
   };
 
-  const navLinkStyles = ({ isActive }: CustomNavbarProps) => {
-    return {
-      backgroundColor: isActive ? "#F1D5BB" : "",
-      PointerEvent: isActive ? "none" : "",
-      cursor: isActive ? "default" : "",
-    };
+  const handleCheckout = (event: MouseEvent<HTMLAnchorElement>) => {
+    if ((cartLength || 0) <= 0) {
+      alert("Your shopping cart is empty, cannot checkout.");
+      event.preventDefault();
+    }
   };
 
   return (
@@ -31,10 +31,10 @@ const Navbar: React.FC<NavbarProps> = ({ width, cartLength }) => {
         const { id, name, icon, path } = navLinks;
         return (
           <NavLink
-            className="nav-item"
+            className={`nav-item ${isActive ? "active" : ""}`}
             key={id}
             to={path}
-            style={navLinkStyles}>
+            onClick={name === "Checkout" ? handleCheckout : undefined}>
             {name == "Cart" ? (
               <div className="cart-number">{cartLength}</div>
             ) : (

@@ -16,4 +16,8 @@ export default {
 
 type Story = StoryObj<typeof ListCart>;
 
-export const Default: Story = {};
+export const Default: Story = {
+  args: {
+    className: "font-family",
+  },
+};

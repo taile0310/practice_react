@@ -1,13 +1,17 @@
-import { Link } from "react-router-dom";
+// CSS
 import "./home-page.css";
 
+// React router
+import { Link } from "react-router-dom";
+
+// Component HomePage
 const HomePage = () => {
   return (
     <div className="font-family home-layout">
       <section className="home-content">
-        <h2 className="text-h2">
+        <h1 className="text-h2">
           Welcome to <span>Shushi</span> Restaurant
-        </h2>
+        </h1>
         <p className="text-p">
           People eat with their eyes and Sushi creates an easy way for customers
           to order when they can see beautiful photos of your food
