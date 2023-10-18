@@ -33,6 +33,7 @@ export interface CustomNavbarProps {
   isActive?: boolean;
   width?: number;
   className?: string;
+  cartLength?: number;
 }
 
 export interface CustomImageProps {
@@ -62,14 +63,26 @@ export interface CustomLabelProps {
 }
 
 export interface ListCartProps {
-  setCartLength: (length: number) => void;
   className?: string;
+  handleUpdateQuantity: (productId: string, action: Action) => void;
+  removeFromCart: (productId: string) => void;
+  carts: CustomProductProps[];
 }
 
 export interface ListProductProps {
-  setCartLength: (length: number) => void;
+  addToCart: (product: CustomProductProps) => void;
+  removeFromCart: (productId: string) => void;
+  isInCart: (productId: string) => CustomProductProps | undefined;
+  showMorePoducts: () => void;
+  error: boolean;
+  isLoading: boolean;
+  products: CustomProductProps[];
+  defaultValue: number;
+  isFull: boolean;
 }
+// Declare the action type
+export type Action = "increase" | "decrease";
 
-export interface NavbarProps extends CustomNavbarProps {
-  cartLength?: number;
+export interface CartContextValue {
+  setCartLength: React.Dispatch<React.SetStateAction<number>>;
 }

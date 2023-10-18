@@ -1,5 +1,5 @@
 import { Meta, StoryObj } from "@storybook/react";
-import Image from "./Image";
+import Image from ".";
 import { logo } from "../../../assets/image";
 
 export default {

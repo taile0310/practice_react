@@ -1,5 +1,5 @@
 import { Meta, StoryObj } from "@storybook/react";
-import Footer from "./Footer";
+import Footer from ".";
 
 export default {
   title: "Components/Footer",

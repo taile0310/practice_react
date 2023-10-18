@@ -1,6 +1,6 @@
 import { Meta, StoryObj } from "@storybook/react";
 import { MemoryRouter } from "react-router-dom";
-import Navbar from "./Navbar";
+import Navbar from ".";
 
 export default {
   title: "Components/Navbar",

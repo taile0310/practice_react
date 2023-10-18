@@ -1,6 +1,6 @@
 import { Meta, StoryObj } from "@storybook/react";
 import { MemoryRouter } from "react-router-dom";
-import Checkout from "./Checkout";
+import Checkout from ".";
 
 export default {
   title: "Components/Checkout",
@@ -17,7 +17,5 @@ export default {
 type Story = StoryObj<typeof Checkout>;
 
 export const Default: Story = {
-  args: {
-    
-  },
+  args: {},
 };

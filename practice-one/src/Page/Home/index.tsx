@@ -2,7 +2,7 @@
 import "./home-page.css";
 
 // React router
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 // Component HomePage
 const HomePage = () => {
@@ -20,11 +20,11 @@ const HomePage = () => {
           <Link to="/" className="btn-primary font-family primary-text-btn">
             ABOUT
           </Link>
-          <Link
+          <NavLink
             to="/menu"
             className="btn-primary btnMenu font-family primary-text-btn">
             MENU
-          </Link>
+          </NavLink>
         </div>
       </section>
     </div>

@@ -1,10 +1,10 @@
 import { Meta, StoryObj } from "@storybook/react";
 import { MemoryRouter } from "react-router-dom";
-import ListCart from "./ListCart";
+import HomePage from ".";
 
 export default {
-  title: "Components/ListCart",
-  component: ListCart,
+  title: "Components/HomePage",
+  component: HomePage,
   decorators: [
     (Story) => (
       <MemoryRouter>
@@ -14,10 +14,8 @@ export default {
   ],
 } as Meta;
 
-type Story = StoryObj<typeof ListCart>;
+type Story = StoryObj<typeof HomePage>;
 
 export const Default: Story = {
-  args: {
-    className: "font-family",
-  },
+  args: {},
 };

@@ -5,10 +5,10 @@ import "./card.css";
 import { CustomCardProps, CustomProductProps } from "../../../types/interface";
 
 // Component
-import Button from "../button/Button";
-import Input from "../input/Input";
-import { carts, getListCart } from "../../../helper/data-localStorage";
-import { useState } from "react";
+import { Button, Input } from "..";
+
+// LocalStorage
+import { getListCart } from "../../../helper/data-localStorage";
 
 // Component Card
 const Card = ({

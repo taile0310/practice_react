@@ -1,6 +1,6 @@
 import { Meta, StoryObj } from "@storybook/react";
 import { MemoryRouter } from "react-router-dom";
-import ListProduct from "./ListProduct";
+import ListProduct from ".";
 
 export default {
   title: "Components/ListProduct",

@@ -6,18 +6,25 @@ import { NavLink } from "react-router-dom";
 
 // Constants and inteface
 import NAV_LINKS from "../../../constants/nav-link";
-import { NavbarProps } from "../../../types/interface";
+import { CustomNavbarProps } from "../../../types/interface";
 
 // Image
-import Image from "../image/Image";
-import { MouseEvent } from "react";
+import Image from "../Image";
+import { MouseEvent, useState } from "react";
+import { useMyContext } from "../../../Context/CartLengthContext";
 
 // Component Navbar
-const Navbar: React.FC<NavbarProps> = ({ width, cartLength, isActive }) => {
+const Navbar: React.FC<CustomNavbarProps> = ({
+  width,
+  cartLength,
+  isActive,
+}) => {
   const widthNavbar = {
     width: `${width}px`,
   };
 
+
+  
   const handleCheckout = (event: MouseEvent<HTMLAnchorElement>) => {
     if ((cartLength || 0) <= 0) {
       alert("Your shopping cart is empty, cannot checkout.");
