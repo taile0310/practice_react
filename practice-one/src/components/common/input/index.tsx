@@ -22,7 +22,6 @@ const Input = ({
         onChange={onChange}
         onBlur={onBlur}
       />
-      <div className="message"></div>
     </>
   );
 };

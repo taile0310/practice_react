@@ -8,9 +8,9 @@ import { useState } from "react";
 import { ERROR_MESSAGES } from "../../constants/error";
 
 // Component
-import Card from "../common/card/Card";
-import Input from "../common/input/Input";
-import Label from "../common/label/Label";
+import { Card, Footer, Input, Label } from "..";
+
+// Validations
 import {
   isValidAddress,
   isValidEmail,
@@ -98,6 +98,7 @@ const FormCheckout = () => {
       alert("Checkout successful");
       const homeUrl = `${window.location.origin}/home`;
       window.location.replace(homeUrl);
+      localStorage.clear();
     }
   };
 
@@ -184,6 +185,7 @@ const FormCheckout = () => {
           />
         </div>
       </div>
+      <Footer className="copyright" />
     </section>
   );
 };
