@@ -117,7 +117,9 @@ const FormCheckout = () => {
             id="name"
             name="name"
             value={name}
-            onChange={(e) => setName(e.target.value)}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+              setName(e.target.value)
+            }
             onBlur={handleNameBlur}
           />
           {nameError && <p className="messages-error">{nameError}</p>}
@@ -130,7 +132,9 @@ const FormCheckout = () => {
             id="email"
             name="email"
             value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+              setEmail(e.target.value)
+            }
             onBlur={handleEmailBlur}
           />
           {emailError && <p className="messages-error">{emailError}</p>}
@@ -143,7 +147,9 @@ const FormCheckout = () => {
             id="phone"
             name="phone"
             value={phone}
-            onChange={(e) => setPhone(e.target.value)}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+              setPhone(e.target.value)
+            }
             onBlur={handlePhoneBlur}
           />
           {phoneError && <p className="messages-error">{phoneError}</p>}
@@ -156,7 +162,9 @@ const FormCheckout = () => {
             id="address"
             name="address"
             value={address}
-            onChange={(e) => setAddress(e.target.value)}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+              setAddress(e.target.value)
+            }
             onBlur={handleAddressBlur}
           />
           {addressError && <p className="messages-error">{addressError}</p>}
