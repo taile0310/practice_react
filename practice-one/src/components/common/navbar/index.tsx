@@ -12,11 +12,7 @@ import { CustomNavbarProps } from "../../../types/interface";
 import Image from "../Image";
 import { MouseEvent } from "react";
 // Component Navbar
-const Navbar: React.FC<CustomNavbarProps> = ({
-  width,
-  cartLength,
-  isActive,
-}) => {
+const Navbar: React.FC<CustomNavbarProps> = ({ width, cartLength }) => {
   const widthNavbar = {
     width: `${width}px`,
   };
