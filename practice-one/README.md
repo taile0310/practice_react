@@ -51,6 +51,7 @@ practice-one
 ```
 |-- src
     |-- assets
+    |-- components
     |-- App.tsx
     |-- main.tsx
     |-- index.css
