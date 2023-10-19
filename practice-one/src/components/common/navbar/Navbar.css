@@ -23,3 +23,17 @@
   margin-top: -10px;
   margin-left: 40px;
 }
+
+.nav-item.active .cart-number {
+  color: var(--secondary-color);
+}
+
+.nav-item:first-child .icon {
+  filter: invert(85%) sepia(20%) saturate(551%) hue-rotate(329deg)
+    brightness(105%) contrast(89%);
+}
+
+.nav-item.active .icon {
+  filter: invert(0%) sepia(0%) saturate(7465%) hue-rotate(338deg)
+    brightness(106%) contrast(109%);
+}

@@ -4,10 +4,14 @@ import { CustomLabelProps } from "../../../types/interface";
 // Component Label
 const Label = ({ className, titleLabel }: CustomLabelProps) => {
   return (
-    <label className={className}>
-      {titleLabel}
-      <span className="required-input"> *</span>
-    </label>
+    <>
+      <label className={className}>{titleLabel}</label>
+      {titleLabel === "Description" || titleLabel === "Payment Method" ? (
+        ""
+      ) : (
+        <span className="required-input"> *</span>
+      )}
+    </>
   );
 };
 

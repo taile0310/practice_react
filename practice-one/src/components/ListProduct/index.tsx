@@ -10,6 +10,7 @@ import { ListProductProps } from "../../types/interface";
 // Constants, Image, Message error
 import { spinner } from "../../assets/image";
 import { ERROR_MESSAGES } from "../../constants/error";
+import Heading from "../common/Heading";
 
 // Component ListProduct
 const ListProduct: React.FC<ListProductProps> = ({
@@ -41,7 +42,7 @@ const ListProduct: React.FC<ListProductProps> = ({
 
   return (
     <section className="section-menu font-family">
-      <h3 className="text-h3">Sushi food</h3>
+      <Heading className="text-h2" element="h2" content="Sushi food" />
       <hr className="dash dash-menu"></hr>
       <ul className="list-menu">
         {products.slice(0, defaultValue).map((product) => {
@@ -65,7 +66,7 @@ const ListProduct: React.FC<ListProductProps> = ({
         })}
       </ul>
       <Button
-        textBtn="Load more "
+        textBtn="Load more"
         className={`btn-item secondary-text-btn ${isFull ? "isFull" : ""}`}
         onClick={showMorePoducts}
       />

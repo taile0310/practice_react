@@ -8,16 +8,17 @@ export default {
 
 type Story = StoryObj<typeof Button>;
 
-export const Default: Story = {
+export const Primary: Story = {
   args: {
-    isHomePage: true,
+    variants: true,
     textBtn: "MENU",
-    className: "btn-primary primary-text-btn",
+    className: "btn btn-primary primary-text-btn",
   },
 };
 
 export const Secondary: Story = {
   args: {
+    variants: false,
     textBtn: "Apply",
     className: "btn-secondary text-large btn-apply",
   },
