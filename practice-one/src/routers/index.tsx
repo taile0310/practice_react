@@ -1,4 +1,4 @@
-import { Cart, Checkout, Menu } from "../components";
+import { Cart, Checkout, Menu } from "../pages";
 
 export const routers = [
   {

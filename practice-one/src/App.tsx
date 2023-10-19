@@ -2,9 +2,9 @@ import "./App.css";
 
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
-import { Home } from "./components/index";
-import { routers } from "./Routers";
 import MainLayout from "./layout/MainLayout";
+import { Home } from "./pages";
+import { routers } from "./routers";
 
 function App() {
   return (
