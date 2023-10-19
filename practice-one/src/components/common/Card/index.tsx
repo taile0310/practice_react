@@ -1,5 +1,5 @@
 // CSS
-import "./card.css";
+import "./Card.css";
 
 // interface
 import { CustomCardProps, CustomProductProps } from "../../../types/interface";
@@ -27,7 +27,7 @@ const Card = ({
   // Calculate total value
   const totalPrice = getListCart().reduce(
     (accumulator: number, item: CustomProductProps) => {
-      console.log(item, "tets")
+      console.log(item, "tets");
       const itemTotal = (item.quantity || 0) * (item.price || 0);
       return accumulator + itemTotal;
     },

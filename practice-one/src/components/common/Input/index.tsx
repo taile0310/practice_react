@@ -1,5 +1,5 @@
 // CSS
-import "./input.css";
+import "./Input.css";
 
 // interface
 import { CustomInputProps } from "../../../types/interface";

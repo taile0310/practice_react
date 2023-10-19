@@ -1,5 +1,5 @@
 // CSS
-import "./button.css";
+import "./Button.css";
 
 // Component
 import { CustomBtnProps } from "../../../types/interface";
