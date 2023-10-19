@@ -5,13 +5,13 @@ const NAV_LINKS = [
     id: 1,
     name: "Logo",
     icon: logo,
-    path: "/home",
+    path: "/",
   },
   {
     id: 2,
     name: "Home",
     icon: home,
-    path: "/home",
+    path: "/",
   },
   {
     id: 3,
@@ -35,7 +35,7 @@ const NAV_LINKS = [
     id: 6,
     name: "Back",
     icon: back,
-    path: "/home",
+    path: "/",
   },
 ];
 
