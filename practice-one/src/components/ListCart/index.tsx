@@ -9,6 +9,7 @@ import { Button, Card, Footer, Image } from "..";
 
 // Error Messages and Image
 import { remove } from "../../assets/image";
+import Heading from "../common/Heading";
 
 // Component ListCart
 const ListCart: React.FC<ListCartProps> = ({
@@ -19,7 +20,7 @@ const ListCart: React.FC<ListCartProps> = ({
 }) => {
   return (
     <section className={`carts ${className}`}>
-      <h3 className="text-h3">CART</h3>
+      <Heading className="text-h2" element="h2" content="Cart" />
       <hr className="dash dash-cart"></hr>
       <div className="grid-container">
         <ul className="list-cart">

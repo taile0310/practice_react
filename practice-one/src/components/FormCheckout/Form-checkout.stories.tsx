@@ -1,10 +1,10 @@
-import { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react";
+import FormCheckout from ".";
 import { MemoryRouter } from "react-router-dom";
-import Checkout from ".";
 
 export default {
-  title: "Components/Checkout",
-  component: Checkout,
+  title: "Components/FormCheckout",
+  component: FormCheckout,
   decorators: [
     (Story) => (
       <MemoryRouter>
@@ -14,7 +14,7 @@ export default {
   ],
 } as Meta;
 
-type Story = StoryObj<typeof Checkout>;
+type Story = StoryObj<typeof FormCheckout>;
 
 export const Default: Story = {
   args: {},

@@ -8,12 +8,12 @@ import { CustomBtnProps } from "../../../types/interface";
 const Button = ({
   className,
   textBtn,
-  isHomePage,
   onClick,
   disabled,
+  variants,
 }: CustomBtnProps) => {
   // Determine the className based on whether it is isHomePage
-  const buttonClassName = isHomePage ? "btn-primary" : "btn-secondary";
+  const buttonClassName = variants ? " btn-primary" : " btn-secondary";
   return (
     <button
       className={`${buttonClassName} ${className}`}

@@ -79,7 +79,6 @@ const Cart = () => {
   return (
     <>
       <ListCart
-        className="font-family"
         handleUpdateQuantity={handleUpdateQuantity}
         removeFromCart={removeFromCart}
         carts={carts}

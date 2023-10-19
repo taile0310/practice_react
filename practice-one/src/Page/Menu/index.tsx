@@ -18,7 +18,7 @@ const Menu: React.FC = () => {
   const [products, setProducts] = useState<CustomProductProps[]>([]);
   const [defaultValue, setDefaultValue] = useState(8);
   const [error, setError] = useState(false);
-  const [carts, setCarts] = useState<CustomProductProps[]>(getListCart);
+  const [carts, setCarts] = useState<CustomProductProps[]>(getListCart());
   const [isFull, setIsFull] = useState(false);
 
   useEffect(() => {

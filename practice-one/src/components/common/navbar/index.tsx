@@ -10,9 +10,7 @@ import { CustomNavbarProps } from "../../../types/interface";
 
 // Image
 import Image from "../Image";
-import { MouseEvent, useState } from "react";
-import { useMyContext } from "../../../Context/CartLengthContext";
-
+import { MouseEvent } from "react";
 // Component Navbar
 const Navbar: React.FC<CustomNavbarProps> = ({
   width,
@@ -23,22 +21,19 @@ const Navbar: React.FC<CustomNavbarProps> = ({
     width: `${width}px`,
   };
 
-
-  
   const handleCheckout = (event: MouseEvent<HTMLAnchorElement>) => {
     if ((cartLength || 0) <= 0) {
       alert("Your shopping cart is empty, cannot checkout.");
       event.preventDefault();
     }
   };
-
   return (
     <nav className="nav-menu font-family" style={widthNavbar}>
       {NAV_LINKS.map((navLinks) => {
         const { id, name, icon, path } = navLinks;
         return (
           <NavLink
-            className={`nav-item ${isActive ? "active" : ""}`}
+            className="nav-item"
             key={id}
             to={path}
             onClick={name === "Checkout" ? handleCheckout : undefined}>

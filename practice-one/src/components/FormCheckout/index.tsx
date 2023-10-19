@@ -17,6 +17,8 @@ import {
   isValidName,
   isValidPhone,
 } from "../../helper/validation";
+import { useNavigate } from "react-router-dom";
+import Heading from "../common/Heading";
 
 // Component FormCheckout
 const FormCheckout = () => {
@@ -80,6 +82,7 @@ const FormCheckout = () => {
       ? setAddressError(ERROR_MESSAGES.addressError)
       : setAddressError("");
   };
+  const navigate = useNavigate();
 
   // Hanlde when the user click button
   const handleSubmit = () => {
@@ -96,20 +99,18 @@ const FormCheckout = () => {
     } else {
       // Otherwise, if there is no error, checkout is allowed and a success notification is reported
       alert("Checkout successful");
-      const homeUrl = `${window.location.origin}/home`;
-      window.location.replace(homeUrl);
       localStorage.clear();
+      navigate("/home");
     }
   };
 
   return (
-    <section className="checkout-cart">
-      <h3 className="text-h3">Checkout</h3>
+    <section className="checkout-cart font-family">
+      <Heading className="text-h2" element="h2" content="Checkout" />
       <hr className="dash dash-checkout"></hr>
       <div className="checkout-container">
         <form className="form-checkout">
           <Label className="text-medium" titleLabel="Full Name" />
-
           <Input
             className="form-input"
             type="text"
@@ -166,7 +167,7 @@ const FormCheckout = () => {
             name="description"
             id="description"></textarea>
 
-          <Label className="text-medium" titleLabel=" Payment Method" />
+          <Label className="text-medium" titleLabel="Payment Method" />
           <select
             className="form-input"
             id="payment-method"

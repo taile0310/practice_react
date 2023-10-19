@@ -3,9 +3,9 @@ import { ChangeEventHandler, MouseEventHandler } from "react";
 export interface CustomBtnProps {
   textBtn?: string;
   className?: string;
-  isHomePage?: boolean;
   onClick?: MouseEventHandler<HTMLButtonElement>;
   disabled?: boolean;
+  variants?: boolean;
 }
 
 export interface CustomCardProps {
@@ -15,7 +15,7 @@ export interface CustomCardProps {
   total?: string;
   width?: number;
   titleButton: string;
-  onSubmit?: (() => void) | undefined;
+  onSubmit?: () => void;
 }
 
 export interface CustomInputProps {
@@ -85,4 +85,16 @@ export type Action = "increase" | "decrease";
 
 export interface CartContextValue {
   setCartLength: React.Dispatch<React.SetStateAction<number>>;
+}
+
+export interface IHeadingTextProps {
+  as?: string;
+  type?: string;
+  truncate?: 1 | 2 | 3 | 4 | 5 | 6;
+}
+
+export interface HeadingProps {
+  element: "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
+  content: React.ReactNode;
+  className?: string;
 }
