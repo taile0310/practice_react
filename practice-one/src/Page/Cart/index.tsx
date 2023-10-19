@@ -20,7 +20,6 @@ const Cart = () => {
       }))
     );
   }, [setCarts]);
-
   const cartContext = useContext(CartLength);
   if (cartContext === null) {
     return null;
