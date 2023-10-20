@@ -1,4 +1,4 @@
-import { HeadingProps } from "../../../types/interface";
+import { HeadingProps } from "../../../types";
 
 const Heading: React.FC<HeadingProps> = ({ element, content, className }) => {
   const headingStyles = {

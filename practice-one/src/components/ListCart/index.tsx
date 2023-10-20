@@ -2,7 +2,7 @@
 import "./list-cart.css";
 
 // Interfaces
-import { ListCartProps } from "../../types/interface";
+import { ListCartProps } from "../../types";
 
 // Component
 import { Button, Card, Footer, Image } from "..";
@@ -14,9 +14,9 @@ import Heading from "../common/Heading";
 // Component ListCart
 const ListCart: React.FC<ListCartProps> = ({
   className,
+  carts,
   handleUpdateQuantity,
   removeFromCart,
-  carts,
 }) => {
   return (
     <section className={`carts ${className}`}>
@@ -93,7 +93,7 @@ const ListCart: React.FC<ListCartProps> = ({
           />
         </div>
       </div>
-      <Footer className="copyright" />
+      <Footer />
     </section>
   );
 };

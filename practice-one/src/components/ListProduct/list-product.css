@@ -14,7 +14,7 @@
 .btn-item {
   padding: 14.5px 38px;
   border: 0;
-  margin: 35px auto 0 auto;
+  margin: 35px auto 56px auto;
 }
 
 .menu-item {
@@ -22,10 +22,6 @@
   flex-direction: column;
   text-align: center;
   gap: 8px;
-}
-
-.copyright-text {
-  margin-top: 56px;
 }
 
 .spinner {

@@ -2,7 +2,7 @@
 import "./Card.css";
 
 // interface
-import { CustomCardProps, CustomProductProps } from "../../../types/interface";
+import { CustomCardProps, CustomProductProps } from "../../../types";
 
 // Component
 import { Button, Input } from "..";
@@ -18,8 +18,8 @@ const Card = ({
   titleCard,
   titleButton,
   showInput,
-  onSubmit,
   width,
+  onSubmit,
 }: CustomCardProps) => {
   const widthCard = {
     width: `${width}px`,
@@ -27,7 +27,6 @@ const Card = ({
   // Calculate total value
   const totalPrice = getListCart().reduce(
     (accumulator: number, item: CustomProductProps) => {
-      console.log(item, "tets");
       const itemTotal = (item.quantity || 0) * (item.price || 0);
       return accumulator + itemTotal;
     },

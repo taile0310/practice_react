@@ -2,15 +2,15 @@
 import "./Button.css";
 
 // Component
-import { CustomBtnProps } from "../../../types/interface";
+import { CustomBtnProps } from "../../../types";
 
 // Component Button
 const Button = ({
   className,
   textBtn,
-  onClick,
   disabled,
   variants,
+  onClick,
 }: CustomBtnProps) => {
   // Determine the className based on whether it is isHomePage
   const buttonClassName = variants ? " btn-primary" : " btn-secondary";

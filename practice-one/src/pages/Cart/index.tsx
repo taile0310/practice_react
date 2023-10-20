@@ -3,7 +3,7 @@ import { useContext, useEffect, useState } from "react";
 
 // Component
 import { ListCart } from "../../components";
-import { Action, CustomProductProps } from "../../types/interface";
+import { Action, CustomProductProps } from "../../types";
 import { getListCart } from "../../helper/data-localStorage";
 import { ERROR_MESSAGES } from "../../constants/error";
 import { CartLength } from "../../layout/MainLayout";

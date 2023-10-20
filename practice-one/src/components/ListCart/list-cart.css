@@ -51,7 +51,7 @@
   display: grid;
   grid-template-areas: "list-cart card-group";
   gap: 41px;
-  margin-top: 24px;
+  margin: 24px 0 208px 0;
 }
 
 .card-group {

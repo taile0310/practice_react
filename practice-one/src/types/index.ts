@@ -1,14 +1,14 @@
-import { ChangeEventHandler, MouseEventHandler } from "react";
+import { ChangeEventHandler, MouseEvent, MouseEventHandler } from "react";
 
-export interface CustomBtnProps {
+export type CustomBtnProps = {
   textBtn?: string;
   className?: string;
-  onClick?: MouseEventHandler<HTMLButtonElement>;
   disabled?: boolean;
   variants?: boolean;
-}
+  onClick?: MouseEventHandler<HTMLButtonElement>;
+};
 
-export interface CustomCardProps {
+export type CustomCardProps = {
   showInput?: boolean;
   className?: string;
   titleCard: string;
@@ -16,9 +16,9 @@ export interface CustomCardProps {
   width?: number;
   titleButton: string;
   onSubmit?: () => void;
-}
+};
 
-export interface CustomInputProps {
+export type CustomInputProps = {
   placeholder?: string;
   className?: string;
   type?: string;
@@ -27,22 +27,23 @@ export interface CustomInputProps {
   value?: string;
   onChange?: ChangeEventHandler<HTMLInputElement>;
   onBlur?: ChangeEventHandler<HTMLInputElement>;
-}
+};
 
-export interface CustomNavbarProps {
+export type CustomNavbarProps = {
   width?: number;
   className?: string;
   cartLength?: number;
-}
+  navigationHandle?: (event: MouseEvent<HTMLAnchorElement>) => void;
+};
 
-export interface CustomImageProps {
+export type CustomImageProps = {
   src: string;
   alt?: string;
   className?: string;
   onClick?: MouseEventHandler<HTMLImageElement>;
-}
+};
 
-export interface CustomProductProps {
+export type CustomProductProps = {
   id: string;
   name: string;
   price?: number;
@@ -50,44 +51,40 @@ export interface CustomProductProps {
   quantity?: number;
   isExist?: boolean;
   errorQuantity?: string;
-}
+};
 
-export interface CustomFooterProps {
-  className?: string;
-}
-
-export interface CustomLabelProps {
+export type CustomLabelProps = {
   className?: string;
   titleLabel?: string;
-}
+};
 
-export interface ListCartProps {
+export type ListCartProps = {
   className?: string;
+  carts: CustomProductProps[];
   handleUpdateQuantity: (productId: string, action: Action) => void;
   removeFromCart: (productId: string) => void;
-  carts: CustomProductProps[];
-}
+};
 
-export interface ListProductProps {
+export type ListProductProps = {
+  error: boolean;
+  isLoading: boolean;
+  defaultValue: number;
+  isFull: boolean;
+  products: CustomProductProps[];
   addToCart: (product: CustomProductProps) => void;
   removeFromCart: (productId: string) => void;
   isInCart: (productId: string) => CustomProductProps | undefined;
   showMorePoducts: () => void;
-  error: boolean;
-  isLoading: boolean;
-  products: CustomProductProps[];
-  defaultValue: number;
-  isFull: boolean;
-}
+};
 
-export interface CartContextValue {
+export type CartContextValue = {
   setCartLength: React.Dispatch<React.SetStateAction<number>>;
-}
+};
 
-export interface HeadingProps {
+export type HeadingProps = {
+  className?: string;
   element: "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
   content: React.ReactNode;
-  className?: string;
-}
+};
 
 export type Action = "increase" | "decrease";

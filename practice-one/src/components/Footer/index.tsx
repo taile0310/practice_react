@@ -1,14 +1,9 @@
-// interface
-import { CustomFooterProps } from "../../types/interface";
-
 // Component Footer
-const Footer = ({ className }: CustomFooterProps) => {
+const Footer = () => {
   return (
-    <div className={className}>
-      <span className="text-x-small font-family">
-        Copyright © 2021 Sushi Restaurant
-      </span>
-    </div>
+    <span className="text-x-small font-family">
+      Copyright © 2021 Sushi Restaurant
+    </span>
   );
 };
 

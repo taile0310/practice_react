@@ -10,7 +10,7 @@
 
 .checkout-container {
   display: flex;
-  margin-top: 24px;
+  margin: 24px 0 208px 0;
   gap: 41px;
 }
 

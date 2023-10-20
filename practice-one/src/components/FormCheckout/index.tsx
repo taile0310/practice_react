@@ -194,7 +194,7 @@ const FormCheckout = () => {
           />
         </div>
       </div>
-      <Footer className="copyright" />
+      <Footer />
     </section>
   );
 };

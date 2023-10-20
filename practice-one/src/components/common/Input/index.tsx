@@ -2,7 +2,7 @@
 import "./Input.css";
 
 // interface
-import { CustomInputProps } from "../../../types/interface";
+import { CustomInputProps } from "../../../types";
 
 // Component Input
 const Input = ({

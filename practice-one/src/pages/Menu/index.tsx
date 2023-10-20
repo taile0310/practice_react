@@ -8,7 +8,7 @@ import { ListProduct } from "../../components";
 
 // LocalStorage
 import { getListCart } from "../../helper/data-localStorage";
-import { CustomProductProps } from "../../types/interface";
+import { CustomProductProps } from "../../types";
 import { BASE_URL } from "../../constants/base-url";
 import { CartLength } from "../../layout/MainLayout";
 
@@ -40,6 +40,27 @@ const Menu: React.FC = () => {
 
   const { setCartLength } = cartContext;
 
+  /**
+   * FetchData function to fetch data from URL and process results
+   * @param url
+   */
+  const fetchData = async (url: string) => {
+    try {
+      const response = await fetch(url);
+      if (response.ok) {
+        const data = (await response.json()) as CustomProductProps[];
+        setProducts(data);
+        setIsLoading(false);
+      } else {
+        setError(true);
+        setIsLoading(false);
+      }
+    } catch (error) {
+      setError(true);
+      setIsLoading(false);
+    }
+  };
+  
   // Method Loadmore
   const showMorePoducts = () => {
     const newValue = defaultValue + 4;
@@ -82,40 +103,18 @@ const Menu: React.FC = () => {
     return checkInCart;
   };
 
-  /**
-   * FetchData function to fetch data from URL and process results
-   * @param url
-   */
-  const fetchData = async (url: string) => {
-    try {
-      const response = await fetch(url);
-      if (response.ok) {
-        const data = (await response.json()) as CustomProductProps[];
-        setProducts(data);
-        setIsLoading(false);
-      } else {
-        setError(true);
-        setIsLoading(false);
-      }
-    } catch (error) {
-      setError(true);
-      setIsLoading(false);
-    }
-  };
   return (
-    <>
-      <ListProduct
-        addToCart={addToCart}
-        removeFromCart={removeFromCart}
-        isInCart={isInCart}
-        showMorePoducts={showMorePoducts}
-        isFull={isFull}
-        defaultValue={defaultValue}
-        error={error}
-        products={products}
-        isLoading={isLoading}
-      />
-    </>
+    <ListProduct
+      addToCart={addToCart}
+      removeFromCart={removeFromCart}
+      isInCart={isInCart}
+      showMorePoducts={showMorePoducts}
+      isFull={isFull}
+      defaultValue={defaultValue}
+      error={error}
+      products={products}
+      isLoading={isLoading}
+    />
   );
 };
 

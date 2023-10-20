@@ -2,7 +2,7 @@
 import "./image.css";
 
 // Interface
-import { CustomImageProps } from "../../../types/interface";
+import { CustomImageProps } from "../../../types";
 
 // Component Image
 const Image = ({ src, alt, className, onClick }: CustomImageProps) => {

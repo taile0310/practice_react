@@ -1,5 +1,5 @@
 // interface
-import { CustomLabelProps } from "../../../types/interface";
+import { CustomLabelProps } from "../../../types";
 
 // Component Label
 const Label = ({ className, titleLabel }: CustomLabelProps) => {
