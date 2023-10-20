@@ -99,7 +99,6 @@
   font-weight: var(--fw-light);
   line-height: 25px;
   color: var(--text-primary-color);
-  text-transform: uppercase;
 }
 
 .font-family {

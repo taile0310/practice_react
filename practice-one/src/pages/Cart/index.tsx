@@ -4,9 +4,10 @@ import { useContext, useEffect, useState } from "react";
 // Component
 import { ListCart } from "../../components";
 import { Action, CustomProductProps } from "../../types";
-import { getListCart } from "../../helper/data-localStorage";
-import { ERROR_MESSAGES } from "../../constants/error";
+import { getListCart } from "../../helpers/data-localStorage";
+import { ERROR_MESSAGES } from "../../constant/error";
 import { CartLength } from "../../layout/MainLayout";
+import { useNavigate } from "react-router-dom";
 
 // Component Cart
 const Cart = () => {
@@ -75,6 +76,7 @@ const Cart = () => {
       return updatedCarts;
     });
   };
+
   return (
     <>
       <ListCart

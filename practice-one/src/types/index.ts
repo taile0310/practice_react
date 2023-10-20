@@ -4,7 +4,9 @@ export type CustomBtnProps = {
   textBtn?: string;
   className?: string;
   disabled?: boolean;
-  variants?: boolean;
+  size?: TButtonSize;
+  variants?: Type;
+  typeText?: TButtonText;
   onClick?: MouseEventHandler<HTMLButtonElement>;
 };
 
@@ -15,6 +17,7 @@ export type CustomCardProps = {
   total?: string;
   width?: number;
   titleButton: string;
+  variants?: Type;
   onSubmit?: () => void;
 };
 
@@ -88,3 +91,7 @@ export type HeadingProps = {
 };
 
 export type Action = "increase" | "decrease";
+
+export type TButtonSize = "x-huge" | "huge" | "large" | "medium" | "small";
+export type Type = "primary" | "secondary";
+export type TButtonText = "uppercase" | "capitalize";

@@ -1,6 +1,6 @@
 import { Outlet } from "react-router-dom";
 import { Navbar } from "../components";
-import { getListCart } from "../helper/data-localStorage";
+import { getListCart } from "../helpers/data-localStorage";
 import { createContext, useState } from "react";
 import { CartContextValue } from "../types";
 import { MouseEvent } from "react";
@@ -19,7 +19,7 @@ const MainLayout = () => {
       event.preventDefault();
     }
   };
-  
+
   return (
     <div className="component-layout font-family">
       <Navbar cartLength={cartLength} navigationHandle={handleCheckout} />

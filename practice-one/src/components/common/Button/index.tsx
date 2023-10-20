@@ -10,14 +10,13 @@ const Button = ({
   textBtn,
   disabled,
   variants,
+  size,
+  typeText,
   onClick,
 }: CustomBtnProps) => {
-  // Determine the className based on whether it is isHomePage
-  const buttonClassName = variants ? " btn-primary" : " btn-secondary";
   return (
     <button
-      className={`${buttonClassName} ${className}`}
-      font-family
+      className={`btn btn-${variants} btn-${size} ${className} text-${typeText}`}
       onClick={onClick}
       disabled={disabled}>
       {textBtn}

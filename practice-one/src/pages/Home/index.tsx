@@ -24,14 +24,14 @@ const HomePage = () => {
           to order when they can see beautiful photos of your food
         </p>
         <div className="nav-button">
-          <Link to="/" className="btn btn-primary font-family primary-text-btn">
+          <Link to="/" className="btn btn-primary primary-text-btn btn-huge">
             ABOUT
           </Link>
-          <NavLink
+          <Link
             to="/menu"
-            className="btn btn-primary btnMenu font-family primary-text-btn">
+            className="btn btn-primary btnMenu primary-text-btn btn-huge">
             MENU
-          </NavLink>
+          </Link>
         </div>
       </section>
     </div>

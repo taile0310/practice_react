@@ -9,8 +9,9 @@ import { ListProductProps } from "../../types";
 
 // Constants, Image, Message error
 import { spinner } from "../../assets/image";
-import { ERROR_MESSAGES } from "../../constants/error";
+import { ERROR_MESSAGES } from "../../constant/error";
 import Heading from "../common/Heading";
+import { BTN_VARIANTS } from "../../constant/btn";
 
 // Component ListProduct
 const ListProduct: React.FC<ListProductProps> = ({
@@ -64,6 +65,9 @@ const ListProduct: React.FC<ListProductProps> = ({
         textBtn="Load more"
         className={`btn-item secondary-text-btn ${isFull ? "isFull" : ""}`}
         onClick={showMorePoducts}
+        variants="secondary"
+        size="medium"
+        typeText="uppercase"
       />
       <Footer />
     </section>

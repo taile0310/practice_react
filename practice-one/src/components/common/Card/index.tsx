@@ -8,7 +8,7 @@ import { CustomCardProps, CustomProductProps } from "../../../types";
 import { Button, Input } from "..";
 
 // LocalStorage
-import { getListCart } from "../../../helper/data-localStorage";
+import { getListCart } from "../../../helpers/data-localStorage";
 import { useNavigate } from "react-router-dom";
 import Heading from "../Heading";
 
@@ -19,6 +19,7 @@ const Card = ({
   titleButton,
   showInput,
   width,
+  variants,
   onSubmit,
 }: CustomCardProps) => {
   const widthCard = {
@@ -32,12 +33,6 @@ const Card = ({
     },
     0
   );
-  // Determine className based on whether it is "card-primary"
-  const isPrimary =
-    className == "card-primary"
-      ? "btn-secondary text-large font-family btn-confirm"
-      : "btn-secondary text-large font-family btn-apply";
-
   const navigate = useNavigate();
 
   // Handles clicking Confim Order
@@ -59,7 +54,7 @@ const Card = ({
   };
 
   return (
-    <div className={className} style={widthCard}>
+    <div className={`${className} card-${variants}`} style={widthCard}>
       <Heading className="text-h3" element="h3" content={titleCard} />
       {showInput ? (
         <Input placeholder="enter promo code" className="card-input" />
@@ -73,8 +68,17 @@ const Card = ({
       )}
       <Button
         textBtn={titleButton}
-        className={isPrimary}
+        className="text-large font-family"
         onClick={handleConfirmOrder}
+        variants="secondary"
+        size={
+          titleButton === "confirm order"
+            ? "large"
+            : titleButton === "Checkout"
+            ? "x-huge"
+            : "small"
+        }
+        typeText="capitalize"
       />
     </div>
   );

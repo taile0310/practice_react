@@ -81,15 +81,17 @@ const ListCart: React.FC<ListCartProps> = ({
         <div>
           <Card
             titleCard="Your Subtotal"
-            titleButton="Confirm Order"
-            className="card-primary"
+            titleButton="confirm order"
+            className="card"
             showInput={false}
+            variants="primary"
           />
           <Card
             titleCard="Promo Code"
-            titleButton="Apply"
-            className="card-secondary"
+            titleButton="apply"
+            className="card"
             showInput={true}
+            variants="secondary"
           />
         </div>
       </div>

@@ -5,7 +5,7 @@ import "./Navbar.css";
 import { NavLink } from "react-router-dom";
 
 // Constants and inteface
-import NAV_LINKS from "../../../constants/nav-link";
+import NAV_LINKS from "../../../constant/nav-link";
 import { CustomNavbarProps } from "../../../types";
 
 // Image

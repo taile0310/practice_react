@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import Button from ".";
+import { BTN_VARIANTS } from "../../../constant/btn";
 
 export default {
   title: "Components/Button",
@@ -8,18 +9,11 @@ export default {
 
 type Story = StoryObj<typeof Button>;
 
-export const Primary: Story = {
+export const Default: Story = {
   args: {
-    variants: true,
-    textBtn: "MENU",
-    className: "btn btn-primary primary-text-btn",
-  },
-};
-
-export const Secondary: Story = {
-  args: {
-    variants: false,
-    textBtn: "Apply",
-    className: "btn-secondary text-large btn-apply",
+    variants: "primary",
+    textBtn: "menu",
+    size: "large",
+    typeText: "uppercase",
   },
 };

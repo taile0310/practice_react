@@ -5,7 +5,7 @@ import "./form-checkout.css";
 import { useState } from "react";
 
 // Constants
-import { ERROR_MESSAGES } from "../../constants/error";
+import { ERROR_MESSAGES } from "../../constant/error";
 
 // Component
 import { Card, Footer, Input, Label } from "..";
@@ -16,7 +16,7 @@ import {
   isValidEmail,
   isValidName,
   isValidPhone,
-} from "../../helper/validation";
+} from "../../helpers/validation";
 import { useNavigate } from "react-router-dom";
 import Heading from "../common/Heading";
 
@@ -188,8 +188,9 @@ const FormCheckout = () => {
         <div className="card-checkout">
           <Card
             titleCard="Your total"
-            className="card-primary"
+            className="card"
             titleButton="Checkout"
+            variants="primary"
             onSubmit={handleSubmit}
           />
         </div>

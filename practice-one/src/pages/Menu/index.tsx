@@ -7,9 +7,9 @@ import React, { useContext, useEffect, useState } from "react";
 import { ListProduct } from "../../components";
 
 // LocalStorage
-import { getListCart } from "../../helper/data-localStorage";
+import { getListCart } from "../../helpers/data-localStorage";
 import { CustomProductProps } from "../../types";
-import { BASE_URL } from "../../constants/base-url";
+import { BASE_URL } from "../../constant/base-url";
 import { CartLength } from "../../layout/MainLayout";
 
 // Component Menu
@@ -60,7 +60,7 @@ const Menu: React.FC = () => {
       setIsLoading(false);
     }
   };
-  
+
   // Method Loadmore
   const showMorePoducts = () => {
     const newValue = defaultValue + 4;

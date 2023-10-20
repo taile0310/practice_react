@@ -87,7 +87,7 @@ practice-one
     |-- routers
         |-- index
     |-- types
-        |-- interface
+        |-- index
     |-- App.tsx
     |-- main.tsx
     |-- index.css
