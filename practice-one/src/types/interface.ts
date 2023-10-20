@@ -30,7 +30,6 @@ export interface CustomInputProps {
 }
 
 export interface CustomNavbarProps {
-  isActive?: boolean;
   width?: number;
   className?: string;
   cartLength?: number;

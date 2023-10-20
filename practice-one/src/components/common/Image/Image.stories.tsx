@@ -1,6 +1,6 @@
 import { Meta, StoryObj } from "@storybook/react";
 import Image from ".";
-import { logo } from "../../../assets/image";
+import { menu } from "../../../assets/image";
 
 export default {
   title: "Components/Image",
@@ -24,6 +24,6 @@ export const ImageCircle: Story = {
 
 export const Icon: Story = {
   args: {
-    src: logo,
+    src: menu,
   },
 };
