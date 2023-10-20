@@ -11,7 +11,6 @@ import { ListProductProps } from "../../types";
 import { spinner } from "../../assets/image";
 import { ERROR_MESSAGES } from "../../constant/error";
 import Heading from "../common/Heading";
-import { BTN_VARIANTS } from "../../constant/btn";
 
 // Component ListProduct
 const ListProduct: React.FC<ListProductProps> = ({
@@ -34,9 +33,7 @@ const ListProduct: React.FC<ListProductProps> = ({
           <Image src={spinner} />
         </div>
       ) : error ? (
-        <p className="messages-error text-medium">
-          {ERROR_MESSAGES.fetchError}
-        </p>
+        <p className="messages-error text-medium">{ERROR_MESSAGES.FETCH}</p>
       ) : (
         <ul className="list-menu">
           {products.slice(0, defaultValue).map((product) => {

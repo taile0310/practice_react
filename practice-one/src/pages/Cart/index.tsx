@@ -7,7 +7,6 @@ import { Action, CustomProductProps } from "../../types";
 import { getListCart } from "../../helpers/data-localStorage";
 import { ERROR_MESSAGES } from "../../constant/error";
 import { CartLength } from "../../layout/MainLayout";
-import { useNavigate } from "react-router-dom";
 
 // Component Cart
 const Cart = () => {
@@ -65,7 +64,7 @@ const Cart = () => {
             ...item,
             quantity: newQuantity >= 1 ? newQuantity : 1,
             errorQuantity:
-              newQuantity < 1 ? ERROR_MESSAGES.quantityNegative : "",
+              newQuantity < 1 ? ERROR_MESSAGES.QUANTITY_NAVIGATIVE : "",
           };
           return updatedItem;
         }

@@ -42,9 +42,9 @@ const FormCheckout = () => {
 
     // If the name is left blank and the validation is invalid, an error will be reported
     isNameEmpty === ""
-      ? setNameError(ERROR_MESSAGES.emptyError)
+      ? setNameError(ERROR_MESSAGES.FIELD_EMPTY)
       : !isValid
-      ? setNameError(ERROR_MESSAGES.nameError)
+      ? setNameError(ERROR_MESSAGES.NAME)
       : setNameError("");
   };
 
@@ -54,9 +54,9 @@ const FormCheckout = () => {
 
     // If the email is left blank and the validation is invalid, an error will be reported
     isEmailEmpty === ""
-      ? setEmailError(ERROR_MESSAGES.emptyError)
+      ? setEmailError(ERROR_MESSAGES.FIELD_EMPTY)
       : !isValid
-      ? setEmailError(ERROR_MESSAGES.emailError)
+      ? setEmailError(ERROR_MESSAGES.EMAIL)
       : setEmailError("");
   };
 
@@ -65,9 +65,9 @@ const FormCheckout = () => {
 
     // If the phone is left blank and the validation is invalid, an error will be reported
     isPhoneEmpty === ""
-      ? setPhoneError(ERROR_MESSAGES.emptyError)
+      ? setPhoneError(ERROR_MESSAGES.FIELD_EMPTY)
       : !isValid
-      ? setPhoneError(ERROR_MESSAGES.phoneError)
+      ? setPhoneError(ERROR_MESSAGES.PHONE)
       : setPhoneError("");
   };
 
@@ -77,9 +77,9 @@ const FormCheckout = () => {
 
     // If the address is left blank and the validation is invalid, an error will be reported
     isAddressEmpty === ""
-      ? setAddressError(ERROR_MESSAGES.emptyError)
+      ? setAddressError(ERROR_MESSAGES.FIELD_EMPTY)
       : !isValid
-      ? setAddressError(ERROR_MESSAGES.addressError)
+      ? setAddressError(ERROR_MESSAGES.ADDRESS)
       : setAddressError("");
   };
   const navigate = useNavigate();

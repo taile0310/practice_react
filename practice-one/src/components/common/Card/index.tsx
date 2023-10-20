@@ -11,6 +11,7 @@ import { Button, Input } from "..";
 import { getListCart } from "../../../helpers/data-localStorage";
 import { useNavigate } from "react-router-dom";
 import Heading from "../Heading";
+import { NOTIFY } from "../../../constant/error";
 
 // Component Card
 const Card = ({
@@ -45,8 +46,8 @@ const Card = ({
       ? navigate("/checkout")
       : titleButton === "Apply"
       ? ""
-      : alert("Your shopping cart is empty, cannot checkout.");
-
+      : alert(NOTIFY.EMPTY);
+    navigate("/menu");
     // If you are on the checkout page, call the onSubmit function
     if (currentUrl.includes("checkout")) {
       onSubmit?.();

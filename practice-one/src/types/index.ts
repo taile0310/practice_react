@@ -91,7 +91,6 @@ export type HeadingProps = {
 };
 
 export type Action = "increase" | "decrease";
-
 export type TButtonSize = "x-huge" | "huge" | "large" | "medium" | "small";
 export type Type = "primary" | "secondary";
 export type TButtonText = "uppercase" | "capitalize";

@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import Button from ".";
-import { BTN_VARIANTS } from "../../../constant/btn";
 
 export default {
   title: "Components/Button",

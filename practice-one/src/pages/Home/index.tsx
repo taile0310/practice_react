@@ -3,7 +3,7 @@ import Heading from "../../components/common/Heading";
 import "./home-page.css";
 
 // React router
-import { Link, NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 // Component HomePage
 const HomePage = () => {

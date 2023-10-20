@@ -1,3 +1,9 @@
+.btn {
+  border: 0;
+  border-radius: 2px;
+  font-family: var(--primary-font);
+}
+
 .btn-primary {
   background-color: var(--text-primary-color);
 }
@@ -14,24 +20,10 @@
 .text-capitalize {
   text-transform: capitalize;
 }
-.btn {
-  border: 0;
-  border-radius: 2px;
-  font-family: var(--primary-font);
-}
-/* 
-.btn-nav {
-  padding: 41px 47px;
-  background: var(--primary-color);
-} */
 
 .btn-transparent {
   background-color: transparent;
   border: 0;
-}
-
-.btn-apply {
-  margin-top: 2px;
 }
 
 .btn-large {
@@ -51,6 +43,7 @@
 .btn-small {
   padding: 20px 42px;
   max-width: 166px;
+  margin-top: 2px;
 }
 
 .btn-x-huge {
