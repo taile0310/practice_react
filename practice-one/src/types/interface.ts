@@ -80,17 +80,9 @@ export interface ListProductProps {
   defaultValue: number;
   isFull: boolean;
 }
-// Declare the action type
-export type Action = "increase" | "decrease";
 
 export interface CartContextValue {
   setCartLength: React.Dispatch<React.SetStateAction<number>>;
-}
-
-export interface IHeadingTextProps {
-  as?: string;
-  type?: string;
-  truncate?: 1 | 2 | 3 | 4 | 5 | 6;
 }
 
 export interface HeadingProps {
@@ -98,3 +90,5 @@ export interface HeadingProps {
   content: React.ReactNode;
   className?: string;
 }
+
+export type Action = "increase" | "decrease";
