@@ -19,6 +19,7 @@ export type CustomCardProps = {
   titleButton: string;
   variants?: Type;
   onSubmit?: () => void;
+  navigate?: (path: string) => void;
 };
 
 export type CustomInputProps = {
@@ -29,7 +30,6 @@ export type CustomInputProps = {
   name?: string;
   value?: string;
   onChange?: ChangeEventHandler<HTMLInputElement>;
-  onBlur?: ChangeEventHandler<HTMLInputElement>;
 };
 
 export type CustomNavbarProps = {
@@ -66,6 +66,7 @@ export type ListCartProps = {
   carts: CustomProductProps[];
   handleUpdateQuantity: (productId: string, action: Action) => void;
   removeFromCart: (productId: string) => void;
+  navigate?: (path: string) => void;
 };
 
 export type ListProductProps = {
@@ -86,11 +87,16 @@ export type CartContextValue = {
 
 export type HeadingProps = {
   className?: string;
-  element: "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
+  element: THeading;
   content: React.ReactNode;
+};
+
+export type CustomFormCheckoutProps = {
+  navigate?: (path: string) => void;
 };
 
 export type Action = "increase" | "decrease";
 export type TButtonSize = "x-huge" | "huge" | "large" | "medium" | "small";
 export type Type = "primary" | "secondary";
 export type TButtonText = "uppercase" | "capitalize";
+export type THeading = "h1" | "h2" | "h3" | "h4" | "h5" | "h6";

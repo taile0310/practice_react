@@ -1,16 +1,19 @@
 // CSS
 import "./menu.css";
+
 // React Hook
 import React, { useContext, useEffect, useState } from "react";
 
 // Component
 import { ListProduct } from "../../components";
+import { CartLength } from "../../layout/MainLayout";
 
 // LocalStorage
 import { getListCart } from "../../helpers/data-localStorage";
+
+// Constant and Type
 import { CustomProductProps } from "../../types";
 import { BASE_URL } from "../../constant/base-url";
-import { CartLength } from "../../layout/MainLayout";
 
 // Component Menu
 const Menu: React.FC = () => {

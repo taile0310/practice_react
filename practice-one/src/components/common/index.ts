@@ -1,4 +1,5 @@
 export { default as Button } from "./Button/index";
+export { default as Heading } from "./Heading/index";
 export { default as Card } from "./Card/index";
 export { default as Image } from "./Image/index";
 export { default as Input } from "./Input/index";

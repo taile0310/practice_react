@@ -1,7 +1,7 @@
 // CSS
 import "./image.css";
 
-// Interface
+// Type
 import { CustomImageProps } from "../../../types";
 
 // Component Image

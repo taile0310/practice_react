@@ -1,17 +1,15 @@
 // CSS
-import "./Card.css";
+import "./card.css";
 
-// interface
+// Constants and Type
 import { CustomCardProps, CustomProductProps } from "../../../types";
+import { NOTIFY } from "../../../constant/error";
 
 // Component
-import { Button, Input } from "..";
+import { Button, Heading, Input } from "..";
 
 // LocalStorage
 import { getListCart } from "../../../helpers/data-localStorage";
-import { useNavigate } from "react-router-dom";
-import Heading from "../Heading";
-import { NOTIFY } from "../../../constant/error";
 
 // Component Card
 const Card = ({
@@ -22,6 +20,7 @@ const Card = ({
   width,
   variants,
   onSubmit,
+  navigate,
 }: CustomCardProps) => {
   const widthCard = {
     width: `${width}px`,
@@ -34,7 +33,6 @@ const Card = ({
     },
     0
   );
-  const navigate = useNavigate();
 
   // Handles clicking Confim Order
   const handleConfirmOrder = () => {
@@ -42,13 +40,16 @@ const Card = ({
     const currentUrl = window.location.href;
     const carts = getListCart().length;
 
-    carts > 0 && titleButton !== "Apply"
-      ? navigate("/checkout")
-      : titleButton === "Apply"
-      ? ""
-      : alert(NOTIFY.EMPTY);
-    navigate("/menu");
-    // If you are on the checkout page, call the onSubmit function
+    // If you are on the checkout page, call the method onSubmit
+    if (carts > 0 && titleButton !== "apply") {
+      navigate?.("/checkout");
+    } else if (titleButton === "apply") {
+      ("");
+    } else {
+      alert(NOTIFY.EMPTY);
+      navigate?.("/menu");
+    }
+
     if (currentUrl.includes("checkout")) {
       onSubmit?.();
     }

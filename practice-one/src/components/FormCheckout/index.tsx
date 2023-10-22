@@ -1,27 +1,20 @@
-// CSS
-import "./form-checkout.css";
+// React
+import React, { useState } from "react";
 
-// React Hooks
-import { useState } from "react";
+// Components
+import { Card, Footer, Heading, Input, Label } from "..";
 
-// Constants
-import { ERROR_MESSAGES } from "../../constant/error";
-
-// Component
-import { Card, Footer, Input, Label } from "..";
-
-// Validations
 import {
   isValidAddress,
   isValidEmail,
   isValidName,
   isValidPhone,
 } from "../../helpers/validation";
-import { useNavigate } from "react-router-dom";
-import Heading from "../common/Heading";
+import "./form-checkout.css";
+import { ERROR_MESSAGES } from "../../constant/error";
+import { CustomFormCheckoutProps } from "../../types";
 
-// Component FormCheckout
-const FormCheckout = () => {
+const FormCheckout: React.FC<CustomFormCheckoutProps> = ({ navigate }) => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
@@ -31,83 +24,96 @@ const FormCheckout = () => {
   const [phoneError, setPhoneError] = useState("");
   const [addressError, setAddressError] = useState("");
 
-  const isNameEmpty = name.trim();
-  const isEmailEmpty = email.trim();
-  const isPhoneEmpty = phone.trim();
-  const isAddressEmpty = address.trim();
-
-  // Handle when the user leaves the input
-  const handleNameBlur = () => {
-    const isValid = isValidName(isNameEmpty);
-
-    // If the name is left blank and the validation is invalid, an error will be reported
-    isNameEmpty === ""
-      ? setNameError(ERROR_MESSAGES.FIELD_EMPTY)
-      : !isValid
-      ? setNameError(ERROR_MESSAGES.NAME)
-      : setNameError("");
-  };
-
-  // Handle when the user leaves the input
-  const handleEmailBlur = () => {
-    const isValid = isValidEmail(isEmailEmpty);
-
-    // If the email is left blank and the validation is invalid, an error will be reported
-    isEmailEmpty === ""
-      ? setEmailError(ERROR_MESSAGES.FIELD_EMPTY)
-      : !isValid
-      ? setEmailError(ERROR_MESSAGES.EMAIL)
-      : setEmailError("");
-  };
-
-  const handlePhoneBlur = () => {
-    const isValid = isValidPhone(isPhoneEmpty);
-
-    // If the phone is left blank and the validation is invalid, an error will be reported
-    isPhoneEmpty === ""
-      ? setPhoneError(ERROR_MESSAGES.FIELD_EMPTY)
-      : !isValid
-      ? setPhoneError(ERROR_MESSAGES.PHONE)
-      : setPhoneError("");
-  };
-
-  // Handle when the user leaves the input
-  const handleAddressBlur = () => {
-    const isValid = isValidAddress(isAddressEmpty);
-
-    // If the address is left blank and the validation is invalid, an error will be reported
-    isAddressEmpty === ""
-      ? setAddressError(ERROR_MESSAGES.FIELD_EMPTY)
-      : !isValid
-      ? setAddressError(ERROR_MESSAGES.ADDRESS)
-      : setAddressError("");
-  };
-  const navigate = useNavigate();
-
-  // Hanlde when the user click button
-  const handleSubmit = () => {
-    // If the address is left blank and the validation is invalid, an error will be reported
-    if (
-      isNameEmpty === "" ||
-      isEmailEmpty === "" ||
-      isPhoneEmpty === "" ||
-      isAddressEmpty === ""
-    ) {
-      alert("Please enter complete information");
-    } else if (nameError || emailError || phoneError || addressError) {
-      alert("Please enter information in the correct boxes");
+  const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    setName(value);
+    if (!value) {
+      setNameError(ERROR_MESSAGES.FIELD_EMPTY);
+    } else if (!isValidName(value)) {
+      setNameError(ERROR_MESSAGES.NAME);
     } else {
-      // Otherwise, if there is no error, checkout is allowed and a success notification is reported
-      alert("Checkout successful");
+      setNameError("");
+    }
+  };
+
+  const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    setEmail(value);
+    if (!value) {
+      setEmailError(ERROR_MESSAGES.FIELD_EMPTY);
+    } else if (!isValidEmail(value)) {
+      setEmailError(ERROR_MESSAGES.EMAIL);
+    } else {
+      setEmailError("");
+    }
+  };
+
+  const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    setPhone(value);
+    if (!value) {
+      setPhoneError(ERROR_MESSAGES.FIELD_EMPTY);
+    } else if (!isValidPhone(value)) {
+      setPhoneError(ERROR_MESSAGES.PHONE);
+    } else {
+      setPhoneError("");
+    }
+  };
+
+  const handleAddressChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    setAddress(value);
+    if (!value) {
+      setAddressError(ERROR_MESSAGES.FIELD_EMPTY);
+    } else if (!isValidAddress(value)) {
+      setAddressError(ERROR_MESSAGES.ADDRESS);
+    } else {
+      setAddressError("");
+    }
+  };
+
+  const isCheckoutSuccessful = () => {
+    const nameErrorExists = !name || !isValidName(name);
+    const emailErrorExists = !email || !isValidEmail(email);
+    const phoneErrorExists = !phone || !isValidPhone(phone);
+    const addressErrorExists = !address || !isValidAddress(address);
+
+    if (nameErrorExists) {
+      setNameError(name ? ERROR_MESSAGES.NAME : ERROR_MESSAGES.FIELD_EMPTY);
+    }
+
+    if (emailErrorExists) {
+      setEmailError(email ? ERROR_MESSAGES.EMAIL : ERROR_MESSAGES.FIELD_EMPTY);
+    }
+
+    if (phoneErrorExists) {
+      setPhoneError(phone ? ERROR_MESSAGES.PHONE : ERROR_MESSAGES.FIELD_EMPTY);
+    }
+
+    if (addressErrorExists) {
+      setAddressError(
+        address ? ERROR_MESSAGES.ADDRESS : ERROR_MESSAGES.FIELD_EMPTY
+      );
+    }
+
+    if (
+      nameErrorExists ||
+      emailErrorExists ||
+      phoneErrorExists ||
+      addressErrorExists
+    ) {
+      alert("Checkout failed. Please check your information.");
+    } else {
+      alert("Checkout successful!");
       localStorage.clear();
-      navigate("/home");
+      navigate?.("/");
     }
   };
 
   return (
     <section className="checkout-cart font-family">
       <Heading className="text-h2" element="h2" content="Checkout" />
-      <hr className="dash dash-checkout"></hr>
+      <hr className="dash dash-checkout" />
       <div className="checkout-container">
         <form className="form-checkout">
           <Label className="text-medium" titleLabel="Full Name" />
@@ -117,55 +123,40 @@ const FormCheckout = () => {
             id="name"
             name="name"
             value={name}
-            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-              setName(e.target.value)
-            }
-            onBlur={handleNameBlur}
+            onChange={handleNameChange}
           />
           {nameError && <p className="messages-error">{nameError}</p>}
 
           <Label className="text-medium" titleLabel="Email" />
-
           <Input
             className="form-input"
             type="email"
             id="email"
             name="email"
             value={email}
-            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-              setEmail(e.target.value)
-            }
-            onBlur={handleEmailBlur}
+            onChange={handleEmailChange}
           />
           {emailError && <p className="messages-error">{emailError}</p>}
 
           <Label className="text-medium" titleLabel="Phone Number" />
-
           <Input
             className="form-input"
             type="text"
             id="phone"
             name="phone"
             value={phone}
-            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-              setPhone(e.target.value)
-            }
-            onBlur={handlePhoneBlur}
+            onChange={handlePhoneChange}
           />
           {phoneError && <p className="messages-error">{phoneError}</p>}
 
           <Label className="text-medium" titleLabel="Address" />
-
           <Input
             className="form-input"
             type="text"
             id="address"
             name="address"
             value={address}
-            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-              setAddress(e.target.value)
-            }
-            onBlur={handleAddressBlur}
+            onChange={handleAddressChange}
           />
           {addressError && <p className="messages-error">{addressError}</p>}
 
@@ -191,7 +182,7 @@ const FormCheckout = () => {
             className="card"
             titleButton="Checkout"
             variants="primary"
-            onSubmit={handleSubmit}
+            onSubmit={isCheckoutSuccessful}
           />
         </div>
       </div>

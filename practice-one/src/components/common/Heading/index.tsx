@@ -1,5 +1,7 @@
+// Type
 import { HeadingProps } from "../../../types";
 
+// Component Heading
 const Heading: React.FC<HeadingProps> = ({ element, content, className }) => {
   const headingStyles = {
     fontSize: getFontSize(element),
@@ -14,14 +16,13 @@ const Heading: React.FC<HeadingProps> = ({ element, content, className }) => {
       case "h3":
         return "var(--fs-x-large)";
       case "h4":
-        return "30";
+        return "30px";
       case "h5":
-        return "20";
+        return "20px";
       case "h6":
-        return "10";
+        return "10px";
     }
   }
-
   const HeadingTag = element;
   return (
     <HeadingTag className={`${className} font-family`} style={headingStyles}>

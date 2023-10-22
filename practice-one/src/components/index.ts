@@ -1,4 +1,12 @@
-export { Button, Card, Image, Input, Label, Navbar } from "./common/index";
+export {
+  Button,
+  Card,
+  Image,
+  Input,
+  Label,
+  Navbar,
+  Heading,
+} from "./common/index";
 
 export { default as Footer } from "./Footer/index";
 export { default as FormCheckout } from "./FormCheckout/index";

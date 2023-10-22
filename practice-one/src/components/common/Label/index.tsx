@@ -1,4 +1,4 @@
-// interface
+// Type
 import { CustomLabelProps } from "../../../types";
 
 // Component Label

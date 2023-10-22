@@ -1,3 +1,4 @@
+// Pages
 import { Cart, Checkout, Menu } from "../pages";
 
 export const routers = [

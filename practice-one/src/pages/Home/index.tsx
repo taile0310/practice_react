@@ -1,6 +1,8 @@
 // CSS
-import Heading from "../../components/common/Heading";
 import "./home-page.css";
+
+// Component
+import { Heading } from "../../components";
 
 // React router
 import { Link } from "react-router-dom";

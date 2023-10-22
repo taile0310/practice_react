@@ -1,15 +1,16 @@
 // CSS
-import "./Navbar.css";
+import "./navbar.css";
 
 // React router
 import { NavLink } from "react-router-dom";
 
-// Constants and inteface
+// Constants and type
 import NAV_LINKS from "../../../constant/nav-link";
 import { CustomNavbarProps } from "../../../types";
 
-// Image
-import Image from "../Image";
+// Conponent
+import { Image } from "..";
+
 // Component Navbar
 const Navbar: React.FC<CustomNavbarProps> = ({
   width,

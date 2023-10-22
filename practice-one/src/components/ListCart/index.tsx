@@ -5,11 +5,10 @@ import "./list-cart.css";
 import { ListCartProps } from "../../types";
 
 // Component
-import { Button, Card, Footer, Image } from "..";
+import { Button, Card, Footer, Heading, Image } from "..";
 
-// Error Messages and Image
+// Image
 import { remove } from "../../assets/image";
-import Heading from "../common/Heading";
 
 // Component ListCart
 const ListCart: React.FC<ListCartProps> = ({
@@ -17,6 +16,7 @@ const ListCart: React.FC<ListCartProps> = ({
   carts,
   handleUpdateQuantity,
   removeFromCart,
+  navigate,
 }) => {
   return (
     <section className={`carts ${className}`}>
@@ -85,6 +85,7 @@ const ListCart: React.FC<ListCartProps> = ({
             className="card"
             showInput={false}
             variants="primary"
+            navigate={navigate}
           />
           <Card
             titleCard="Promo Code"

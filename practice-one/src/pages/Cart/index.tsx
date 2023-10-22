@@ -3,10 +3,15 @@ import { useContext, useEffect, useState } from "react";
 
 // Component
 import { ListCart } from "../../components";
-import { Action, CustomProductProps } from "../../types";
-import { getListCart } from "../../helpers/data-localStorage";
-import { ERROR_MESSAGES } from "../../constant/error";
 import { CartLength } from "../../layout/MainLayout";
+
+// Con Type
+import { Action, CustomProductProps } from "../../types";
+import { ERROR_MESSAGES } from "../../constant/error";
+
+// Local Storage
+import { getListCart } from "../../helpers/data-localStorage";
+import { useNavigate } from "react-router-dom";
 
 // Component Cart
 const Cart = () => {
@@ -20,6 +25,8 @@ const Cart = () => {
       }))
     );
   }, [setCarts]);
+  const navigate = useNavigate();
+
   const cartContext = useContext(CartLength);
   if (cartContext === null) {
     return null;
@@ -82,6 +89,7 @@ const Cart = () => {
         handleUpdateQuantity={handleUpdateQuantity}
         removeFromCart={removeFromCart}
         carts={carts}
+        navigate={navigate}
       />
     </>
   );

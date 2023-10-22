@@ -1,7 +1,7 @@
 // CSS
-import "./Button.css";
+import "./button.css";
 
-// Component
+// Type
 import { CustomBtnProps } from "../../../types";
 
 // Component Button

@@ -1,7 +1,7 @@
 // CSS
-import "./Input.css";
+import "./input.css";
 
-// interface
+// Type
 import { CustomInputProps } from "../../../types";
 
 // Component Input
@@ -10,7 +10,6 @@ const Input = ({
   className,
   value,
   onChange,
-  onBlur,
 }: CustomInputProps) => {
   return (
     <>
@@ -20,7 +19,6 @@ const Input = ({
         placeholder={placeholder}
         value={value}
         onChange={onChange}
-        onBlur={onBlur}
       />
     </>
   );

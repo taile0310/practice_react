@@ -1,10 +1,17 @@
-import { Outlet, useNavigate } from "react-router-dom";
-import { Navbar } from "../components";
-import { getListCart } from "../helpers/data-localStorage";
+// React hooks and router
 import { createContext, useState } from "react";
-import { CartContextValue } from "../types";
 import { MouseEvent } from "react";
+import { Outlet, useNavigate } from "react-router-dom";
+
+// Local Storage
+import { getListCart } from "../helpers/data-localStorage";
+
+// Constants and Type
+import { CartContextValue } from "../types";
 import { NOTIFY } from "../constant/error";
+
+// Components
+import { Navbar } from "../components";
 
 export const CartLength = createContext<CartContextValue | null>(null);
 
@@ -14,6 +21,7 @@ const MainLayout = () => {
     setCartLength,
   };
   const navigate = useNavigate();
+
   const handleCheckout = (event: MouseEvent<HTMLAnchorElement>) => {
     if ((cartLength || 0) <= 0) {
       alert(NOTIFY.EMPTY);
