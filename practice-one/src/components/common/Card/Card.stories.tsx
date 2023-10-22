@@ -21,7 +21,7 @@ export const Default: Story = {
     width: 443,
     titleCard: "Promo Code",
     titleButton: "Apply",
-    className: "card-secondary font-family",
+    className: "card card-secondary font-family",
     showInput: true,
   },
 };
