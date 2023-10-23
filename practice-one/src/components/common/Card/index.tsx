@@ -11,9 +11,10 @@ import { Button, Heading, Input } from "..";
 // Helper
 import { getListCart } from "../../../helpers/data-localStorage";
 import { calculatorTotalPrice } from "../../../helpers/calculator-totalPrice";
+import React from "react";
 
 // Component Card
-const Card = ({
+const Card: React.FC<CustomCardProps> = ({
   className,
   titleCard,
   titleButton,
@@ -22,7 +23,7 @@ const Card = ({
   variants,
   onSubmit,
   navigate,
-}: CustomCardProps) => {
+}) => {
   const widthCard = {
     width: `${width}px`,
   };

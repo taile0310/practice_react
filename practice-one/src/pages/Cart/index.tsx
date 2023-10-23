@@ -1,5 +1,5 @@
 // React Hooks
-import { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 // Constant and Type
@@ -14,7 +14,7 @@ import { ListCart } from "../../components";
 import { CartLength } from "../../layout/MainLayout";
 
 // Component Cart
-const Cart = () => {
+const Cart: React.FC = () => {
   const [carts, setCarts] = useState<CustomProductProps[]>([]);
   // Use useEffect to update cart from localStorage
   useEffect(() => {

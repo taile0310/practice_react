@@ -3,14 +3,15 @@ import "./input.css";
 
 // Type
 import { CustomInputProps } from "../../../types";
+import React from "react";
 
 // Component Input
-const Input = ({
+const Input: React.FC<CustomInputProps> = ({
   placeholder,
   className,
   value,
   onChange,
-}: CustomInputProps) => {
+}) => {
   return (
     <input
       className={className}

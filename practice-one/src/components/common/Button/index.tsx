@@ -3,9 +3,10 @@ import "./button.css";
 
 // Type
 import { CustomBtnProps } from "../../../types";
+import React from "react";
 
 // Component Button
-const Button = ({
+const Button: React.FC<CustomBtnProps> = ({
   className,
   textBtn,
   disabled,
@@ -13,7 +14,7 @@ const Button = ({
   size,
   typeText,
   onClick,
-}: CustomBtnProps) => {
+}) => {
   return (
     <button
       className={`btn btn-${variants} btn-${size} ${className} text-${typeText}`}

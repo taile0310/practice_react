@@ -6,9 +6,10 @@ import { Heading } from "../../components";
 
 // React router
 import { Link } from "react-router-dom";
+import React from "react";
 
 // Component HomePage
-const HomePage = () => {
+const HomePage: React.FC = () => {
   return (
     <div className="home-layout font-family">
       <section className="home-content">
