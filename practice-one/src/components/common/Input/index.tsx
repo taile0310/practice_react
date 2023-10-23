@@ -12,15 +12,13 @@ const Input = ({
   onChange,
 }: CustomInputProps) => {
   return (
-    <>
-      <input
-        className={className}
-        type="text"
-        placeholder={placeholder}
-        value={value}
-        onChange={onChange}
-      />
-    </>
+    <input
+      className={className}
+      type="text"
+      placeholder={placeholder}
+      value={value}
+      onChange={onChange}
+    />
   );
 };
 

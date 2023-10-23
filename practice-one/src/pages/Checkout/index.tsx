@@ -1,5 +1,7 @@
-// Component
+// React router
 import { useNavigate } from "react-router-dom";
+
+// Component
 import { FormCheckout } from "../../components";
 
 // Component Checkout

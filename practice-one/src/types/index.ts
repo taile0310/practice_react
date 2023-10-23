@@ -14,7 +14,6 @@ export type CustomCardProps = {
   showInput?: boolean;
   className?: string;
   titleCard: string;
-  total?: string;
   width?: number;
   titleButton: string;
   variants?: Type;

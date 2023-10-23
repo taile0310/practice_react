@@ -1,17 +1,17 @@
 // React Hooks
 import { useContext, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+
+// Constant and Type
+import { Action, CustomProductProps } from "../../types";
+import { ERROR_MESSAGES } from "../../constant/error";
+
+// Helpers
+import { getListCart } from "../../helpers/data-localStorage";
 
 // Component
 import { ListCart } from "../../components";
 import { CartLength } from "../../layout/MainLayout";
-
-// Con Type
-import { Action, CustomProductProps } from "../../types";
-import { ERROR_MESSAGES } from "../../constant/error";
-
-// Local Storage
-import { getListCart } from "../../helpers/data-localStorage";
-import { useNavigate } from "react-router-dom";
 
 // Component Cart
 const Cart = () => {
@@ -84,14 +84,12 @@ const Cart = () => {
   };
 
   return (
-    <>
-      <ListCart
-        handleUpdateQuantity={handleUpdateQuantity}
-        removeFromCart={removeFromCart}
-        carts={carts}
-        navigate={navigate}
-      />
-    </>
+    <ListCart
+      handleUpdateQuantity={handleUpdateQuantity}
+      removeFromCart={removeFromCart}
+      carts={carts}
+      navigate={navigate}
+    />
   );
 };
 

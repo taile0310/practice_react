@@ -49,3 +49,7 @@
 .btn-x-huge {
   padding: 20px 113px;
 }
+
+.btn-disabled {
+  opacity: 0.7;
+}

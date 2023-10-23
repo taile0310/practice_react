@@ -75,6 +75,8 @@ practice-one
         |-- regex
     |-- helper
         |-- data-localStorage
+        |-- calculator-totalPrice
+        |-- font-size
         |-- vaildation
     |-- layout
         |-- MainLayout

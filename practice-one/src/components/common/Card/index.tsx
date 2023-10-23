@@ -2,14 +2,15 @@
 import "./card.css";
 
 // Constants and Type
-import { CustomCardProps, CustomProductProps } from "../../../types";
+import { CustomCardProps } from "../../../types";
 import { NOTIFY } from "../../../constant/error";
 
 // Component
 import { Button, Heading, Input } from "..";
 
-// LocalStorage
+// Helper
 import { getListCart } from "../../../helpers/data-localStorage";
+import { calculatorTotalPrice } from "../../../helpers/calculator-totalPrice";
 
 // Component Card
 const Card = ({
@@ -25,14 +26,6 @@ const Card = ({
   const widthCard = {
     width: `${width}px`,
   };
-  // Calculate total value
-  const totalPrice = getListCart().reduce(
-    (accumulator: number, item: CustomProductProps) => {
-      const itemTotal = (item.quantity || 0) * (item.price || 0);
-      return accumulator + itemTotal;
-    },
-    0
-  );
 
   // Handles clicking Confim Order
   const handleConfirmOrder = () => {
@@ -40,7 +33,6 @@ const Card = ({
     const currentUrl = window.location.href;
     const carts = getListCart().length;
 
-    // If you are on the checkout page, call the method onSubmit
     if (carts > 0 && titleButton !== "apply") {
       navigate?.("/checkout");
     } else if (titleButton === "apply") {
@@ -49,7 +41,7 @@ const Card = ({
       alert(NOTIFY.EMPTY);
       navigate?.("/menu");
     }
-
+    // If you are on the checkout page, call the method onSubmit
     if (currentUrl.includes("checkout")) {
       onSubmit?.();
     }
@@ -59,13 +51,15 @@ const Card = ({
     <div className={`${className} card-${variants}`} style={widthCard}>
       <Heading className="text-h3" element="h3" content={titleCard} />
       {showInput ? (
-        <Input placeholder="enter promo code" className="card-input" />
+        <Input placeholder="enter promo code" className="input" />
       ) : (
         <div className="detail-total">
           <span className="text-large">
             {titleCard == "Your Subtotal" ? "Subtotal" : "Total"}
           </span>
-          <span className="text-large subtotal">${totalPrice}.00</span>
+          <span className="text-large subtotal">
+            ${calculatorTotalPrice?.()}.00
+          </span>
         </div>
       )}
       <Button

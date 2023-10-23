@@ -1,6 +1,3 @@
-// CSS
-import "./menu.css";
-
 // React Hook
 import React, { useContext, useEffect, useState } from "react";
 

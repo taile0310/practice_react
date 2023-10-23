@@ -1,4 +1,4 @@
-.card-input {
+.input {
   border: 1px solid var(--primary-color);
   padding: 20px;
   width: 364px;
@@ -6,7 +6,7 @@
   font-size: 18px;
 }
 
-.card-input::placeholder {
+.input::placeholder {
   font-size: var(--fs-medium);
   font-weight: var(--fw-extra);
   font-family: var(--primary-font);
