@@ -10,9 +10,13 @@ import {
   isValidName,
   isValidPhone,
 } from "../../helpers/validation";
+
 import "./form-checkout.css";
 import { ERROR_MESSAGES } from "../../constant/error";
-import { CustomFormCheckoutProps } from "../../types";
+
+export type CustomFormCheckoutProps = {
+  navigate?: (path: string) => void;
+};
 
 const FormCheckout: React.FC<CustomFormCheckoutProps> = ({ navigate }) => {
   const [name, setName] = useState("");

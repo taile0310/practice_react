@@ -2,7 +2,6 @@
 import "./card.css";
 
 // Constants and Type
-import { CustomCardProps } from "../../../types";
 import { NOTIFY } from "../../../constant/error";
 
 // Component
@@ -12,6 +11,18 @@ import { Button, Heading, Input } from "..";
 import { getListCart } from "../../../helpers/data-localStorage";
 import { calculatorTotalPrice } from "../../../helpers/calculator-totalPrice";
 import React from "react";
+import { TVariant } from "../../../types/TVariant";
+
+type CustomCardProps = {
+  showInput?: boolean;
+  className?: string;
+  titleCard: string;
+  width?: number;
+  titleButton: string;
+  variants?: TVariant;
+  onSubmit?: () => void;
+  navigate?: (path: string) => void;
+};
 
 // Component Card
 const Card: React.FC<CustomCardProps> = ({

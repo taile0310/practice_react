@@ -2,8 +2,15 @@
 import "./image.css";
 
 // Type
-import { CustomImageProps } from "../../../types";
-import React from "react";
+import React, { MouseEventHandler } from "react";
+
+
+export type CustomImageProps = {
+  src: string;
+  alt?: string;
+  className?: string;
+  onClick?: MouseEventHandler<HTMLImageElement>;
+};
 
 // Component Image
 const Image: React.FC<CustomImageProps> = ({

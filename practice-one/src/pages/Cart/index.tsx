@@ -3,7 +3,6 @@ import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 // Constant and Type
-import { Action, CustomProductProps } from "../../types";
 import { ERROR_MESSAGES } from "../../constant/error";
 
 // Helpers
@@ -12,6 +11,8 @@ import { getListCart } from "../../helpers/data-localStorage";
 // Component
 import { ListCart } from "../../components";
 import { CartLength } from "../../layout/MainLayout";
+import { CustomProductProps } from "../../types/TProduct";
+import { TAction } from "../../types/TAction";
 
 // Component Cart
 const Cart: React.FC = () => {
@@ -57,7 +58,7 @@ const Cart: React.FC = () => {
    * @param productId
    * @param action
    */
-  const handleUpdateQuantity = (productId: string, action: Action) => {
+  const handleUpdateQuantity = (productId: string, action: TAction) => {
     setCarts((prevCarts) => {
       const updatedCarts = prevCarts.map((item) => {
         // Check if the product has an id that matches productId

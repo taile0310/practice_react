@@ -6,10 +6,16 @@ import { NavLink } from "react-router-dom";
 
 // Constants and type
 import NAV_LINKS from "../../../constant/nav-link";
-import { CustomNavbarProps } from "../../../types";
-
 // Conponent
 import { Image } from "..";
+import { MouseEvent } from "react";
+
+export type CustomNavbarProps = {
+  width?: number;
+  className?: string;
+  cartLength?: number;
+  navigationHandle?: (event: MouseEvent<HTMLAnchorElement>) => void;
+};
 
 // Component Navbar
 const Navbar: React.FC<CustomNavbarProps> = ({

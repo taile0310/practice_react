@@ -1,6 +1,10 @@
 // Type
 import React from "react";
-import { CustomLabelProps } from "../../../types";
+
+export type CustomLabelProps = {
+  className?: string;
+  titleLabel?: string;
+};
 
 // Component Label
 const Label: React.FC<CustomLabelProps> = ({ className, titleLabel }) => {

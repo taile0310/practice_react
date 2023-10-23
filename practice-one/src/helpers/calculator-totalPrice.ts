@@ -1,6 +1,5 @@
+import { CustomProductProps } from "../types/TProduct";
 import { getListCart } from "./data-localStorage";
-
-import { CustomProductProps } from "../types";
 
 // Calculate total value
 export const calculatorTotalPrice = (): number => {

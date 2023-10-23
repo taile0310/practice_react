@@ -1,9 +1,21 @@
 // CSS
+import { TButtonSize } from "../../../types/TButton/TButtonSize";
+import { TButtonText } from "../../../types/TButton/TButtonText";
+import { TVariant } from "../../../types/TVariant";
 import "./button.css";
 
 // Type
-import { CustomBtnProps } from "../../../types";
-import React from "react";
+import React, { MouseEventHandler } from "react";
+
+type CustomBtnProps = {
+  textBtn?: string;
+  className?: string;
+  disabled?: boolean;
+  size?: TButtonSize;
+  variants?: TVariant;
+  typeText?: TButtonText;
+  onClick?: MouseEventHandler<HTMLButtonElement>;
+};
 
 // Component Button
 const Button: React.FC<CustomBtnProps> = ({

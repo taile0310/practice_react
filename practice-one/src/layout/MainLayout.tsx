@@ -7,11 +7,14 @@ import { Outlet, useNavigate } from "react-router-dom";
 import { getListCart } from "../helpers/data-localStorage";
 
 // Constants and Type
-import { CartContextValue } from "../types";
 import { NOTIFY } from "../constant/error";
 
 // Components
 import { Navbar } from "../components";
+
+type CartContextValue = {
+  setCartLength: React.Dispatch<React.SetStateAction<number>>;
+};
 
 export const CartLength = createContext<CartContextValue | null>(null);
 

@@ -9,8 +9,8 @@ import { CartLength } from "../../layout/MainLayout";
 import { getListCart } from "../../helpers/data-localStorage";
 
 // Constant and Type
-import { CustomProductProps } from "../../types";
 import { BASE_URL } from "../../constant/base-url";
+import { CustomProductProps } from "../../types/TProduct";
 
 // Component Menu
 const Menu: React.FC = () => {

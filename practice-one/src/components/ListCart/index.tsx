@@ -1,14 +1,21 @@
 // CSS
 import "./list-cart.css";
 
-// Interfaces
-import { ListCartProps } from "../../types";
-
 // Component
 import { Button, Card, Footer, Heading, Image } from "..";
 
 // Image
 import { remove } from "../../assets/image";
+import { TAction } from "../../types/TAction";
+import { CustomProductProps } from "../../types/TProduct";
+
+export type ListCartProps = {
+  className?: string;
+  carts: CustomProductProps[];
+  handleUpdateQuantity: (productId: string, action: TAction) => void;
+  removeFromCart: (productId: string) => void;
+  navigate?: (path: string) => void;
+};
 
 // Component ListCart
 const ListCart: React.FC<ListCartProps> = ({
