@@ -11,4 +11,6 @@ export const ERROR_MESSAGES = {
 export const NOTIFY = {
   EMPTY:
     "Your shopping cart is empty, cannot checkout. Please choose your dish",
+  FAILD: "Checkout failed. Please check your information.",
+  SUCCESS: "Checkout successful!",
 };

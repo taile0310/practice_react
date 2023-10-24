@@ -1,7 +1,7 @@
 // CSS
 import "./input.css";
 
-// Type
+// React
 import React, { ChangeEventHandler } from "react";
 
 type CustomInputProps = {
@@ -13,6 +13,7 @@ type CustomInputProps = {
   value?: string;
   onChange?: ChangeEventHandler<HTMLInputElement>;
 };
+
 // Component Input
 const Input: React.FC<CustomInputProps> = ({
   placeholder,

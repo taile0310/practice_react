@@ -6,6 +6,8 @@ export {
   Label,
   Navbar,
   Heading,
+  Error,
+  Loading,
 } from "./common/index";
 
 export { default as Footer } from "./Footer/index";

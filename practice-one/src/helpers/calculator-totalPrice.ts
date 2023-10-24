@@ -1,9 +1,8 @@
 import { CustomProductProps } from "../types/TProduct";
-import { getListCart } from "./data-localStorage";
 
 // Calculate total value
-export const calculatorTotalPrice = (): number => {
-  const totalPrice = getListCart().reduce(
+export const calculatorTotalPrice = (carts: CustomProductProps[]): number => {
+  const totalPrice = carts.reduce(
     (accumulator: number, item: CustomProductProps) => {
       const itemTotal = (item.quantity || 0) * (item.price || 0);
       return accumulator + itemTotal;

@@ -10,8 +10,9 @@ import { Button, Heading, Input } from "..";
 // Helper
 import { getListCart } from "../../../helpers/data-localStorage";
 import { calculatorTotalPrice } from "../../../helpers/calculator-totalPrice";
-import React from "react";
+import React, { useContext } from "react";
 import { TVariant } from "../../../types/TVariant";
+import { CartContext } from "../../../context/CartContext";
 
 type CustomCardProps = {
   showInput?: boolean;
@@ -47,9 +48,7 @@ const Card: React.FC<CustomCardProps> = ({
 
     if (carts > 0 && titleButton !== "apply") {
       navigate?.("/checkout");
-    } else if (titleButton === "apply") {
-      ("");
-    } else {
+    } else if (titleButton !== "apply") {
       alert(NOTIFY.EMPTY);
       navigate?.("/menu");
     }
@@ -58,6 +57,14 @@ const Card: React.FC<CustomCardProps> = ({
       onSubmit?.();
     }
   };
+  const cartContext = useContext(CartContext);
+
+  if (cartContext === null) {
+    return null;
+  }
+
+  const { carts } = cartContext;
+  const totalPrice = calculatorTotalPrice(carts);
 
   return (
     <div className={`${className} card-${variants}`} style={widthCard}>
@@ -69,9 +76,7 @@ const Card: React.FC<CustomCardProps> = ({
           <span className="text-large">
             {titleCard == "Your Subtotal" ? "Subtotal" : "Total"}
           </span>
-          <span className="text-large subtotal">
-            ${calculatorTotalPrice?.()}.00
-          </span>
+          <span className="text-large subtotal">${totalPrice}.00</span>
         </div>
       )}
       <Button

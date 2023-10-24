@@ -1,18 +1,20 @@
+// CSS
+import "./form-checkout.css";
+
 // React
 import React, { useState } from "react";
 
 // Components
 import { Card, Footer, Heading, Input, Label } from "..";
 
+// Helpers and Constants
 import {
   isValidAddress,
   isValidEmail,
   isValidName,
   isValidPhone,
 } from "../../helpers/validation";
-
-import "./form-checkout.css";
-import { ERROR_MESSAGES } from "../../constant/error";
+import { ERROR_MESSAGES, NOTIFY } from "../../constant/error";
 
 export type CustomFormCheckoutProps = {
   navigate?: (path: string) => void;
@@ -28,6 +30,7 @@ const FormCheckout: React.FC<CustomFormCheckoutProps> = ({ navigate }) => {
   const [phoneError, setPhoneError] = useState("");
   const [addressError, setAddressError] = useState("");
 
+  // Method handle changes in the input for the name field
   const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     setName(value);
@@ -40,6 +43,7 @@ const FormCheckout: React.FC<CustomFormCheckoutProps> = ({ navigate }) => {
     }
   };
 
+  // Method handle changes in the input for the email field
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     setEmail(value);
@@ -52,6 +56,7 @@ const FormCheckout: React.FC<CustomFormCheckoutProps> = ({ navigate }) => {
     }
   };
 
+  // Method handle changes in the input for the phone field
   const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     setPhone(value);
@@ -64,6 +69,7 @@ const FormCheckout: React.FC<CustomFormCheckoutProps> = ({ navigate }) => {
     }
   };
 
+  // Method handle changes in the input for the address field
   const handleAddressChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     setAddress(value);
@@ -76,6 +82,7 @@ const FormCheckout: React.FC<CustomFormCheckoutProps> = ({ navigate }) => {
     }
   };
 
+  // Method check whether the payment process was successful or not
   const isCheckoutSuccessful = () => {
     const nameErrorExists = !name || !isValidName(name);
     const emailErrorExists = !email || !isValidEmail(email);
@@ -106,9 +113,9 @@ const FormCheckout: React.FC<CustomFormCheckoutProps> = ({ navigate }) => {
       phoneErrorExists ||
       addressErrorExists
     ) {
-      alert("Checkout failed. Please check your information.");
+      alert(NOTIFY.FAILD);
     } else {
-      alert("Checkout successful!");
+      alert(NOTIFY.SUCCESS);
       localStorage.clear();
       navigate?.("/");
     }

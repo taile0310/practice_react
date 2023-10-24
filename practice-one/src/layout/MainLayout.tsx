@@ -1,44 +1,17 @@
-// React hooks and router
-import { createContext, useState } from "react";
-import { MouseEvent } from "react";
-import { Outlet, useNavigate } from "react-router-dom";
-
-// Local Storage
-import { getListCart } from "../helpers/data-localStorage";
-
-// Constants and Type
-import { NOTIFY } from "../constant/error";
+// React router
+import { Outlet } from "react-router-dom";
 
 // Components
 import { Navbar } from "../components";
-
-type CartContextValue = {
-  setCartLength: React.Dispatch<React.SetStateAction<number>>;
-};
-
-export const CartLength = createContext<CartContextValue | null>(null);
+import { CartProvider } from "../context/CartContext";
 
 const MainLayout = () => {
-  const [cartLength, setCartLength] = useState<number>(getListCart().length);
-  const cartContextValue: CartContextValue = {
-    setCartLength,
-  };
-  const navigate = useNavigate();
-
-  const handleCheckout = (event: MouseEvent<HTMLAnchorElement>) => {
-    if ((cartLength || 0) <= 0) {
-      alert(NOTIFY.EMPTY);
-      event.preventDefault();
-      navigate("/menu");
-    }
-  };
-
   return (
     <div className="component-layout font-family">
-      <Navbar cartLength={cartLength} navigationHandle={handleCheckout} />
-      <CartLength.Provider value={cartContextValue}>
+      <CartProvider>
+        <Navbar />
         <Outlet />
-      </CartLength.Provider>
+      </CartProvider>
     </div>
   );
 };

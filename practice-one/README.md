@@ -62,6 +62,8 @@ practice-one
             |-- Input
             |-- Label
             |-- Navbar
+            |-- Error
+            |-- Loading
             |-- index
         |-- Footer
         |-- FormCheckout
@@ -89,7 +91,13 @@ practice-one
     |-- routers
         |-- index
     |-- types
-        |-- index
+        |-- TAction
+        |-- TButton
+        |-- THeading
+        |-- TProduct
+        |-- TVariant
+    |-- context
+        |-- CartContext
     |-- App.tsx
     |-- main.tsx
     |-- index.css

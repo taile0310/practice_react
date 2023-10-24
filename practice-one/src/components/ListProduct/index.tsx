@@ -1,16 +1,16 @@
 // CSS
 import "./list-product.css";
 
-// Component
-import { Button, Footer, Image } from "..";
+// React hooks
+import { useContext } from "react";
 
-// Interface
+// Component
+import { Button, Error, Footer, Heading, Image, Loading } from "..";
 
 // Constants, Image, Message error
-import { spinner } from "../../assets/image";
 import { ERROR_MESSAGES } from "../../constant/error";
-import Heading from "../common/Heading";
 import { CustomProductProps } from "../../types/TProduct";
+import { CartContext } from "../../context/CartContext";
 
 export type ListProductProps = {
   error: boolean;
@@ -18,11 +18,9 @@ export type ListProductProps = {
   defaultValue: number;
   isFull: boolean;
   products: CustomProductProps[];
-  addToCart: (product: CustomProductProps) => void;
-  removeFromCart: (productId: string) => void;
-  isInCart: (productId: string) => CustomProductProps | undefined;
-  showMorePoducts: () => void;
+  onShowMorePoducts: () => void;
 };
+
 // Component ListProduct
 const ListProduct: React.FC<ListProductProps> = ({
   isLoading,
@@ -30,25 +28,27 @@ const ListProduct: React.FC<ListProductProps> = ({
   products,
   isFull,
   defaultValue,
-  isInCart,
-  removeFromCart,
-  showMorePoducts,
-  addToCart,
+  onShowMorePoducts,
 }) => {
+  const cartContext = useContext(CartContext);
+  if (cartContext === null) {
+    return null;
+  }
+  const { isInCart, handleAddToCart, handleRemoveFromCart } = cartContext;
+
   return (
     <section className="section-menu font-family">
       <Heading className="text-h2" element="h2" content="Sushi food" />
 
       <hr className="dash dash-menu"></hr>
       {error && (
-        <p className="messages-error text-medium">{ERROR_MESSAGES.FETCH}</p>
+        <Error
+          className="messages-error text-medium"
+          content={ERROR_MESSAGES.FETCH}
+        />
       )}
 
-      {isLoading && (
-        <div className="spinner">
-          <Image src={spinner} />
-        </div>
-      )}
+      {isLoading && <Loading />}
       <ul className="list-menu">
         {products.slice(0, defaultValue).map((product) => {
           return (
@@ -61,8 +61,8 @@ const ListProduct: React.FC<ListProductProps> = ({
                 alt={product.name}
                 onClick={() => {
                   isInCart(product.id)
-                    ? removeFromCart(product.id)
-                    : addToCart(product);
+                    ? handleRemoveFromCart(product.id)
+                    : handleAddToCart(product);
                 }}
               />
               <span className="text-small">{product.name}</span>
@@ -74,7 +74,7 @@ const ListProduct: React.FC<ListProductProps> = ({
       <Button
         textBtn="Load more"
         className={`btn-item secondary-text-btn ${isFull ? "isFull" : ""}`}
-        onClick={showMorePoducts}
+        onClick={onShowMorePoducts}
         variants="secondary"
         size="medium"
         typeText="uppercase"

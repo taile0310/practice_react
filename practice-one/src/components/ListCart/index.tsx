@@ -2,29 +2,30 @@
 import "./list-cart.css";
 
 // Component
-import { Button, Card, Footer, Heading, Image } from "..";
+import { Button, Card, Error, Footer, Heading, Image } from "..";
+
+// React hooks
+import { useContext } from "react";
 
 // Image
-import { remove } from "../../assets/image";
-import { TAction } from "../../types/TAction";
-import { CustomProductProps } from "../../types/TProduct";
+import { Remove } from "../../assets/image";
+
+//Context
+import { CartContext } from "../../context/CartContext";
 
 export type ListCartProps = {
   className?: string;
-  carts: CustomProductProps[];
-  handleUpdateQuantity: (productId: string, action: TAction) => void;
-  removeFromCart: (productId: string) => void;
   navigate?: (path: string) => void;
 };
 
 // Component ListCart
-const ListCart: React.FC<ListCartProps> = ({
-  className,
-  carts,
-  handleUpdateQuantity,
-  removeFromCart,
-  navigate,
-}) => {
+const ListCart: React.FC<ListCartProps> = ({ className, navigate }) => {
+  const cartContext = useContext(CartContext);
+  if (cartContext === null) {
+    return null;
+  }
+  const { carts, handleRemoveFromCart, handleUpdateQuantity } = cartContext;
+
   return (
     <section className={`carts ${className}`}>
       <Heading className="text-h2" element="h2" content="Cart" />
@@ -32,7 +33,7 @@ const ListCart: React.FC<ListCartProps> = ({
       <div className="grid-container">
         <ul className="list-cart">
           {carts.length === 0 ? (
-            <p className="notify-empty">Your cart is empty.</p>
+            <Error className="notify-empty" content="Your cart is empty." />
           ) : (
             ""
           )}
@@ -69,9 +70,9 @@ const ListCart: React.FC<ListCartProps> = ({
                     </div>
                     <button className="btn-transparent btn-remove">
                       <Image
-                        src={remove}
+                        src={Remove}
                         className="icon-remove"
-                        onClick={() => removeFromCart(item.id)}
+                        onClick={() => handleRemoveFromCart(item.id)}
                       />
                     </button>
                   </div>
