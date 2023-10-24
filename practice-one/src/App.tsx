@@ -1,9 +1,16 @@
+// CSS
 import "./App.css";
 
+// React Router
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
+// Layout
 import MainLayout from "./layout/MainLayout";
+
+// Page
 import { Home } from "./pages";
+
+//Router
 import { routers } from "./routers";
 
 function App() {

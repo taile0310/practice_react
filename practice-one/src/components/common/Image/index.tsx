@@ -1,9 +1,8 @@
 // CSS
 import "./image.css";
 
-// Type
+// React
 import React, { MouseEventHandler } from "react";
-
 
 export type CustomImageProps = {
   src: string;

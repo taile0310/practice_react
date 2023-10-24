@@ -1,40 +1,40 @@
-import { logo, home, menu, cart, checkout, back } from "../assets/image";
+import { Logo, Home, Menu, Cart, Checkout, Back } from "../assets/image";
 
 const NAV_LINKS = [
   {
     id: 1,
     name: "Logo",
-    icon: logo,
+    icon: Logo,
     path: "/",
   },
   {
     id: 2,
     name: "Home",
-    icon: home,
+    icon: Home,
     path: "/",
   },
   {
     id: 3,
     name: "Menu",
-    icon: menu,
+    icon: Menu,
     path: "/menu",
   },
   {
     id: 4,
     name: "Cart",
-    icon: cart,
+    icon: Cart,
     path: "/cart",
   },
   {
     id: 5,
     name: "Checkout",
-    icon: checkout,
+    icon: Checkout,
     path: "/checkout",
   },
   {
     id: 6,
     name: "Back",
-    icon: back,
+    icon: Back,
     path: "/",
   },
 ];

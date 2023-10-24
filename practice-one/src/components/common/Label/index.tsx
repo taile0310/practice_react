@@ -1,4 +1,4 @@
-// Type
+// React
 import React from "react";
 
 export type CustomLabelProps = {
