@@ -1,6 +1,7 @@
 import { Meta, StoryObj } from "@storybook/react";
 import { MemoryRouter } from "react-router-dom";
 import ListCart from ".";
+import { CartProvider } from "../../context/CartContext";
 
 export default {
   title: "Components/ListCart",
@@ -8,12 +9,13 @@ export default {
   decorators: [
     (Story) => (
       <MemoryRouter>
-        <Story />
+        <CartProvider>
+          <Story />
+        </CartProvider>
       </MemoryRouter>
     ),
   ],
 } as Meta;
-
 type Story = StoryObj<typeof ListCart>;
 
 export const Default: Story = {

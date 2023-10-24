@@ -12,19 +12,17 @@ import { Remove } from "../../assets/image";
 
 //Context
 import { CartContext } from "../../context/CartContext";
+import { CustomProductProps } from "../../types/TProduct";
 
 export type ListCartProps = {
   className?: string;
-  navigate?: (path: string) => void;
+  carts: CustomProductProps[];
 };
 
 // Component ListCart
-const ListCart: React.FC<ListCartProps> = ({ className, navigate }) => {
+const ListCart: React.FC<ListCartProps> = ({ className, carts }) => {
   const cartContext = useContext(CartContext);
-  if (cartContext === null) {
-    return null;
-  }
-  const { carts, handleRemoveFromCart, handleUpdateQuantity } = cartContext;
+  const { handleRemoveFromCart, handleUpdateQuantity } = cartContext;
 
   return (
     <section className={`carts ${className}`}>
@@ -93,7 +91,6 @@ const ListCart: React.FC<ListCartProps> = ({ className, navigate }) => {
             className="card"
             showInput={false}
             variants="primary"
-            navigate={navigate}
           />
           <Card
             titleCard="Promo Code"

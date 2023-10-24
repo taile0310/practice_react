@@ -22,7 +22,7 @@ type TChildren = {
   children: React.ReactNode;
 };
 
-export const CartContext = createContext<TCartContext | null>(null);
+export const CartContext = createContext({} as TCartContext);
 
 export const CartProvider: React.FC<TChildren> = ({ children }) => {
   const [carts, setCarts] = useState<CustomProductProps[]>(getListCart());

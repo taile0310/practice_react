@@ -16,7 +16,6 @@ import { CartContext } from "../../../context/CartContext";
 
 export type CustomNavbarProps = {
   width?: number;
-  className?: string;
 };
 
 // Component Navbar
@@ -26,9 +25,6 @@ const Navbar: React.FC<CustomNavbarProps> = ({ width }) => {
   };
 
   const cartContext = useContext(CartContext);
-  if (cartContext === null) {
-    return null;
-  }
   const { getLength, handleCheckout } = cartContext;
 
   return (

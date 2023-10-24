@@ -1,6 +1,7 @@
 import { Meta, StoryObj } from "@storybook/react";
 import { MemoryRouter } from "react-router-dom";
 import Navbar from ".";
+import { CartProvider } from "../../../context/CartContext";
 
 export default {
   title: "Components/Navbar",
@@ -8,7 +9,9 @@ export default {
   decorators: [
     (Story) => (
       <MemoryRouter>
-        <Story />
+        <CartProvider>
+          <Story />
+        </CartProvider>
       </MemoryRouter>
     ),
   ],

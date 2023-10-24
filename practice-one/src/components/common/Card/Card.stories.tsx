@@ -1,6 +1,7 @@
-import { Meta, StoryObj } from "@storybook/react";
-import Card from ".";
+import type { Meta, StoryObj } from "@storybook/react";
 import { MemoryRouter } from "react-router-dom";
+import Card from ".";
+import { CartProvider } from "../../../context/CartContext";
 
 export default {
   title: "Components/Card",
@@ -8,7 +9,9 @@ export default {
   decorators: [
     (Story) => (
       <MemoryRouter>
-        <Story />
+        <CartProvider>
+          <Story />
+        </CartProvider>
       </MemoryRouter>
     ),
   ],
@@ -20,8 +23,9 @@ export const Default: Story = {
   args: {
     width: 443,
     titleCard: "Promo Code",
-    titleButton: "Apply",
+    titleButton: "apply",
     className: "card card-secondary font-family",
     showInput: true,
+    variants: "secondary",
   },
 };

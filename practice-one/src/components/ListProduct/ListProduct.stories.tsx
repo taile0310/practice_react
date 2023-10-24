@@ -1,6 +1,7 @@
 import { Meta, StoryObj } from "@storybook/react";
 import { MemoryRouter } from "react-router-dom";
 import ListProduct from ".";
+import { CartProvider } from "../../context/CartContext";
 
 export default {
   title: "Components/ListProduct",
@@ -8,7 +9,9 @@ export default {
   decorators: [
     (Story) => (
       <MemoryRouter>
-        <Story />
+        <CartProvider>
+          <Story />
+        </CartProvider>
       </MemoryRouter>
     ),
   ],
@@ -68,14 +71,5 @@ export const Default: Story = {
         id: "8",
       },
     ],
-
-    error: false,
-    isLoading: false,
-    defaultValue: 8,
-    isFull: false,
-
-    isInCart() {
-      return undefined;
-    },
   },
 };

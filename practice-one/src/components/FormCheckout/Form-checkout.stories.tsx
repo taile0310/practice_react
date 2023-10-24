@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import FormCheckout from ".";
 import { MemoryRouter } from "react-router-dom";
+import { CartProvider } from "../../context/CartContext";
 
 export default {
   title: "Components/FormCheckout",
@@ -8,7 +9,9 @@ export default {
   decorators: [
     (Story) => (
       <MemoryRouter>
-        <Story />
+        <CartProvider>
+          <Story />
+        </CartProvider>
       </MemoryRouter>
     ),
   ],

@@ -31,9 +31,7 @@ const ListProduct: React.FC<ListProductProps> = ({
   onShowMorePoducts,
 }) => {
   const cartContext = useContext(CartContext);
-  if (cartContext === null) {
-    return null;
-  }
+
   const { isInCart, handleAddToCart, handleRemoveFromCart } = cartContext;
 
   return (

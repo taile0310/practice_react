@@ -1,15 +1,15 @@
 // React Hooks and Router
-import React from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useContext } from "react";
 
 // Component
 import { ListCart } from "../../components";
+import { CartContext } from "../../context/CartContext";
 
 // Component Cart
 const Cart: React.FC = () => {
-  const navigate = useNavigate();
-
-  return <ListCart navigate={navigate} />;
+  const cartContext = useContext(CartContext);
+  const { carts } = cartContext;
+  return <ListCart carts={carts} />;
 };
 
 export default Cart;

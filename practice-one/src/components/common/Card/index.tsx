@@ -1,8 +1,13 @@
 // CSS
 import "./card.css";
 
+// React
+import React, { useContext } from "react";
+import { useNavigate } from "react-router-dom";
+
 // Constants and Type
 import { NOTIFY } from "../../../constant/error";
+import { TVariant } from "../../../types/TVariant";
 
 // Component
 import { Button, Heading, Input } from "..";
@@ -10,8 +15,8 @@ import { Button, Heading, Input } from "..";
 // Helper
 import { getListCart } from "../../../helpers/data-localStorage";
 import { calculatorTotalPrice } from "../../../helpers/calculator-totalPrice";
-import React, { useContext } from "react";
-import { TVariant } from "../../../types/TVariant";
+
+// Context
 import { CartContext } from "../../../context/CartContext";
 
 type CustomCardProps = {
@@ -22,7 +27,6 @@ type CustomCardProps = {
   titleButton: string;
   variants?: TVariant;
   onSubmit?: () => void;
-  navigate?: (path: string) => void;
 };
 
 // Component Card
@@ -34,11 +38,11 @@ const Card: React.FC<CustomCardProps> = ({
   width,
   variants,
   onSubmit,
-  navigate,
 }) => {
   const widthCard = {
     width: `${width}px`,
   };
+  const navigate = useNavigate();
 
   // Handles clicking Confim Order
   const handleConfirmOrder = () => {
@@ -58,10 +62,6 @@ const Card: React.FC<CustomCardProps> = ({
     }
   };
   const cartContext = useContext(CartContext);
-
-  if (cartContext === null) {
-    return null;
-  }
 
   const { carts } = cartContext;
   const totalPrice = calculatorTotalPrice(carts);
