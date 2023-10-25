@@ -11,6 +11,6 @@ type Story = StoryObj<typeof Heading>;
 export const Default: Story = {
   args: {
     element: "h1",
-    content: "Welcome to Shushi",
+    children: "Welcome to Shushi",
   },
 };

@@ -1,1 +1,1 @@
-export type TVariant = "primary" | "secondary";
+export type TVariant = "primary" | "secondary" | "transparent";

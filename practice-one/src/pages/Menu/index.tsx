@@ -8,34 +8,43 @@ import { ListProduct } from "../../components";
 import { BASE_URL } from "../../constant/base-url";
 import { CustomProductProps } from "../../types/TProduct";
 import { fetchData } from "../../helpers/fetch-data";
+import { ERROR_MESSAGES } from "../../constant/error";
 
 // Component Menu
-const Menu: React.FC = () => {
+const Menu: React.FC = (): React.ReactElement => {
   const [isLoading, setIsLoading] = useState(true);
   const [products, setProducts] = useState<CustomProductProps[]>([]);
-  const [defaultValue, setDefaultValue] = useState(8);
-  const [error, setError] = useState(false);
+  const [displayedProductCount, setDisplayedProductCount] = useState(8);
+  const [error, setError] = useState<string | null>(null);
   const [isFull, setIsFull] = useState(false);
 
   useEffect(() => {
-    fetchData({ url: BASE_URL, setProducts, setIsLoading, setError });
+    const fetchDataFromUrl = async () => {
+      try {
+        const data = await fetchData({ url: BASE_URL });
+        setProducts(data);
+        setError(null);
+        setIsLoading(false);
+      } catch (error) {
+        setIsLoading(false);
+        setError(ERROR_MESSAGES.FETCH);
+      }
+    };
+    fetchDataFromUrl();
   }, []);
 
-  useEffect(() => {
-    setIsFull(products.length <= defaultValue);
-  }, [products, defaultValue]);
-
   // Method Loadmore
-  const onShowMorePoducts = () => {
-    const newValue = defaultValue + 4;
-    setDefaultValue(newValue);
+  const handleShowMorePoducts = () => {
+    const updatedProductCount = displayedProductCount + 4;
+    setDisplayedProductCount(updatedProductCount);
+    setIsFull(products.length <= updatedProductCount);
   };
 
   return (
     <ListProduct
-      onShowMorePoducts={onShowMorePoducts}
+      onShowMorePoducts={handleShowMorePoducts}
       isFull={isFull}
-      defaultValue={defaultValue}
+      displayedProductCount={displayedProductCount}
       error={error}
       products={products}
       isLoading={isLoading}

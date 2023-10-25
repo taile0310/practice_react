@@ -3,11 +3,14 @@ import React from "react";
 
 export type CustomLabelProps = {
   className?: string;
-  titleLabel?: string;
+  titleLabel: string;
 };
 
 // Component Label
-const Label: React.FC<CustomLabelProps> = ({ className, titleLabel }) => {
+const Label: React.FC<CustomLabelProps> = ({
+  className,
+  titleLabel,
+}): React.ReactElement => {
   return (
     <>
       <label className={className}>{titleLabel}</label>

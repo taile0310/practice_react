@@ -7,11 +7,15 @@ import { getFontSize } from "../../../helpers/font-size";
 export type HeadingProps = {
   className?: string;
   element: THeading;
-  content: React.ReactNode;
+  children: React.ReactNode;
 };
 
 // Component Heading
-const Heading: React.FC<HeadingProps> = ({ element, content, className }) => {
+const Heading: React.FC<HeadingProps> = ({
+  element,
+  children,
+  className,
+}): React.ReactElement => {
   const headingStyles = {
     fontSize: getFontSize(element),
   };
@@ -20,7 +24,7 @@ const Heading: React.FC<HeadingProps> = ({ element, content, className }) => {
 
   return (
     <HeadingTag className={`${className} font-family`} style={headingStyles}>
-      {content}
+      {children}
     </HeadingTag>
   );
 };

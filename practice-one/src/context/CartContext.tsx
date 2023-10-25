@@ -24,7 +24,9 @@ type TChildren = {
 
 export const CartContext = createContext({} as TCartContext);
 
-export const CartProvider: React.FC<TChildren> = ({ children }) => {
+export const CartProvider: React.FC<TChildren> = ({
+  children,
+}): React.ReactElement => {
   const [carts, setCarts] = useState<CustomProductProps[]>(getListCart());
   const navigate = useNavigate();
 

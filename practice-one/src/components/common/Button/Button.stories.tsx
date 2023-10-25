@@ -12,7 +12,7 @@ export const Default: Story = {
   args: {
     variants: "primary",
     textBtn: "menu",
-    size: "large",
+    size: "md",
     typeText: "uppercase",
   },
 };

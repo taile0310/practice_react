@@ -1,1 +1,1 @@
-export type TButtonSize = "x-huge" | "huge" | "large" | "medium" | "small";
+export type TButtonSize = "xl" | "lg" | "md" | "sm" | "xs";

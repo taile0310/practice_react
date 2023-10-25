@@ -7,9 +7,7 @@ import React, { ChangeEventHandler } from "react";
 type CustomInputProps = {
   placeholder?: string;
   className?: string;
-  type?: string;
-  id?: string;
-  name?: string;
+  type: string;
   value?: string;
   onChange?: ChangeEventHandler<HTMLInputElement>;
 };
@@ -20,7 +18,7 @@ const Input: React.FC<CustomInputProps> = ({
   className,
   value,
   onChange,
-}) => {
+}): React.ReactElement => {
   return (
     <input
       className={className}

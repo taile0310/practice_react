@@ -17,7 +17,7 @@ const Image: React.FC<CustomImageProps> = ({
   alt,
   className,
   onClick,
-}) => {
+}): React.ReactElement => {
   return <img className={className} src={src} alt={alt} onClick={onClick} />;
 };
 

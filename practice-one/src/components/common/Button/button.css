@@ -26,27 +26,27 @@
   border: 0;
 }
 
-.btn-large {
+.btn-md {
   padding: 20px 84px;
   border: 0;
 }
 
-.btn-huge {
+.btn-lg {
   padding: 21px 0;
   width: 250px;
 }
 
-.btn-medium {
+.btn-sm {
   padding: 14.5px 38px;
 }
 
-.btn-small {
+.btn-xs {
   padding: 20px 42px;
   max-width: 166px;
   margin-top: 2px;
 }
 
-.btn-x-huge {
+.btn-xl {
   padding: 20px 113px;
 }
 

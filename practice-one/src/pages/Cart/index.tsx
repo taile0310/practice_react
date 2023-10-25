@@ -6,9 +6,8 @@ import { ListCart } from "../../components";
 import { CartContext } from "../../context/CartContext";
 
 // Component Cart
-const Cart: React.FC = () => {
-  const cartContext = useContext(CartContext);
-  const { carts } = cartContext;
+const Cart: React.FC = (): React.ReactElement => {
+  const { carts } = useContext(CartContext);
   return <ListCart carts={carts} />;
 };
 

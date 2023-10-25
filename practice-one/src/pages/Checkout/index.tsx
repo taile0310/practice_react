@@ -6,7 +6,7 @@ import React from "react";
 import { FormCheckout } from "../../components";
 
 // Component Checkout
-const Checkout: React.FC = () => {
+const Checkout: React.FC = (): React.ReactElement => {
   const navigate = useNavigate();
 
   return <FormCheckout navigate={navigate} />;

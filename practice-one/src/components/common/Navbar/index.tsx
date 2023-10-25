@@ -19,7 +19,7 @@ export type CustomNavbarProps = {
 };
 
 // Component Navbar
-const Navbar: React.FC<CustomNavbarProps> = ({ width }) => {
+const Navbar: React.FC<CustomNavbarProps> = ({ width }): React.ReactElement => {
   const widthNavbar = {
     width: `${width}px`,
   };

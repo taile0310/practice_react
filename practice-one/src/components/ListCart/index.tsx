@@ -20,13 +20,15 @@ export type ListCartProps = {
 };
 
 // Component ListCart
-const ListCart: React.FC<ListCartProps> = ({ className, carts }) => {
-  const cartContext = useContext(CartContext);
-  const { handleRemoveFromCart, handleUpdateQuantity } = cartContext;
+const ListCart: React.FC<ListCartProps> = ({ className, carts }): React.ReactElement => {
+  const { handleRemoveFromCart, handleUpdateQuantity } =
+    useContext(CartContext);
 
   return (
     <section className={`carts ${className}`}>
-      <Heading className="text-h2" element="h2" content="Cart" />
+      <Heading className="text-h2" element="h2">
+        Cart
+      </Heading>
       <hr className="dash dash-cart"></hr>
       <div className="grid-container">
         <ul className="list-cart">
@@ -50,7 +52,8 @@ const ListCart: React.FC<ListCartProps> = ({ className, carts }) => {
                     <div className="quantity-input">
                       <Button
                         textBtn="-"
-                        className="btn-transparent text-price btn-minus"
+                        className="text-price"
+                        variants="transparent"
                         onClick={() =>
                           handleUpdateQuantity(item.id, "decrease")
                         }
@@ -60,7 +63,8 @@ const ListCart: React.FC<ListCartProps> = ({ className, carts }) => {
                       </span>
                       <Button
                         textBtn="+"
-                        className="btn-transparent text-price btn-plus"
+                        className="text-price"
+                        variants="transparent"
                         onClick={() =>
                           handleUpdateQuantity(item.id, "increase")
                         }
@@ -90,7 +94,6 @@ const ListCart: React.FC<ListCartProps> = ({ className, carts }) => {
             titleButton="confirm order"
             className="card"
             showInput={false}
-            variants="primary"
           />
           <Card
             titleCard="Promo Code"

@@ -20,7 +20,9 @@ export type CustomFormCheckoutProps = {
   navigate?: (path: string) => void;
 };
 
-const FormCheckout: React.FC<CustomFormCheckoutProps> = ({ navigate }) => {
+const FormCheckout: React.FC<CustomFormCheckoutProps> = ({
+  navigate,
+}): React.ReactElement => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
@@ -32,7 +34,7 @@ const FormCheckout: React.FC<CustomFormCheckoutProps> = ({ navigate }) => {
 
   // Method handle changes in the input for the name field
   const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
+    const value = e.target.value.trim();
     setName(value);
     if (!value) {
       setNameError(ERROR_MESSAGES.FIELD_EMPTY);
@@ -45,7 +47,7 @@ const FormCheckout: React.FC<CustomFormCheckoutProps> = ({ navigate }) => {
 
   // Method handle changes in the input for the email field
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
+    const value = e.target.value.trim();
     setEmail(value);
     if (!value) {
       setEmailError(ERROR_MESSAGES.FIELD_EMPTY);
@@ -58,7 +60,7 @@ const FormCheckout: React.FC<CustomFormCheckoutProps> = ({ navigate }) => {
 
   // Method handle changes in the input for the phone field
   const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
+    const value = e.target.value.trim();
     setPhone(value);
     if (!value) {
       setPhoneError(ERROR_MESSAGES.FIELD_EMPTY);
@@ -71,7 +73,7 @@ const FormCheckout: React.FC<CustomFormCheckoutProps> = ({ navigate }) => {
 
   // Method handle changes in the input for the address field
   const handleAddressChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
+    const value = e.target.value.trim();
     setAddress(value);
     if (!value) {
       setAddressError(ERROR_MESSAGES.FIELD_EMPTY);
@@ -123,7 +125,9 @@ const FormCheckout: React.FC<CustomFormCheckoutProps> = ({ navigate }) => {
 
   return (
     <section className="checkout-cart font-family">
-      <Heading className="text-h2" element="h2" content="Checkout" />
+      <Heading className="text-h2" element="h2">
+        Checkout
+      </Heading>
       <hr className="dash dash-checkout" />
       <div className="checkout-container">
         <form className="form-checkout">
@@ -131,8 +135,6 @@ const FormCheckout: React.FC<CustomFormCheckoutProps> = ({ navigate }) => {
           <Input
             className="form-input"
             type="text"
-            id="name"
-            name="name"
             value={name}
             onChange={handleNameChange}
           />
@@ -142,8 +144,6 @@ const FormCheckout: React.FC<CustomFormCheckoutProps> = ({ navigate }) => {
           <Input
             className="form-input"
             type="email"
-            id="email"
-            name="email"
             value={email}
             onChange={handleEmailChange}
           />
@@ -153,8 +153,6 @@ const FormCheckout: React.FC<CustomFormCheckoutProps> = ({ navigate }) => {
           <Input
             className="form-input"
             type="text"
-            id="phone"
-            name="phone"
             value={phone}
             onChange={handlePhoneChange}
           />
@@ -164,8 +162,6 @@ const FormCheckout: React.FC<CustomFormCheckoutProps> = ({ navigate }) => {
           <Input
             className="form-input"
             type="text"
-            id="address"
-            name="address"
             value={address}
             onChange={handleAddressChange}
           />
@@ -178,10 +174,7 @@ const FormCheckout: React.FC<CustomFormCheckoutProps> = ({ navigate }) => {
             id="description"></textarea>
 
           <Label className="text-medium" titleLabel="Payment Method" />
-          <select
-            className="form-input"
-            id="payment-method"
-            name="payment-method">
+          <select className="form-input">
             <option value="credit-card">Credit Card</option>
             <option value="paypal">PayPal</option>
             <option value="bank-transfer">Bank TransferBank Transfer</option>

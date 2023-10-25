@@ -21,10 +21,10 @@ import { CartContext } from "../../../context/CartContext";
 
 type CustomCardProps = {
   showInput?: boolean;
-  className?: string;
+  className: string;
   titleCard: string;
   width?: number;
-  titleButton: string;
+  titleButton?: string;
   variants?: TVariant;
   onSubmit?: () => void;
 };
@@ -36,9 +36,9 @@ const Card: React.FC<CustomCardProps> = ({
   titleButton,
   showInput,
   width,
-  variants,
+  variants = "primary",
   onSubmit,
-}) => {
+}): React.ReactElement => {
   const widthCard = {
     width: `${width}px`,
   };
@@ -68,9 +68,11 @@ const Card: React.FC<CustomCardProps> = ({
 
   return (
     <div className={`${className} card-${variants}`} style={widthCard}>
-      <Heading className="text-h3" element="h3" content={titleCard} />
+      <Heading className="text-h3" element="h3">
+        {titleCard}
+      </Heading>
       {showInput ? (
-        <Input placeholder="enter promo code" className="input" />
+        <Input placeholder="enter promo code" className="input" type="text" />
       ) : (
         <div className="detail-total">
           <span className="text-large">
@@ -86,10 +88,10 @@ const Card: React.FC<CustomCardProps> = ({
         variants="secondary"
         size={
           titleButton === "confirm order"
-            ? "large"
+            ? "md"
             : titleButton === "Checkout"
-            ? "x-huge"
-            : "small"
+            ? "xl"
+            : "xs"
         }
         typeText="capitalize"
       />
