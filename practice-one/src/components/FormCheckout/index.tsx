@@ -34,7 +34,7 @@ const FormCheckout: React.FC<CustomFormCheckoutProps> = ({
 
   // Method handle changes in the input for the name field
   const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value.trim();
+    const value = e.target.value;
     setName(value);
     if (!value) {
       setNameError(ERROR_MESSAGES.FIELD_EMPTY);
@@ -47,7 +47,7 @@ const FormCheckout: React.FC<CustomFormCheckoutProps> = ({
 
   // Method handle changes in the input for the email field
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value.trim();
+    const value = e.target.value;
     setEmail(value);
     if (!value) {
       setEmailError(ERROR_MESSAGES.FIELD_EMPTY);
@@ -60,7 +60,7 @@ const FormCheckout: React.FC<CustomFormCheckoutProps> = ({
 
   // Method handle changes in the input for the phone field
   const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value.trim();
+    const value = e.target.value;
     setPhone(value);
     if (!value) {
       setPhoneError(ERROR_MESSAGES.FIELD_EMPTY);
@@ -73,7 +73,7 @@ const FormCheckout: React.FC<CustomFormCheckoutProps> = ({
 
   // Method handle changes in the input for the address field
   const handleAddressChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value.trim();
+    const value = e.target.value;
     setAddress(value);
     if (!value) {
       setAddressError(ERROR_MESSAGES.FIELD_EMPTY);
@@ -117,9 +117,11 @@ const FormCheckout: React.FC<CustomFormCheckoutProps> = ({
     ) {
       alert(NOTIFY.FAILD);
     } else {
-      alert(NOTIFY.SUCCESS);
-      localStorage.clear();
-      navigate?.("/");
+      const confirmed = confirm(NOTIFY.SUCCESS);
+      if (confirmed) {
+        localStorage.clear();
+        navigate?.("/");
+      }
     }
   };
 

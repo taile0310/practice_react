@@ -13,4 +13,6 @@ export const NOTIFY = {
     "Your shopping cart is empty, cannot checkout. Please choose your dish",
   FAILD: "Checkout failed. Please check your information.",
   SUCCESS: "Checkout successful!",
+  ADD_TO_CART: "Are you sure you want to add this product to your cart?",
+  REMOVE_FROM_CART: "Are you sure to remove this product from your cart?",
 };

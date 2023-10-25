@@ -39,13 +39,15 @@ export const CartProvider: React.FC<TChildren> = ({
    * @param product
    */
   const handleAddToCart = (product: CustomProductProps): void => {
-    alert("Are you sure you want to add this product to your cart?");
-    product.quantity = 1;
-    product.isExist = true;
-    setCarts((prevCart) => {
-      const newCart = [...prevCart, product];
-      return newCart;
-    });
+    const confirmed = confirm(NOTIFY.ADD_TO_CART);
+    if (confirmed) {
+      product.quantity = 1;
+      product.isExist = true;
+      setCarts((prevCart) => {
+        const newCart = [...prevCart, product];
+        return newCart;
+      });
+    }
   };
 
   /**
@@ -63,9 +65,11 @@ export const CartProvider: React.FC<TChildren> = ({
    * @param productId
    */
   const handleRemoveFromCart = (productId: string) => {
-    alert("Are you sure to remove this product from your cart?");
-    const updatedCart = carts.filter((item) => item.id !== productId);
-    setCarts(updatedCart);
+    const confirmed = confirm(NOTIFY.REMOVE_FROM_CART);
+    if (confirmed) {
+      const updatedCart = carts.filter((item) => item.id !== productId);
+      setCarts(updatedCart);
+    }
   };
 
   // Method get lenght from cart
