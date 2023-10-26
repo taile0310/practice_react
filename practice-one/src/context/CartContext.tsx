@@ -101,8 +101,6 @@ export const CartProvider: React.FC<TChildren> = ({
         }
         return item;
       });
-      // Save the new cart to localStorage after updating the quantity
-      localStorage.setItem("CartProducts", JSON.stringify(updatedCart));
       return updatedCart;
     });
   };
