@@ -2,89 +2,44 @@
 import "./list-cart.css";
 
 // Component
-import { Button, Card, Error, Footer, Heading, Image } from "..";
+import { Card, Error, Footer, Heading } from "..";
 
 // React hooks
 import { useContext } from "react";
 
-// Image
-import { Remove } from "../../assets/image";
-
 //Context
 import { CartContext } from "../../context/CartContext";
-import { CustomProductProps } from "../../types/TProduct";
+import CartItem from "./CartItem";
 
 export type ListCartProps = {
   className?: string;
-  carts: CustomProductProps[];
 };
 
 // Component ListCart
-const ListCart: React.FC<ListCartProps> = ({ className, carts }): React.ReactElement => {
-  const { handleRemoveFromCart, handleUpdateQuantity } =
-    useContext(CartContext);
-
+const ListCart: React.FC<ListCartProps> = ({
+  className,
+}): React.ReactElement => {
+  const { carts } = useContext(CartContext);
   return (
     <section className={`carts ${className}`}>
-      <Heading className="text-h2" element="h2">
+      <Heading className="text-h2 dash" element="h2">
         Cart
       </Heading>
-      <hr className="dash dash-cart"></hr>
       <div className="grid-container">
         <ul className="list-cart">
-          {carts.length === 0 ? (
-            <Error className="notify-empty" content="Your cart is empty." />
-          ) : (
-            ""
+          {carts.length === 0 && (
+            <p className="notify-empty">Your cart is empty.</p>
           )}
           {carts.map((item) => {
+            const { id, name, image, price, quantity } = item;
             return (
-              <li key={item.id}>
-                <div className="cart-item">
-                  <div className="img-circle">
-                    <Image className="img-circle" src={`${item.image}`} />
-                  </div>
-                  <div className="order-group">
-                    <div className="detail-dish">
-                      <span className="text-medium">{item.name}</span>
-                      <span className="text-price">${item.price}.00</span>
-                    </div>
-                    <div className="quantity-input">
-                      <Button
-                        textBtn="-"
-                        className="text-price"
-                        variants="transparent"
-                        onClick={() =>
-                          handleUpdateQuantity(item.id, "decrease")
-                        }
-                      />
-                      <span className="quantity text-price">
-                        {item.quantity}
-                      </span>
-                      <Button
-                        textBtn="+"
-                        className="text-price"
-                        variants="transparent"
-                        onClick={() =>
-                          handleUpdateQuantity(item.id, "increase")
-                        }
-                      />
-                    </div>
-                    <button className="btn-transparent btn-remove">
-                      <Image
-                        src={Remove}
-                        className="icon-remove"
-                        onClick={() => handleRemoveFromCart(item.id)}
-                      />
-                    </button>
-                  </div>
-                </div>
-                {item.errorQuantity && (
-                  <div className="messages-error display-error">
-                    {item.errorQuantity}
-                  </div>
-                )}
-              </li>
+              <CartItem
+                id={id}
+                name={name}
+                image={image}
+                price={price}
+                quantity={quantity}
+              />
             );
           })}
         </ul>

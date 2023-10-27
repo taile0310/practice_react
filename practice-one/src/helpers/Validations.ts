@@ -1,4 +1,4 @@
-import { REGEX } from "../constant/regex";
+import { REGEX } from "../constant/Regexs";
 
 // Method checks input for name
 export const isValidName = (name: string) => {

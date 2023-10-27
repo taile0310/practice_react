@@ -1,4 +1,4 @@
-import { CustomProductProps } from "../types/TProduct";
+import { CustomProductProps } from "../types/Product";
 
 // Calculate total value
 export const calculatorTotalPrice = (carts: CustomProductProps[]): number => {

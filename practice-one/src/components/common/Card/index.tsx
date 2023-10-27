@@ -6,15 +6,15 @@ import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 
 // Constants and Type
-import { NOTIFY } from "../../../constant/error";
-import { TVariant } from "../../../types/TVariant";
+import { NOTIFY } from "../../../constant/Errors";
+import { TVariant } from "../../../types/Variant";
 
 // Component
 import { Button, Heading, Input } from "..";
 
 // Helper
-import { getListCart } from "../../../helpers/data-localStorage";
-import { calculatorTotalPrice } from "../../../helpers/calculator-totalPrice";
+import { getListCart } from "../../../helpers/DataLocalStorage";
+import { calculatorTotalPrice } from "../../../helpers/CalculatorToltalPrice";
 
 // Context
 import { CartContext } from "../../../context/CartContext";

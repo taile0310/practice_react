@@ -120,9 +120,6 @@
 }
 
 .dash {
-  background-color: var(--primary-color);
-  width: 306px;
-  height: 5px;
-  margin: 0;
-  border: 0;
+  border-bottom: 5px solid var(--primary-color);
+  width: fit-content;
 }

@@ -1,16 +1,13 @@
 // CSS
 import "./list-product.css";
 
-// React hooks
-import { useContext } from "react";
-
 // Component
-import { Button, Error, Footer, Heading, Image, Loading } from "..";
+import { Button, Error, Footer, Heading, Loading } from "..";
 
 // Constants, Image, Message error
 // import { ERROR_MESSAGES } from "../../constant/error";
-import { CustomProductProps } from "../../types/TProduct";
-import { CartContext } from "../../context/CartContext";
+import { CustomProductProps } from "../../types/Product";
+import Product from "./Product";
 
 export type ListProductProps = {
   error: string | null;
@@ -30,15 +27,11 @@ const ListProduct: React.FC<ListProductProps> = ({
   displayedProductCount,
   onShowMorePoducts,
 }): React.ReactElement => {
-  const { isInCart, handleAddToCart, handleRemoveFromCart } =
-    useContext(CartContext);
-
   return (
     <section className="section-menu font-family">
-      <Heading className="text-h2" element="h2">
+      <Heading className="text-h2 dash" element="h2">
         Sushi food
       </Heading>
-      <hr className="dash dash-menu"></hr>
       {error && (
         <Error className="messages-error text-medium" content={error} />
       )}
@@ -46,22 +39,9 @@ const ListProduct: React.FC<ListProductProps> = ({
       {isLoading && <Loading />}
       <ul className="list-menu">
         {products.slice(0, displayedProductCount).map((product) => {
+          const { id, name, image } = product;
           return (
-            <li className="menu-item" key={product.id}>
-              <Image
-                className={`img-rectangle ${
-                  isInCart(product.id) ? "added-to-cart" : ""
-                }`}
-                src={`${product.image}`}
-                alt={product.name}
-                onClick={() => {
-                  isInCart(product.id)
-                    ? handleRemoveFromCart(product.id)
-                    : handleAddToCart(product);
-                }}
-              />
-              <span className="text-small">{product.name}</span>
-            </li>
+            <Product id={id} name={name} image={image} product={product} />
           );
         })}
       </ul>

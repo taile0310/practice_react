@@ -45,6 +45,7 @@
 
 .btn-remove {
   margin-left: 38px;
+  align-self: center;
 }
 
 .grid-container {
@@ -60,10 +61,6 @@
 
 .carts {
   display: block;
-}
-
-.dash-cart {
-  width: 134px;
 }
 
 .notify-empty {

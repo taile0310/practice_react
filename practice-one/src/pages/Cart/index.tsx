@@ -1,14 +1,12 @@
 // React Hooks and Router
-import React, { useContext } from "react";
+import React from "react";
 
 // Component
 import { ListCart } from "../../components";
-import { CartContext } from "../../context/CartContext";
 
 // Component Cart
 const Cart: React.FC = (): React.ReactElement => {
-  const { carts } = useContext(CartContext);
-  return <ListCart carts={carts} />;
+  return <ListCart />;
 };
 
 export default Cart;
