@@ -1,5 +1,5 @@
 // CSS
-import "./image.css";
+import "./Image.css";
 
 // React
 import React, { MouseEventHandler } from "react";

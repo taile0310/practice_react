@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import Error from ".";
-import { ERROR_MESSAGES } from "../../../constant/Errors";
+import { ERROR_MESSAGES } from "../../../constants/Error";
 
 export default {
   title: "Components/Error",

@@ -1,19 +1,33 @@
+// React hooks
 import { useContext } from "react";
+
+// Image
 import { Image } from "../..";
-import { CartContext } from "../../../context/CartContext";
-import { CustomProductProps } from "../../../types";
+
+// Context
+import { CartContext } from "../../../contexts/CartContext";
+
+// Type
+import { CustomProductProps } from "../../../types/Product";
 
 type TProductProps = {
   id: string;
   name: string;
   image: string;
   product: CustomProductProps;
+  width?: number;
 };
-const Product = ({ id, image, name, product }: TProductProps) => {
+
+// Component Product
+const Product = ({ id, image, name, product, width }: TProductProps) => {
   const { isInCart, handleAddToCart, handleRemoveFromCart } =
     useContext(CartContext);
+  const widthProduct = {
+    width: `${width}px`,
+  };
+
   return (
-    <li className="menu-item" key={id}>
+    <li className="menu-item font-family" key={id} style={widthProduct}>
       <Image
         className={`img-rectangle ${isInCart(id) ? "added-to-cart" : ""}`}
         src={`${image}`}

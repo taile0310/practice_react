@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { CartContext } from "../../../context/CartContext";
+import { CartContext } from "../../../contexts/CartContext";
 import { Remove } from "../../../assets/image";
 import DetailDish from "../DetailDish";
 import HandleQuantity from "../HandleQuantity";
@@ -11,12 +11,24 @@ type TCartItemProps = {
   image: string;
   price: number;
   quantity: number;
+  className?: string;
+  listStyle?: string;
 };
-const CartItem = ({ id, name, image, price, quantity }: TCartItemProps) => {
+const CartItem = ({
+  id,
+  name,
+  image,
+  price,
+  quantity,
+  className,
+  listStyle = "none",
+}: TCartItemProps) => {
   const { handleRemoveFromCart } = useContext(CartContext);
-
+  const style = {
+    listStyle: `${listStyle}`,
+  };
   return (
-    <li key={id}>
+    <li className={className} key={id} style={style}>
       <div className="cart-item">
         <div className="img-circle">
           <Image className="img-circle" src={`${image}`} />

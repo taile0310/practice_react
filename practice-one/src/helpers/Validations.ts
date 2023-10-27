@@ -1,4 +1,4 @@
-import { REGEX } from "../constant/Regexs";
+import { REGEX } from "../constants/Regex";
 
 // Method checks input for name
 export const isValidName = (name: string) => {
@@ -16,10 +16,4 @@ export const isValidEmail = (email: string) => {
 export const isValidPhone = (phone: string) => {
   const regexPhone = REGEX.phone;
   return regexPhone.test(phone);
-};
-
-// Method checks input for address
-export const isValidAddress = (address: string) => {
-  const regexAddress = REGEX.address;
-  return regexAddress.test(address);
 };

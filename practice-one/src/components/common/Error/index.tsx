@@ -1,3 +1,4 @@
+// React
 import React from "react";
 
 type TError = {
@@ -5,6 +6,7 @@ type TError = {
   content: string;
 };
 
+//Component Error 
 const Error: React.FC<TError> = ({
   className,
   content,

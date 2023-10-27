@@ -1,13 +1,12 @@
 // CSS
-import "./list-product.css";
+import "./ListProduct.css";
 
 // Component
 import { Button, Error, Footer, Heading, Loading } from "..";
-
-// Constants, Image, Message error
-// import { ERROR_MESSAGES } from "../../constant/error";
-import { CustomProductProps } from "../../types/Product";
 import Product from "./Product";
+
+// Type
+import { CustomProductProps } from "../../types/Product";
 
 export type ListProductProps = {
   error: string | null;

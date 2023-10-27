@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { getListCart } from "../helpers/DataLocalStorage";
 import { TAction } from "../types/Action";
 import { CustomProductProps } from "../types/Product";
-import { NOTIFY } from "../constant/Errors";
+import { NOTIFY } from "../constants/Error";
 
 type TCartContext = {
   carts: CustomProductProps[];

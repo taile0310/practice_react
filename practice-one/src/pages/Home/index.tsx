@@ -1,5 +1,5 @@
 // CSS
-import "./home-page.css";
+import "./Home.css";
 
 // Component
 import { Heading } from "../../components";

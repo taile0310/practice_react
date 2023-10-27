@@ -1,3 +1,4 @@
+// Type
 import { CustomProductProps } from "../types/Product";
 
 // Calculate total value

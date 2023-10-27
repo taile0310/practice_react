@@ -3,7 +3,7 @@
  * @param url
  */
 
-import { ERROR_MESSAGES } from "../constant/Errors";
+import { ERROR_MESSAGES } from "../constants/Error";
 
 type TFecthData = {
   url: string;
