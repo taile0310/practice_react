@@ -1,8 +1,8 @@
 // Type
-import { THeading } from "../../../types/THeading";
+import { THeading } from "../../../types/Heading";
 
 // Helper
-import { getFontSize } from "../../../helpers/font-size";
+import { getFontSize } from "../../../helpers/FontSize";
 
 export type HeadingProps = {
   className?: string;

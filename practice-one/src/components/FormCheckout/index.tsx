@@ -13,8 +13,8 @@ import {
   isValidEmail,
   isValidName,
   isValidPhone,
-} from "../../helpers/validation";
-import { ERROR_MESSAGES, NOTIFY } from "../../constant/error";
+} from "../../helpers/Validations";
+import { ERROR_MESSAGES, NOTIFY } from "../../constant/Errors";
 
 export type CustomFormCheckoutProps = {
   navigate?: (path: string) => void;
@@ -77,15 +77,13 @@ const FormCheckout: React.FC<CustomFormCheckoutProps> = ({
     setAddress(value);
     if (!value) {
       setAddressError(ERROR_MESSAGES.FIELD_EMPTY);
-    } else if (!isValidAddress(value)) {
-      setAddressError(ERROR_MESSAGES.ADDRESS);
     } else {
       setAddressError("");
     }
   };
 
   // Method check whether the payment process was successful or not
-  const isCheckoutSuccessful = () => {
+  const handleCheckoutSuccessful = () => {
     const nameErrorExists = !name || !isValidName(name);
     const emailErrorExists = !email || !isValidEmail(email);
     const phoneErrorExists = !phone || !isValidPhone(phone);
@@ -127,10 +125,9 @@ const FormCheckout: React.FC<CustomFormCheckoutProps> = ({
 
   return (
     <section className="checkout-cart font-family">
-      <Heading className="text-h2" element="h2">
+      <Heading className="text-h2 dash" element="h2">
         Checkout
       </Heading>
-      <hr className="dash dash-checkout" />
       <div className="checkout-container">
         <form className="form-checkout">
           <Label className="text-medium" titleLabel="Full Name" />
@@ -138,6 +135,7 @@ const FormCheckout: React.FC<CustomFormCheckoutProps> = ({
             className="form-input"
             type="text"
             value={name}
+            name="name"
             onChange={handleNameChange}
           />
           {nameError && <p className="messages-error">{nameError}</p>}
@@ -147,6 +145,7 @@ const FormCheckout: React.FC<CustomFormCheckoutProps> = ({
             className="form-input"
             type="email"
             value={email}
+            name="email"
             onChange={handleEmailChange}
           />
           {emailError && <p className="messages-error">{emailError}</p>}
@@ -156,6 +155,7 @@ const FormCheckout: React.FC<CustomFormCheckoutProps> = ({
             className="form-input"
             type="text"
             value={phone}
+            name="phone"
             onChange={handlePhoneChange}
           />
           {phoneError && <p className="messages-error">{phoneError}</p>}
@@ -165,6 +165,7 @@ const FormCheckout: React.FC<CustomFormCheckoutProps> = ({
             className="form-input"
             type="text"
             value={address}
+            name="address"
             onChange={handleAddressChange}
           />
           {addressError && <p className="messages-error">{addressError}</p>}
@@ -188,7 +189,7 @@ const FormCheckout: React.FC<CustomFormCheckoutProps> = ({
             className="card"
             titleButton="Checkout"
             variants="primary"
-            onSubmit={isCheckoutSuccessful}
+            onSubmit={handleCheckoutSuccessful}
           />
         </div>
       </div>

@@ -3,10 +3,10 @@ import React, { MouseEvent, createContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 // Helper, Constant and Type
-import { getListCart } from "../helpers/data-localStorage";
-import { ERROR_MESSAGES, NOTIFY } from "../constant/error";
-import { TAction } from "../types/TAction";
-import { CustomProductProps } from "../types/TProduct";
+import { getListCart } from "../helpers/DataLocalStorage";
+import { TAction } from "../types/Action";
+import { CustomProductProps } from "../types/Product";
+import { NOTIFY } from "../constant/Errors";
 
 type TCartContext = {
   carts: CustomProductProps[];
@@ -83,8 +83,8 @@ export const CartProvider: React.FC<TChildren> = ({
    * @param action
    */
   const handleUpdateQuantity = (productId: string, action: TAction) => {
-    setCarts((prevCarts) => {
-      const updatedCart = prevCarts.map((item) => {
+    setCarts((carts) => {
+      const updatedCart = carts.map((item) => {
         // Check if the product has an id that matches productId
         if (item.id === productId) {
           // Calculate new quantity based on action (increase or decrease)
@@ -94,8 +94,6 @@ export const CartProvider: React.FC<TChildren> = ({
           const updatedItem = {
             ...item,
             quantity: newQuantity >= 1 ? newQuantity : 1,
-            errorQuantity:
-              newQuantity < 1 ? ERROR_MESSAGES.QUANTITY_NAVIGATIVE : "",
           };
           return updatedItem;
         }
@@ -105,7 +103,10 @@ export const CartProvider: React.FC<TChildren> = ({
     });
   };
 
-  // The processing method moves to the checkout page
+  /**
+   * The processing method moves to the checkout page
+   * @param event
+   */
   const handleCheckout = (event: MouseEvent<HTMLAnchorElement>) => {
     // If cart length is less than or equal to 0, return to menu
     if (carts.length <= 0) {

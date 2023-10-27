@@ -6,7 +6,7 @@ import { NavLink } from "react-router-dom";
 import { useContext } from "react";
 
 // Constants and Type
-import NAV_LINKS from "../../../constant/nav-link";
+import NAV_LINKS from "../../../constant/NavLink";
 
 // Conponent
 import { Image } from "..";
