@@ -1,5 +1,5 @@
 // CSS
-import "./input.css";
+import "./Input.css";
 
 // React
 import React, { ChangeEventHandler } from "react";

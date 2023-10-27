@@ -1,5 +1,5 @@
 // CSS
-import "./form-checkout.css";
+import "./FormCheckout.css";
 
 // React
 import React, { useState } from "react";
@@ -9,20 +9,14 @@ import { Card, Footer, Heading, Input, Label } from "..";
 
 // Helpers and Constants
 import {
-  isValidAddress,
   isValidEmail,
   isValidName,
   isValidPhone,
 } from "../../helpers/Validations";
-import { ERROR_MESSAGES, NOTIFY } from "../../constant/Errors";
+import { ERROR_MESSAGES, NOTIFY } from "../../constants/Error";
+import { useNavigate } from "react-router-dom";
 
-export type CustomFormCheckoutProps = {
-  navigate?: (path: string) => void;
-};
-
-const FormCheckout: React.FC<CustomFormCheckoutProps> = ({
-  navigate,
-}): React.ReactElement => {
+const FormCheckout: React.FC = (): React.ReactElement => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
@@ -31,6 +25,8 @@ const FormCheckout: React.FC<CustomFormCheckoutProps> = ({
   const [emailError, setEmailError] = useState("");
   const [phoneError, setPhoneError] = useState("");
   const [addressError, setAddressError] = useState("");
+
+  const navigate = useNavigate();
 
   // Method handle changes in the input for the name field
   const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -87,7 +83,7 @@ const FormCheckout: React.FC<CustomFormCheckoutProps> = ({
     const nameErrorExists = !name || !isValidName(name);
     const emailErrorExists = !email || !isValidEmail(email);
     const phoneErrorExists = !phone || !isValidPhone(phone);
-    const addressErrorExists = !address || !isValidAddress(address);
+    const addressErrorExists = !address;
 
     if (nameErrorExists) {
       setNameError(name ? ERROR_MESSAGES.NAME : ERROR_MESSAGES.FIELD_EMPTY);
@@ -118,7 +114,7 @@ const FormCheckout: React.FC<CustomFormCheckoutProps> = ({
       const confirmed = confirm(NOTIFY.SUCCESS);
       if (confirmed) {
         localStorage.clear();
-        navigate?.("/");
+        navigate("/");
       }
     }
   };

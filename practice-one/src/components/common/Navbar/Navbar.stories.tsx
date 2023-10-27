@@ -1,7 +1,7 @@
 import { Meta, StoryObj } from "@storybook/react";
 import { MemoryRouter } from "react-router-dom";
 import Navbar from ".";
-import { CartProvider } from "../../../context/CartContext";
+import { CartProvider } from "../../../contexts/CartContext";
 
 export default {
   title: "Components/Navbar",

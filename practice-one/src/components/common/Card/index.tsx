@@ -1,12 +1,12 @@
 // CSS
-import "./card.css";
+import "./Card.css";
 
 // React
 import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 
 // Constants and Type
-import { NOTIFY } from "../../../constant/Errors";
+import { NOTIFY } from "../../../constants/Error";
 import { TVariant } from "../../../types/Variant";
 
 // Component
@@ -17,7 +17,7 @@ import { getListCart } from "../../../helpers/DataLocalStorage";
 import { calculatorTotalPrice } from "../../../helpers/CalculatorToltalPrice";
 
 // Context
-import { CartContext } from "../../../context/CartContext";
+import { CartContext } from "../../../contexts/CartContext";
 
 type CustomCardProps = {
   showInput?: boolean;

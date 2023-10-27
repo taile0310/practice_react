@@ -1,11 +1,11 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { MemoryRouter } from "react-router-dom";
-import Card from ".";
+import Product from ".";
 import { CartProvider } from "../../../contexts/CartContext";
+import { MemoryRouter } from "react-router-dom";
 
 export default {
-  title: "Components/Card",
-  component: Card,
+  title: "Components/Product",
+  component: Product,
   decorators: [
     (Story) => (
       <MemoryRouter>
@@ -17,15 +17,12 @@ export default {
   ],
 } as Meta;
 
-type Story = StoryObj<typeof Card>;
+type Story = StoryObj<typeof Product>;
 
 export const Default: Story = {
   args: {
-    width: 443,
-    titleCard: "Promo Code",
-    titleButton: "apply",
-    className: "card card-secondary font-family",
-    showInput: true,
-    variants: "secondary",
+    image: "https://sushi-restaurant-phi.vercel.app/item1.aef69296.jpg",
+    name: "Smashed Avo",
+    width: 224,
   },
 };

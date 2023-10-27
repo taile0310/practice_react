@@ -1,15 +1,21 @@
 import { useContext } from "react";
 import { Button } from "../..";
-import { CartContext } from "../../../context/CartContext";
+import { CartContext } from "../../../contexts/CartContext";
 
 type THandleQuantity = {
   id: string;
   quantity: number;
+  width?: number;
 };
-const HandleQuantity = ({ id, quantity }: THandleQuantity) => {
+
+// Component HandleQuantity
+const HandleQuantity = ({ id, quantity, width }: THandleQuantity) => {
   const { handleUpdateQuantity } = useContext(CartContext);
+  const widthHandleQuantity = {
+    width: `${width}px`,
+  };
   return (
-    <div className="quantity-input">
+    <div className="quantity-input" style={widthHandleQuantity}>
       <Button
         textBtn="-"
         className={`text-price ${quantity <= 1 && "btn-disabled"}`}

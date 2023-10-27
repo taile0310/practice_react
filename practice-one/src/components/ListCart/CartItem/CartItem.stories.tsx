@@ -9,5 +9,12 @@ export default {
 type Story = StoryObj<typeof CartItem>;
 
 export const Default: Story = {
-  args: {},
+  args: {
+    image: "https://sushi-restaurant-phi.vercel.app/item1.aef69296.jpg",
+    name: "Smashed Avo",
+    price: 25,
+    quantity: 1,
+    className: "font-family",
+    listStyle: "none",
+  },
 };

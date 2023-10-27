@@ -1,18 +1,18 @@
 // CSS
-import "./navbar.css";
+import "./Navbar.css";
 
 // React router and Hook
 import { NavLink } from "react-router-dom";
 import { useContext } from "react";
 
 // Constants and Type
-import NAV_LINKS from "../../../constant/NavLink";
+import NAV_LINKS from "../../../constants/NavLink";
 
 // Conponent
 import { Image } from "..";
 
 // Context
-import { CartContext } from "../../../context/CartContext";
+import { CartContext } from "../../../contexts/CartContext";
 
 export type CustomNavbarProps = {
   width?: number;

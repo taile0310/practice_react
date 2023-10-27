@@ -1,15 +1,15 @@
 // CSS
-import "./list-cart.css";
+import "./ListCart.css";
 
 // Component
-import { Card, Error, Footer, Heading } from "..";
+import { Card, Footer, Heading } from "..";
+import CartItem from "./CartItem";
 
 // React hooks
 import { useContext } from "react";
 
 //Context
-import { CartContext } from "../../context/CartContext";
-import CartItem from "./CartItem";
+import { CartContext } from "../../contexts/CartContext";
 
 export type ListCartProps = {
   className?: string;

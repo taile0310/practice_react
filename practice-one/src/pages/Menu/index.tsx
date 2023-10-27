@@ -5,10 +5,10 @@ import React, { useEffect, useState } from "react";
 import { ListProduct } from "../../components";
 
 // Constant, Type and Helper
-import { BASE_URL } from "../../constant/BaseUrl";
 import { CustomProductProps } from "../../types/Product";
 import { fetchData } from "../../helpers/FetchData";
-import { ERROR_MESSAGES } from "../../constant/Errors";
+import { ERROR_MESSAGES } from "../../constants/Error";
+import { BASE_URL } from "../../constants/BaseUrl";
 
 // Component Menu
 const Menu: React.FC = (): React.ReactElement => {

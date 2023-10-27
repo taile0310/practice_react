@@ -1,5 +1,4 @@
 // React router
-import { useNavigate } from "react-router-dom";
 import React from "react";
 
 // Component
@@ -7,9 +6,7 @@ import { FormCheckout } from "../../components";
 
 // Component Checkout
 const Checkout: React.FC = (): React.ReactElement => {
-  const navigate = useNavigate();
-
-  return <FormCheckout navigate={navigate} />;
+  return <FormCheckout />;
 };
 
 export default Checkout;

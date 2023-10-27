@@ -9,8 +9,8 @@ export const getFontSize = (size: string) => {
     case "h4":
       return "30px";
     case "h5":
-      return "20px";
+      return "24px";
     case "h6":
-      return "10px";
+      return "16px";
   }
 };

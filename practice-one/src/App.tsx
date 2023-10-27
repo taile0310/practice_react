@@ -5,7 +5,7 @@ import "./App.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 // Layout
-import MainLayout from "./layout/MainLayout";
+import MainLayout from "./layouts/MainLayout";
 
 // Page
 import { Home } from "./pages";

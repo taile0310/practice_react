@@ -1,12 +1,14 @@
 // CSS
-import "./button.css";
+
+import "./Button.css";
 
 // React
 import React, { MouseEventHandler } from "react";
 
 // Type
-
-import { TVariant, TButtonSize, TButtonText } from "../../../types/index";
+import { TButtonSize } from "../../../types/Button/Size";
+import { TButtonText } from "../../../types/Button/Text";
+import { TVariant } from "../../../types/Variant";
 
 type CustomBtnProps = {
   textBtn?: string;
