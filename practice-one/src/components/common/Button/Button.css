@@ -1,0 +1,55 @@
+.btn {
+  border: 0;
+  border-radius: 2px;
+  font-family: var(--primary-font);
+}
+
+.btn-primary {
+  background-color: var(--text-primary-color);
+}
+
+.btn-secondary {
+  background-color: var(--secondary-color);
+  color: var(--text-primary-color);
+}
+
+.text-uppercase {
+  text-transform: uppercase;
+}
+
+.text-capitalize {
+  text-transform: capitalize;
+}
+
+.btn-transparent {
+  background-color: transparent;
+  border: 0;
+}
+
+.btn-md {
+  padding: 20px 84px;
+  border: 0;
+}
+
+.btn-lg {
+  padding: 21px 0;
+  width: 250px;
+}
+
+.btn-sm {
+  padding: 14.5px 38px;
+}
+
+.btn-xs {
+  padding: 20px 42px;
+  max-width: 166px;
+  margin-top: 2px;
+}
+
+.btn-xl {
+  padding: 20px 113px;
+}
+
+.btn-disabled {
+  opacity: 0.2;
+}

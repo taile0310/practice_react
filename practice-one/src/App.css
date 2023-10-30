@@ -1,0 +1,124 @@
+:root {
+  /* Color */
+  --primary-color: #f1d5bb;
+  --secondary-color: #0c0b0b;
+
+  --text-primary-color: #fff;
+  /* End color */
+
+  --primary-font: "Mulish";
+  --secondary-font: "BalooBhai";
+
+  /* End Font-family */ /* Font-weight */
+  --fw-extra: 200;
+  --fw-light: 300;
+  --fw-regular: 400;
+  --fw-semibold: 600;
+  /* End Font-weight */
+
+  /* Font-size */
+  --fs-x-small: 15px;
+  --fs-small: 20px;
+  --fs-x-medium: 25px;
+  --fs-medium: 30px;
+  --fs-x-large: 40px;
+  --fs-large: 50px;
+  --fs-x-huge: 60px;
+  --fs-huge: 64px;
+  /* End font-size */
+
+  /* Line-height */
+  --lh-normal: normal;
+  /* End line-height */
+}
+
+.text-h1 {
+  font-weight: var(--fw-regular);
+  color: var(--text-primary-color);
+}
+
+.text-h2 {
+  font-weight: var(--fw-regular);
+  text-transform: uppercase;
+  line-height: 63px;
+}
+
+.text-h3 {
+  font-weight: var(--fw-regular);
+  line-height: 50px;
+}
+
+.text-p {
+  font-size: var(--fs-x-medium);
+  font-weight: var(--fw-regular);
+  color: var(--text-primary-color);
+  line-height: 31px;
+}
+
+.text-x-small {
+  font-size: var(--fs-x-small);
+  font-weight: var(--fw-semibold);
+  line-height: 19px;
+}
+
+.text-small {
+  font-size: var(--fs-small);
+  font-weight: var(--fw-semibold);
+  line-height: 25px;
+}
+
+.text-medium {
+  font-size: var(--fs-x-medium);
+  font-weight: var(--fw-semibold);
+  line-height: 31px;
+}
+
+.text-large {
+  font-size: var(--fs-medium);
+  font-weight: var(--fw-regular);
+  color: var(--text-primary-color);
+  line-height: 38px;
+}
+
+.text-price {
+  font-size: var(--fs-small);
+  font-weight: var(--fw-regular);
+  line-height: 25px;
+}
+
+.primary-text-btn {
+  font-size: var(--fs-medium);
+  font-weight: var(--fw-light);
+  line-height: 38px;
+  color: var(--secondary-color);
+}
+
+.secondary-text-btn {
+  font-size: var(--fs-small);
+  font-weight: var(--fw-light);
+  line-height: 25px;
+  color: var(--text-primary-color);
+}
+
+.font-family {
+  font-family: var(--primary-font);
+}
+
+.component-layout {
+  display: flex;
+  gap: 55px;
+  padding: 43px 103px 30px 57px;
+}
+
+.messages-error {
+  color: red;
+}
+
+.display-error {
+  text-align: center;
+}
+
+.dash {
+  border-bottom: 5px solid var(--primary-color);
+  width: fit-content;
+}

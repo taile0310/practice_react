@@ -1,0 +1,69 @@
+.list-cart {
+  background-color: var(--primary-color);
+  flex-direction: column;
+  grid-area: list-cart;
+  gap: 56px;
+  padding: 37px 23px 43px 20px;
+  display: flex;
+}
+
+.cart-item {
+  gap: 36px;
+  display: flex;
+}
+
+.order-group {
+  display: flex;
+  gap: 43px;
+}
+
+.detail-dish {
+  display: flex;
+  flex-direction: column;
+  min-width: 201px;
+  gap: 17px;
+}
+
+.detail-dish > :nth-child(1) {
+  width: 201px;
+}
+
+.quantity-input {
+  display: flex;
+  gap: 12px;
+}
+
+.quantity-input > button {
+  width: 12px;
+}
+
+.quantity {
+  padding: 5px 17px;
+  background-color: var(--text-primary-color);
+  margin: auto;
+}
+
+.btn-remove {
+  margin-left: 38px;
+  align-self: center;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-areas: "list-cart card-group";
+  gap: 41px;
+  margin: 24px 0 208px 0;
+}
+
+.card-group {
+  grid-area: card-group;
+}
+
+.carts {
+  display: block;
+}
+
+.notify-empty {
+  padding: 54px;
+  font-size: 53.5px;
+}

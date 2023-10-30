@@ -1,0 +1,39 @@
+.form-checkout {
+  max-width: 617px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid var(--primary-color);
+  border-radius: 5px;
+  box-shadow: 0px 0px 5px var(--primary-color);
+}
+
+.checkout-container {
+  display: flex;
+  margin: 24px 0 208px 0;
+  gap: 41px;
+}
+
+.required-input {
+  color: red;
+}
+
+.form-input {
+  width: 100%;
+  padding: 15px;
+  border: 1px solid var(--primary-color);
+  border-radius: 3px;
+  font-size: 20px;
+  box-sizing: border-box;
+  margin-bottom: 15px;
+}
+
+.checkout-cart {
+  max-width: 1091px;
+  width: 100%;
+}
+
+.textarea-size {
+  resize: vertical;
+  line-height: 23px;
+}

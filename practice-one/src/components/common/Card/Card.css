@@ -1,0 +1,33 @@
+.card-primary {
+  background-color: var(--primary-color);
+  padding: 22px 38px 30px 40px;
+  gap: 28px;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+}
+
+.card-secondary {
+  background-color: var(--text-primary-color);
+  padding: 28px 38px 33px 40px;
+  gap: 25px;
+  border: 1px solid var(--primary-color);
+}
+
+.detail-total {
+  margin-top: 12px;
+  display: flex;
+  gap: 29px;
+}
+
+.detail-total > span {
+  color: var(--secondary-color);
+}
+
+.card-checkout {
+  max-width: 433px;
+  width: 100%;
+}
+

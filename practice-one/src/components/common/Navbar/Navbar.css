@@ -1,0 +1,39 @@
+.nav-menu {
+  display: flex;
+  flex-direction: column;
+  border-radius: 24px;
+  background: var(--secondary-color);
+  gap: 21px;
+  height: 852px;
+}
+
+.nav-item {
+  padding: 41px 47px;
+}
+
+.active {
+  background-color: var(--primary-color);
+  pointer-events: none;
+  cursor: default;
+}
+
+.cart-number {
+  color: var(--text-primary-color);
+  position: absolute;
+  margin-top: -10px;
+  margin-left: 40px;
+}
+
+.nav-item.active .cart-number {
+  color: var(--secondary-color);
+}
+
+.nav-item:first-child .icon {
+  filter: invert(85%) sepia(20%) saturate(551%) hue-rotate(329deg)
+    brightness(105%) contrast(89%);
+}
+
+.nav-item.active .icon {
+  filter: invert(0%) sepia(0%) saturate(7465%) hue-rotate(338deg)
+    brightness(106%) contrast(109%);
+}

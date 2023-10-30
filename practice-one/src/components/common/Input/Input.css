@@ -1,0 +1,13 @@
+.input {
+  border: 1px solid var(--primary-color);
+  padding: 20px;
+  width: 364px;
+  line-height: 38px;
+  font-size: 18px;
+}
+
+.input::placeholder {
+  font-size: var(--fs-medium);
+  font-weight: var(--fw-extra);
+  font-family: var(--primary-font);
+}

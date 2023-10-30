@@ -1,0 +1,37 @@
+.list-menu {
+  display: flex;
+  flex-wrap: wrap;
+  row-gap: 36px;
+  column-gap: 65px;
+  margin-top: 43px;
+}
+
+.section-menu {
+  display: flex;
+  flex-direction: column;
+}
+
+.btn-item {
+  margin: 35px auto 56px auto;
+}
+
+.menu-item {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  gap: 8px;
+}
+
+.spinner {
+  width: 150px;
+  height: 150px;
+}
+
+.added-to-cart {
+  border: 2px solid red;
+}
+
+.isFull {
+  opacity: 0.7;
+  pointer-events: none;
+}
