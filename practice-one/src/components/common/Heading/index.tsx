@@ -3,6 +3,7 @@ import { THeading } from "../../../types/Heading";
 
 // Helper
 import { getFontSize } from "../../../helpers/FontSize";
+import { memo } from "react";
 
 export type HeadingProps = {
   className?: string;
@@ -11,22 +12,20 @@ export type HeadingProps = {
 };
 
 // Component Heading
-const Heading: React.FC<HeadingProps> = ({
-  element,
-  children,
-  className,
-}): React.ReactElement => {
-  const headingStyles = {
-    fontSize: getFontSize(element),
-  };
+const Heading: React.FC<HeadingProps> = memo(
+  ({ element, children, className }): React.ReactElement => {
+    const headingStyles = {
+      fontSize: getFontSize(element),
+    };
 
-  const HeadingTag = element;
+    const HeadingTag = element;
 
-  return (
-    <HeadingTag className={`${className} font-family`} style={headingStyles}>
-      {children}
-    </HeadingTag>
-  );
-};
+    return (
+      <HeadingTag className={`${className} font-family`} style={headingStyles}>
+        {children}
+      </HeadingTag>
+    );
+  }
+);
 
 export default Heading;

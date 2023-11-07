@@ -3,7 +3,7 @@ import { Outlet } from "react-router-dom";
 
 // Components
 import { Navbar } from "../components";
-import { CartProvider } from "../contexts/CartContext";
+import { CartProvider } from "../stores/contexts/CartContext";
 
 const MainLayout = () => {
   return (

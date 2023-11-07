@@ -1,6 +1,11 @@
-import { TActionReducer, TState } from "./TAction";
+import { TActionReducer } from "./action";
+import { CustomProductProps } from "../../types/Product";
 
-export const reducer = (state: TState, action: TActionReducer): TState => {
+export type TState = {
+  carts: CustomProductProps[];
+};
+
+export const reducer = (state: TState, action: TActionReducer) => {
   switch (action.type) {
     case "ADD_TO_CART":
       return {

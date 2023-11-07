@@ -1,11 +1,11 @@
 // React hooks
-import { useContext } from "react";
+import { memo, useContext } from "react";
 
 // Image
 import { Image } from "../..";
 
 // Context
-import { CartContext } from "../../../contexts/CartContext";
+import { CartContext } from "../../../stores/contexts/CartContext";
 
 // Type
 import { CustomProductProps } from "../../../types/Product";
@@ -19,9 +19,10 @@ type TProductProps = {
 };
 
 // Component Product
-const Product = ({ id, image, name, product, width }: TProductProps) => {
+const Product = memo(({ id, image, name, product, width }: TProductProps) => {
   const { isInCart, handleAddToCart, handleRemoveFromCart } =
     useContext(CartContext);
+
   const widthProduct = {
     width: `${width}px`,
   };
@@ -39,6 +40,6 @@ const Product = ({ id, image, name, product, width }: TProductProps) => {
       <span className="text-small">{name}</span>
     </li>
   );
-};
+});
 
 export default Product;

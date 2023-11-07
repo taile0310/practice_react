@@ -2,7 +2,7 @@
 import "./Image.css";
 
 // React
-import React, { MouseEventHandler } from "react";
+import React, { MouseEventHandler, memo } from "react";
 
 export type CustomImageProps = {
   src: string;
@@ -12,13 +12,10 @@ export type CustomImageProps = {
 };
 
 // Component Image
-const Image: React.FC<CustomImageProps> = ({
-  src,
-  alt,
-  className,
-  onClick,
-}): React.ReactElement => {
-  return <img className={className} src={src} alt={alt} onClick={onClick} />;
-};
+const Image: React.FC<CustomImageProps> = memo(
+  ({ src, alt, className, onClick }): React.ReactElement => {
+    return <img className={className} src={src} alt={alt} onClick={onClick} />;
+  }
+);
 
 export default Image;

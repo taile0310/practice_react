@@ -2,7 +2,7 @@
 import "./Card.css";
 
 // React
-import React, { useContext } from "react";
+import React, { memo, useCallback, useContext, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 
 // Constants and Type
@@ -17,7 +17,7 @@ import { getListCart } from "../../../helpers/DataLocalStorage";
 import { calculatorTotalPrice } from "../../../helpers/CalculatorToltalPrice";
 
 // Context
-import { CartContext } from "../../../contexts/CartContext";
+import { CartContext } from "../../../stores/contexts/CartContext";
 
 type CustomCardProps = {
   showInput?: boolean;
@@ -30,73 +30,74 @@ type CustomCardProps = {
 };
 
 // Component Card
-const Card: React.FC<CustomCardProps> = ({
-  className,
-  titleCard,
-  titleButton,
-  showInput,
-  width,
-  variants = "primary",
-  onSubmit,
-}): React.ReactElement => {
-  const widthCard = {
-    width: `${width}px`,
-  };
-  const navigate = useNavigate();
+const Card: React.FC<CustomCardProps> = memo(
+  ({
+    className,
+    titleCard,
+    titleButton,
+    showInput,
+    width,
+    variants = "primary",
+    onSubmit,
+  }): React.ReactElement => {
+    const widthCard = {
+      width: `${width}px`,
+    };
+    const navigate = useNavigate();
 
-  // Handles clicking Confim Order
-  const handleConfirmOrder = () => {
-    // Get current URL
-    const currentUrl = window.location.href;
-    const carts = getListCart().length;
+    // Handles clicking Confirm Order
+    const handleConfirmOrder = useCallback(() => {
+      // Get current URL
+      const currentUrl = window.location.href;
+      const carts = getListCart().length;
 
-    if (carts > 0 && titleButton !== "apply") {
-      navigate?.("/checkout");
-    } else if (titleButton !== "apply") {
-      alert(NOTIFY.EMPTY);
-      navigate?.("/menu");
-    }
-    // If you are on the checkout page, call the method onSubmit
-    if (currentUrl.includes("checkout")) {
-      onSubmit?.();
-    }
-  };
-  const cartContext = useContext(CartContext);
+      if (carts > 0 && titleButton !== "apply") {
+        navigate?.("/checkout");
+      } else if (titleButton !== "apply") {
+        alert(NOTIFY.EMPTY);
+        navigate?.("/menu");
+      }
+      // If you are on the checkout page, call the method onSubmit
+      if (currentUrl.includes("checkout")) {
+        onSubmit?.();
+      }
+    }, [navigate, onSubmit, titleButton]);
 
-  const { carts } = cartContext;
-  const totalPrice = calculatorTotalPrice(carts);
+    const { carts } = useContext(CartContext);
 
-  return (
-    <div className={`${className} card-${variants}`} style={widthCard}>
-      <Heading className="text-h3" element="h3">
-        {titleCard}
-      </Heading>
-      {showInput ? (
-        <Input placeholder="enter promo code" className="input" type="text" />
-      ) : (
-        <div className="detail-total">
-          <span className="text-large">
-            {titleCard == "Your Subtotal" ? "Subtotal" : "Total"}
-          </span>
-          <span className="text-large subtotal">${totalPrice}.00</span>
-        </div>
-      )}
-      <Button
-        textBtn={titleButton}
-        className="text-large font-family"
-        onClick={handleConfirmOrder}
-        variants="secondary"
-        size={
-          titleButton === "confirm order"
-            ? "md"
-            : titleButton === "Checkout"
-            ? "xl"
-            : "xs"
-        }
-        typeText="capitalize"
-      />
-    </div>
-  );
-};
+    const totalPrice = useMemo(() => calculatorTotalPrice(carts), [carts]);
 
+    return (
+      <div className={`${className} card-${variants}`} style={widthCard}>
+        <Heading className="text-h3" element="h3">
+          {titleCard}
+        </Heading>
+        {showInput ? (
+          <Input placeholder="enter promo code" className="input" type="text" />
+        ) : (
+          <div className="detail-total">
+            <span className="text-large">
+              {titleCard == "Your Subtotal" ? "Subtotal" : "Total"}
+            </span>
+            <span className="text-large subtotal">${totalPrice}.00</span>
+          </div>
+        )}
+        <Button
+          textBtn={titleButton}
+          className="text-large font-family"
+          onClick={handleConfirmOrder}
+          variants="secondary"
+          size={
+            titleButton === "confirm order"
+              ? "md"
+              : titleButton === "Checkout"
+              ? "xl"
+              : "xs"
+          }
+          typeText="capitalize"
+        />
+      </div>
+    );
+  }
+);
 export default Card;
