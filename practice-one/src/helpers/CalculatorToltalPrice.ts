@@ -10,5 +10,6 @@ export const calculatorTotalPrice = (carts: CustomProductProps[]): number => {
     },
     0
   );
+
   return totalPrice;
 };

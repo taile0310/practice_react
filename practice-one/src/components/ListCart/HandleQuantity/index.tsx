@@ -1,6 +1,6 @@
-import { useContext } from "react";
+import { memo, useContext } from "react";
 import { Button } from "../..";
-import { CartContext } from "../../../contexts/CartContext";
+import { CartContext } from "../../../stores/contexts/CartContext";
 
 type THandleQuantity = {
   id: string;
@@ -9,7 +9,7 @@ type THandleQuantity = {
 };
 
 // Component HandleQuantity
-const HandleQuantity = ({ id, quantity, width }: THandleQuantity) => {
+const HandleQuantity = memo(({ id, quantity, width }: THandleQuantity) => {
   const { handleUpdateQuantity } = useContext(CartContext);
   const widthHandleQuantity = {
     width: `${width}px`,
@@ -31,6 +31,6 @@ const HandleQuantity = ({ id, quantity, width }: THandleQuantity) => {
       />
     </div>
   );
-};
+});
 
 export default HandleQuantity;

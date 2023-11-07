@@ -1,5 +1,5 @@
 // React Hook
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 
 // Component
 import { ListProduct } from "../../components";
@@ -15,15 +15,15 @@ const Menu: React.FC = (): React.ReactElement => {
   const { products, isLoading, error } = useFetch();
 
   // Method Loadmore
-  const handleShowMorePoducts = () => {
+  const handleShowMoreProducts = useCallback(() => {
     const updatedProductCount = displayedProductCount + 4;
     setDisplayedProductCount(updatedProductCount);
     setIsFull(products.length <= updatedProductCount);
-  };
+  }, [displayedProductCount, products.length]);
 
   return (
     <ListProduct
-      onShowMorePoducts={handleShowMorePoducts}
+      onShowMoreProducts={handleShowMoreProducts}
       isFull={isFull}
       displayedProductCount={displayedProductCount}
       error={error}

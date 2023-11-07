@@ -2,7 +2,7 @@
 import "./FormCheckout.css";
 
 // React
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 
 // Components
 import { Card, Footer, Heading, Input, Label } from "..";
@@ -29,57 +29,69 @@ const FormCheckout: React.FC = (): React.ReactElement => {
   const navigate = useNavigate();
 
   // Method handle changes in the input for the name field
-  const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
-    setName(value);
-    if (!value) {
-      setNameError(ERROR_MESSAGES.FIELD_EMPTY);
-    } else if (!isValidName(value)) {
-      setNameError(ERROR_MESSAGES.NAME);
-    } else {
-      setNameError("");
-    }
-  };
+  const handleNameChange = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      const value = e.target.value;
+      setName(value);
+      if (!value) {
+        setNameError(ERROR_MESSAGES.FIELD_EMPTY);
+      } else if (!isValidName(value)) {
+        setNameError(ERROR_MESSAGES.NAME);
+      } else {
+        setNameError("");
+      }
+    },
+    []
+  );
 
   // Method handle changes in the input for the email field
-  const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
-    setEmail(value);
-    if (!value) {
-      setEmailError(ERROR_MESSAGES.FIELD_EMPTY);
-    } else if (!isValidEmail(value)) {
-      setEmailError(ERROR_MESSAGES.EMAIL);
-    } else {
-      setEmailError("");
-    }
-  };
+  const handleEmailChange = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      const value = e.target.value;
+      setEmail(value);
+      if (!value) {
+        setEmailError(ERROR_MESSAGES.FIELD_EMPTY);
+      } else if (!isValidEmail(value)) {
+        setEmailError(ERROR_MESSAGES.EMAIL);
+      } else {
+        setEmailError("");
+      }
+    },
+    []
+  );
 
   // Method handle changes in the input for the phone field
-  const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
-    setPhone(value);
-    if (!value) {
-      setPhoneError(ERROR_MESSAGES.FIELD_EMPTY);
-    } else if (!isValidPhone(value)) {
-      setPhoneError(ERROR_MESSAGES.PHONE);
-    } else {
-      setPhoneError("");
-    }
-  };
+  const handlePhoneChange = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      const value = e.target.value;
+      setPhone(value);
+      if (!value) {
+        setPhoneError(ERROR_MESSAGES.FIELD_EMPTY);
+      } else if (!isValidPhone(value)) {
+        setPhoneError(ERROR_MESSAGES.PHONE);
+      } else {
+        setPhoneError("");
+      }
+    },
+    []
+  );
 
   // Method handle changes in the input for the address field
-  const handleAddressChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
-    setAddress(value);
-    if (!value) {
-      setAddressError(ERROR_MESSAGES.FIELD_EMPTY);
-    } else {
-      setAddressError("");
-    }
-  };
+  const handleAddressChange = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      const value = e.target.value;
+      setAddress(value);
+      if (!value) {
+        setAddressError(ERROR_MESSAGES.FIELD_EMPTY);
+      } else {
+        setAddressError("");
+      }
+    },
+    []
+  );
 
   // Method check whether the payment process was successful or not
-  const handleCheckoutSuccessful = () => {
+  const handleCheckoutSuccessful = useCallback(() => {
     const nameErrorExists = !name || !isValidName(name);
     const emailErrorExists = !email || !isValidEmail(email);
     const phoneErrorExists = !phone || !isValidPhone(phone);
@@ -117,7 +129,7 @@ const FormCheckout: React.FC = (): React.ReactElement => {
         navigate("/");
       }
     }
-  };
+  }, [address, email, name, phone, navigate]);
 
   return (
     <section className="checkout-cart font-family">

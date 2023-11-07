@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import Product from ".";
-import { CartProvider } from "../../../contexts/CartContext";
+import { CartProvider } from "../../../stores/contexts/CartContext";
 import { MemoryRouter } from "react-router-dom";
 
 export default {
