@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { MemoryRouter } from "react-router-dom";
 import Card from ".";
 import { CartProvider } from "../../../stores/contexts/CartContext";
+import { VARIANT } from "../../../types/Variant";
 
 export default {
   title: "Components/Card",
@@ -26,6 +27,6 @@ export const Default: Story = {
     titleButton: "apply",
     className: "card card-secondary font-family",
     showInput: true,
-    variants: "secondary",
+    variants: VARIANT.SECONDARY,
   },
 };
