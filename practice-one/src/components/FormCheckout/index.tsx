@@ -2,135 +2,33 @@
 import "./FormCheckout.css";
 
 // React
-import React, { useCallback, useState } from "react";
+import React from "react";
 
 // Components
 import { Card, Footer, Heading, Input, Label } from "..";
 
 // Helpers and Constants
-import {
-  isValidEmail,
-  isValidName,
-  isValidPhone,
-} from "../../helpers/Validations";
-import { ERROR_MESSAGES, NOTIFY } from "../../constants/Error";
+import { NOTIFY } from "../../constants/Error";
 import { useNavigate } from "react-router-dom";
 import { VARIANT } from "../../types/Variant";
+import useForm from "../../hooks/useForm";
 
 const FormCheckout: React.FC = (): React.ReactElement => {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [phone, setPhone] = useState("");
-  const [address, setAddress] = useState("");
-  const [nameError, setNameError] = useState("");
-  const [emailError, setEmailError] = useState("");
-  const [phoneError, setPhoneError] = useState("");
-  const [addressError, setAddressError] = useState("");
-
+  const { values, errors, handleChange, validateForm } = useForm();
   const navigate = useNavigate();
 
-  // Method handle changes in the input for the name field
-  const handleNameChange = useCallback(
-    (e: React.ChangeEvent<HTMLInputElement>) => {
-      const value = e.target.value;
-      setName(value);
-      if (!value) {
-        setNameError(ERROR_MESSAGES.FIELD_EMPTY);
-      } else if (!isValidName(value)) {
-        setNameError(ERROR_MESSAGES.NAME);
-      } else {
-        setNameError("");
-      }
-    },
-    []
-  );
-
-  // Method handle changes in the input for the email field
-  const handleEmailChange = useCallback(
-    (e: React.ChangeEvent<HTMLInputElement>) => {
-      const value = e.target.value;
-      setEmail(value);
-      if (!value) {
-        setEmailError(ERROR_MESSAGES.FIELD_EMPTY);
-      } else if (!isValidEmail(value)) {
-        setEmailError(ERROR_MESSAGES.EMAIL);
-      } else {
-        setEmailError("");
-      }
-    },
-    []
-  );
-
-  // Method handle changes in the input for the phone field
-  const handlePhoneChange = useCallback(
-    (e: React.ChangeEvent<HTMLInputElement>) => {
-      const value = e.target.value;
-      setPhone(value);
-      if (!value) {
-        setPhoneError(ERROR_MESSAGES.FIELD_EMPTY);
-      } else if (!isValidPhone(value)) {
-        setPhoneError(ERROR_MESSAGES.PHONE);
-      } else {
-        setPhoneError("");
-      }
-    },
-    []
-  );
-
-  // Method handle changes in the input for the address field
-  const handleAddressChange = useCallback(
-    (e: React.ChangeEvent<HTMLInputElement>) => {
-      const value = e.target.value;
-      setAddress(value);
-      if (!value) {
-        setAddressError(ERROR_MESSAGES.FIELD_EMPTY);
-      } else {
-        setAddressError("");
-      }
-    },
-    []
-  );
-
-  // Method check whether the payment process was successful or not
-  const handleCheckoutSuccessful = useCallback(() => {
-    const nameErrorExists = !name || !isValidName(name);
-    const emailErrorExists = !email || !isValidEmail(email);
-    const phoneErrorExists = !phone || !isValidPhone(phone);
-    const addressErrorExists = !address;
-
-    if (nameErrorExists) {
-      setNameError(name ? ERROR_MESSAGES.NAME : ERROR_MESSAGES.FIELD_EMPTY);
-    }
-
-    if (emailErrorExists) {
-      setEmailError(email ? ERROR_MESSAGES.EMAIL : ERROR_MESSAGES.FIELD_EMPTY);
-    }
-
-    if (phoneErrorExists) {
-      setPhoneError(phone ? ERROR_MESSAGES.PHONE : ERROR_MESSAGES.FIELD_EMPTY);
-    }
-
-    if (addressErrorExists) {
-      setAddressError(
-        address ? ERROR_MESSAGES.ADDRESS : ERROR_MESSAGES.FIELD_EMPTY
-      );
-    }
-
-    if (
-      nameErrorExists ||
-      emailErrorExists ||
-      phoneErrorExists ||
-      addressErrorExists
-    ) {
-      alert(NOTIFY.FAILD);
-    } else {
-      const confirmed = confirm(NOTIFY.SUCCESS);
+  const handleCheckoutSubmit = () => {
+    const formIsValid = validateForm();
+    if (formIsValid) {
+      const confirmed = window.confirm(NOTIFY.SUCCESS);
       if (confirmed) {
         localStorage.clear();
         navigate("/");
       }
+    } else {
+      alert(NOTIFY.FAILD);
     }
-  }, [address, email, name, phone, navigate]);
+  };
 
   return (
     <section className="checkout-cart font-family">
@@ -143,41 +41,41 @@ const FormCheckout: React.FC = (): React.ReactElement => {
           <Input
             className="form-input"
             type="text"
-            value={name}
+            value={values.name}
             name="name"
-            onChange={handleNameChange}
+            onChange={handleChange}
           />
-          {nameError && <p className="messages-error">{nameError}</p>}
+          {errors.name && <p className="messages-error">{errors.name}</p>}
 
           <Label className="text-medium" titleLabel="Email" />
           <Input
             className="form-input"
             type="email"
-            value={email}
+            value={values.email}
             name="email"
-            onChange={handleEmailChange}
+            onChange={handleChange}
           />
-          {emailError && <p className="messages-error">{emailError}</p>}
+          {errors.email && <p className="messages-error">{errors.email}</p>}
 
           <Label className="text-medium" titleLabel="Phone Number" />
           <Input
             className="form-input"
             type="text"
-            value={phone}
+            value={values.phone}
             name="phone"
-            onChange={handlePhoneChange}
+            onChange={handleChange}
           />
-          {phoneError && <p className="messages-error">{phoneError}</p>}
+          {errors.phone && <p className="messages-error">{errors.phone}</p>}
 
           <Label className="text-medium" titleLabel="Address" />
           <Input
             className="form-input"
             type="text"
-            value={address}
+            value={values.address}
             name="address"
-            onChange={handleAddressChange}
+            onChange={handleChange}
           />
-          {addressError && <p className="messages-error">{addressError}</p>}
+          {errors.address && <p className="messages-error">{errors.address}</p>}
 
           <Label className="text-medium" titleLabel="Description" />
           <textarea
@@ -189,7 +87,7 @@ const FormCheckout: React.FC = (): React.ReactElement => {
           <select className="form-input">
             <option value="credit-card">Credit Card</option>
             <option value="paypal">PayPal</option>
-            <option value="bank-transfer">Bank TransferBank Transfer</option>
+            <option value="bank-transfer">Bank Transfer</option>
           </select>
         </form>
         <div className="card-checkout">
@@ -198,7 +96,7 @@ const FormCheckout: React.FC = (): React.ReactElement => {
             className="card"
             titleButton="Checkout"
             variants={VARIANT.PRIMARY}
-            onSubmit={handleCheckoutSuccessful}
+            onSubmit={handleCheckoutSubmit}
           />
         </div>
       </div>
