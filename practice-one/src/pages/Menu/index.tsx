@@ -6,7 +6,7 @@ import { Loading } from "../../components";
 
 // Constant, Type and Helper
 import useFetch from "../../hooks/useFetch";
-import delay from "../../helpers/Delay";
+import delay from "../../helpers/delay";
 
 const ListProduct = lazy(() =>
   delay(import("../../components/ListProduct/index"))
