@@ -5,7 +5,7 @@ import React, { Suspense, lazy } from "react";
 import { Loading } from "../../components";
 
 // Helper
-import delay from "../../helpers/Delay";
+import delay from "../../helpers/delay";
 
 const ListCart = lazy(() => delay(import("../../components/ListCart/index")));
 
