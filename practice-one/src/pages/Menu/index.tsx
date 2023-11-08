@@ -1,11 +1,16 @@
 // React Hook
-import React, { useCallback, useState } from "react";
+import React, { Suspense, lazy, useCallback, useState } from "react";
 
 // Component
-import { ListProduct } from "../../components";
+import { Loading } from "../../components";
 
 // Constant, Type and Helper
 import useFetch from "../../hooks/useFetch";
+import delay from "../../helpers/Delay";
+
+const ListProduct = lazy(() =>
+  delay(import("../../components/ListProduct/index"))
+);
 
 // Component Menu
 const Menu: React.FC = (): React.ReactElement => {
@@ -22,14 +27,16 @@ const Menu: React.FC = (): React.ReactElement => {
   }, [displayedProductCount, products.length]);
 
   return (
-    <ListProduct
-      onShowMoreProducts={handleShowMoreProducts}
-      isFull={isFull}
-      displayedProductCount={displayedProductCount}
-      error={error}
-      products={products}
-      isLoading={isLoading}
-    />
+    <Suspense fallback={<Loading />}>
+      <ListProduct
+        onShowMoreProducts={handleShowMoreProducts}
+        isFull={isFull}
+        displayedProductCount={displayedProductCount}
+        error={error}
+        products={products}
+        isLoading={isLoading}
+      />
+    </Suspense>
   );
 };
 
