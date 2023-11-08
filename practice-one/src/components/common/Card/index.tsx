@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 
 // Constants and Type
 import { NOTIFY } from "../../../constants/Error";
-import { TVariant } from "../../../types/Variant";
+import { VARIANT } from "../../../types/Variant";
 
 // Component
 import { Button, Heading, Input } from "..";
@@ -25,7 +25,7 @@ type CustomCardProps = {
   titleCard: string;
   width?: number;
   titleButton?: string;
-  variants?: TVariant;
+  variants?: VARIANT;
   onSubmit?: () => void;
 };
 
@@ -83,10 +83,10 @@ const Card: React.FC<CustomCardProps> = memo(
           </div>
         )}
         <Button
-          textBtn={titleButton}
+          children={titleButton}
           className="text-large font-family"
           onClick={handleConfirmOrder}
-          variants="secondary"
+          variants={VARIANT.SECONDARY}
           size={
             titleButton === "confirm order"
               ? "md"

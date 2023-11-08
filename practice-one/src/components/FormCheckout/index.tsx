@@ -15,6 +15,7 @@ import {
 } from "../../helpers/Validations";
 import { ERROR_MESSAGES, NOTIFY } from "../../constants/Error";
 import { useNavigate } from "react-router-dom";
+import { VARIANT } from "../../types/Variant";
 
 const FormCheckout: React.FC = (): React.ReactElement => {
   const [name, setName] = useState("");
@@ -196,7 +197,7 @@ const FormCheckout: React.FC = (): React.ReactElement => {
             titleCard="Your total"
             className="card"
             titleButton="Checkout"
-            variants="primary"
+            variants={VARIANT.PRIMARY}
             onSubmit={handleCheckoutSuccessful}
           />
         </div>

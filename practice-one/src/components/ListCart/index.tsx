@@ -10,6 +10,7 @@ import { memo, useContext } from "react";
 
 //Context
 import { CartContext } from "../../stores/contexts/CartContext";
+import { VARIANT } from "../../types/Variant";
 
 export type ListCartProps = {
   className?: string;
@@ -54,8 +55,8 @@ const ListCart: React.FC<ListCartProps> = memo(
               titleButton="apply"
               className="card"
               showInput={true}
-              variants="secondary"
-            />
+              variants={VARIANT.SECONDARY}
+              />
           </div>
         </div>
         <Footer />

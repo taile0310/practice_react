@@ -2,30 +2,16 @@
 import "./Input.css";
 
 // React
-import React, { ChangeEventHandler, memo } from "react";
+import React, { InputHTMLAttributes, memo } from "react";
 
-type CustomInputProps = {
-  placeholder?: string;
+interface CustomInputProps extends InputHTMLAttributes<HTMLInputElement> {
   className?: string;
-  type: string;
-  name?: string;
-  value?: string;
-  onChange?: ChangeEventHandler<HTMLInputElement>;
-};
+}
 
 // Component Input
 const Input: React.FC<CustomInputProps> = memo(
-  ({ placeholder, className, value, name, onChange }): React.ReactElement => {
-    return (
-      <input
-        className={className}
-        type="text"
-        placeholder={placeholder}
-        value={value}
-        name={name}
-        onChange={onChange}
-      />
-    );
+  ({ className, ...prop }): React.ReactElement => {
+    return <input className={className} {...prop} />;
   }
 );
 

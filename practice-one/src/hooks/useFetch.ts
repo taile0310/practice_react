@@ -12,6 +12,7 @@ const useFetch = () => {
     const fetchDataFromUrl = async () => {
       try {
         const data = await fetchData({ url: BASE_URL });
+        
         setProducts(data);
         setError(null);
         setIsLoading(false);
