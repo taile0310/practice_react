@@ -1,6 +1,7 @@
 import { memo, useContext } from "react";
 import { Button } from "../..";
 import { CartContext } from "../../../stores/contexts/CartContext";
+import { VARIANT } from "../../../types/Variant";
 
 type THandleQuantity = {
   id: string;
@@ -17,16 +18,16 @@ const HandleQuantity = memo(({ id, quantity, width }: THandleQuantity) => {
   return (
     <div className="quantity-input" style={widthHandleQuantity}>
       <Button
-        textBtn="-"
+        children="-"
         className={`text-price ${quantity <= 1 && "btn-disabled"}`}
-        variants="transparent"
+        variants={VARIANT.TRANSPARENT}
         onClick={() => handleUpdateQuantity(id, "decrease")}
       />
       <span className="quantity text-price">{quantity}</span>
       <Button
-        textBtn="+"
+        children="+"
         className="text-price"
-        variants="transparent"
+        variants={VARIANT.TRANSPARENT}
         onClick={() => handleUpdateQuantity(id, "increase")}
       />
     </div>

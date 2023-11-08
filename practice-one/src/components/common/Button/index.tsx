@@ -3,40 +3,36 @@
 import "./Button.css";
 
 // React
-import React, { MouseEventHandler, memo } from "react";
+import React, { ButtonHTMLAttributes, ReactNode, memo } from "react";
 
 // Type
 import { TButtonSize } from "../../../types/Button/Size";
 import { TButtonText } from "../../../types/Button/Text";
-import { TVariant } from "../../../types/Variant";
+import { VARIANT } from "../../../types/Variant";
 
-type CustomBtnProps = {
-  textBtn?: string;
+interface CustomBtnProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+  children?: ReactNode;
   className: string;
-  disabled?: boolean;
   size?: TButtonSize;
-  variants?: TVariant;
+  variants?: VARIANT;
   typeText?: TButtonText;
-  onClick: MouseEventHandler<HTMLButtonElement>;
-};
+}
 
 // Component Button
 const Button: React.FC<CustomBtnProps> = memo(
   ({
     className,
-    textBtn,
-    disabled,
-    variants = "primary",
+    children,
+    variants = VARIANT.PRIMARY,
     size,
     typeText,
-    onClick,
+    ...prop
   }): React.ReactElement => {
     return (
       <button
-        className={`btn btn-${variants} btn-${size} ${className} text-${typeText}`}
-        onClick={onClick}
-        disabled={disabled}>
-        {textBtn}
+        {...prop} 
+        className={`btn btn-${variants} btn-${size} ${className} text-${typeText}`}>
+        {children}
       </button>
     );
   }

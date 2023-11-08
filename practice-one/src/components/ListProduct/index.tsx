@@ -8,6 +8,7 @@ import Product from "./Product";
 // Type
 import { CustomProductProps } from "../../types/Product";
 import { memo } from "react";
+import { VARIANT } from "../../types/Variant";
 
 export type ListProductProps = {
   error: string | null;
@@ -48,12 +49,12 @@ const ListProduct: React.FC<ListProductProps> = memo(
         </ul>
 
         <Button
-          textBtn="Load more"
+          children="Load more"
           className={`btn-item secondary-text-btn ${
             isFull || error ? "isFull" : ""
           }`}
           onClick={onShowMoreProducts}
-          variants="secondary"
+          variants={VARIANT.SECONDARY}
           size="sm"
           typeText="uppercase"
         />

@@ -1,1 +1,5 @@
-export type TVariant = "primary" | "secondary" | "transparent";
+export enum VARIANT {
+  PRIMARY = "primary",
+  SECONDARY = "secondary",
+  TRANSPARENT = "transparent",
+}

@@ -9,7 +9,7 @@ import React, {
 import { useNavigate } from "react-router-dom";
 
 // Helper, Constant and Type
-import { getListCart } from "../../helpers/DataLocalStorage";
+import { getListCart, setListCart } from "../../helpers/DataLocalStorage";
 import { CustomProductProps } from "../../types/Product";
 import { NOTIFY } from "../../constants/Error";
 import { TAction } from "../../types/Action";
@@ -29,20 +29,21 @@ type TChildren = {
   children: React.ReactNode;
 };
 
-const initState = {
-  carts: getListCart(),
-};
-
 export const CartContext = createContext({} as TCartContext);
 
 export const CartProvider: React.FC<TChildren> = ({
   children,
 }): React.ReactElement => {
+  const initState = {
+    carts: getListCart(),
+  };
+
   const [state, dispatch] = useReducer(reducer, initState);
+
   const navigate = useNavigate();
 
   useEffect(() => {
-    localStorage.setItem("CartProducts", JSON.stringify(state.carts));
+    setListCart(state.carts);
   }, [state.carts]);
 
   /**
@@ -63,15 +64,16 @@ export const CartProvider: React.FC<TChildren> = ({
    * @param productId
    * @returns
    */
-  const isInCart = useCallback(
+  const isInCart =
+    // useCallback(
     (productId: string) => {
       const checkInCart = state.carts.find(
         (product) => product.id === productId
       );
       return checkInCart;
-    },
-    [state.carts]
-  );
+    };
+  // [state.carts]
+  // );
 
   /**
    * Method to remove product from cart
