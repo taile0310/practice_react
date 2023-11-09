@@ -2,66 +2,58 @@
 import "./ListProduct.css";
 
 // Component
-import { Button, Error, Footer, Heading, Loading } from "..";
+import { Button, Error, Heading, Loading } from "..";
 import Product from "./Product";
 
 // Type
 import { CustomProductProps } from "../../types/Product";
 import { memo } from "react";
 import { VARIANT } from "../../types/Variant";
-
-export type ListProductProps = {
-  error: string | null;
-  isLoading: boolean;
-  displayedProductCount: number;
-  isFull: boolean;
-  products: CustomProductProps[];
-  onShowMoreProducts: () => void;
-};
+import useFetch from "../../hooks/useFetch";
+import { ERROR_MESSAGES } from "../../constants/Error";
 
 // Component ListProduct
-const ListProduct: React.FC<ListProductProps> = memo(
-  ({
-    isLoading,
-    error,
-    products,
-    isFull,
-    displayedProductCount,
-    onShowMoreProducts,
-  }): React.ReactElement => {
-    return (
-      <section className="section-menu font-family">
-        <Heading className="text-h2 dash" element="h2">
-          Sushi food
-        </Heading>
-        {error && (
-          <Error className="messages-error text-medium" content={error} />
-        )}
+const ListProduct: React.FC = memo(() => {
+  const { data, isLoading, error, handleLoadMore } = useFetch();
 
-        {isLoading && <Loading />}
-        <ul className="list-menu">
-          {products.slice(0, displayedProductCount).map((product) => {
-            const { id, name, image } = product;
+  return (
+    <section className="section-menu font-family">
+      <Heading className="text-h2 dash" element="h2">
+        Sushi food
+      </Heading>
+      <ul className="list-menu">
+        {data?.map((page: CustomProductProps[]) => {
+          return page.map((product: CustomProductProps) => {
             return (
-              <Product id={id} name={name} image={image} product={product} />
+              <Product
+                id={product.id}
+                name={product.name}
+                image={product.image}
+                product={product}
+              />
             );
-          })}
-        </ul>
-
+          });
+        })}
+      </ul>
+      {isLoading ? (
+        <Loading />
+      ) : error ? (
+        <Error
+          className="messages-error text-medium"
+          content={ERROR_MESSAGES.FETCH}
+        />
+      ) : (
         <Button
           children="Load more"
-          className={`btn-item secondary-text-btn ${
-            isFull || error ? "isFull" : ""
-          }`}
-          onClick={onShowMoreProducts}
+          className="btn-item secondary-text-btn"
+          onClick={handleLoadMore}
           variants={VARIANT.SECONDARY}
           size="sm"
           typeText="uppercase"
         />
-        <Footer />
-      </section>
-    );
-  }
-);
+      )}
+    </section>
+  );
+});
 
 export default ListProduct;

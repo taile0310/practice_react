@@ -107,11 +107,11 @@
 .component-layout {
   display: flex;
   gap: 55px;
-  padding: 43px 103px 30px 57px;
 }
 
 .messages-error {
   color: red;
+  margin-bottom: 766px;
 }
 
 .display-error {
@@ -121,4 +121,13 @@
 .dash {
   border-bottom: 5px solid var(--primary-color);
   width: fit-content;
+}
+
+.mg {
+  margin-top: 56px;
+  margin-left: 187px;
+}
+
+.container-page {
+  padding: 43px 103px 30px 57px;
 }

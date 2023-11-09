@@ -5,11 +5,7 @@
 
 import { ERROR_MESSAGES } from "../constants/Error";
 
-type TFecthData = {
-  url: string;
-};
-
-export const fetchData = async ({ url }: TFecthData) => {
+export const fetchData = async (url: string) => {
   const response = await fetch(url);
   if (response.ok) {
     const data = await response.json();
