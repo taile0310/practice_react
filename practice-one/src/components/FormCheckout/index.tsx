@@ -5,7 +5,7 @@ import "./FormCheckout.css";
 import React from "react";
 
 // Components
-import { Card, Footer, Heading, Input, Label } from "..";
+import { Card, Heading, Input, Label } from "..";
 
 // Helpers and Constants
 import { NOTIFY } from "../../constants/Error";
@@ -100,7 +100,6 @@ const FormCheckout: React.FC = (): React.ReactElement => {
           />
         </div>
       </div>
-      <Footer />
     </section>
   );
 };

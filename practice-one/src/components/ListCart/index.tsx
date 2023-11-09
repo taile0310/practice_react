@@ -2,7 +2,7 @@
 import "./ListCart.css";
 
 // Component
-import { Card, Footer, Heading } from "..";
+import { Card, Heading } from "..";
 import CartItem from "./CartItem";
 
 // React hooks
@@ -56,10 +56,9 @@ const ListCart: React.FC<ListCartProps> = memo(
               className="card"
               showInput={true}
               variants={VARIANT.SECONDARY}
-              />
+            />
           </div>
         </div>
-        <Footer />
       </section>
     );
   }

@@ -1,30 +1,23 @@
-import { useEffect, useState } from "react";
-import { BASE_URL } from "../constants/BaseUrl";
+import useSWRInfinite from "swr/infinite";
 import { fetchData } from "../helpers/FetchData";
-import { ERROR_MESSAGES } from "../constants/Error";
-import { CustomProductProps } from "../types/Product";
+import { BASE_URL } from "../constants/BaseUrl";
 
 const useFetch = () => {
-  const [isLoading, setIsLoading] = useState(true);
-  const [products, setProducts] = useState<CustomProductProps[]>([]);
-  const [error, setError] = useState<string | null>(null);
-  useEffect(() => {
-    const fetchDataFromUrl = async () => {
-      try {
-        const data = await fetchData({ url: BASE_URL });
-        
-        setProducts(data);
-        setError(null);
-        setIsLoading(false);
-      } catch (error) {
-        setIsLoading(false);
-        setProducts([]);
-        setError(ERROR_MESSAGES.FETCH);
-      }
-    };
-    fetchDataFromUrl();
-  }, []);
-  return { products, isLoading, error };
+  const getKey = (pageIndex: number, previousPageData: []) => {
+    if (previousPageData && !previousPageData.length) return null;
+    const page = pageIndex + 1;
+    const limit = 8;
+    return `${BASE_URL}?page=${page}&limit=${limit}`;
+  };
+  const { data, error, size, setSize } = useSWRInfinite(getKey, fetchData);
+  const isLoadingInitialData = !data && !error;
+  const isLoading =
+    isLoadingInitialData ||
+    (size > 0 && data && typeof data[size - 1] === "undefined");
+  const handleLoadMore = () => {
+    return setSize(size + 1);
+  };
+  return { data, isLoading, error, handleLoadMore };
 };
 
 export default useFetch;
