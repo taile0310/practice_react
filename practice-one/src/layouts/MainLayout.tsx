@@ -14,7 +14,7 @@ const MainLayout = () => {
           <Outlet />
         </CartProvider>
       </div>
-      <div className="mg">
+      <div className="mg-footer">
         <Footer />
       </div>
     </div>
