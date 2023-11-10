@@ -14,10 +14,10 @@ const useFetch = () => {
   const isLoading =
     isLoadingInitialData ||
     (size > 0 && data && typeof data[size - 1] === "undefined");
-  const handleLoadMore = () => {
+  const handleShowMorePoducts = () => {
     return setSize(size + 1);
   };
-  return { data, isLoading, error, handleLoadMore };
+  return { data, isLoading, error, handleShowMorePoducts };
 };
 
 export default useFetch;

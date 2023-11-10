@@ -14,7 +14,7 @@ import { ERROR_MESSAGES } from "../../constants/Error";
 
 // Component ListProduct
 const ListProduct: React.FC = memo(() => {
-  const { data, isLoading, error, handleLoadMore } = useFetch();
+  const { data, isLoading, error, handleShowMorePoducts } = useFetch();
 
   return (
     <section className="section-menu font-family">
@@ -24,13 +24,9 @@ const ListProduct: React.FC = memo(() => {
       <ul className="list-menu">
         {data?.map((page: CustomProductProps[]) => {
           return page.map((product: CustomProductProps) => {
+            const { id, name, image } = product;
             return (
-              <Product
-                id={product.id}
-                name={product.name}
-                image={product.image}
-                product={product}
-              />
+              <Product id={id} name={name} image={image} product={product} />
             );
           });
         })}
@@ -46,7 +42,7 @@ const ListProduct: React.FC = memo(() => {
         <Button
           children="Load more"
           className="btn-item secondary-text-btn"
-          onClick={handleLoadMore}
+          onClick={handleShowMorePoducts}
           variants={VARIANT.SECONDARY}
           size="sm"
           typeText="uppercase"

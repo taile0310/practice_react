@@ -41,21 +41,27 @@ const useForm = () => {
         ? ERROR_MESSAGES.NAME
         : "";
       setErrors((prevErrors) => ({ ...prevErrors, name: errorMessage }));
-    } else if (name === "email") {
+    }
+
+    if (name === "email") {
       errorMessage = !value
         ? ERROR_MESSAGES.FIELD_EMPTY
         : !isValidEmail(value)
         ? ERROR_MESSAGES.EMAIL
         : "";
       setErrors((prevErrors) => ({ ...prevErrors, email: errorMessage }));
-    } else if (name === "phone") {
+    }
+
+    if (name === "phone") {
       errorMessage = !value
         ? ERROR_MESSAGES.FIELD_EMPTY
         : !isValidPhone(value)
         ? ERROR_MESSAGES.PHONE
         : "";
       setErrors((prevErrors) => ({ ...prevErrors, phone: errorMessage }));
-    } else if (name === "address") {
+    }
+
+    if (name === "address") {
       errorMessage = !value ? ERROR_MESSAGES.FIELD_EMPTY : "";
       setErrors((prevErrors) => ({ ...prevErrors, address: errorMessage }));
     }

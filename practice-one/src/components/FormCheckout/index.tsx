@@ -17,7 +17,8 @@ const FormCheckout: React.FC = (): React.ReactElement => {
   const { values, errors, handleChange, validateForm } = useForm();
   const navigate = useNavigate();
 
-  const handleCheckoutSubmit = () => {
+  // Method check whether the payment process was successful or not
+  const handleCheckoutSuccessful = () => {
     const formIsValid = validateForm();
     if (formIsValid) {
       const confirmed = window.confirm(NOTIFY.SUCCESS);
@@ -96,7 +97,7 @@ const FormCheckout: React.FC = (): React.ReactElement => {
             className="card"
             titleButton="Checkout"
             variants={VARIANT.PRIMARY}
-            onSubmit={handleCheckoutSubmit}
+            onSubmit={handleCheckoutSuccessful}
           />
         </div>
       </div>
