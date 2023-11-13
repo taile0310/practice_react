@@ -1,4 +1,4 @@
-import { render } from "@testing-library/react";
+import { fireEvent, render } from "@testing-library/react";
 import "@testing-library/jest-dom";
 
 import Button from ".";
@@ -12,6 +12,7 @@ describe("Button Component", () => {
     size: "xl" as TButtonSize,
     typeText: "uppercase" as TButtonText,
     children: "Click me",
+    onClick: jest.fn(),
   };
 
   it("Render correctly with default props", () => {
@@ -49,5 +50,12 @@ describe("Button Component", () => {
   it("Render with size is capitalize", () => {
     const container = render(<Button {...props} typeText={"capitalize"} />);
     expect(container).toMatchSnapshot();
+  });
+
+  it("Call onClick handler when clicked", () => {
+    const { getByText } = render(<Button {...props} />);
+    const button = getByText("Click me");
+    fireEvent.click(button);
+    expect(props.onClick).toHaveBeenCalledTimes(1);
   });
 });
