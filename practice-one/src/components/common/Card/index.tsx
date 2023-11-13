@@ -21,7 +21,7 @@ import { CartContext } from "../../../stores/contexts/CartContext";
 
 type CustomCardProps = {
   showInput?: boolean;
-  className: string;
+  className?: string;
   titleCard: string;
   width?: number;
   titleButton?: string;
