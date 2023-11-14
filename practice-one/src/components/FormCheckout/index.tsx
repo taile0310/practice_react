@@ -8,28 +8,11 @@ import React from "react";
 import { Card, Heading, Input, Label } from "..";
 
 // Helpers and Constants
-import { NOTIFY } from "../../constants/Error";
-import { useNavigate } from "react-router-dom";
 import { VARIANT } from "../../types/Variant";
 import useForm from "../../hooks/useForm";
 
 const FormCheckout: React.FC = (): React.ReactElement => {
-  const { values, errors, handleChange, validateForm } = useForm();
-  const navigate = useNavigate();
-
-  // Method check whether the payment process was successful or not
-  const handleCheckoutSuccessful = () => {
-    const formIsValid = validateForm();
-    if (formIsValid) {
-      const confirmed = window.confirm(NOTIFY.SUCCESS);
-      if (confirmed) {
-        localStorage.clear();
-        navigate("/");
-      }
-    } else {
-      alert(NOTIFY.FAILD);
-    }
-  };
+  const { values, errors, handleChange, handleCheckoutSuccessful } = useForm();
 
   return (
     <section className="checkout-cart font-family">

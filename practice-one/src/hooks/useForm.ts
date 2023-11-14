@@ -1,11 +1,12 @@
 import { useState, useCallback, ChangeEvent } from "react";
 
-import { ERROR_MESSAGES } from "../constants/Error";
+import { ERROR_MESSAGES, NOTIFY } from "../constants/Error";
 import {
   isValidEmail,
   isValidName,
   isValidPhone,
 } from "../helpers/Validations";
+import { useNavigate } from "react-router-dom";
 
 type FormValues = {
   name: string;
@@ -15,6 +16,7 @@ type FormValues = {
 };
 
 const useForm = () => {
+  const navigate = useNavigate();
   const [values, setValues] = useState<FormValues>({
     name: "",
     email: "",
@@ -111,7 +113,21 @@ const useForm = () => {
     );
   }, [values]);
 
-  return { values, errors, handleChange, validateForm };
+  // Method check whether the payment process was successful or not
+  const handleCheckoutSuccessful = () => {
+    const formIsValid = validateForm();
+    if (formIsValid) {
+      const confirmed = window.confirm(NOTIFY.SUCCESS);
+      if (confirmed) {
+        localStorage.clear();
+        navigate("/");
+      }
+    } else {
+      alert(NOTIFY.FAILD);
+    }
+  };
+
+  return { values, errors, handleChange, handleCheckoutSuccessful };
 };
 
 export default useForm;
