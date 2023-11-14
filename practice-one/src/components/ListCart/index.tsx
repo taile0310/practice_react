@@ -27,7 +27,7 @@ const ListCart: React.FC<ListCartProps> = memo(
         </Heading>
         <div className="grid-container">
           <ul className="list-cart">
-            {carts.length === 0 && (
+            {carts && carts.length === 0 && (
               <p className="notify-empty">Your cart is empty.</p>
             )}
             {carts.map((item) => {
