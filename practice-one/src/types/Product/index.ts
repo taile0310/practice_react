@@ -1,9 +1,9 @@
 export interface CustomProductProps {
   id: string;
   name: string;
-  price: number | undefined;
+  price: number;
   image: string;
-  quantity: number | undefined;
+  quantity: number;
   isExist?: boolean;
   errorQuantity?: string;
 }
