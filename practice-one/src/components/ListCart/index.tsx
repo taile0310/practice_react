@@ -27,10 +27,10 @@ const ListCart: React.FC<ListCartProps> = memo(
         </Heading>
         <div className="grid-container">
           <ul className="list-cart">
-            {carts && carts.length === 0 && (
+            {carts?.length === 0 && (
               <p className="notify-empty">Your cart is empty.</p>
             )}
-            {carts.map((item) => {
+            {carts?.map((item) => {
               const { id, name, image, price, quantity } = item;
               return (
                 <CartItem
