@@ -3,11 +3,7 @@ import "@testing-library/jest-dom";
 
 import Card from ".";
 import { VARIANT } from "../../../types/Variant";
-
-jest.mock("react-router-dom", () => ({
-  ...jest.requireActual("react-router-dom"),
-  useNavigate:jest.fn(),
-}));
+import { BrowserRouter } from "react-router-dom";
 
 describe("Card Component", () => {
   const props = {
@@ -15,12 +11,20 @@ describe("Card Component", () => {
     variants: VARIANT.PRIMARY,
   };
   it("Render correctly with default props", () => {
-    const container = render(<Card {...props} />);
+    const container = render(
+      <BrowserRouter>
+        <Card {...props} />
+      </BrowserRouter>
+    );
     expect(container).toMatchSnapshot();
   });
 
   it("Render with variant is secondary", () => {
-    const container = render(<Card {...props} variants={VARIANT.SECONDARY} />);
+    const container = render(
+      <BrowserRouter>
+        <Card {...props} variants={VARIANT.SECONDARY} />
+      </BrowserRouter>
+    );
     expect(container).toMatchSnapshot();
   });
 });

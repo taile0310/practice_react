@@ -1,13 +1,13 @@
 import { render } from "@testing-library/react";
 import Home from ".";
-import { ErrorBoundary } from "react-error-boundary";
+import { BrowserRouter } from "react-router-dom";
 
 describe("Home Component", () => {
   it("Render component correctly", () => {
     const container = render(
-      <ErrorBoundary fallback={<div>Something went wrong</div>}>
+      <BrowserRouter>
         <Home />
-      </ErrorBoundary>
+      </BrowserRouter>
     );
     expect(container).toMatchSnapshot();
   });
