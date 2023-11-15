@@ -38,7 +38,7 @@ const Navbar: React.FC<CustomNavbarProps> = memo(
               to={path}
               onClick={name === "Checkout" ? handleCheckout : undefined}>
               {name === "Cart" && (
-                <div className="cart-number">{getLength()}</div>
+                <div className="cart-number">{getLength?.()}</div>
               )}
               <Image className="icon" src={icon} alt={name} />
             </NavLink>
