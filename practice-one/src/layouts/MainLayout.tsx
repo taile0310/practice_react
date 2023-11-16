@@ -2,7 +2,7 @@
 import { Outlet } from "react-router-dom";
 
 // Components
-import { Footer, Navbar } from "../components";
+import { ErrorBoundary, Footer, Navbar } from "../components";
 import { CartProvider } from "../stores/contexts/CartContext";
 
 const MainLayout = () => {
@@ -10,7 +10,9 @@ const MainLayout = () => {
     <div className="container-page">
       <div className="component-layout font-family">
         <CartProvider>
-          <Navbar />
+          <ErrorBoundary>
+            <Navbar />
+          </ErrorBoundary>
           <Outlet />
         </CartProvider>
       </div>

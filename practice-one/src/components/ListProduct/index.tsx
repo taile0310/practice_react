@@ -11,6 +11,7 @@ import { memo } from "react";
 import { VARIANT } from "../../types/Variant";
 import useFetch from "../../hooks/useFetch";
 import { ERROR_MESSAGES } from "../../constants/Error";
+import ErrorBoundary from "../ErrorBoundary";
 
 // Component ListProduct
 const ListProduct: React.FC = memo(() => {
@@ -26,7 +27,9 @@ const ListProduct: React.FC = memo(() => {
           return page.map((product: CustomProductProps) => {
             const { id, name, image } = product;
             return (
-              <Product id={id} name={name} image={image} product={product} />
+              <ErrorBoundary>
+                <Product id={id} name={name} image={image} product={product} />
+              </ErrorBoundary>
             );
           });
         })}

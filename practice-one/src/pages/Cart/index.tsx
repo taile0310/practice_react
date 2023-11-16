@@ -2,7 +2,7 @@
 import React, { Suspense, lazy } from "react";
 
 // Component
-import { Loading } from "../../components";
+import { ErrorBoundary, Loading } from "../../components";
 
 // Helper
 import delay from "../../helpers/delay";
@@ -13,7 +13,9 @@ const ListCart = lazy(() => delay(import("../../components/ListCart/index")));
 const Cart: React.FC = (): React.ReactElement => {
   return (
     <Suspense fallback={<Loading />}>
-      <ListCart />;
+      <ErrorBoundary>
+        <ListCart />;
+      </ErrorBoundary>
     </Suspense>
   );
 };
