@@ -64,16 +64,15 @@ export const CartProvider: React.FC<TChildren> = ({
    * @param productId
    * @returns
    */
-  const isInCart =
-    // useCallback(
+  const isInCart = useCallback(
     (productId: string) => {
       const checkInCart = state.carts.find(
         (product) => product.id === productId
       );
       return checkInCart;
-    };
-  // [state.carts]
-  // );
+    },
+    [state.carts]
+  );
 
   /**
    * Method to remove product from cart

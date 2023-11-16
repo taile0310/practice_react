@@ -1,21 +1,25 @@
 // CSS
 import "./ListProduct.css";
 
+// React
+import { memo } from "react";
+
 // Component
 import { Button, Error, Heading, Loading } from "..";
 import Product from "./Product";
+import ErrorBoundary from "../ErrorBoundary";
 
 // Type
 import { CustomProductProps } from "../../types/Product";
-import { memo } from "react";
 import { VARIANT } from "../../types/Variant";
-import useFetch from "../../hooks/useFetch";
 import { ERROR_MESSAGES } from "../../constants/Error";
-import ErrorBoundary from "../ErrorBoundary";
+
+// Hooks custom
+import useFetch from "../../hooks/useFetch";
 
 // Component ListProduct
 const ListProduct: React.FC = memo(() => {
-  const { data, isLoading, error, handleShowMorePoducts } = useFetch();
+  const { data, isLoading, error, isFull, handleShowMorePoducts } = useFetch();
 
   return (
     <section className="section-menu font-family">
@@ -44,7 +48,9 @@ const ListProduct: React.FC = memo(() => {
       ) : (
         <Button
           children="Load more"
-          className="btn-item secondary-text-btn"
+          className={`btn-item secondary-text-btn ${
+            isFull || error ? "isFull" : ""
+          }`}
           onClick={handleShowMorePoducts}
           variants={VARIANT.SECONDARY}
           size="sm"

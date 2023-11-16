@@ -29,7 +29,6 @@ type CustomCardProps = {
   onSubmit?: () => void;
 };
 
-// Component Card
 const Card: React.FC<CustomCardProps> = memo(
   ({
     className,

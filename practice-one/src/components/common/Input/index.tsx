@@ -8,7 +8,6 @@ interface CustomInputProps extends InputHTMLAttributes<HTMLInputElement> {
   className?: string;
 }
 
-// Component Input
 const Input: React.FC<CustomInputProps> = memo(
   ({ className, ...prop }): React.ReactElement => {
     return <input className={className} {...prop} />;

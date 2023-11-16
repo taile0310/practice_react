@@ -1,5 +1,5 @@
 import { render } from "@testing-library/react";
-import HandleQuantity from ".";
+import QuantitySelector from ".";
 
 describe("HandleQuantity Component", () => {
   it("Render component correctly", () => {
@@ -7,7 +7,7 @@ describe("HandleQuantity Component", () => {
       id: "1",
       quantity: 1,
     };
-    const container = render(<HandleQuantity {...props} />);
+    const container = render(<QuantitySelector {...props} />);
     expect(container).toMatchSnapshot();
   });
 });

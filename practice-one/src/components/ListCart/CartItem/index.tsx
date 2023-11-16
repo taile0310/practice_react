@@ -2,7 +2,7 @@ import { memo, useContext } from "react";
 import { CartContext } from "../../../stores/contexts/CartContext";
 import { Remove } from "../../../assets/image";
 import DetailDish from "../DetailDish";
-import HandleQuantity from "../HandleQuantity";
+import QuantitySelector from "../QuantitySelector";
 import { Image } from "../..";
 
 type TCartItemProps = {
@@ -14,6 +14,7 @@ type TCartItemProps = {
   className?: string;
   listStyle?: string;
 };
+
 const CartItem = memo(
   ({
     id,
@@ -36,7 +37,7 @@ const CartItem = memo(
           </div>
           <div className="order-group">
             <DetailDish name={name} price={price} />
-            <HandleQuantity id={id} quantity={quantity} />
+            <QuantitySelector id={id} quantity={quantity} />
             <div className="btn-transparent btn-remove">
               <Image
                 src={Remove}

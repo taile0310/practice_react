@@ -6,9 +6,13 @@
 
 ## Targets:
 
-- Apply Storybook into practice
-- Apply learned hooks: useState, useContext, useEffect
-- Apply mockAPI into practice
+- Apply SWR into practice.
+- Apply learned hooks: useState, useContext, useEffect, useReducer, useMemo, useCallback, memo.
+- Apply lazy and suspense
+- Apply custom hooks.
+- Apply Error boundary.
+- Apply mockAPI into practice.
+- Apply unit testing basic with jest and testing-library/react
 
 ## Features:
 
@@ -30,12 +34,12 @@
 
 ## Deploy:
 
-- App: [Here](https://practice-one-eight.vercel.app/)
-- Storybook: [Here](https://practice-react-sepia.vercel.app/?path=/story/components-footer--default)
+- App: [Here](https://practice-two-tau.vercel.app/)
+- Storybook: [Here](https://practice-react-sepia.vercel.app/?path=/story/components-image--image-rectangle)
 
 ## Information:
 
-- Time line: 09/10/2023 -> 16/10/2023
+- Time line: 06/11/2023 -> 16/11/2023
 - Editor: Visual Studio Code
 - Supported browser: Chrome lasted
 
@@ -69,19 +73,33 @@ practice-one
         |-- FormCheckout
         |-- ListCart
         |-- ListProduct
+        |-- ErrorBoundary
         |-- index
     |-- constants
-        |-- base-url
-        |-- error
-        |-- nav-link
-        |-- regex
+        |-- BaseUrl
+        |-- Error
+        |-- NavLink
+        |-- Regex
     |-- helper
-        |-- data-localStorage
-        |-- calculator-totalPrice
-        |-- font-size
-        |-- vaildation
+        |-- __test__
+            |-- CalculatorTotalPrice.test
+            |-- DataLocalStorage.test
+            |-- FetchData.test
+            |-- Vaildation.test
+        |-- DataLocalStorage
+        |-- CalculatorTotalPrice
+        |-- FontSize
+        |-- Vaildation
+        |-- FetchData
+        |-- Delay
     |-- layout
         |-- MainLayout
+    |-- hooks
+        |-- __test__
+            |-- UseFetch.test
+            |-- UseForm.test
+        |-- useFetch
+        |-- useForm
     |-- pages
         |-- Cart
         |-- Checkout
@@ -96,8 +114,13 @@ practice-one
         |-- THeading
         |-- TProduct
         |-- TVariant
-    |-- context
-        |-- CartContext
+    |-- stores
+        |-- contexts
+            |-- CartContext
+        |-- reducers
+            |-- action
+                |-- index
+            |-- index
     |-- App.tsx
     |-- main.tsx
     |-- index.css
@@ -105,11 +128,13 @@ practice-one
 |-- .eslintrc.cjs
 |-- .gitignore
 |-- index.html
+|-- jest.config.ts
 |-- package-lock.json
 |-- package.json
 |-- tsconfig.json
 |-- tsconfig.node.json
 |-- README.md
+|-- vercel.json
 |-- vite.config.ts
 ```
 

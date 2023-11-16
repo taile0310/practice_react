@@ -18,7 +18,6 @@ export type CustomNavbarProps = {
   width?: number;
 };
 
-// Component Navbar
 const Navbar: React.FC<CustomNavbarProps> = memo(
   ({ width }): React.ReactElement => {
     const widthNavbar = {

@@ -1,22 +1,26 @@
+// React
 import { memo, useContext } from "react";
+
+// Component
 import { Button } from "../..";
+
+// Stores and Type
 import { CartContext } from "../../../stores/contexts/CartContext";
 import { VARIANT } from "../../../types/Variant";
 
-type THandleQuantity = {
+type TQuantitySelector = {
   id: string;
   quantity: number;
   width?: number;
 };
 
-// Component HandleQuantity
-const HandleQuantity = memo(({ id, quantity, width }: THandleQuantity) => {
+const QuantitySelector = memo(({ id, quantity, width }: TQuantitySelector) => {
   const { handleUpdateQuantity } = useContext(CartContext);
-  const widthHandleQuantity = {
+  const widthQuantitySelector = {
     width: `${width}px`,
   };
   return (
-    <div className="quantity-input" style={widthHandleQuantity}>
+    <div className="quantity-input" style={widthQuantitySelector}>
       <Button
         children="-"
         className={`text-price ${quantity <= 1 && "btn-disabled"}`}
@@ -34,4 +38,4 @@ const HandleQuantity = memo(({ id, quantity, width }: THandleQuantity) => {
   );
 });
 
-export default HandleQuantity;
+export default QuantitySelector;

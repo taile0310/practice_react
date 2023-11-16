@@ -1,10 +1,10 @@
 export const REGEX = {
-  // Check name format
+  // Regular expression to check the format of a name
   name: /^[a-zA-ZÀ-ỹ\s]*$/,
 
-  // Check email format
+  // Regular expression to check the format of a email
   email: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
 
-  // Check phone format
+  // Regular expression to check the format of a phone
   phone: /^(0)+[3|5|7|8|9]+([0-9]{8})$/,
 };

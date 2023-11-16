@@ -8,7 +8,7 @@ import CartItem from "./CartItem";
 // React hooks
 import { memo, useContext } from "react";
 
-//Context
+// Stores and Type
 import { CartContext } from "../../stores/contexts/CartContext";
 import { VARIANT } from "../../types/Variant";
 
