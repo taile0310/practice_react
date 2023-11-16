@@ -4,10 +4,8 @@ import { memo, useContext } from "react";
 // Image
 import { Image } from "../..";
 
-// Context
+// Stores and Type
 import { CartContext } from "../../../stores/contexts/CartContext";
-
-// Type
 import { CustomProductProps } from "../../../types/Product";
 
 type TProductProps = {

@@ -6,7 +6,6 @@ export type CustomLabelProps = {
   titleLabel: string;
 };
 
-// Component Label
 const Label: React.FC<CustomLabelProps> = ({
   className,
   titleLabel,

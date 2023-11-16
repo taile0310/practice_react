@@ -5,6 +5,7 @@ export type TState = {
   carts: CustomProductProps[];
 };
 
+// Reducer function to manage state changes based on dispatched actions.
 export const reducer = (state: TState, action: TActionReducer) => {
   switch (action.type) {
     case "ADD_TO_CART":

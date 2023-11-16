@@ -3,6 +3,8 @@ import { Outlet } from "react-router-dom";
 
 // Components
 import { ErrorBoundary, Footer, Navbar } from "../components";
+
+// Stores
 import { CartProvider } from "../stores/contexts/CartContext";
 
 const MainLayout = () => {

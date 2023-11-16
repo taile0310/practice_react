@@ -31,11 +31,12 @@ const useForm = () => {
     address: "",
   });
 
+  // Function to handle events when the value of a form field changes
   const handleChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setValues((prevValues) => ({ ...prevValues, [name]: value }));
     let errorMessage = "";
-
+    // Check the name field and update the error message accordingly
     if (name === "name") {
       errorMessage = !value
         ? ERROR_MESSAGES.FIELD_EMPTY
@@ -45,6 +46,7 @@ const useForm = () => {
       setErrors((prevErrors) => ({ ...prevErrors, name: errorMessage }));
     }
 
+    // Check the email field and update the error message accordingly
     if (name === "email") {
       errorMessage = !value
         ? ERROR_MESSAGES.FIELD_EMPTY
@@ -54,6 +56,7 @@ const useForm = () => {
       setErrors((prevErrors) => ({ ...prevErrors, email: errorMessage }));
     }
 
+    // Check the phone field and update the error message accordingly
     if (name === "phone") {
       errorMessage = !value
         ? ERROR_MESSAGES.FIELD_EMPTY
@@ -63,18 +66,21 @@ const useForm = () => {
       setErrors((prevErrors) => ({ ...prevErrors, phone: errorMessage }));
     }
 
+    // Check the address field and update the error message accordingly
     if (name === "address") {
       errorMessage = !value ? ERROR_MESSAGES.FIELD_EMPTY : "";
       setErrors((prevErrors) => ({ ...prevErrors, address: errorMessage }));
     }
   }, []);
 
+  // Function to check the validity of the entire form
   const validateForm = useCallback(() => {
     const nameErrorExists = !values.name || !isValidName(values.name);
     const emailErrorExists = !values.email || !isValidEmail(values.email);
     const phoneErrorExists = !values.phone || !isValidPhone(values.phone);
     const addressErrorExists = !values.address;
 
+    // Update error message if any
     if (nameErrorExists) {
       setErrors((prevErrors) => ({
         ...prevErrors,

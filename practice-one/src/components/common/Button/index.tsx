@@ -1,5 +1,4 @@
 // CSS
-
 import "./Button.css";
 
 // React
@@ -19,7 +18,6 @@ export interface CustomBtnProps
   typeText?: TButtonText;
 }
 
-// Component Button
 const Button: React.FC<CustomBtnProps> = memo(
   ({
     className,

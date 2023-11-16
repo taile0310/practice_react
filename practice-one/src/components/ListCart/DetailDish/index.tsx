@@ -1,3 +1,4 @@
+// React
 import { memo } from "react";
 
 type TDetailDish = {
@@ -6,7 +7,6 @@ type TDetailDish = {
   className?: string;
 };
 
-// Component DetailDish
 const DetailDish = memo(({ name, price, className }: TDetailDish) => {
   return (
     <div className={`detail-dish ${className}`}>

@@ -1,7 +1,6 @@
 // React
 import React from "react";
 
-// Component Footer
 const Footer: React.FC = (): React.ReactElement => {
   return (
     <span className="text-x-small font-family">
