@@ -2,7 +2,7 @@
 import "./ListCart.css";
 
 // Component
-import { Card, Heading } from "..";
+import { Card, ErrorBoundary, Heading } from "..";
 import CartItem from "./CartItem";
 
 // React hooks
@@ -33,13 +33,15 @@ const ListCart: React.FC<ListCartProps> = memo(
             {carts?.map((item) => {
               const { id, name, image, price, quantity } = item;
               return (
-                <CartItem
-                  id={id}
-                  name={name}
-                  image={image}
-                  price={price}
-                  quantity={quantity}
-                />
+                <ErrorBoundary>
+                  <CartItem
+                    id={id}
+                    name={name}
+                    image={image}
+                    price={price}
+                    quantity={quantity}
+                  />
+                </ErrorBoundary>
               );
             })}
           </ul>
