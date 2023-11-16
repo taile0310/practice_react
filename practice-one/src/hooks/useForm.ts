@@ -117,17 +117,22 @@ const useForm = () => {
   const handleCheckoutSuccessful = () => {
     const formIsValid = validateForm();
     if (formIsValid) {
-      const confirmed = window.confirm(NOTIFY.SUCCESS);
-      if (confirmed) {
-        localStorage.clear();
-        navigate("/");
-      }
+      alert(NOTIFY.SUCCESS);
+      localStorage.clear();
+      navigate("/");
     } else {
       alert(NOTIFY.FAILD);
     }
   };
 
-  return { values, errors, handleChange, handleCheckoutSuccessful };
+  return {
+    values,
+    errors,
+    navigate,
+    validateForm,
+    handleChange,
+    handleCheckoutSuccessful,
+  };
 };
 
 export default useForm;
