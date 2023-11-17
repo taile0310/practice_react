@@ -53,9 +53,13 @@ export const CartProvider: React.FC<TChildren> = ({
   const handleAddToCart = useCallback((product: CustomProductProps): void => {
     const confirmed = window.confirm(NOTIFY.ADD_TO_CART);
     if (confirmed) {
-      product.quantity = 1;
-      product.isExist = true;
-      dispatch({ type: "ADD_TO_CART", product });
+      try {
+        product.quantity = 1;
+        product.isExist = true;
+        dispatch({ type: "ADD_TO_CART", product });
+      } catch (error) {
+        alert(NOTIFY.ADD_FAILD);
+      }
     }
   }, []);
 
@@ -81,7 +85,11 @@ export const CartProvider: React.FC<TChildren> = ({
   const handleRemoveFromCart = useCallback((productId: string) => {
     const confirmed = window.confirm(NOTIFY.REMOVE_FROM_CART);
     if (confirmed) {
-      dispatch({ type: "REMOVE_FROM_CART", productId });
+      try {
+        dispatch({ type: "REMOVE_FROM_CART", productId });
+      } catch (error) {
+        alert(NOTIFY.REMOVE_FAILD);
+      }
     }
   }, []);
 

@@ -15,4 +15,6 @@ export const NOTIFY = {
   SUCCESS: "Checkout successful!",
   ADD_TO_CART: "Are you sure you want to add this product to your cart?",
   REMOVE_FROM_CART: "Are you sure to remove this product from your cart?",
+  ADD_FAILD: "Adding failed products",
+  REMOVE_FAILD: "Remove failed products",
 };
