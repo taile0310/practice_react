@@ -1,9 +1,8 @@
 import { act, renderHook } from "@testing-library/react";
+import "@testing-library/jest-dom";
 import useForm from "../useForm";
 import { ERROR_MESSAGES, NOTIFY } from "../../constants/Error";
-import "@testing-library/jest-dom";
 
-// import { BrowserRouter, useNavigate } from "react-router-dom";
 jest.mock("react-router-dom");
 describe("useForm", () => {
   it("Update values when handleChange is called", () => {
