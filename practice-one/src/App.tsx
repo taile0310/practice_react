@@ -17,7 +17,7 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-          <Route path="/" element={<Home />} />
+        <Route path="/" element={<Home />} />
         <Route element={<MainLayout />}>
           {routers.map((item) => (
             <Route key={item.path} path={item.path} element={item.element} />

@@ -1,4 +1,4 @@
-# REACT PRACTICE ONE
+# REACT PRACTICE TWO
 
 ## Description:
 
@@ -91,7 +91,6 @@ practice-one
         |-- FontSize
         |-- Vaildation
         |-- FetchData
-        |-- Delay
     |-- layout
         |-- MainLayout
     |-- hooks
