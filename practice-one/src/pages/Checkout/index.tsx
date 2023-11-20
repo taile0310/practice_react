@@ -1,11 +1,16 @@
 // React router
-import React from "react";
+import React, { Suspense, lazy } from "react";
 
 // Component
-import { FormCheckout } from "../../components";
+const FormCheckout = lazy(() => import("../../components/FormCheckout/index"));
+import { Loading } from "../../components";
 
 const Checkout: React.FC = (): React.ReactElement => {
-  return <FormCheckout />;
+  return (
+    <Suspense fallback={<Loading />}>
+      <FormCheckout />
+    </Suspense>
+  );
 };
 
 export default Checkout;

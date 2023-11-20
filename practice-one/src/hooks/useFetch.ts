@@ -1,18 +1,19 @@
 // SWR
 import useSWRInfinite from "swr/infinite";
+import { mutate } from "swr";
 
 // Helper and Constant
 import { fetchData } from "../helpers/FetchData";
 import { BASE_URL } from "../constants/BaseUrl";
+import { useCallback } from "react";
 
 const useFetch = () => {
   // The getKey function is used to create a key for each data page, based on pageIndex and previousPageData.
-  const getKey = (pageIndex: number, previousPageData: []) => {
-    if (previousPageData && !previousPageData.length) return null;
+  const getKey = useCallback((pageIndex: number) => {
     const page = pageIndex + 1;
     const limit = 8;
     return `${BASE_URL}?page=${page}&limit=${limit}`;
-  };
+  }, []);
 
   // Manage data fetch state.
   const { data, error, size, setSize } = useSWRInfinite(getKey, fetchData);
@@ -29,6 +30,7 @@ const useFetch = () => {
   // Method loadmore
   const handleShowMorePoducts = () => {
     !isFull && setSize(size + 1);
+    mutate(getKey(size));
   };
 
   return { data, isLoading, error, isFull, handleShowMorePoducts };

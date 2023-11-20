@@ -5,9 +5,8 @@ import React, { Suspense, lazy } from "react";
 import { ErrorBoundary, Loading } from "../../components";
 
 // Helper
-import delay from "../../helpers/delay";
 
-const ListCart = lazy(() => delay(import("../../components/ListCart/index")));
+const ListCart = lazy(() => import("../../components/ListCart/index"));
 
 // Component Cart
 const Cart: React.FC = (): React.ReactElement => {
