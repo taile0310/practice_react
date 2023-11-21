@@ -2,8 +2,9 @@
 import React, { Suspense, lazy } from "react";
 
 // Component
-const FormCheckout = lazy(() => import("../../components/FormCheckout/index"));
 import { Loading } from "../../components";
+
+const FormCheckout = lazy(() => import("../../components/FormCheckout/index"));
 
 const Checkout: React.FC = (): React.ReactElement => {
   return (
