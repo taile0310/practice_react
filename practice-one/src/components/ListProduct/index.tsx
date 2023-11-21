@@ -48,9 +48,7 @@ const ListProduct: React.FC = memo(() => {
       ) : (
         <Button
           children="Load more"
-          className={`btn-item secondary-text-btn ${
-            isFull || error ? "isFull" : ""
-          }`}
+          className={`btn-item secondary-text-btn ${isFull && "isFull"}`}
           onClick={handleShowMorePoducts}
           variants={VARIANT.SECONDARY}
           size="sm"
