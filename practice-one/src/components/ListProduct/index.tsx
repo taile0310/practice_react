@@ -17,8 +17,11 @@ import { ERROR_MESSAGES } from "../../constants/Error";
 // Hooks custom
 import useFetch from "../../hooks/useFetch";
 
+export type TListProduct = {
+  handleRemoveProduct: (productId: string) => void;
+};
 // Component ListProduct
-const ListProduct: React.FC = memo(() => {
+const ListProduct: React.FC<TListProduct> = memo(({ handleRemoveProduct }) => {
   const { data, isLoading, error, isFull, handleShowMorePoducts } = useFetch();
 
   return (
@@ -32,7 +35,13 @@ const ListProduct: React.FC = memo(() => {
             const { id, name, image } = product;
             return (
               <ErrorBoundary>
-                <Product id={id} name={name} image={image} product={product} />
+                <Product
+                  id={id}
+                  name={name}
+                  image={image}
+                  product={product}
+                  handleRemoveProduct={handleRemoveProduct}
+                />
               </ErrorBoundary>
             );
           });

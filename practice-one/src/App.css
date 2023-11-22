@@ -47,6 +47,11 @@
   font-weight: var(--fw-regular);
   line-height: 50px;
 }
+.text-h4 {
+  font-weight: var(--fw-semibold);
+  line-height: 30px;
+  margin: 0;
+}
 
 .text-p {
   font-size: var(--fs-x-medium);

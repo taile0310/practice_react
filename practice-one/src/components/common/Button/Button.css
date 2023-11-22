@@ -53,3 +53,9 @@
 .btn-disabled {
   opacity: 0.2;
 }
+
+.handle-btn {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+}
