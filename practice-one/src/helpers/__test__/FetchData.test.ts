@@ -24,7 +24,7 @@ describe("Function Fetch Data", () => {
       json: jest.fn().mockResolvedValue(mockData),
     };
     global.fetch = jest.fn().mockResolvedValue(response);
-    const data = await fetchData(BASE_URL);
+    const data = await fetchData(BASE_URL!);
     expect(data).toEqual(mockData);
   });
 
@@ -33,7 +33,7 @@ describe("Function Fetch Data", () => {
       ok: false,
     };
     global.fetch = jest.fn().mockResolvedValue(response);
-    await expect(fetchData(BASE_URL)).rejects.toThrow(ERROR_MESSAGES.FETCH);
+    await expect(fetchData(BASE_URL!)).rejects.toThrow(ERROR_MESSAGES.FETCH);
     expect(fetch).toHaveBeenCalledWith(BASE_URL);
   });
 });

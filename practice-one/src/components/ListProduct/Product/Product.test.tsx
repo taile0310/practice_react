@@ -15,6 +15,7 @@ describe("Product Component", () => {
       price: 15,
       quantity: 1,
     },
+    handleRemoveProduct: jest.fn(),
   };
 
   it("Render component correctly", () => {
