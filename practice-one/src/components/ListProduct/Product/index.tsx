@@ -8,6 +8,9 @@ import { Button, Image } from "../..";
 import { CartContext } from "../../../stores/contexts/CartContext";
 import { CustomProductProps } from "../../../types/Product";
 import { VARIANT } from "../../../types/Variant";
+import { useToggle } from "../../../stores/useToggle";
+import { TOGGLE } from "../../../types/Toggle";
+import Modal from "../../Modal";
 
 type TProductProps = {
   id: string;
@@ -23,7 +26,7 @@ const Product = memo(
   ({ id, image, name, product, width, handleRemoveProduct }: TProductProps) => {
     const { isInCart, handleAddToCart, handleRemoveFromCart } =
       useContext(CartContext);
-
+    const { toggle, handleToggle } = useToggle();
     const widthProduct = {
       width: `${width}px`,
     };
@@ -54,8 +57,13 @@ const Product = memo(
             typeText="uppercase"
             variants={VARIANT.PRIMARY}
             children="Edit"
+            onClick={() => {
+              handleToggle(product);
+              console.log();
+            }}
           />
         </div>
+        {toggle === TOGGLE.ON && <Modal />}
       </li>
     );
   }

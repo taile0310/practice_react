@@ -3,7 +3,7 @@ export interface CustomProductProps {
   name: string;
   price: number;
   image: string;
-  quantity: number;
+  quantity?: number;
   isExist?: boolean;
   errorQuantity?: string;
 }
