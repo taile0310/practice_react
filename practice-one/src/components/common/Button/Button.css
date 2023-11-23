@@ -59,3 +59,11 @@
   gap: 15px;
   justify-content: center;
 }
+
+.handle-btn > Button:last-child:hover {
+  color: #198754;
+}
+
+.handle-btn > Button:hover {
+  color: #dc3545;
+}

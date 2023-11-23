@@ -55,9 +55,7 @@
 
 .modal-footer > Button:hover {
   color: #198754;
-  transition: transform 0.2s ease;
 }
 .modal-footer > Button:last-child:hover {
   color: #dc3545;
-  transition: transform 0.2s ease;
 }

@@ -8,9 +8,16 @@ import { useToggle } from "../../stores/useToggle";
 import useFetch from "../../hooks/useFetch";
 
 const Modal: FC = (): ReactElement => {
-  const { toggle, inputValues, handleToggle, handleChangeInput } = useToggle();
+  const {
+    toggle,
+    inputValues,
+    title,
+    btnSubmit,
+    handleToggle,
+    handleChangeInput,
+  } = useToggle();
 
-  const { handleUpdateProduct } = useFetch();
+  const { handleUpdateProduct, handleAddProduct } = useFetch();
 
   return (
     <form
@@ -18,7 +25,7 @@ const Modal: FC = (): ReactElement => {
       onSubmit={(e: FormEvent) => e.preventDefault()}>
       <div className="modal-header">
         <Heading className="text-h4" element="h4">
-          UPDATE PRODUCT
+          {title}
         </Heading>
       </div>
       <div className="modal-body">
@@ -70,11 +77,12 @@ const Modal: FC = (): ReactElement => {
           className="text-small"
           variants={VARIANT.TRANSPARENT}
           typeText="uppercase"
-          children="Save changes"
+          children={btnSubmit}
           type="submit"
           onClick={() => {
-            handleUpdateProduct(inputValues.id);
-            handleToggle(null);
+            btnSubmit === "Save Changes"
+              ? (handleUpdateProduct(inputValues.id), handleToggle(null))
+              : (handleAddProduct(inputValues), handleToggle(null));
           }}
         />
         <Button

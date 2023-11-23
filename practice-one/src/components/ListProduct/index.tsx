@@ -16,6 +16,7 @@ import { ERROR_MESSAGES } from "../../constants/Error";
 
 // Hooks custom
 import useFetch from "../../hooks/useFetch";
+import { useToggle } from "../../stores/useToggle";
 
 export type TListProduct = {
   handleRemoveProduct: (productId: string) => void;
@@ -23,12 +24,22 @@ export type TListProduct = {
 // Component ListProduct
 const ListProduct: React.FC<TListProduct> = memo(({ handleRemoveProduct }) => {
   const { data, isLoading, error, isFull, handleShowMorePoducts } = useFetch();
+  const { handleToggleAddProduct } = useToggle();
 
   return (
     <section className="section-menu font-family">
       <Heading className="text-h2 dash" element="h2">
         Sushi food
       </Heading>
+      <Button
+        className="btn secondary-text-btn"
+        variants={VARIANT.SECONDARY}
+        size="sm"
+        typeText="uppercase"
+        children="Add Product"
+        onClick={handleToggleAddProduct}
+        style={{ width: "fit-content", alignSelf: "end" }}
+      />
       <ul className="list-menu">
         {data?.map((page: CustomProductProps[]) => {
           return page.map((product: CustomProductProps) => {

@@ -59,7 +59,6 @@ const Product = memo(
             children="Edit"
             onClick={() => {
               handleToggle(product);
-              console.log();
             }}
           />
         </div>

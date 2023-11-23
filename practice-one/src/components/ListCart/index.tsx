@@ -39,7 +39,7 @@ const ListCart: React.FC<ListCartProps> = memo(
                     name={name}
                     image={image}
                     price={price}
-                    quantity={quantity}
+                    quantity={quantity!}
                   />
                 </ErrorBoundary>
               );
