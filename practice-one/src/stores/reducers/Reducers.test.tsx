@@ -71,7 +71,7 @@ describe("reducer", () => {
       (item) => item.id === action.productId
     );
 
-    expect(updatedItem?.quantity).toBe(initialState.carts[0].quantity + 1);
+    expect(updatedItem?.quantity).toBe(initialState.carts[0].quantity! + 1);
   });
 
   it("should handle UPDATE_QUANTITY action (decrease)", () => {
@@ -86,7 +86,7 @@ describe("reducer", () => {
       (item) => item.id === action.productId
     );
 
-    expect(updatedItem?.quantity).toBe(initialState.carts[0].quantity - 1);
+    expect(updatedItem?.quantity).toBe(initialState.carts[0].quantity! - 1);
   });
 
   it("should not allow quantity to go below 1 when decreasing", () => {

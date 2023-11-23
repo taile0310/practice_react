@@ -7,6 +7,8 @@ import { BASE_URL } from "../constants/BaseUrl";
 import { deleteProduct } from "../helpers/RemoveProduct";
 import { updateProduct } from "../helpers/UpdateProduct";
 import { useToggle } from "../stores/useToggle";
+import { addProduct } from "../helpers/AddProduct";
+import { CustomProductProps } from "../types/Product";
 
 const useFetch = () => {
   const { inputValues } = useToggle();
@@ -40,17 +42,26 @@ const useFetch = () => {
 
   const handleRemoveProduct = async (productId: string) => {
     await deleteProduct(productId);
-    await mutate(data);
+    await mutate();
     console.log(productId);
   };
 
   const handleUpdateProduct = async (productId: string) => {
     try {
       await updateProduct(productId, inputValues);
-      console.log(1232132);
-      await mutate(data);
+      await mutate();
     } catch (error) {
       console.error("Error updating product:", error);
+    }
+  };
+
+  const handleAddProduct = async (product: CustomProductProps) => {
+    product = inputValues;
+    try {
+      await addProduct(product);
+      await mutate();
+    } catch (error) {
+      console.error("Error add product:", error);
     }
   };
   return {
@@ -61,6 +72,7 @@ const useFetch = () => {
     handleShowMorePoducts,
     handleRemoveProduct,
     handleUpdateProduct,
+    handleAddProduct,
   };
 };
 
