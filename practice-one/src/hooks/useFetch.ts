@@ -5,8 +5,11 @@ import useSWRInfinite from "swr/infinite";
 import { fetchData } from "../helpers/FetchData";
 import { BASE_URL } from "../constants/BaseUrl";
 import { deleteProduct } from "../helpers/RemoveProduct";
+import { updateProduct } from "../helpers/UpdateProduct";
+import { useToggle } from "../stores/useToggle";
 
 const useFetch = () => {
+  const { inputValues } = useToggle();
   // The getKey function is used to create a key for each data page, based on pageIndex and previousPageData.
   const getKey = (pageIndex: number) => {
     const page = pageIndex + 1;
@@ -41,6 +44,15 @@ const useFetch = () => {
     console.log(productId);
   };
 
+  const handleUpdateProduct = async (productId: string) => {
+    try {
+      await updateProduct(productId, inputValues);
+      console.log(1232132);
+      await mutate(data);
+    } catch (error) {
+      console.error("Error updating product:", error);
+    }
+  };
   return {
     data,
     isLoading,
@@ -48,6 +60,7 @@ const useFetch = () => {
     isFull,
     handleShowMorePoducts,
     handleRemoveProduct,
+    handleUpdateProduct,
   };
 };
 
