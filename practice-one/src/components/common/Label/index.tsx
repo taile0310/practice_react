@@ -1,10 +1,11 @@
 // React
-import React from "react";
+import React, { LabelHTMLAttributes } from "react";
 
-export type CustomLabelProps = {
+export interface CustomLabelProps
+  extends LabelHTMLAttributes<HTMLLabelElement> {
   className?: string;
   titleLabel: string;
-};
+}
 
 const Label: React.FC<CustomLabelProps> = ({
   className,
