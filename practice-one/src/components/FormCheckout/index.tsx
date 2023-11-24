@@ -2,16 +2,18 @@
 import "./FormCheckout.css";
 
 // React
-import React from "react";
+import { FC, ReactElement } from "react";
 
 // Components
 import { Card, Heading, Input, Label } from "..";
 
-// Helpers and Constants
-import { VARIANT } from "../../types/Variant";
-import useForm from "../../hooks/useForm";
+// Custom hooks
+import { useForm } from "../../hooks";
 
-const FormCheckout: React.FC = (): React.ReactElement => {
+// Type
+import { VARIANT } from "../../types";
+
+const FormCheckout: FC = (): ReactElement => {
   const { values, errors, handleChange, handleCheckoutSuccessful } = useForm();
 
   return (

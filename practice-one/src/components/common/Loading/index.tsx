@@ -1,5 +1,5 @@
 // React
-import React from "react";
+import { FC, ReactElement } from "react";
 
 // Image
 import { Spinner } from "../../../assets/image";
@@ -7,7 +7,7 @@ import { Spinner } from "../../../assets/image";
 // Component
 import { Image } from "..";
 
-const Loading: React.FC = (): React.ReactElement => {
+const Loading: FC = (): ReactElement => {
   return (
     <div className="spinner">
       <Image src={Spinner} />

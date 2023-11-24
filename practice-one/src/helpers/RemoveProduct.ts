@@ -10,7 +10,6 @@ export const deleteProduct = async (productId: string) => {
     }
     return true;
   } catch (error) {
-    console.error("Error deleting product:", error);
     return false;
   }
 };

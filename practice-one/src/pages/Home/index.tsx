@@ -2,13 +2,13 @@
 import "./Home.css";
 
 // React
-import React from "react";
+import { FC, ReactElement } from "react";
 import { Link } from "react-router-dom";
 
 // Component
 import { Heading } from "../../components";
 
-const Home: React.FC = (): React.ReactElement => {
+const Home: FC = (): ReactElement => {
   return (
     <div className="home-layout font-family">
       <section className="home-content">

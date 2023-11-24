@@ -1,11 +1,11 @@
 // React
-import { memo } from "react";
+import { FC, ReactElement, memo } from "react";
 
 // Type
-import { THeading } from "../../../types/Heading";
+import { THeading } from "../../../types";
 
 // Helper
-import { getFontSize } from "../../../helpers/FontSize";
+import { getFontSize } from "../../../helpers";
 
 export type HeadingProps = {
   className?: string;
@@ -13,8 +13,8 @@ export type HeadingProps = {
   children: React.ReactNode;
 };
 
-const Heading: React.FC<HeadingProps> = memo(
-  ({ element, children, className }): React.ReactElement => {
+const Heading: FC<HeadingProps> = memo(
+  ({ element, children, className }): ReactElement => {
     const headingStyles = {
       fontSize: getFontSize(element),
     };

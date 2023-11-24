@@ -2,22 +2,20 @@
 import "./Card.css";
 
 // React
-import React, { memo, useCallback, useContext, useMemo } from "react";
+import { FC, ReactElement, memo, useCallback, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 
 // Constants and Type
-import { NOTIFY } from "../../../constants/Error";
-import { VARIANT } from "../../../types/Variant";
-
+import { NOTIFY } from "../../../constants";
+import { VARIANT } from "../../../types";
 // Component
 import { Button, Heading, Input } from "..";
 
 // Helper
-import { getListCart } from "../../../helpers/DataLocalStorage";
-import { calculatorTotalPrice } from "../../../helpers/CalculatorToltalPrice";
+import { calculatorTotalPrice, getListCart } from "../../../helpers";
 
 // Context
-import { CartContext } from "../../../stores/contexts/CartContext";
+import { useCartStore } from "../../../stores/useCartStore";
 
 type CustomCardProps = {
   showInput?: boolean;
@@ -29,7 +27,7 @@ type CustomCardProps = {
   onSubmit?: () => void;
 };
 
-const Card: React.FC<CustomCardProps> = memo(
+const Card: FC<CustomCardProps> = memo(
   ({
     className,
     titleCard,
@@ -38,7 +36,9 @@ const Card: React.FC<CustomCardProps> = memo(
     width,
     variants = "primary",
     onSubmit,
-  }): React.ReactElement => {
+  }): ReactElement => {
+    const { carts } = useCartStore();
+
     const widthCard = {
       width: `${width}px`,
     };
@@ -61,8 +61,6 @@ const Card: React.FC<CustomCardProps> = memo(
         onSubmit?.();
       }
     }, [navigate, onSubmit, titleButton]);
-
-    const { carts } = useContext(CartContext);
 
     const totalPrice = useMemo(() => calculatorTotalPrice(carts), [carts]);
 

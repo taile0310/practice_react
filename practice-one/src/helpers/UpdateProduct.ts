@@ -13,10 +13,9 @@ export const updateProduct = async (
     });
     if (!res.ok) {
       throw new Error("Failed to delete product");
-    } 
+    }
     return true;
   } catch (error) {
-    console.error("Error updating product:", error);
-    throw new Error("Error updating product");
+    return false;
   }
 };

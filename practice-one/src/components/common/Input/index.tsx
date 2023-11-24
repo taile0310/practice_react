@@ -2,14 +2,14 @@
 import "./Input.css";
 
 // React
-import React, { InputHTMLAttributes, memo } from "react";
+import { FC, InputHTMLAttributes, ReactElement, memo } from "react";
 
 interface CustomInputProps extends InputHTMLAttributes<HTMLInputElement> {
   className?: string;
 }
 
-const Input: React.FC<CustomInputProps> = memo(
-  ({ className, ...prop }): React.ReactElement => {
+const Input: FC<CustomInputProps> = memo(
+  ({ className, ...prop }): ReactElement => {
     return <input className={className} {...prop} />;
   }
 );

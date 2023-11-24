@@ -1,5 +1,5 @@
 // React Hook
-import React, { Suspense, lazy } from "react";
+import { FC, ReactElement, Suspense, lazy } from "react";
 
 // Component
 import { Loading } from "../../components";
@@ -8,7 +8,7 @@ import useFetch from "../../hooks/useFetch";
 
 const ListProduct = lazy(() => import("../../components/ListProduct/index"));
 
-const Menu: React.FC = (): React.ReactElement => {
+const Menu: FC = (): ReactElement => {
   const { handleRemoveProduct } = useFetch();
 
   return (

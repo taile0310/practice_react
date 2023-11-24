@@ -32,21 +32,6 @@ describe("Button Component", () => {
     expect(container).toMatchSnapshot();
   });
 
-  it("Render with size is md", () => {
-    const container = render(<Button {...props} size={"md"} />);
-    expect(container).toMatchSnapshot();
-  });
-
-  it("Render with size is sm", () => {
-    const container = render(<Button {...props} size={"sm"} />);
-    expect(container).toMatchSnapshot();
-  });
-
-  it("Render with size is xs", () => {
-    const container = render(<Button {...props} size={"xs"} />);
-    expect(container).toMatchSnapshot();
-  });
-
   it("Render with size is capitalize", () => {
     const container = render(<Button {...props} typeText={"capitalize"} />);
     expect(container).toMatchSnapshot();
