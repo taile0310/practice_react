@@ -2,12 +2,10 @@
 import "./Button.css";
 
 // React
-import React, { ButtonHTMLAttributes, ReactNode, memo } from "react";
+import { ButtonHTMLAttributes, FC, ReactElement, ReactNode, memo } from "react";
 
 // Type
-import { TButtonSize } from "../../../types/Button/Size";
-import { TButtonText } from "../../../types/Button/Text";
-import { VARIANT } from "../../../types/Variant";
+import { TButtonSize, TButtonText, VARIANT } from "../../../types";
 
 export interface CustomBtnProps
   extends ButtonHTMLAttributes<HTMLButtonElement> {
@@ -18,7 +16,7 @@ export interface CustomBtnProps
   typeText?: TButtonText;
 }
 
-const Button: React.FC<CustomBtnProps> = memo(
+const Button: FC<CustomBtnProps> = memo(
   ({
     className,
     children,
@@ -26,7 +24,7 @@ const Button: React.FC<CustomBtnProps> = memo(
     size,
     typeText,
     ...prop
-  }): React.ReactElement => {
+  }): ReactElement => {
     return (
       <button
         {...prop}

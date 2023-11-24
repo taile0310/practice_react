@@ -1,11 +1,18 @@
 // CSS class
 import "./Modal.css";
 
+// Ract
 import { FC, FormEvent, ReactElement } from "react";
+
+// Component
 import { Button, Heading, Input, Label } from "..";
-import { VARIANT } from "../../types/Variant";
-import { useToggle } from "../../stores/useToggle";
-import useFetch from "../../hooks/useFetch";
+
+// Custom hooks
+import { useFetch } from "../../hooks";
+
+// Type and Store
+import { VARIANT } from "../../types";
+import { useToggle } from "../../stores";
 
 const Modal: FC = (): ReactElement => {
   const {

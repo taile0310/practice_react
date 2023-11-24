@@ -2,13 +2,10 @@
 import useSWRInfinite from "swr/infinite";
 
 // Helper and Constant
-import { fetchData } from "../helpers/FetchData";
 import { BASE_URL } from "../constants/BaseUrl";
-import { deleteProduct } from "../helpers/RemoveProduct";
-import { updateProduct } from "../helpers/UpdateProduct";
-import { useToggle } from "../stores/useToggle";
-import { addProduct } from "../helpers/AddProduct";
+import { useToggle } from "../stores/useToggleStore";
 import { CustomProductProps } from "../types/Product";
+import { addProduct, deleteProduct, fetchData, updateProduct } from "../helpers";
 
 const useFetch = () => {
   const { inputValues } = useToggle();

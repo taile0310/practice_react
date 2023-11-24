@@ -1,15 +1,13 @@
 // React
-import React, { memo } from "react";
+import { FC, ReactElement, memo } from "react";
 
 type TError = {
   className?: string;
   content: string;
 };
 
-const Error: React.FC<TError> = memo(
-  ({ className, content }): React.ReactElement => {
-    return <p className={className}>{content}</p>;
-  }
-);
+const Error: FC<TError> = memo(({ className, content }): ReactElement => {
+  return <p className={className}>{content}</p>;
+});
 
 export default Error;

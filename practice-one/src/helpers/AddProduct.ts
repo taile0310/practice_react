@@ -13,6 +13,6 @@ export const addProduct = async (addNewProduct: CustomProductProps) => {
     }
     return true;
   } catch (error) {
-    throw new Error("Error adding product");
+    return false;
   }
 };

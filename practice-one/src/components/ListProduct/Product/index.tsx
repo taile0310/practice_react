@@ -1,16 +1,12 @@
 // React hooks
-import { memo, useContext } from "react";
+import { FC, ReactElement, memo } from "react";
 
-// Image
-import { Button, Image } from "../..";
+// Component
+import { Button, Image, Modal } from "../..";
 
 // Stores and Type
-import { CartContext } from "../../../stores/contexts/CartContext";
-import { CustomProductProps } from "../../../types/Product";
-import { VARIANT } from "../../../types/Variant";
-import { useToggle } from "../../../stores/useToggle";
-import { TOGGLE } from "../../../types/Toggle";
-import Modal from "../../Modal";
+import { CustomProductProps, TOGGLE, VARIANT } from "../../../types";
+import { useCartStore, useToggle } from "../../../stores";
 
 type TProductProps = {
   id: string;
@@ -21,11 +17,9 @@ type TProductProps = {
   handleRemoveProduct: (productId: string) => void;
 };
 
-// Component Product
-const Product = memo(
-  ({ id, image, name, product, width, handleRemoveProduct }: TProductProps) => {
-    const { isInCart, handleAddToCart, handleRemoveFromCart } =
-      useContext(CartContext);
+const Product: FC<TProductProps> = memo(
+  ({ id, image, name, product, width, handleRemoveProduct }): ReactElement => {
+    const { isInCart, handleAddToCart, handleRemoveFromCart } = useCartStore();
     const { toggle, handleToggle } = useToggle();
     const widthProduct = {
       width: `${width}px`,

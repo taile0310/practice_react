@@ -3,20 +3,16 @@ import { Outlet } from "react-router-dom";
 
 // Components
 import { ErrorBoundary, Footer, Navbar } from "../components";
+import { FC, ReactElement } from "react";
 
-// Stores
-import { CartProvider } from "../stores/contexts/CartContext";
-
-const MainLayout = () => {
+const MainLayout: FC = (): ReactElement => {
   return (
     <div className="container-page">
       <div className="component-layout font-family">
-        <CartProvider>
-          <ErrorBoundary>
-            <Navbar />
-          </ErrorBoundary>
-          <Outlet />
-        </CartProvider>
+        <ErrorBoundary>
+          <Navbar />
+        </ErrorBoundary>
+        <Outlet />
       </div>
       <div className="mg-footer">
         <Footer />

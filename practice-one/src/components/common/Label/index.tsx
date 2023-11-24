@@ -1,5 +1,5 @@
 // React
-import React, { LabelHTMLAttributes } from "react";
+import { FC, LabelHTMLAttributes, ReactElement } from "react";
 
 export interface CustomLabelProps
   extends LabelHTMLAttributes<HTMLLabelElement> {
@@ -7,10 +7,10 @@ export interface CustomLabelProps
   titleLabel: string;
 }
 
-const Label: React.FC<CustomLabelProps> = ({
+const Label: FC<CustomLabelProps> = ({
   className,
   titleLabel,
-}): React.ReactElement => {
+}): ReactElement => {
   return (
     <>
       <label className={className}>{titleLabel}</label>

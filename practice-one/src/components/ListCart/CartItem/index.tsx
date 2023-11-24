@@ -1,9 +1,14 @@
-import { memo, useContext } from "react";
-import { CartContext } from "../../../stores/contexts/CartContext";
+// React
+import { FC, ReactElement, memo } from "react";
+
+// Component
+import { DetailDish, Image, QuantitySelector } from "../..";
+
+// Store
+import { useCartStore } from "../../../stores";
+
+// Image
 import { Remove } from "../../../assets/image";
-import DetailDish from "../DetailDish";
-import QuantitySelector from "../QuantitySelector";
-import { Image } from "../..";
 
 type TCartItemProps = {
   id: string;
@@ -15,7 +20,7 @@ type TCartItemProps = {
   listStyle?: string;
 };
 
-const CartItem = memo(
+const CartItem: FC<TCartItemProps> = memo(
   ({
     id,
     name,
@@ -24,8 +29,8 @@ const CartItem = memo(
     quantity,
     className,
     listStyle = "none",
-  }: TCartItemProps) => {
-    const { handleRemoveFromCart } = useContext(CartContext);
+  }): ReactElement => {
+    const { handleRemoveFromCart } = useCartStore();
     const style = {
       listStyle: `${listStyle}`,
     };
