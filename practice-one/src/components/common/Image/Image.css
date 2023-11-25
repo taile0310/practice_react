@@ -20,3 +20,11 @@
   width: 20px;
   height: 20px;
 }
+
+.icon-control {
+  width: 25px;
+  height: 25px;
+}
+.icon-control:hover {
+  transform: scale(1.1);
+}

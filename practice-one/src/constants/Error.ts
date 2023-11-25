@@ -7,7 +7,6 @@ export const ERROR_MESSAGES = {
   ADDRESS: "Invalid address format, Ex: 10 Nguyen Van Linh",
   FIELD_EMPTY: "This field cannot be left blank",
 };
-
 export const NOTIFY = {
   EMPTY:
     "Your shopping cart is empty, cannot checkout. Please choose your dish",
@@ -17,4 +16,6 @@ export const NOTIFY = {
   REMOVE_FROM_CART: "Are you sure to remove this product from your cart?",
   ADD_FAILD: "Adding failed products",
   REMOVE_FAILD: "Remove failed products",
+  ADD_PRODUCT: "Do you want to add this product?",
+  UPDATE_PRODUCT: "Do you want to update this product?",
 };

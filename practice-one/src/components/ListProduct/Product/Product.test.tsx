@@ -16,6 +16,8 @@ describe("Product Component", () => {
       quantity: 1,
     },
     handleRemoveProduct: jest.fn(),
+    handleAddToCart: jest.fn(),
+    handleRemoveFromCart: jest.fn(),
   };
 
   it("Render component correctly", () => {

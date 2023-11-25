@@ -1,13 +1,11 @@
 // React hooks
 import { FC, ReactElement, memo } from "react";
-
 // Component
 import { Button, Image, Modal } from "../..";
-
 // Stores and Type
 import { CustomProductProps, TOGGLE, VARIANT } from "../../../types";
-import { useCartStore, useToggle } from "../../../stores";
-
+import { useCartStore, useToggleStore } from "../../../stores";
+import { Edit, TrashCan } from "../../../assets/image";
 type TProductProps = {
   id: string;
   name: string;
@@ -15,20 +13,29 @@ type TProductProps = {
   product: CustomProductProps;
   width?: number;
   handleRemoveProduct: (productId: string) => void;
+  handleAddToCart: (product: CustomProductProps) => void;
+  handleRemoveFromCart: (productId: string) => void;
 };
-
 const Product: FC<TProductProps> = memo(
-  ({ id, image, name, product, width, handleRemoveProduct }): ReactElement => {
-    const { isInCart, handleAddToCart, handleRemoveFromCart } = useCartStore();
-    const { toggle, handleToggle } = useToggle();
+  ({
+    id,
+    image,
+    name,
+    product,
+    width,
+    handleRemoveProduct,
+    handleAddToCart,
+    handleRemoveFromCart,
+  }): ReactElement => {
+    const { toggle, handleToggleUpdateProduct } = useToggleStore();
     const widthProduct = {
       width: `${width}px`,
     };
-
+    const { isInCart } = useCartStore();
     return (
       <li className="menu-item font-family" key={id} style={widthProduct}>
         <Image
-          className={`img-rectangle ${isInCart?.(id) ? "added-to-cart" : ""}`}
+          className={`img-rectangle ${isInCart?.(id) && "added-to-cart"}`}
           src={`${image}`}
           alt={name}
           onClick={() => {
@@ -43,16 +50,16 @@ const Product: FC<TProductProps> = memo(
             className="btn text-small"
             typeText="uppercase"
             variants={VARIANT.PRIMARY}
-            children="Remove"
+            children={<Image className="icon-control" src={TrashCan} />}
             onClick={() => handleRemoveProduct(id)}
           />
           <Button
             className="btn text-small"
             typeText="uppercase"
             variants={VARIANT.PRIMARY}
-            children="Edit"
+            children={<Image className="icon-control" src={Edit} />}
             onClick={() => {
-              handleToggle(product);
+              handleToggleUpdateProduct(product);
             }}
           />
         </div>
@@ -61,5 +68,4 @@ const Product: FC<TProductProps> = memo(
     );
   }
 );
-
 export default Product;

@@ -1,6 +1,5 @@
 import { BASE_URL } from "../constants/BaseUrl";
 import { CustomProductProps } from "../types/Product";
-
 export const updateProduct = async (
   productId: string,
   updatedProductData: CustomProductProps
@@ -11,11 +10,11 @@ export const updateProduct = async (
       headers: { "content-type": "application/json" },
       body: JSON.stringify(updatedProductData),
     });
-    if (!res.ok) {
-      throw new Error("Failed to delete product");
+    if (res.ok) {
+      return true;
     }
-    return true;
-  } catch (error) {
     return false;
+  } catch (error) {
+    alert("Failed to update product");
   }
 };
