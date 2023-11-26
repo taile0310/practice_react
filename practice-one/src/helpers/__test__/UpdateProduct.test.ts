@@ -6,7 +6,7 @@ describe("updateProduct", () => {
   const updatedProductData = {
     id: "1",
     name: "Yin & Yang",
-    image: "images",
+    image: "https://sushi-restaurant-phi.vercel.app/item1.fb0267f5.jpg",
     price: 25,
   };
 

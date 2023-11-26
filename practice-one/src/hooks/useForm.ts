@@ -122,18 +122,16 @@ const useForm = () => {
   }, [values]);
 
   // Method check whether the payment process was successful or not
-  const handleCheckoutSuccessful = () =>
-    // event: React.MouseEvent<HTMLAnchorElement, MouseEvent>
-    {
-      const formIsValid = validateForm();
-      if (formIsValid) {
-        alert(NOTIFY.SUCCESS);
-        clearCarts();
-        navigate("/");
-      } else {
-        alert(NOTIFY.FAILD);
-      }
-    };
+  const handleCheckoutSuccessful = () => {
+    const formIsValid = validateForm();
+    if (formIsValid) {
+      alert(NOTIFY.SUCCESS);
+      clearCarts();
+      navigate("/");
+    } else {
+      alert(NOTIFY.FAILD);
+    }
+  };
 
   return {
     values,

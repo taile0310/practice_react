@@ -7,17 +7,18 @@ describe("Product Component", () => {
   const props = {
     id: "1",
     name: "Yin & Yang",
-    image: "",
+    image: "https://sushi-restaurant-phi.vercel.app/item1.fb0267f5.jpg",
     product: {
       id: "2",
       name: "Panakes",
-      image: "",
+      image: "https://sushi-restaurant-phi.vercel.app/item2.fb0267f5.jpg",
       price: 15,
       quantity: 1,
     },
     handleRemoveProduct: jest.fn(),
     handleAddToCart: jest.fn(),
     handleRemoveFromCart: jest.fn(),
+    handleToggleUpdateProduct: jest.fn(),
   };
 
   it("Render component correctly", () => {

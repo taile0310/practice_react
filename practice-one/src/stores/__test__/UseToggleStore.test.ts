@@ -3,6 +3,12 @@ import { useToggleStore } from "..";
 import { TOGGLE } from "../../types";
 
 describe("useToggleStore", () => {
+  const product = {
+    id: "1",
+    name: "Yin & Yang",
+    image: "https://sushi-restaurant-phi.vercel.app/item1.fb0267f5.jpg",
+    price: 10,
+  };
   it("Initialize with default values", () => {
     const { result } = renderHook(() => useToggleStore());
 
@@ -22,29 +28,14 @@ describe("useToggleStore", () => {
     const { result } = renderHook(() => useToggleStore());
 
     act(() => {
-      result.current.handleToggleUpdateProduct({
-        id: "1",
-        name: "Product 1",
-        image: "image.jpg",
-        price: 10,
-      });
+      result.current.handleToggleUpdateProduct(product);
     });
 
     expect(result.current.toggle).toBe(TOGGLE.ON);
     expect(result.current.title).toBe("UPDATE PRODUCT");
     expect(result.current.btnSubmit).toBe("Save Changes");
-    expect(result.current.productInfo).toEqual({
-      id: "1",
-      name: "Product 1",
-      image: "image.jpg",
-      price: 10,
-    });
-    expect(result.current.inputValues).toEqual({
-      id: "1",
-      name: "Product 1",
-      image: "image.jpg",
-      price: 10,
-    });
+    expect(result.current.productInfo).toEqual(product);
+    expect(result.current.inputValues).toEqual(product);
   });
 
   it("Handle toggle for adding product", () => {

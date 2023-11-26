@@ -4,7 +4,7 @@ import { FC, ReactElement, memo } from "react";
 import { Button, Image, Modal } from "../..";
 // Stores and Type
 import { CustomProductProps, TOGGLE, VARIANT } from "../../../types";
-import { useCartStore, useToggleStore } from "../../../stores";
+import { useCartStore } from "../../../stores";
 import { Edit, TrashCan } from "../../../assets/image";
 type TProductProps = {
   id: string;
@@ -12,60 +12,57 @@ type TProductProps = {
   image: string;
   product: CustomProductProps;
   width?: number;
+  toggle?: TOGGLE;
   handleRemoveProduct: (productId: string) => void;
   handleAddToCart: (product: CustomProductProps) => void;
   handleRemoveFromCart: (productId: string) => void;
+  handleToggleUpdateProduct: (product: CustomProductProps | null) => void;
 };
-const Product: FC<TProductProps> = memo(
-  ({
-    id,
-    image,
-    name,
-    product,
-    width,
-    handleRemoveProduct,
-    handleAddToCart,
-    handleRemoveFromCart,
-  }): ReactElement => {
-    const { toggle, handleToggleUpdateProduct } = useToggleStore();
-    const widthProduct = {
-      width: `${width}px`,
-    };
-    const { isInCart } = useCartStore();
-    return (
-      <li className="menu-item font-family" key={id} style={widthProduct}>
-        <Image
-          className={`img-rectangle ${isInCart?.(id) && "added-to-cart"}`}
-          src={`${image}`}
-          alt={name}
-          onClick={() => {
-            isInCart?.(id)
-              ? handleRemoveFromCart(id)
-              : handleAddToCart(product);
-          }}
+const Product: FC<TProductProps> = ({
+  id,
+  image,
+  name,
+  product,
+  width,
+  toggle,
+  handleRemoveProduct,
+  handleAddToCart,
+  handleRemoveFromCart,
+  handleToggleUpdateProduct,
+}): ReactElement => {
+  const widthProduct = {
+    width: `${width}px`,
+  };
+  const { isInCart } = useCartStore();
+  return (
+    <li className="menu-item font-family" style={widthProduct}>
+      <Image
+        className={`img-rectangle ${isInCart?.(id) && "added-to-cart"}`}
+        src={`${image}`}
+        alt={name}
+        onClick={() => {
+          isInCart?.(id) ? handleRemoveFromCart(id) : handleAddToCart(product);
+        }}
+      />
+      <span className="text-small">{name}</span>
+      <div className="handle-btn">
+        <Button
+          className="btn text-small"
+          typeText="uppercase"
+          variants={VARIANT.PRIMARY}
+          children={<Image className="icon-control" src={TrashCan} />}
+          onClick={() => handleRemoveProduct(id)}
         />
-        <span className="text-small">{name}</span>
-        <div className="handle-btn">
-          <Button
-            className="btn text-small"
-            typeText="uppercase"
-            variants={VARIANT.PRIMARY}
-            children={<Image className="icon-control" src={TrashCan} />}
-            onClick={() => handleRemoveProduct(id)}
-          />
-          <Button
-            className="btn text-small"
-            typeText="uppercase"
-            variants={VARIANT.PRIMARY}
-            children={<Image className="icon-control" src={Edit} />}
-            onClick={() => {
-              handleToggleUpdateProduct(product);
-            }}
-          />
-        </div>
-        {toggle === TOGGLE.ON && <Modal />}
-      </li>
-    );
-  }
-);
-export default Product;
+        <Button
+          className="btn text-small"
+          typeText="uppercase"
+          variants={VARIANT.PRIMARY}
+          children={<Image className="icon-control" src={Edit} />}
+          onClick={() => handleToggleUpdateProduct(product)}
+        />
+      </div>
+      {toggle === TOGGLE.ON && <Modal />}
+    </li>
+  );
+};
+export default memo(Product);

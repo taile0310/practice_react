@@ -1,7 +1,7 @@
 // CSS class
 import "./Modal.css";
 // Ract
-import { FC, FormEvent, ReactElement } from "react";
+import { FC, FormEvent, ReactElement, memo } from "react";
 // Component
 import { Button, Heading, Input, Label } from "..";
 // Custom hooks
@@ -94,4 +94,4 @@ const Modal: FC = (): ReactElement => {
     </form>
   );
 };
-export default Modal;
+export default memo(Modal);

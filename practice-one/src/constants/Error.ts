@@ -18,4 +18,5 @@ export const NOTIFY = {
   REMOVE_FAILD: "Remove failed products",
   ADD_PRODUCT: "Do you want to add this product?",
   UPDATE_PRODUCT: "Do you want to update this product?",
+  HANDLE_SUCCESS: "Successful manipulation !",
 };

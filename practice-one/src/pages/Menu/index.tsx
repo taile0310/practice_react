@@ -1,5 +1,5 @@
 // React Hook
-import { FC, ReactElement, Suspense, lazy } from "react";
+import { FC, ReactElement, Suspense, lazy, memo } from "react";
 
 // Component
 import { Loading } from "../../components";
@@ -20,4 +20,4 @@ const Menu: FC = (): ReactElement => {
   );
 };
 
-export default Menu;
+export default memo(Menu);

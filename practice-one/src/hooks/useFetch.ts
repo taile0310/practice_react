@@ -36,23 +36,29 @@ const useFetch = () => {
     !isFull && setSize(size + 1);
     await mutate(data);
   };
+
   const handleRemoveProduct = async (productId: string) => {
     await deleteProduct(productId);
     await mutate();
+    alert(NOTIFY.HANDLE_SUCCESS);
   };
+
   const handleUpdateProduct = async (productId: string) => {
     const confirmed = window.confirm(NOTIFY.UPDATE_PRODUCT);
     if (confirmed) {
       await updateProduct(productId, inputValues);
       await mutate();
+      alert(NOTIFY.HANDLE_SUCCESS);
     }
   };
+
   const handleAddProduct = async (product: CustomProductProps) => {
     product = inputValues;
     const confirmed = window.confirm(NOTIFY.ADD_PRODUCT);
     if (confirmed) {
       await addProduct(product);
       await mutate();
+      alert(NOTIFY.HANDLE_SUCCESS);
     }
   };
   return {

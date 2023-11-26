@@ -2,7 +2,7 @@
 import "./FormCheckout.css";
 
 // React
-import { FC, ReactElement } from "react";
+import { FC, ReactElement, memo } from "react";
 
 // Components
 import { Card, Heading, Input, Label } from "..";
@@ -90,4 +90,4 @@ const FormCheckout: FC = (): ReactElement => {
   );
 };
 
-export default FormCheckout;
+export default memo(FormCheckout);

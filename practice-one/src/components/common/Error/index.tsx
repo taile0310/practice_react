@@ -6,8 +6,8 @@ type TError = {
   content: string;
 };
 
-const Error: FC<TError> = memo(({ className, content }): ReactElement => {
+const Error: FC<TError> = ({ className, content }): ReactElement => {
   return <p className={className}>{content}</p>;
-});
+};
 
-export default Error;
+export default memo(Error);

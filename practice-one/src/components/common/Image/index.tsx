@@ -8,10 +8,8 @@ interface CustomImageProps extends ImgHTMLAttributes<HTMLImageElement> {
   className?: string;
 }
 
-const Image: FC<CustomImageProps> = memo(
-  ({ className, ...prop }): ReactElement => {
-    return <img className={className} {...prop} />;
-  }
-);
+const Image: FC<CustomImageProps> = ({ className, ...prop }): ReactElement => {
+  return <img className={className} {...prop} />;
+};
 
-export default Image;
+export default memo(Image);

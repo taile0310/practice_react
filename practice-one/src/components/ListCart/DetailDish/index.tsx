@@ -7,15 +7,17 @@ type TDetailDish = {
   className?: string;
 };
 
-const DetailDish: FC<TDetailDish> = memo(
-  ({ name, price, className }): ReactElement => {
-    return (
-      <div className={`detail-dish ${className}`}>
-        <span className="text-medium">{name}</span>
-        <span className="text-price">${price}.00</span>
-      </div>
-    );
-  }
-);
+const DetailDish: FC<TDetailDish> = ({
+  name,
+  price,
+  className,
+}): ReactElement => {
+  return (
+    <div className={`detail-dish ${className}`}>
+      <span className="text-medium">{name}</span>
+      <span className="text-price">${price}.00</span>
+    </div>
+  );
+};
 
-export default DetailDish;
+export default memo(DetailDish);
