@@ -31,11 +31,8 @@ export const useCartStore = create<TState & TActions>((set, get) => ({
         set((state) => {
           const newState = { ...state, carts: [...state.carts, product] };
           setListCart(newState.carts);
-          console.log(newState.carts, "huhuhu");
-
           return newState;
         });
-        console.log("After add, carts:", get().carts);
       } catch (error) {
         alert(NOTIFY.ADD_FAILD);
       }
@@ -80,8 +77,6 @@ export const useCartStore = create<TState & TActions>((set, get) => ({
 
   isInCart: (productId: string): CustomProductProps | undefined => {
     const product = get().carts.find((p) => p.id === productId);
-    console.log("Carts:", get().carts);
-    console.log("isInCart result:", product);
     return product;
   },
 
