@@ -1,20 +1,15 @@
 // CSS
 import "./ListProduct.css";
-
 // React
 import { FC, ReactElement, memo } from "react";
-
 // Component
 import { Button, Error, ErrorBoundary, Heading, Loading, Product } from "..";
-
 // Type and Store
 import { CustomProductProps, VARIANT } from "../../types";
 import { ERROR_MESSAGES } from "../../constants";
-import { useToggle } from "../../stores";
-
+import { useCartStore, useToggleStore } from "../../stores";
 // Hooks custom
 import { useFetch } from "../../hooks";
-
 export type TListProduct = {
   handleRemoveProduct: (productId: string) => void;
 };
@@ -23,26 +18,25 @@ const ListProduct: FC<TListProduct> = memo(
   ({ handleRemoveProduct }): ReactElement => {
     const { data, isLoading, error, isFull, handleShowMorePoducts } =
       useFetch();
-    const { handleToggleAddProduct } = useToggle();
-
+    const { handleToggleAddProduct } = useToggleStore();
+    const { handleAddToCart, handleRemoveFromCart } = useCartStore();
     return (
       <section className="section-menu font-family">
         <Heading className="text-h2 dash" element="h2">
           Sushi food
         </Heading>
-
-        {!isLoading && (
-          <Button
-            className="btn secondary-text-btn"
-            variants={VARIANT.SECONDARY}
-            size="sm"
-            typeText="uppercase"
-            children="Add Product"
-            onClick={handleToggleAddProduct}
-            style={{ width: "fit-content", alignSelf: "end" }}
-          />
-        )}
-
+        {!isLoading ||
+          (error && (
+            <Button
+              className="btn secondary-text-btn"
+              variants={VARIANT.SECONDARY}
+              size="sm"
+              typeText="uppercase"
+              children="Add Product"
+              onClick={handleToggleAddProduct}
+              style={{ width: "fit-content", alignSelf: "end" }}
+            />
+          ))}
         <ul className="list-menu">
           {data?.map((page: CustomProductProps[]) => {
             return page.map((product: CustomProductProps) => {
@@ -55,6 +49,8 @@ const ListProduct: FC<TListProduct> = memo(
                     image={image}
                     product={product}
                     handleRemoveProduct={handleRemoveProduct}
+                    handleRemoveFromCart={handleRemoveFromCart}
+                    handleAddToCart={handleAddToCart}
                   />
                 </ErrorBoundary>
               );
@@ -82,5 +78,4 @@ const ListProduct: FC<TListProduct> = memo(
     );
   }
 );
-
 export default ListProduct;

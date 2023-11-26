@@ -1,6 +1,5 @@
 import { BASE_URL } from "../constants/BaseUrl";
 import { CustomProductProps } from "../types/Product";
-
 export const addProduct = async (addNewProduct: CustomProductProps) => {
   try {
     const res = await fetch(`${BASE_URL}`, {
@@ -8,11 +7,11 @@ export const addProduct = async (addNewProduct: CustomProductProps) => {
       headers: { "content-type": "application/json" },
       body: JSON.stringify(addNewProduct),
     });
-    if (!res.ok) {
-      throw new Error("Failed to add product");
+    if (res.ok) {
+      return true;
     }
-    return true;
-  } catch (error) {
     return false;
+  } catch (error) {
+    alert("Failed to add product");
   }
 };

@@ -6,3 +6,5 @@ export { default as Checkout } from "./place.svg";
 export { default as Back } from "./exit.svg";
 export { default as Remove } from "./remove-icon.svg";
 export { default as Spinner } from "./spinner.gif";
+export { default as TrashCan } from "./trash-can.svg";
+export { default as Edit } from "./edit.svg";

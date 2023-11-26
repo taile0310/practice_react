@@ -1,7 +1,6 @@
 import { create } from "zustand";
 import { TOGGLE } from "../types/Toggle";
 import { CustomProductProps } from "../types/Product";
-
 type TToggleState = {
   toggle: TOGGLE;
   title: string;
@@ -13,12 +12,11 @@ type TToggleState = {
     image: string;
     price: number;
   };
-  handleToggle: (product: CustomProductProps | null) => void;
+  handleToggleUpdateProduct: (product: CustomProductProps | null) => void;
   handleToggleAddProduct: () => void;
   handleChangeInput: (field: string, value: string | number) => void;
 };
-
-export const useToggle = create<TToggleState>()((set) => ({
+export const useToggleStore = create<TToggleState>()((set) => ({
   toggle: TOGGLE.OFF,
   title: "",
   btnSubmit: "",
@@ -29,7 +27,7 @@ export const useToggle = create<TToggleState>()((set) => ({
     image: "",
     price: 0,
   },
-  handleToggle: (product) =>
+  handleToggleUpdateProduct: (product) =>
     set((state) => ({
       toggle: state.toggle === TOGGLE.OFF ? TOGGLE.ON : TOGGLE.OFF,
       productInfo: product,
@@ -40,7 +38,6 @@ export const useToggle = create<TToggleState>()((set) => ({
         ...product,
       },
     })),
-
   handleToggleAddProduct: () =>
     set((state) => ({
       title: "ADD PRODUCT",
@@ -53,7 +50,6 @@ export const useToggle = create<TToggleState>()((set) => ({
         price: 0,
       },
     })),
-
   handleChangeInput: (field, value) =>
     set((state) => ({
       inputValues: {

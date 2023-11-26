@@ -16,6 +16,7 @@ type TActions = {
   isInCart: (productId: string) => CustomProductProps | undefined;
   getLength: () => number;
   handleCheckout: (event: React.MouseEvent<HTMLAnchorElement>) => void;
+  clearCarts: () => void;
 };
 
 export const useCartStore = create<TState & TActions>((set, get) => ({
@@ -75,7 +76,8 @@ export const useCartStore = create<TState & TActions>((set, get) => ({
   },
 
   isInCart: (productId: string): CustomProductProps | undefined => {
-    return get().carts.find((product) => product.id === productId);
+    const product = get().carts.find((p) => p.id === productId);
+    return product;
   },
 
   getLength: (): number => get().carts.length,
@@ -85,5 +87,10 @@ export const useCartStore = create<TState & TActions>((set, get) => ({
       alert(NOTIFY.EMPTY);
       event.preventDefault();
     }
+  },
+
+  clearCarts: (): void => {
+    localStorage.clear();
+    set({ carts: [] });
   },
 }));

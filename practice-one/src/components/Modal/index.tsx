@@ -1,35 +1,34 @@
 // CSS class
 import "./Modal.css";
-
 // Ract
 import { FC, FormEvent, ReactElement } from "react";
-
 // Component
 import { Button, Heading, Input, Label } from "..";
-
 // Custom hooks
 import { useFetch } from "../../hooks";
-
 // Type and Store
 import { VARIANT } from "../../types";
-import { useToggle } from "../../stores";
-
+import { useToggleStore } from "../../stores";
 const Modal: FC = (): ReactElement => {
   const {
     toggle,
     inputValues,
     title,
     btnSubmit,
-    handleToggle,
+    handleToggleUpdateProduct,
     handleChangeInput,
-  } = useToggle();
-
+  } = useToggleStore();
   const { handleUpdateProduct, handleAddProduct } = useFetch();
-
   return (
     <form
       className={`toggle-${toggle} form-container`}
-      onSubmit={(e: FormEvent) => e.preventDefault()}>
+      onSubmit={(e: FormEvent) => {
+        e.preventDefault();
+        btnSubmit === "Save Changes"
+          ? (handleUpdateProduct(inputValues.id),
+            handleToggleUpdateProduct(null))
+          : (handleAddProduct(inputValues), handleToggleUpdateProduct(null));
+      }}>
       <div className="modal-header">
         <Heading className="text-h4" element="h4">
           {title}
@@ -49,7 +48,6 @@ const Modal: FC = (): ReactElement => {
             onChange={(e) => handleChangeInput("name", e.target.value)}
           />
         </div>
-
         <div className="modal-content">
           <div className="modal-label">
             <Label htmlFor="image" className="text-small" titleLabel="Image" />
@@ -63,7 +61,6 @@ const Modal: FC = (): ReactElement => {
             onChange={(e) => handleChangeInput("image", e.target.value)}
           />
         </div>
-
         <div className="modal-content">
           <div className="modal-label">
             <Label htmlFor="price" className="text-small" titleLabel="Price" />
@@ -78,7 +75,6 @@ const Modal: FC = (): ReactElement => {
           />
         </div>
       </div>
-
       <div className="modal-footer">
         <Button
           className="text-small"
@@ -86,22 +82,16 @@ const Modal: FC = (): ReactElement => {
           typeText="uppercase"
           children={btnSubmit}
           type="submit"
-          onClick={() => {
-            btnSubmit === "Save Changes"
-              ? (handleUpdateProduct(inputValues.id), handleToggle(null))
-              : (handleAddProduct(inputValues), handleToggle(null));
-          }}
         />
         <Button
           className="text-small"
           variants={VARIANT.TRANSPARENT}
           typeText="uppercase"
           children="Close"
-          onClick={() => handleToggle(null)}
+          onClick={() => handleToggleUpdateProduct(null)}
         />
       </div>
     </form>
   );
 };
-
 export default Modal;

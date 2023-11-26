@@ -7,6 +7,7 @@ import {
   isValidPhone,
 } from "../helpers/Validations";
 import { useNavigate } from "react-router-dom";
+import { useCartStore } from "../stores";
 
 type FormValues = {
   name: string;
@@ -16,6 +17,7 @@ type FormValues = {
 };
 
 const useForm = () => {
+  const { clearCarts } = useCartStore();
   const navigate = useNavigate();
   const [values, setValues] = useState<FormValues>({
     name: "",
@@ -120,16 +122,18 @@ const useForm = () => {
   }, [values]);
 
   // Method check whether the payment process was successful or not
-  const handleCheckoutSuccessful = () => {
-    const formIsValid = validateForm();
-    if (formIsValid) {
-      alert(NOTIFY.SUCCESS);
-      localStorage.clear();
-      navigate("/");
-    } else {
-      alert(NOTIFY.FAILD);
-    }
-  };
+  const handleCheckoutSuccessful = () =>
+    // event: React.MouseEvent<HTMLAnchorElement, MouseEvent>
+    {
+      const formIsValid = validateForm();
+      if (formIsValid) {
+        alert(NOTIFY.SUCCESS);
+        clearCarts();
+        navigate("/");
+      } else {
+        alert(NOTIFY.FAILD);
+      }
+    };
 
   return {
     values,
