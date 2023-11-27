@@ -9,8 +9,8 @@ describe("CartItem Component", () => {
     image: "https://sushi-restaurant-phi.vercel.app/item2.fb0267f5.jpg",
     price: 25,
     quantity: 1,
-    handleRemoveFromCart: jest.fn(),
-    handleUpdateQuantity: jest.fn(),
+    onRemoveFromCart: jest.fn(),
+    onUpdateQuantity: jest.fn(),
   };
   it("Render component correctly", () => {
     const container = render(<CartItem {...props} />);

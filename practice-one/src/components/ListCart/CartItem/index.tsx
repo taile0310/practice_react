@@ -1,5 +1,5 @@
 // React
-import { FC, ReactElement, memo } from "react";
+import { FC, ReactElement, memo, useCallback } from "react";
 
 // Component
 import { DetailDish, Image, QuantitySelector } from "../..";
@@ -16,8 +16,8 @@ type TCartItemProps = {
   quantity: number;
   className?: string;
   listStyle?: string;
-  handleRemoveFromCart: (id: string) => void;
-  handleUpdateQuantity: (id: string, action: TAction) => void;
+  onRemoveFromCart: (id: string) => void;
+  onUpdateQuantity: (id: string, action: TAction) => void;
 };
 
 const CartItem: FC<TCartItemProps> = ({
@@ -28,12 +28,17 @@ const CartItem: FC<TCartItemProps> = ({
   quantity,
   className,
   listStyle = "none",
-  handleRemoveFromCart,
-  handleUpdateQuantity,
+  onRemoveFromCart,
+  onUpdateQuantity,
 }): ReactElement => {
   const style = {
     listStyle: `${listStyle}`,
   };
+
+  const handleRemoveFromCart = useCallback(() => {
+    onRemoveFromCart(id);
+  }, [id, onRemoveFromCart]);
+
   return (
     <li className={className} style={style}>
       <div className="cart-item">
@@ -45,13 +50,13 @@ const CartItem: FC<TCartItemProps> = ({
           <QuantitySelector
             id={id}
             quantity={quantity}
-            handleUpdateQuantity={handleUpdateQuantity}
+            onUpdateQuantity={onUpdateQuantity}
           />
           <div className="btn-transparent btn-remove">
             <Image
               src={Remove}
               className="icon-remove"
-              onClick={() => handleRemoveFromCart(id)}
+              onClick={handleRemoveFromCart}
             />
           </div>
         </div>

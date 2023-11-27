@@ -1,7 +1,7 @@
 // CSS
 import "./ListProduct.css";
 // React
-import { FC, ReactElement, memo } from "react";
+import { FC, ReactElement, memo, useCallback } from "react";
 // Component
 import { Button, Error, ErrorBoundary, Heading, Loading, Product } from "..";
 // Type and Store
@@ -11,18 +11,29 @@ import { useCartStore, useToggleStore } from "../../stores";
 // Hooks custom
 import { useFetch } from "../../hooks";
 
-export type TListProduct = {
-  handleRemoveProduct: (productId: string) => void;
-};
-
 // Component ListProduct
-const ListProduct: FC<TListProduct> = ({
-  handleRemoveProduct,
-}): ReactElement => {
-  const { data, isLoading, error, isFull, handleShowMorePoducts } = useFetch();
-  const { toggle, handleToggleUpdateProduct, handleToggleAddProduct } =
+const ListProduct: FC = (): ReactElement => {
+  const {
+    data,
+    isLoading,
+    error,
+    isFull,
+    handleShowMoreProducts,
+    handleRemoveProduct,
+  } = useFetch();
+
+  const { toggle, handleToggleUpdateProduct, onToggleAddProduct } =
     useToggleStore();
+
   const { handleAddToCart, handleRemoveFromCart } = useCartStore();
+
+  const handleToggleAddProduct = useCallback(() => {
+    onToggleAddProduct();
+  }, [onToggleAddProduct]);
+
+  const handleShowMore = useCallback(() => {
+    handleShowMoreProducts();
+  }, [handleShowMoreProducts]);
 
   return (
     <section className="section-menu font-family overlay">
@@ -53,10 +64,10 @@ const ListProduct: FC<TListProduct> = ({
                   image={image}
                   product={product}
                   toggle={toggle}
-                  handleRemoveProduct={handleRemoveProduct}
-                  handleRemoveFromCart={handleRemoveFromCart}
-                  handleAddToCart={handleAddToCart}
-                  handleToggleUpdateProduct={handleToggleUpdateProduct}
+                  onRemoveProduct={handleRemoveProduct}
+                  onRemoveFromCart={handleRemoveFromCart}
+                  onAddToCart={handleAddToCart}
+                  onToggleUpdateProduct={handleToggleUpdateProduct}
                 />
               </ErrorBoundary>
             );
@@ -74,7 +85,7 @@ const ListProduct: FC<TListProduct> = ({
         <Button
           children="Load more"
           className={`btn-item secondary-text-btn ${isFull && "isFull"}`}
-          onClick={handleShowMorePoducts}
+          onClick={handleShowMore}
           variants={VARIANT.SECONDARY}
           size="sm"
           typeText="uppercase"

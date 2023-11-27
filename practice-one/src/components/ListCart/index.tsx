@@ -40,8 +40,8 @@ const ListCart: FC<ListCartProps> = ({ className }): ReactElement => {
                   image={image}
                   price={price}
                   quantity={quantity!}
-                  handleRemoveFromCart={handleRemoveFromCart}
-                  handleUpdateQuantity={handleUpdateQuantity}
+                  onRemoveFromCart={handleRemoveFromCart}
+                  onUpdateQuantity={handleUpdateQuantity}
                 />
               </ErrorBoundary>
             );

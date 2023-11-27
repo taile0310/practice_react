@@ -1,23 +1,20 @@
 // React Hook
-import { FC, ReactElement, Suspense, lazy, memo } from "react";
+import { FC, ReactElement, Suspense, lazy } from "react";
 
 // Component
 import { Loading } from "../../components";
 import ErrorBoundary from "../../components/ErrorBoundary";
-import useFetch from "../../hooks/useFetch";
 
 const ListProduct = lazy(() => import("../../components/ListProduct/index"));
 
 const Menu: FC = (): ReactElement => {
-  const { handleRemoveProduct } = useFetch();
-
   return (
     <Suspense fallback={<Loading />}>
       <ErrorBoundary>
-        <ListProduct handleRemoveProduct={handleRemoveProduct} />
+        <ListProduct />
       </ErrorBoundary>
     </Suspense>
   );
 };
 
-export default memo(Menu);
+export default Menu;

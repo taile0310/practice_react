@@ -1,12 +1,9 @@
 import { render } from "@testing-library/react";
-import ListProduct, { TListProduct } from ".";
+import ListProduct from ".";
 
 describe("ListProduct Component", () => {
   it("Render component correctly", () => {
-    const prop: TListProduct = {
-      handleRemoveProduct: jest.fn(),
-    };
-    const container = render(<ListProduct {...prop} />);
+    const container = render(<ListProduct />);
     expect(container).toMatchSnapshot();
   });
 });
