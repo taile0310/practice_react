@@ -1,7 +1,7 @@
 // CSS class
 import "./Modal.css";
 // Ract
-import { FC, FormEvent, ReactElement, memo } from "react";
+import { FC, FormEvent, ReactElement, memo, useCallback } from "react";
 // Component
 import { Button, Error, Heading, Input, Label } from "..";
 // Custom hooks
@@ -16,21 +16,37 @@ const Modal: FC = (): ReactElement => {
     title,
     btnSubmit,
     errors,
-    handleCloseModal,
-    handleChangeInput,
+    onCloseModal,
+    onChangeInput,
   } = useToggleStore();
 
   const { handleUpdateProduct, handleAddProduct } = useFetch();
 
+  const handleSubmit = useCallback(
+    (e: FormEvent) => {
+      e.preventDefault();
+      btnSubmit === "Save Changes"
+        ? handleUpdateProduct(inputValues.id)
+        : handleAddProduct(inputValues);
+    },
+    [inputValues, btnSubmit, handleUpdateProduct, handleAddProduct]
+  );
+
+  const handleChangeInput = useCallback(
+    (name: string, value: string) => {
+      onChangeInput(name, value);
+    },
+    [onChangeInput]
+  );
+
+  const handleCloseModal = useCallback(() => {
+    onCloseModal();
+  }, [onCloseModal]);
+
   return (
     <form
       className={`toggle-${toggle} form-container font-family`}
-      onSubmit={(e: FormEvent) => {
-        e.preventDefault();
-        btnSubmit === "Save Changes"
-          ? handleUpdateProduct(inputValues.id)
-          : handleAddProduct(inputValues);
-      }}>
+      onSubmit={handleSubmit}>
       <div className="modal-header">
         <Heading className="text-h4" element="h4">
           {title}
@@ -100,7 +116,7 @@ const Modal: FC = (): ReactElement => {
           variants={VARIANT.TRANSPARENT}
           typeText="uppercase"
           children="Close"
-          onClick={() => handleCloseModal()}
+          onClick={handleCloseModal}
         />
       </div>
     </form>

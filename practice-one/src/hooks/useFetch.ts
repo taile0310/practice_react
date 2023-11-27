@@ -12,7 +12,7 @@ import {
 import { ERROR_MESSAGES, NOTIFY } from "../constants";
 import { useCartStore, useToggleStore } from "../stores";
 const useFetch = () => {
-  const { inputValues, setErrors, handleCloseModal } = useToggleStore();
+  const { inputValues, setErrors, onCloseModal } = useToggleStore();
   const { handleRemoveFromCart, handleUpdateProductInCart } = useCartStore();
   // The getKey function is used to create a key for each data page, based on pageIndex and previousPageData.
   const getKey = (pageIndex: number) => {
@@ -33,7 +33,7 @@ const useFetch = () => {
   // Check to see if all products have been loaded or not
   const isFull = data?.[size - 1]?.length === 0;
   // Method loadmore
-  const handleShowMorePoducts = async () => {
+  const handleShowMoreProducts = async () => {
     !isFull && setSize(size + 1);
     await mutate(data);
   };
@@ -64,7 +64,7 @@ const useFetch = () => {
       await mutate();
       alert(NOTIFY.HANDLE_SUCCESS);
       handleUpdateProductInCart(productId, inputValues);
-      handleCloseModal();
+      onCloseModal();
     }
   };
 
@@ -86,7 +86,7 @@ const useFetch = () => {
       await addProduct(product);
       await mutate();
       alert(NOTIFY.HANDLE_SUCCESS);
-      handleCloseModal();
+      onCloseModal();
     }
   };
 
@@ -96,7 +96,7 @@ const useFetch = () => {
     error,
     isFull,
     mutate,
-    handleShowMorePoducts,
+    handleShowMoreProducts,
     handleRemoveProduct,
     handleUpdateProduct,
     handleAddProduct,

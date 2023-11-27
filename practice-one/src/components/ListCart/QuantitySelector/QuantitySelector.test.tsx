@@ -6,8 +6,8 @@ describe("HandleQuantity Component", () => {
     const props = {
       id: "1",
       quantity: 1,
-      handleUpdateQuantity: jest.fn(),
-      handleRemoveFromCart: jest.fn(),
+      onUpdateQuantity: jest.fn(),
+      onRemoveFromCart: jest.fn(),
     };
     const container = render(<QuantitySelector {...props} />);
     expect(container).toMatchSnapshot();

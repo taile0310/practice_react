@@ -15,10 +15,10 @@ describe("Product Component", () => {
       price: 15,
       quantity: 1,
     },
-    handleRemoveProduct: jest.fn(),
-    handleAddToCart: jest.fn(),
-    handleRemoveFromCart: jest.fn(),
-    handleToggleUpdateProduct: jest.fn(),
+    onRemoveProduct: jest.fn(),
+    onAddToCart: jest.fn(),
+    onRemoveFromCart: jest.fn(),
+    onToggleUpdateProduct: jest.fn(),
   };
 
   it("Render component correctly", () => {

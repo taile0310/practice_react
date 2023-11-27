@@ -19,15 +19,15 @@ type TToggleState = {
     price: string | null;
   };
 
-  handleCloseModal: () => void;
+  onCloseModal: () => void;
   setErrors: (errors: {
     name: string | null;
     image: string | null;
     price: string | null;
   }) => void;
   handleToggleUpdateProduct: (product: CustomProductProps | null) => void;
-  handleToggleAddProduct: () => void;
-  handleChangeInput: (field: string, value: string | number) => void;
+  onToggleAddProduct: () => void;
+  onChangeInput: (field: string, value: string | number) => void;
 };
 export const useToggleStore = create<TToggleState>()((set) => ({
   toggle: TOGGLE.OFF,
@@ -45,11 +45,12 @@ export const useToggleStore = create<TToggleState>()((set) => ({
     image: null,
     price: null,
   },
-  handleCloseModal: () =>
+  onCloseModal: () =>
     set((state) => ({
       ...state,
       toggle: state.toggle === TOGGLE.OFF ? TOGGLE.ON : TOGGLE.OFF,
     })),
+
   handleToggleUpdateProduct: (product) =>
     set((state) => ({
       toggle: state.toggle === TOGGLE.OFF ? TOGGLE.ON : TOGGLE.OFF,
@@ -66,7 +67,7 @@ export const useToggleStore = create<TToggleState>()((set) => ({
         price: null,
       },
     })),
-  handleToggleAddProduct: () =>
+  onToggleAddProduct: () =>
     set((state) => ({
       title: "ADD PRODUCT",
       btnSubmit: "Save Product",
@@ -83,7 +84,7 @@ export const useToggleStore = create<TToggleState>()((set) => ({
         price: null,
       },
     })),
-  handleChangeInput: (field, value) =>
+  onChangeInput: (field, value) =>
     set((state) => {
       const errors = { ...state.errors };
 

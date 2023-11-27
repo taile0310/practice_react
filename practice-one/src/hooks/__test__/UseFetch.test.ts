@@ -34,7 +34,7 @@ describe("useFetch", () => {
     const { result } = renderHook(() => useFetch());
 
     await act(async () => {
-      result.current.handleShowMorePoducts();
+      result.current.handleShowMoreProducts();
     });
     expect(result.current.data).toHaveLength(2);
   });

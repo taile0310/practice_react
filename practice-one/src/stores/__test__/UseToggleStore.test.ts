@@ -42,7 +42,7 @@ describe("useToggleStore", () => {
     const { result } = renderHook(() => useToggleStore());
 
     act(() => {
-      result.current.handleToggleAddProduct();
+      result.current.onToggleAddProduct();
     });
 
     expect(result.current.toggle).toBe(TOGGLE.ON);
@@ -61,7 +61,7 @@ describe("useToggleStore", () => {
     const { result } = renderHook(() => useToggleStore());
 
     act(() => {
-      result.current.handleChangeInput("name", "New Product");
+      result.current.onChangeInput("name", "New Product");
     });
 
     expect(result.current.inputValues.name).toBe("New Product");
