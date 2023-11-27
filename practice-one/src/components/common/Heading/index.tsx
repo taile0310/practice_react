@@ -13,20 +13,22 @@ export type HeadingProps = {
   children: React.ReactNode;
 };
 
-const Heading: FC<HeadingProps> = memo(
-  ({ element, children, className }): ReactElement => {
-    const headingStyles = {
-      fontSize: getFontSize(element),
-    };
+const Heading: FC<HeadingProps> = ({
+  element,
+  children,
+  className,
+}): ReactElement => {
+  const headingStyles = {
+    fontSize: getFontSize(element),
+  };
 
-    const HeadingTag = element;
+  const HeadingTag = element;
 
-    return (
-      <HeadingTag className={`${className} font-family`} style={headingStyles}>
-        {children}
-      </HeadingTag>
-    );
-  }
-);
+  return (
+    <HeadingTag className={`${className} font-family`} style={headingStyles}>
+      {children}
+    </HeadingTag>
+  );
+};
 
-export default Heading;
+export default memo(Heading);

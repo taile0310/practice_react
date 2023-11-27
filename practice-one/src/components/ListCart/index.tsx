@@ -16,8 +16,9 @@ export type ListCartProps = {
 };
 
 // Component ListCart
-const ListCart: FC<ListCartProps> = memo(({ className }): ReactElement => {
-  const { carts } = useCartStore();
+const ListCart: FC<ListCartProps> = ({ className }): ReactElement => {
+  const { carts, handleRemoveFromCart, handleUpdateQuantity } = useCartStore();
+
   return (
     <section className={`carts ${className}`}>
       <Heading className="text-h2 dash" element="h2">
@@ -33,11 +34,14 @@ const ListCart: FC<ListCartProps> = memo(({ className }): ReactElement => {
             return (
               <ErrorBoundary>
                 <CartItem
+                  key={id}
                   id={id}
                   name={name}
                   image={image}
                   price={price}
                   quantity={quantity!}
+                  handleRemoveFromCart={handleRemoveFromCart}
+                  handleUpdateQuantity={handleUpdateQuantity}
                 />
               </ErrorBoundary>
             );
@@ -61,6 +65,6 @@ const ListCart: FC<ListCartProps> = memo(({ className }): ReactElement => {
       </div>
     </section>
   );
-});
+};
 
-export default ListCart;
+export default memo(ListCart);

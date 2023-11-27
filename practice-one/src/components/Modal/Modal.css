@@ -1,5 +1,6 @@
 .toggle-off {
   display: none;
+  pointer-events: auto;
 }
 
 .toggle-on {
@@ -8,7 +9,6 @@
 
 .form-container {
   padding: 35px 20px;
-  height: 350px;
   display: flex;
   flex-direction: column;
   gap: 40px;
@@ -51,6 +51,12 @@
   display: flex;
   gap: 20px;
   justify-content: center;
+}
+
+.field-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .modal-footer > Button:hover {

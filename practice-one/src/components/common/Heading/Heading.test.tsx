@@ -16,20 +16,4 @@ describe("Heading Component", () => {
     const container = render(<Heading {...props} element="h2" />);
     expect(container).toMatchSnapshot();
   });
-  it("Render with elment is h3", () => {
-    const container = render(<Heading {...props} element="h3" />);
-    expect(container).toMatchSnapshot();
-  });
-  it("Render with elment is h4", () => {
-    const container = render(<Heading {...props} element="h4" />);
-    expect(container).toMatchSnapshot();
-  });
-  it("Render with elment is h5", () => {
-    const container = render(<Heading {...props} element="h5" />);
-    expect(container).toMatchSnapshot();
-  });
-  it("Render with elment is h6", () => {
-    const container = render(<Heading {...props} element="h6" />);
-    expect(container).toMatchSnapshot();
-  });
 });

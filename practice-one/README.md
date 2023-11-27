@@ -2,7 +2,7 @@
 
 ## Description:
 
-- Getting started with react hooks and Storybook
+- Continue to implement advanced practice one and write tests for practice two. Also use libraries like SWR and Zustand.
 
 ## Targets:
 
@@ -13,6 +13,7 @@
 - Apply Error boundary.
 - Apply mockAPI into practice.
 - Apply unit testing basic with jest and testing-library/react
+- Apply Zustand
 
 ## Features:
 
@@ -23,6 +24,10 @@
 - Add to cart
 - Remove from cart
 - Form validation
+- Create new products
+- Delete products
+- Update products
+- Write tests for components and helper
 
 ## Design on figma:
 
@@ -39,7 +44,7 @@
 
 ## Information:
 
-- Time line: 06/11/2023 -> 16/11/2023
+- Time line: 06/11/2023 -> 27/11/2023
 - Editor: Visual Studio Code
 - Supported browser: Chrome lasted
 
@@ -74,23 +79,24 @@ practice-one
         |-- ListCart
         |-- ListProduct
         |-- ErrorBoundary
+        |-- Modal
         |-- index
     |-- constants
         |-- BaseUrl
         |-- Error
         |-- NavLink
         |-- Regex
+        |-- index
     |-- helper
-        |-- __test__
-            |-- CalculatorTotalPrice.test
-            |-- DataLocalStorage.test
-            |-- FetchData.test
-            |-- Vaildation.test
         |-- DataLocalStorage
         |-- CalculatorTotalPrice
         |-- FontSize
         |-- Vaildation
         |-- FetchData
+        |-- AddProduct
+        |-- RemoveProduct
+        |-- UpdateProduct
+        |-- index
     |-- layout
         |-- MainLayout
     |-- hooks
@@ -112,14 +118,13 @@ practice-one
         |-- TButton
         |-- THeading
         |-- TProduct
+        |-- Toggle
         |-- TVariant
+        |-- index
     |-- stores
-        |-- contexts
-            |-- CartContext
-        |-- reducers
-            |-- action
-                |-- index
-            |-- index
+        |-- index
+        |-- useCartStore
+        |-- useToggleStore
     |-- App.tsx
     |-- main.tsx
     |-- index.css
@@ -145,10 +150,10 @@ practice-one
 git clone https://github.com/taile0310/practice_react.git
 ```
 
-- Step 02: Change to branch feature/practice-one:
+- Step 02: Change to branch feature/practice-two:
 
 ```
-git checkout feature/practice-one
+git checkout feature/practice-two
 ```
 
 - Step 03: Move to practice-one/src folder which just cloned in your computer:

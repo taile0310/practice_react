@@ -17,6 +17,10 @@ type TActions = {
   getLength: () => number;
   handleCheckout: (event: React.MouseEvent<HTMLAnchorElement>) => void;
   clearCarts: () => void;
+  handleUpdateProductInCart: (
+    productId: string,
+    updatedProduct: CustomProductProps
+  ) => void;
 };
 
 export const useCartStore = create<TState & TActions>((set, get) => ({
@@ -52,7 +56,6 @@ export const useCartStore = create<TState & TActions>((set, get) => ({
       });
     }
   },
-
   handleUpdateQuantity: (productId: string, action: TAction): void => {
     set((state) => {
       const newState = {
@@ -87,6 +90,22 @@ export const useCartStore = create<TState & TActions>((set, get) => ({
       alert(NOTIFY.EMPTY);
       event.preventDefault();
     }
+  },
+
+  handleUpdateProductInCart: (
+    productId: string,
+    updatedProduct: CustomProductProps
+  ): void => {
+    set((state) => {
+      const newState = {
+        ...state,
+        carts: state.carts.map((item) =>
+          item.id === productId ? { ...item, ...updatedProduct } : item
+        ),
+      };
+      setListCart(newState.carts);
+      return newState;
+    });
   },
 
   clearCarts: (): void => {

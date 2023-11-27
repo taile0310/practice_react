@@ -2,10 +2,10 @@
 import "./FormCheckout.css";
 
 // React
-import { FC, ReactElement } from "react";
+import { FC, ReactElement, memo } from "react";
 
 // Components
-import { Card, Heading, Input, Label } from "..";
+import { Card, Error, Heading, Input, Label } from "..";
 
 // Custom hooks
 import { useForm } from "../../hooks";
@@ -31,7 +31,7 @@ const FormCheckout: FC = (): ReactElement => {
             name="name"
             onChange={handleChange}
           />
-          {errors.name && <p className="messages-error">{errors.name}</p>}
+          <Error className="messages-error" content={errors.name!} />
 
           <Label className="text-medium" titleLabel="Email" />
           <Input
@@ -41,7 +41,7 @@ const FormCheckout: FC = (): ReactElement => {
             name="email"
             onChange={handleChange}
           />
-          {errors.email && <p className="messages-error">{errors.email}</p>}
+          <Error className="messages-error" content={errors.email!} />
 
           <Label className="text-medium" titleLabel="Phone Number" />
           <Input
@@ -61,7 +61,7 @@ const FormCheckout: FC = (): ReactElement => {
             name="address"
             onChange={handleChange}
           />
-          {errors.address && <p className="messages-error">{errors.address}</p>}
+          <Error className="messages-error" content={errors.address!} />
 
           <Label className="text-medium" titleLabel="Description" />
           <textarea
@@ -90,4 +90,4 @@ const FormCheckout: FC = (): ReactElement => {
   );
 };
 
-export default FormCheckout;
+export default memo(FormCheckout);
