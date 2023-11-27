@@ -135,3 +135,8 @@
 .container-page {
   padding: 43px 103px 30px 57px;
 }
+
+.modal-open {
+  filter: blur(2px);
+  pointer-events: none;
+}

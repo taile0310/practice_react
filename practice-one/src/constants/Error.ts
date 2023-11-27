@@ -1,5 +1,5 @@
 export const ERROR_MESSAGES = {
-  QUANTITY_NAVIGATIVE: "Must not be smaller than 1",
+  PRICE: "Price must be greater than 0.",
   FETCH: "An error occurred when fetching data.",
   NAME: "Invalid name format, Ex: Le Van A",
   EMAIL: "Invalid email format, Ex: lht@gmail.com",
@@ -13,7 +13,7 @@ export const NOTIFY = {
   FAILD: "Checkout failed. Please check your information.",
   SUCCESS: "Checkout successful!",
   ADD_TO_CART: "Are you sure you want to add this product to your cart?",
-  REMOVE_FROM_CART: "Are you sure to remove this product from your cart?",
+  REMOVE_FROM_CART: "Are you sure to delete this product?",
   ADD_FAILD: "Adding failed products",
   REMOVE_FAILD: "Remove failed products",
   ADD_PRODUCT: "Do you want to add this product?",

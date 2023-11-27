@@ -1,7 +1,7 @@
 // React hooks
 import { FC, ReactElement, memo } from "react";
 // Component
-import { Button, Image, Modal } from "../..";
+import { Button, Image } from "../..";
 // Stores and Type
 import { CustomProductProps, TOGGLE, VARIANT } from "../../../types";
 import { useCartStore } from "../../../stores";
@@ -24,7 +24,6 @@ const Product: FC<TProductProps> = ({
   name,
   product,
   width,
-  toggle,
   handleRemoveProduct,
   handleAddToCart,
   handleRemoveFromCart,
@@ -61,7 +60,6 @@ const Product: FC<TProductProps> = ({
           onClick={() => handleToggleUpdateProduct(product)}
         />
       </div>
-      {toggle === TOGGLE.ON && <Modal />}
     </li>
   );
 };

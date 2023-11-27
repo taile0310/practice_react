@@ -53,7 +53,7 @@ describe("useToggleStore", () => {
       id: "",
       name: "",
       image: "",
-      price: 0,
+      price: 1,
     });
   });
 

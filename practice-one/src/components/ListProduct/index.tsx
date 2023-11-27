@@ -25,7 +25,7 @@ const ListProduct: FC<TListProduct> = ({
   const { handleAddToCart, handleRemoveFromCart } = useCartStore();
 
   return (
-    <section className="section-menu font-family">
+    <section className="section-menu font-family overlay">
       <Heading className="text-h2 dash" element="h2">
         Sushi food
       </Heading>

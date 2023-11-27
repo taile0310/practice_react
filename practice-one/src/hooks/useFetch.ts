@@ -9,10 +9,11 @@ import {
   fetchData,
   updateProduct,
 } from "../helpers";
-import { NOTIFY } from "../constants";
-import { useToggleStore } from "../stores";
+import { ERROR_MESSAGES, NOTIFY } from "../constants";
+import { useCartStore, useToggleStore } from "../stores";
 const useFetch = () => {
-  const { inputValues } = useToggleStore();
+  const { inputValues, setErrors, handleCloseModal } = useToggleStore();
+  const { handleRemoveFromCart, handleUpdateProductInCart } = useCartStore();
   // The getKey function is used to create a key for each data page, based on pageIndex and previousPageData.
   const getKey = (pageIndex: number) => {
     const page = pageIndex + 1;
@@ -40,27 +41,55 @@ const useFetch = () => {
   const handleRemoveProduct = async (productId: string) => {
     await deleteProduct(productId);
     await mutate();
+    handleRemoveFromCart(productId);
     alert(NOTIFY.HANDLE_SUCCESS);
   };
 
   const handleUpdateProduct = async (productId: string) => {
+    if (!inputValues.name || !inputValues.image || !inputValues.price) {
+      setErrors({
+        name: !inputValues.name ? `${ERROR_MESSAGES.FIELD_EMPTY}` : null,
+        image: !inputValues.image ? `${ERROR_MESSAGES.FIELD_EMPTY}` : null,
+        price: !inputValues.price
+          ? `${ERROR_MESSAGES.FIELD_EMPTY}`
+          : inputValues.price <= 0
+          ? `${ERROR_MESSAGES.PRICE}`
+          : null,
+      });
+      return;
+    }
     const confirmed = window.confirm(NOTIFY.UPDATE_PRODUCT);
     if (confirmed) {
       await updateProduct(productId, inputValues);
       await mutate();
       alert(NOTIFY.HANDLE_SUCCESS);
+      handleUpdateProductInCart(productId, inputValues);
+      handleCloseModal();
     }
   };
 
   const handleAddProduct = async (product: CustomProductProps) => {
-    product = inputValues;
+    if (!product.name || !product.image || !product.price) {
+      setErrors({
+        name: !product.name ? `${ERROR_MESSAGES.FIELD_EMPTY}` : null,
+        image: !product.image ? `${ERROR_MESSAGES.FIELD_EMPTY}` : null,
+        price: !product.price
+          ? `${ERROR_MESSAGES.FIELD_EMPTY}`
+          : product.price <= 0
+          ? `${ERROR_MESSAGES.PRICE}`
+          : null,
+      });
+      return;
+    }
     const confirmed = window.confirm(NOTIFY.ADD_PRODUCT);
     if (confirmed) {
       await addProduct(product);
       await mutate();
       alert(NOTIFY.HANDLE_SUCCESS);
+      handleCloseModal();
     }
   };
+
   return {
     data,
     isLoading,
