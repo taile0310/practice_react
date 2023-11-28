@@ -6,6 +6,8 @@ import { Button, Image } from "../..";
 import { CustomProductProps, TOGGLE, VARIANT } from "../../../types";
 import { useCartStore } from "../../../stores";
 import { Edit, TrashCan } from "../../../assets/image";
+import useSWRMutation from "swr/mutation";
+import { BASE_URL } from "../../../constants";
 
 type TProductProps = {
   id: string;
@@ -14,6 +16,7 @@ type TProductProps = {
   product: CustomProductProps;
   width?: number;
   toggle?: TOGGLE;
+  mutate: () => void;
   onRemoveProduct: (productId: string) => void;
   onAddToCart: (product: CustomProductProps) => void;
   onRemoveFromCart: (productId: string) => void;
@@ -26,6 +29,7 @@ const Product: FC<TProductProps> = ({
   name,
   product,
   width,
+  mutate,
   onRemoveProduct,
   onAddToCart,
   onRemoveFromCart,
@@ -40,13 +44,13 @@ const Product: FC<TProductProps> = ({
     isInCart(id) ? onRemoveFromCart(id) : onAddToCart(product);
   }, [isInCart, onRemoveFromCart, onAddToCart, id, product]);
 
-  const handleRemoveProduct = useCallback(() => {
-    onRemoveProduct(id);
-  }, [onRemoveProduct, id]);
-
   const handleToggleUpdateProduct = useCallback(() => {
     onToggleUpdateProduct(product);
   }, [onToggleUpdateProduct, product]);
+
+  const { trigger } = useSWRMutation(id, onRemoveProduct, {
+    onSuccess: () => mutate(),
+  });
 
   return (
     <li className="menu-item font-family" style={widthProduct}>
@@ -63,7 +67,7 @@ const Product: FC<TProductProps> = ({
           typeText="uppercase"
           variants={VARIANT.PRIMARY}
           children={<Image className="icon-control" src={TrashCan} />}
-          onClick={handleRemoveProduct}
+          onClick={() => trigger()}
         />
         <Button
           className="btn text-small"

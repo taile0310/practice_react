@@ -5,10 +5,14 @@ import { ERROR_MESSAGES } from "../constants/Error";
  * @param url
  */
 export const fetchData = async (url: string) => {
-  const response = await fetch(url);
-  if (response.ok) {
-    const data = await response.json();
-    return data;
+  try {
+    const response = await fetch(url);
+    if (response.ok) {
+      const data = await response.json();
+      return data;
+    }
+    throw new Error(ERROR_MESSAGES.FETCH);
+  } catch (error) {
+    return error;
   }
-  throw new Error(ERROR_MESSAGES.FETCH);
 };

@@ -3,14 +3,10 @@ import useSWRInfinite from "swr/infinite";
 // Helper and Constant
 import { BASE_URL } from "../constants/BaseUrl";
 import { CustomProductProps } from "../types/Product";
-import {
-  addProduct,
-  deleteProduct,
-  fetchData,
-  updateProduct,
-} from "../helpers";
+import { fetchData } from "../helpers";
 import { ERROR_MESSAGES, NOTIFY } from "../constants";
 import { useCartStore, useToggleStore } from "../stores";
+import { ApiService } from "../APIService";
 const useFetch = () => {
   const { inputValues, setErrors, onCloseModal } = useToggleStore();
   const { handleRemoveFromCart, handleUpdateProductInCart } = useCartStore();
@@ -39,10 +35,14 @@ const useFetch = () => {
   };
 
   const handleRemoveProduct = async (productId: string) => {
-    await deleteProduct(productId);
-    await mutate();
-    handleRemoveFromCart(productId);
-    alert(NOTIFY.HANDLE_SUCCESS);
+    try {
+      await ApiService.removeProduct(productId);
+      handleRemoveFromCart(productId);
+      alert(NOTIFY.HANDLE_SUCCESS);
+    } catch (error) {
+      alert(error);
+      return error;
+    }
   };
 
   const handleUpdateProduct = async (productId: string) => {
@@ -60,7 +60,7 @@ const useFetch = () => {
     }
     const confirmed = window.confirm(NOTIFY.UPDATE_PRODUCT);
     if (confirmed) {
-      await updateProduct(productId, inputValues);
+      // await updateProduct(productId, inputValues);
       await mutate();
       alert(NOTIFY.HANDLE_SUCCESS);
       handleUpdateProductInCart(productId, inputValues);
@@ -83,7 +83,7 @@ const useFetch = () => {
     }
     const confirmed = window.confirm(NOTIFY.ADD_PRODUCT);
     if (confirmed) {
-      await addProduct(product);
+      // await addProduct(product);
       await mutate();
       alert(NOTIFY.HANDLE_SUCCESS);
       onCloseModal();
