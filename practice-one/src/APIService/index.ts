@@ -1,6 +1,4 @@
-// import { BASE_URL } from "../constants";
-
-import { BASE_URL } from "../constants";
+import { BASE_URL, ERROR_MESSAGES } from "../constants";
 import { CustomProductProps } from "../types";
 
 const removeProduct = async (productId: string) => {
@@ -9,13 +7,12 @@ const removeProduct = async (productId: string) => {
       method: "DELETE",
     });
     if (!response.ok) {
-      throw new Error("Network error or request failed");
+      throw new Error(ERROR_MESSAGES.FETCH);
     }
-
     const data = await response.json();
     return data;
   } catch (error) {
-    throw new Error("Network error or request failed");
+    throw new Error(ERROR_MESSAGES.FETCH);
   }
 };
 
@@ -30,12 +27,12 @@ const updateProduct = async (
       body: JSON.stringify(updatedProductData),
     });
     if (!response.ok) {
-      throw new Error("Network error or request failed");
+      throw new Error(ERROR_MESSAGES.FETCH);
     }
     const data = await response.json();
     return data;
   } catch (error) {
-    throw new Error("Network error or request failed");
+    throw new Error(ERROR_MESSAGES.FETCH);
   }
 };
 
@@ -47,12 +44,12 @@ const addProduct = async (addNewProduct: CustomProductProps) => {
       body: JSON.stringify(addNewProduct),
     });
     if (!response.ok) {
-      throw new Error("Network error or request failed");
+      throw new Error(ERROR_MESSAGES.FETCH);
     }
     const data = await response.json();
     return data;
   } catch (error) {
-    throw new Error("Network error or request failed");
+    throw new Error(ERROR_MESSAGES.FETCH);
   }
 };
 

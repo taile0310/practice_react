@@ -2,6 +2,7 @@ import { create } from "zustand";
 import { NOTIFY } from "../constants/Error";
 import { CustomProductProps } from "../types/Product";
 import { getListCart, setListCart } from "../helpers/DataLocalStorage";
+import { useAlertStore } from "./useAlertStore";
 
 type TAction = "increase" | "decrease";
 
@@ -21,40 +22,34 @@ type TActions = {
     productId: string,
     updatedProduct: CustomProductProps
   ) => void;
+  handleUpdateCartAfterRemove: (productId: string) => void;
 };
-
 export const useCartStore = create<TState & TActions>((set, get) => ({
   carts: getListCart(),
 
   handleAddToCart: (product: CustomProductProps): void => {
-    const confirmed = window.confirm(NOTIFY.ADD_TO_CART);
-    if (confirmed) {
-      try {
-        product.quantity = 1;
-        product.isExist = true;
-        set((state) => {
-          const newState = { ...state, carts: [...state.carts, product] };
-          setListCart(newState.carts);
-          return newState;
-        });
-      } catch (error) {
-        alert(NOTIFY.ADD_FAILD);
-      }
+    try {
+      product.quantity = 1;
+      product.isExist = true;
+      set((state) => {
+        const newState = { ...state, carts: [...state.carts, product] };
+        setListCart(newState.carts);
+        return newState;
+      });
+    } catch (error) {
+      alert(NOTIFY.ADD_FAILD);
     }
   },
 
   handleRemoveFromCart: (productId: string): void => {
-    const confirmed = window.confirm(NOTIFY.REMOVE_FROM_CART);
-    if (confirmed) {
-      set((state) => {
-        const newState = {
-          ...state,
-          carts: state.carts.filter((item) => item.id !== productId),
-        };
-        setListCart(newState.carts);
-        return newState;
-      });
-    }
+    set((state) => {
+      const newState = {
+        ...state,
+        carts: state.carts.filter((item) => item.id !== productId),
+      };
+      setListCart(newState.carts);
+      return newState;
+    });
   },
   handleUpdateQuantity: (productId: string, action: TAction): void => {
     set((state) => {
@@ -87,7 +82,7 @@ export const useCartStore = create<TState & TActions>((set, get) => ({
 
   handleCheckout: (event: React.MouseEvent<HTMLAnchorElement>): void => {
     if (get().carts.length <= 0) {
-      alert(NOTIFY.EMPTY);
+      useAlertStore.getState().showAlert(NOTIFY.EMPTY);
       event.preventDefault();
     }
   },
@@ -111,5 +106,16 @@ export const useCartStore = create<TState & TActions>((set, get) => ({
   clearCarts: (): void => {
     localStorage.clear();
     set({ carts: [] });
+  },
+
+  handleUpdateCartAfterRemove: (productId: string): void => {
+    set((state) => {
+      const newState = {
+        ...state,
+        carts: state.carts.filter((item) => item.id !== productId),
+      };
+      setListCart(newState.carts);
+      return newState;
+    });
   },
 }));

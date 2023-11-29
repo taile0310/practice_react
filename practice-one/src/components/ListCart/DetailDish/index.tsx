@@ -18,6 +18,6 @@ const DetailDish: FC<TDetailDish> = ({
       <span className="text-price">${price}.00</span>
     </div>
   );
-};
+};``
 
 export default memo(DetailDish);

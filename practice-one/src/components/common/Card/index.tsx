@@ -16,6 +16,7 @@ import { calculatorTotalPrice, getListCart } from "../../../helpers";
 
 // Context
 import { useCartStore } from "../../../stores/useCartStore";
+import { useAlertStore } from "../../../stores/useAlertStore";
 
 type CustomCardProps = {
   showInput?: boolean;
@@ -42,7 +43,7 @@ const Card: FC<CustomCardProps> = ({
     width: `${width}px`,
   };
   const navigate = useNavigate();
-
+  const { showAlert } = useAlertStore();
   // Handles clicking Confirm Order
   const handleConfirmOrder = useCallback(() => {
     // Get current URL
@@ -52,14 +53,14 @@ const Card: FC<CustomCardProps> = ({
     if (carts > 0 && titleButton !== "apply") {
       navigate?.("/checkout");
     } else if (titleButton !== "apply") {
-      alert(NOTIFY.EMPTY);
+      showAlert(NOTIFY.EMPTY);
       navigate?.("/menu");
     }
     // If you are on the checkout page, call the method onSubmit
     if (currentUrl.includes("checkout")) {
       onSubmit?.();
     }
-  }, [navigate, onSubmit, titleButton]);
+  }, [navigate, onSubmit, showAlert, titleButton]);
 
   const totalPrice = useMemo(() => calculatorTotalPrice(carts), [carts]);
 
