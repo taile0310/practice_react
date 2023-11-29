@@ -5,10 +5,10 @@ import { BASE_URL } from "../constants/BaseUrl";
 import { CustomProductProps } from "../types/Product";
 import { fetchData } from "../helpers";
 import { useCartStore, useToggleStore } from "../stores";
-import { ApiService } from "../APIService";
 import { ERROR_MESSAGES } from "../constants";
+import { ApiService } from "../APIService";
 const useFetch = () => {
-  const { inputValues, setErrors } = useToggleStore();
+  const { inputValues } = useToggleStore();
   const { handleUpdateCartAfterRemove, handleUpdateProductInCart } =
     useCartStore();
   // The getKey function is used to create a key for each data page, based on pageIndex and previousPageData.
@@ -46,19 +46,6 @@ const useFetch = () => {
   };
 
   const handleUpdateProduct = async (productId: string) => {
-    if (!inputValues.name || !inputValues.image || !inputValues.price) {
-      setErrors({
-        name: !inputValues.name ? `${ERROR_MESSAGES.FIELD_EMPTY}` : null,
-        image: !inputValues.image ? `${ERROR_MESSAGES.FIELD_EMPTY}` : null,
-        price: !inputValues.price
-          ? `${ERROR_MESSAGES.FIELD_EMPTY}`
-          : inputValues.price <= 0
-          ? `${ERROR_MESSAGES.PRICE}`
-          : null,
-      });
-      return;
-    }
-
     try {
       await ApiService.updateProduct(productId, inputValues);
       handleUpdateProductInCart(productId, inputValues);
@@ -70,19 +57,6 @@ const useFetch = () => {
   };
 
   const handleAddProduct = async (product: CustomProductProps) => {
-    if (!product.name || !product.image || !product.price) {
-      setErrors({
-        name: !product.name ? `${ERROR_MESSAGES.FIELD_EMPTY}` : null,
-        image: !product.image ? `${ERROR_MESSAGES.FIELD_EMPTY}` : null,
-        price: !product.price
-          ? `${ERROR_MESSAGES.FIELD_EMPTY}`
-          : product.price <= 0
-          ? `${ERROR_MESSAGES.PRICE}`
-          : null,
-      });
-      return;
-    }
-
     try {
       await ApiService.addProduct(product);
       mutate();

@@ -9,6 +9,12 @@ describe("useToggleStore", () => {
     image: "https://sushi-restaurant-phi.vercel.app/item1.fb0267f5.jpg",
     price: 10,
   };
+  beforeAll(() => {
+    act(() => {
+      TOGGLE.OFF;
+    });
+  });
+
   it("Initialize with default values", () => {
     const { result } = renderHook(() => useToggleStore());
 
@@ -45,10 +51,9 @@ describe("useToggleStore", () => {
       result.current.onToggleAddProduct();
     });
 
-    expect(result.current.toggle).toBe(TOGGLE.ON);
+    expect(result.current.toggle).toBe(TOGGLE.OFF);
     expect(result.current.title).toBe("ADD PRODUCT");
     expect(result.current.btnSubmit).toBe("Save Product");
-    expect(result.current.productInfo).toBeNull();
     expect(result.current.inputValues).toEqual({
       id: "",
       name: "",

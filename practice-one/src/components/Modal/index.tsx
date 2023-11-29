@@ -11,6 +11,7 @@ import { VARIANT } from "../../types";
 import { useToggleStore } from "../../stores";
 import useSWRMutation from "swr/mutation";
 import { useAlertStore } from "../../stores/useAlertStore";
+import { ERROR_MESSAGES, NOTIFY } from "../../constants";
 const Modal: FC = (): ReactElement => {
   const {
     toggle,
@@ -19,20 +20,23 @@ const Modal: FC = (): ReactElement => {
     btnSubmit,
     errors,
     onCloseModal,
+    setErrors,
     onChangeInput,
   } = useToggleStore();
 
   const { handleUpdateProduct, handleAddProduct } = useFetch();
   const { showAlert } = useAlertStore();
+
   const mutationFn = () => {
     btnSubmit === "Save Changes"
       ? handleUpdateProduct(inputValues.id)
       : handleAddProduct(inputValues);
   };
-  const demo = btnSubmit === "Save Changes" ? inputValues.id : inputValues;
+  const key = btnSubmit === "Save Changes" ? inputValues.id : inputValues;
 
-  const { trigger } = useSWRMutation(demo, mutationFn, {
+  const { trigger } = useSWRMutation(key, mutationFn, {
     onSuccess: () => {
+      showAlert(NOTIFY.SUCCESS);
       onCloseModal();
     },
     onError: (error) => {
@@ -43,6 +47,23 @@ const Modal: FC = (): ReactElement => {
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
+    if (
+      !inputValues.name ||
+      !inputValues.image ||
+      !inputValues.price ||
+      inputValues.price <= 0
+    ) {
+      setErrors({
+        name: !inputValues.name ? `${ERROR_MESSAGES.FIELD_EMPTY}` : null,
+        image: !inputValues.image ? `${ERROR_MESSAGES.FIELD_EMPTY}` : null,
+        price: !inputValues.price
+          ? `${ERROR_MESSAGES.FIELD_EMPTY}`
+          : inputValues.price <= 0
+          ? `${ERROR_MESSAGES.PRICE}`
+          : null,
+      });
+      return;
+    }
     trigger();
   };
 

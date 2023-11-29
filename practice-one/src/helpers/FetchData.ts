@@ -13,6 +13,6 @@ export const fetchData = async (url: string) => {
     }
     throw new Error(ERROR_MESSAGES.FETCH);
   } catch (error) {
-    return error;
+    throw new Error(ERROR_MESSAGES.FETCH);
   }
 };

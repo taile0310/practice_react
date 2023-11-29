@@ -1,5 +1,5 @@
+import { ERROR_MESSAGES } from "../../constants";
 import { BASE_URL } from "../../constants/BaseUrl";
-import { ERROR_MESSAGES } from "../../constants/Error";
 import { fetchData } from "../FetchData";
 
 describe("Function Fetch Data", () => {

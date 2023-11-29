@@ -1,5 +1,3 @@
-// Confirm.tsx
-
 import { FC } from "react";
 import "./Confirm.css";
 import { useConfirmStore } from "../../stores/useConfirmStores";
