@@ -9,6 +9,8 @@ import { useFetch } from "../../hooks";
 // Type and Store
 import { VARIANT } from "../../types";
 import { useToggleStore } from "../../stores";
+import useSWRMutation from "swr/mutation";
+import { useAlertStore } from "../../stores/useAlertStore";
 const Modal: FC = (): ReactElement => {
   const {
     toggle,
@@ -21,16 +23,28 @@ const Modal: FC = (): ReactElement => {
   } = useToggleStore();
 
   const { handleUpdateProduct, handleAddProduct } = useFetch();
+  const { showAlert } = useAlertStore();
+  const mutationFn = () => {
+    btnSubmit === "Save Changes"
+      ? handleUpdateProduct(inputValues.id)
+      : handleAddProduct(inputValues);
+  };
+  const demo = btnSubmit === "Save Changes" ? inputValues.id : inputValues;
 
-  const handleSubmit = useCallback(
-    (e: FormEvent) => {
-      e.preventDefault();
-      btnSubmit === "Save Changes"
-        ? handleUpdateProduct(inputValues.id)
-        : handleAddProduct(inputValues);
+  const { trigger } = useSWRMutation(demo, mutationFn, {
+    onSuccess: () => {
+      onCloseModal();
     },
-    [inputValues, btnSubmit, handleUpdateProduct, handleAddProduct]
-  );
+    onError: (error) => {
+      showAlert(error.message);
+      onCloseModal();
+    },
+  });
+
+  const handleSubmit = (e: FormEvent) => {
+    e.preventDefault();
+    trigger();
+  };
 
   const handleChangeInput = useCallback(
     (name: string, value: string) => {

@@ -20,7 +20,6 @@ const ListProduct: FC = (): ReactElement => {
     isFull,
     handleShowMoreProducts,
     handleRemoveProduct,
-    mutate,
   } = useFetch();
 
   const { toggle, handleToggleUpdateProduct, onToggleAddProduct } =
@@ -65,7 +64,6 @@ const ListProduct: FC = (): ReactElement => {
                   image={image}
                   product={product}
                   toggle={toggle}
-                  mutate={mutate}
                   onRemoveProduct={handleRemoveProduct}
                   onRemoveFromCart={handleRemoveFromCart}
                   onAddToCart={handleAddToCart}

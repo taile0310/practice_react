@@ -8,3 +8,5 @@ export { default as Remove } from "./remove-icon.svg";
 export { default as Spinner } from "./spinner.gif";
 export { default as TrashCan } from "./trash-can.svg";
 export { default as Edit } from "./edit.svg";
+export { default as Success } from "./success.svg";
+export { default as Warning } from "./warning.svg";

@@ -7,7 +7,10 @@ import { CustomProductProps, TOGGLE, VARIANT } from "../../../types";
 import { useCartStore } from "../../../stores";
 import { Edit, TrashCan } from "../../../assets/image";
 import useSWRMutation from "swr/mutation";
-import { BASE_URL } from "../../../constants";
+import { useConfirmStore } from "../../../stores/useConfirmStores";
+import { NOTIFY } from "../../../constants";
+import { useAlertStore } from "../../../stores/useAlertStore";
+import Confirm from "../../Confirm";
 
 type TProductProps = {
   id: string;
@@ -16,7 +19,6 @@ type TProductProps = {
   product: CustomProductProps;
   width?: number;
   toggle?: TOGGLE;
-  mutate: () => void;
   onRemoveProduct: (productId: string) => void;
   onAddToCart: (product: CustomProductProps) => void;
   onRemoveFromCart: (productId: string) => void;
@@ -29,7 +31,6 @@ const Product: FC<TProductProps> = ({
   name,
   product,
   width,
-  mutate,
   onRemoveProduct,
   onAddToCart,
   onRemoveFromCart,
@@ -39,26 +40,54 @@ const Product: FC<TProductProps> = ({
     width: `${width}px`,
   };
   const { isInCart } = useCartStore();
+  const { showAlert } = useAlertStore();
+  const {
+    productId,
+    isVisible,
+    children,
+    productInfo,
+    showConfirm,
+    hideConfirm,
+  } = useConfirmStore();
 
   const handleAddToCart = useCallback(() => {
-    isInCart(id) ? onRemoveFromCart(id) : onAddToCart(product);
-  }, [isInCart, onRemoveFromCart, onAddToCart, id, product]);
+    isInCart(productId)
+      ? (onRemoveFromCart(productId), hideConfirm())
+      : (onAddToCart(productInfo!), hideConfirm());
+  }, [
+    productId,
+    productInfo,
+    isInCart,
+    onRemoveFromCart,
+    onAddToCart,
+    hideConfirm,
+  ]);
 
   const handleToggleUpdateProduct = useCallback(() => {
     onToggleUpdateProduct(product);
   }, [onToggleUpdateProduct, product]);
 
-  const { trigger } = useSWRMutation(id, onRemoveProduct, {
-    onSuccess: () => mutate(),
+  const { trigger } = useSWRMutation(productId, onRemoveProduct, {
+    onSuccess: () => {
+      hideConfirm();
+      showAlert(NOTIFY.HANDLE_SUCCESS);
+    },
+    onError: (error) => {
+      showAlert(error.message);
+      hideConfirm();
+    },
   });
-
+  const notify = isInCart(id) ? NOTIFY.REMOVE_FROM_CART : NOTIFY.ADD_PRODUCT;
   return (
     <li className="menu-item font-family" style={widthProduct}>
       <Image
         className={`img-rectangle ${isInCart?.(id) && "added-to-cart"}`}
         src={`${image}`}
         alt={name}
-        onClick={handleAddToCart}
+        onClick={() => {
+          showConfirm(id, notify, product);
+          console.log("click:", id);
+        }}
       />
       <span className="text-small">{name}</span>
       <div className="handle-btn">
@@ -67,7 +96,7 @@ const Product: FC<TProductProps> = ({
           typeText="uppercase"
           variants={VARIANT.PRIMARY}
           children={<Image className="icon-control" src={TrashCan} />}
-          onClick={() => trigger()}
+          onClick={() => showConfirm(id, NOTIFY.REMOVE_PRODUCT, null)}
         />
         <Button
           className="btn text-small"
@@ -77,6 +106,15 @@ const Product: FC<TProductProps> = ({
           onClick={handleToggleUpdateProduct}
         />
       </div>
+      {isVisible && (
+        <Confirm
+          children={children}
+          onConfirm={() => {
+            children === NOTIFY.REMOVE_PRODUCT ? trigger() : handleAddToCart();
+          }}
+          onCancel={hideConfirm}
+        />
+      )}
     </li>
   );
 };

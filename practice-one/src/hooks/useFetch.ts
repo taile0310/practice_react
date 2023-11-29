@@ -4,12 +4,13 @@ import useSWRInfinite from "swr/infinite";
 import { BASE_URL } from "../constants/BaseUrl";
 import { CustomProductProps } from "../types/Product";
 import { fetchData } from "../helpers";
-import { ERROR_MESSAGES, NOTIFY } from "../constants";
 import { useCartStore, useToggleStore } from "../stores";
 import { ApiService } from "../APIService";
+import { ERROR_MESSAGES } from "../constants";
 const useFetch = () => {
-  const { inputValues, setErrors, onCloseModal } = useToggleStore();
-  const { handleRemoveFromCart, handleUpdateProductInCart } = useCartStore();
+  const { inputValues, setErrors } = useToggleStore();
+  const { handleUpdateCartAfterRemove, handleUpdateProductInCart } =
+    useCartStore();
   // The getKey function is used to create a key for each data page, based on pageIndex and previousPageData.
   const getKey = (pageIndex: number) => {
     const page = pageIndex + 1;
@@ -37,11 +38,10 @@ const useFetch = () => {
   const handleRemoveProduct = async (productId: string) => {
     try {
       await ApiService.removeProduct(productId);
-      handleRemoveFromCart(productId);
-      alert(NOTIFY.HANDLE_SUCCESS);
+      handleUpdateCartAfterRemove(productId);
+      mutate();
     } catch (error) {
-      alert(error);
-      return error;
+      throw new Error(ERROR_MESSAGES.FETCH);
     }
   };
 
@@ -58,13 +58,14 @@ const useFetch = () => {
       });
       return;
     }
-    const confirmed = window.confirm(NOTIFY.UPDATE_PRODUCT);
-    if (confirmed) {
-      // await updateProduct(productId, inputValues);
-      await mutate();
-      alert(NOTIFY.HANDLE_SUCCESS);
+
+    try {
+      await ApiService.updateProduct(productId, inputValues);
       handleUpdateProductInCart(productId, inputValues);
-      onCloseModal();
+      mutate();
+    } catch (error) {
+      alert(error);
+      return error;
     }
   };
 
@@ -81,12 +82,12 @@ const useFetch = () => {
       });
       return;
     }
-    const confirmed = window.confirm(NOTIFY.ADD_PRODUCT);
-    if (confirmed) {
-      // await addProduct(product);
-      await mutate();
-      alert(NOTIFY.HANDLE_SUCCESS);
-      onCloseModal();
+
+    try {
+      await ApiService.addProduct(product);
+      mutate();
+    } catch (error) {
+      throw new Error(ERROR_MESSAGES.FETCH);
     }
   };
 

@@ -3,7 +3,7 @@ import "./Navbar.css";
 
 // React router and Hook
 import { NavLink } from "react-router-dom";
-import { FC, ReactElement, memo, useMemo } from "react";
+import { FC, ReactElement, memo } from "react";
 
 // Constants
 import { NAV_LINKS } from "../../../constants";
@@ -25,8 +25,6 @@ const Navbar: FC<CustomNavbarProps> = ({ width }): ReactElement => {
 
   const { getLength, handleCheckout } = useCartStore();
 
-  const handleGetLength = useMemo(() => getLength(), [getLength]);
-
   return (
     <nav className="nav-menu font-family" style={widthNavbar}>
       {NAV_LINKS.map((navLinks) => {
@@ -38,7 +36,7 @@ const Navbar: FC<CustomNavbarProps> = ({ width }): ReactElement => {
             to={path}
             onClick={name === "Checkout" ? handleCheckout : undefined}>
             {name === "Cart" && (
-              <div className="cart-number">{handleGetLength}</div>
+              <div className="cart-number">{getLength()}</div>
             )}
             <Image className="icon" src={icon} alt={name} />
           </NavLink>

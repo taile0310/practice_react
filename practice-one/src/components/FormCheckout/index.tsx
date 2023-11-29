@@ -51,7 +51,7 @@ const FormCheckout: FC = (): ReactElement => {
             name="phone"
             onChange={handleChange}
           />
-          {errors.phone && <p className="messages-error">{errors.phone}</p>}
+          <Error className="messages-error" content={errors.phone!} />
 
           <Label className="text-medium" titleLabel="Address" />
           <Input
