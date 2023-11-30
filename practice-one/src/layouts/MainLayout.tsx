@@ -1,21 +1,48 @@
-// React router
+// Library
+import { useShallow } from "zustand/react/shallow";
+
+// React
 import { Outlet } from "react-router-dom";
+import { FC, ReactElement } from "react";
 
 // Components
-import { ErrorBoundary, Footer, Image, Modal, Navbar } from "../components";
-import { FC, ReactElement } from "react";
+import {
+  Alert,
+  ErrorBoundary,
+  Footer,
+  Image,
+  Modal,
+  Navbar,
+} from "../components";
+
+// Stores
 import { useToggleStore } from "../stores";
-import { TOGGLE } from "../types";
-import Alert from "../components/Alert";
 import { useAlertStore } from "../stores/useAlertStore";
+
+// Type, constants and image
+import { TOGGLE } from "../types";
 import { NOTIFY } from "../constants";
 import { Success, Warning } from "../assets/image";
 
 const MainLayout: FC = (): ReactElement => {
   // Use hooks to get functions
-  const { toggle } = useToggleStore();
-  const { isAlertVisible } = useAlertStore();
-  const { message } = useAlertStore();
+  const { toggle } = useToggleStore(
+    useShallow((state) => ({
+      toggle: state.toggle,
+    }))
+  );
+
+  const { isAlertVisible } = useAlertStore(
+    useShallow((state) => ({
+      isAlertVisible: state.isAlertVisible,
+    }))
+  );
+
+  const { message } = useAlertStore(
+    useShallow((state) => ({
+      message: state.message,
+    }))
+  );
 
   return (
     <div className="container-page">

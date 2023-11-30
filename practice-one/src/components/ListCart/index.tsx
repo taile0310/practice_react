@@ -6,6 +6,7 @@ import { Card, CartItem, ErrorBoundary, Heading } from "..";
 
 // React hooks
 import { FC, ReactElement, memo } from "react";
+import { useShallow } from "zustand/react/shallow";
 
 // Stores and Type
 import { useCartStore } from "../../stores";
@@ -18,7 +19,13 @@ export type ListCartProps = {
 // Component ListCart
 const ListCart: FC<ListCartProps> = ({ className }): ReactElement => {
   // Use hooks to get functions
-  const { carts, handleRemoveFromCart, handleUpdateQuantity } = useCartStore();
+  const { carts, handleRemoveFromCart, handleUpdateQuantity } = useCartStore(
+    useShallow((state) => ({
+      carts: state.carts,
+      handleRemoveFromCart: state.handleRemoveFromCart,
+      handleUpdateQuantity: state.handleUpdateQuantity,
+    }))
+  );
 
   return (
     <section className={`carts ${className}`}>
