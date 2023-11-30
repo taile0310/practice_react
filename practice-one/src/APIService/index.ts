@@ -1,3 +1,4 @@
+// Type and constants
 import { BASE_URL, ERROR_MESSAGES } from "../constants";
 import { CustomProductProps } from "../types";
 

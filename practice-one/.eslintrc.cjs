@@ -17,4 +17,7 @@ module.exports = {
     ],
     "react-refresh/only-export-components": "off",
   },
+  compilerOptions: {
+    lib: ["es5", "es6", "dom", "dom.iterable"],
+  },
 };

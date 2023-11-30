@@ -1,17 +1,20 @@
 // React hooks
 import { FC, ReactElement, memo, useCallback } from "react";
+import { useShallow } from "zustand/react/shallow";
+import useSWRMutation from "swr/mutation";
+
 // Component
-import { Button, Image } from "../..";
-// Stores and Type
+import { Button, Image, Confirm } from "../..";
+
+// Stores, Contants and Type
 import { CustomProductProps, TOGGLE, VARIANT } from "../../../types";
 import { useCartStore } from "../../../stores";
 import { Edit, TrashCan } from "../../../assets/image";
-import useSWRMutation from "swr/mutation";
-import { useConfirmStore } from "../../../stores/useConfirmStores";
 import { NOTIFY } from "../../../constants";
 import { useAlertStore } from "../../../stores/useAlertStore";
-import Confirm from "../../Confirm";
+import { useConfirmStore } from "../../../stores/useConfirmStores";
 
+// Define props for Product
 type TProductProps = {
   id: string;
   name: string;
@@ -39,8 +42,15 @@ const Product: FC<TProductProps> = ({
   const widthProduct = {
     width: `${width}px`,
   };
-  const { isInCart } = useCartStore();
-  const { showAlert } = useAlertStore();
+  // Use hooks to get functions
+  const { isInCart } = useCartStore(
+    useShallow((state) => ({ isInCart: state.isInCart }))
+  );
+
+  const { showAlert } = useAlertStore(
+    useShallow((state) => ({ showAlert: state.showAlert }))
+  );
+
   const {
     productId,
     isVisible,
@@ -48,7 +58,16 @@ const Product: FC<TProductProps> = ({
     productInfo,
     showConfirm,
     hideConfirm,
-  } = useConfirmStore();
+  } = useConfirmStore(
+    useShallow((state) => ({
+      productId: state.productId,
+      isVisible: state.isVisible,
+      children: state.children,
+      productInfo: state.productInfo,
+      showConfirm: state.showConfirm,
+      hideConfirm: state.hideConfirm,
+    }))
+  );
 
   const handleAddToCart = useCallback(() => {
     isInCart(productId)

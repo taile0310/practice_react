@@ -1,7 +1,19 @@
-import { FC } from "react";
+// CSS
 import "./Confirm.css";
+
+// React
+import { FC } from "react";
+
+// Library
+import { useShallow } from "zustand/react/shallow";
+
+// Store
 import { useConfirmStore } from "../../stores/useConfirmStores";
+
+// Component
 import { Button } from "..";
+
+//Type
 import { VARIANT } from "../../types";
 
 // Define props for confirm
@@ -14,13 +26,23 @@ interface ConfirmProps {
 const Confirm: FC<ConfirmProps> = ({ children, onConfirm, onCancel }) => {
   // Use hooks to get functions
   const { productInfo, productId, isVisible, showConfirm, hideConfirm } =
-    useConfirmStore();
+    useConfirmStore(
+      useShallow((state) => ({
+        productInfo: state.productInfo,
+        productId: state.productId,
+        isVisible: state.isVisible,
+        showConfirm: state.showConfirm,
+        hideConfirm: state.hideConfirm,
+      }))
+    );
 
+  // Handler function for confirmation button
   const handleConfirm = () => {
     showConfirm(productId, children, productInfo!);
     onConfirm();
   };
 
+  // Handler function for cancellation button
   const handleCancel = () => {
     hideConfirm();
     onCancel();

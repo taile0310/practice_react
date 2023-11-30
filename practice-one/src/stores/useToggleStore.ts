@@ -1,7 +1,12 @@
+// Library
 import { create } from "zustand";
+
+// Types and constants
 import { TOGGLE } from "../types/Toggle";
 import { CustomProductProps } from "../types/Product";
 import { ERROR_MESSAGES } from "../constants";
+
+// Define props for Toggle
 type TToggleState = {
   toggle: TOGGLE;
   title: string;
@@ -29,6 +34,7 @@ type TToggleState = {
   onToggleAddProduct: () => void;
   onChangeInput: (field: string, value: string | number) => void;
 };
+
 export const useToggleStore = create<TToggleState>()((set) => ({
   toggle: TOGGLE.OFF,
   title: "",

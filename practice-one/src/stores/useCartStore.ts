@@ -1,7 +1,12 @@
+// Library
 import { create } from "zustand";
+
+// Types, constants and helpers
 import { NOTIFY } from "../constants/Error";
 import { CustomProductProps } from "../types/Product";
 import { getListCart, setListCart } from "../helpers/DataLocalStorage";
+
+// Store
 import { useAlertStore } from "./useAlertStore";
 
 // Define action

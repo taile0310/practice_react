@@ -1,14 +1,22 @@
-import { useState, useCallback, ChangeEvent } from "react";
+// Library
+import { useShallow } from "zustand/react/shallow";
 
+// React
+import { useState, useCallback, ChangeEvent } from "react";
+import { useNavigate } from "react-router-dom";
+
+// Constants and helpers
 import { ERROR_MESSAGES, NOTIFY } from "../constants/Error";
 import {
   isValidEmail,
   isValidName,
   isValidPhone,
 } from "../helpers/Validations";
-import { useNavigate } from "react-router-dom";
+
+// Store
 import { useCartStore } from "../stores";
 
+// Define props for useForm
 type FormValues = {
   name: string;
   email: string;
@@ -18,7 +26,11 @@ type FormValues = {
 
 const useForm = () => {
   // Use hooks to get functions
-  const { clearCarts } = useCartStore();
+  const { clearCarts } = useCartStore(
+    useShallow((state) => ({
+      clearCarts: state.clearCarts,
+    }))
+  );
   const navigate = useNavigate();
 
   const [values, setValues] = useState<FormValues>({

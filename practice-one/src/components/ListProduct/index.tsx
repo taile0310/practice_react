@@ -2,12 +2,16 @@
 import "./ListProduct.css";
 // React
 import { FC, ReactElement, memo, useCallback } from "react";
+import { useShallow } from "zustand/react/shallow";
+
 // Component
 import { Button, Error, ErrorBoundary, Heading, Loading, Product } from "..";
+
 // Type and Store
 import { CustomProductProps, VARIANT } from "../../types";
 import { ERROR_MESSAGES } from "../../constants";
 import { useCartStore, useToggleStore } from "../../stores";
+
 // Hooks custom
 import { useFetch } from "../../hooks";
 
@@ -24,9 +28,20 @@ const ListProduct: FC = (): ReactElement => {
   } = useFetch();
 
   const { toggle, handleToggleUpdateProduct, onToggleAddProduct } =
-    useToggleStore();
+    useToggleStore(
+      useShallow((state) => ({
+        toggle: state.toggle,
+        handleToggleUpdateProduct: state.handleToggleUpdateProduct,
+        onToggleAddProduct: state.onToggleAddProduct,
+      }))
+    );
 
-  const { handleAddToCart, handleRemoveFromCart } = useCartStore();
+  const { handleAddToCart, handleRemoveFromCart } = useCartStore(
+    useShallow((state) => ({
+      handleAddToCart: state.handleAddToCart,
+      handleRemoveFromCart: state.handleRemoveFromCart,
+    }))
+  );
 
   // Handle when the "Add Product" button is pressed
   const handleToggleAddProduct = useCallback(() => {

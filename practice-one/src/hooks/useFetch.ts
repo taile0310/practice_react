@@ -1,16 +1,33 @@
 // SWR
 import useSWRInfinite from "swr/infinite";
-// Helper and Constant
+
+//Library
+import { useShallow } from "zustand/react/shallow";
+
+// Helper, Type and Constant
+import { fetchData } from "../helpers";
+import { ApiService } from "../APIService";
+import { ERROR_MESSAGES } from "../constants";
 import { BASE_URL } from "../constants/BaseUrl";
 import { CustomProductProps } from "../types/Product";
-import { fetchData } from "../helpers";
+
+// Store
 import { useCartStore, useToggleStore } from "../stores";
-import { ERROR_MESSAGES } from "../constants";
-import { ApiService } from "../APIService";
+
 const useFetch = () => {
-  const { inputValues } = useToggleStore();
+  // Use hooks to get functions
+  const { inputValues } = useToggleStore(
+    useShallow((state) => ({ inputValues: state.inputValues }))
+  );
+
   const { handleUpdateCartAfterRemove, handleUpdateProductInCart } =
-    useCartStore();
+    useCartStore(
+      useShallow((state) => ({
+        handleUpdateCartAfterRemove: state.handleUpdateCartAfterRemove,
+        handleUpdateProductInCart: state.handleUpdateProductInCart,
+      }))
+    );
+
   // The getKey function is used to create a key for each data page, based on pageIndex and previousPageData.
   const getKey = (pageIndex: number) => {
     const page = pageIndex + 1;

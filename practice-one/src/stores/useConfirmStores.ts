@@ -1,4 +1,7 @@
+// Library
 import { create } from "zustand";
+
+// Type
 import { CustomProductProps } from "../types";
 
 // Define props for ConfirmStore

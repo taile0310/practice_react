@@ -1,6 +1,7 @@
 // React
 import { FC, ReactElement, memo } from "react";
 
+// Define props for Error
 type TError = {
   className?: string;
   content: string;

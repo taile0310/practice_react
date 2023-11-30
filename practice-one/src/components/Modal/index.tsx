@@ -1,19 +1,29 @@
 // CSS class
 import "./Modal.css";
+
 // Ract
 import { FC, FormEvent, ReactElement, memo, useCallback } from "react";
+
+// Library
+import useSWRMutation from "swr/mutation";
+import { useShallow } from "zustand/react/shallow";
+
 // Component
 import { Button, Error, Heading, Input, Label } from "..";
+
 // Custom hooks
 import { useFetch } from "../../hooks";
-// Type and Store
+
+// Type, Constants and Store
 import { VARIANT } from "../../types";
 import { useToggleStore } from "../../stores";
-import useSWRMutation from "swr/mutation";
 import { useAlertStore } from "../../stores/useAlertStore";
 import { ERROR_MESSAGES, NOTIFY } from "../../constants";
+
 const Modal: FC = (): ReactElement => {
   // Use hooks to get functions
+  const { handleUpdateProduct, handleAddProduct } = useFetch();
+
   const {
     toggle,
     inputValues,
@@ -23,9 +33,24 @@ const Modal: FC = (): ReactElement => {
     onCloseModal,
     setErrors,
     onChangeInput,
-  } = useToggleStore();
-  const { handleUpdateProduct, handleAddProduct } = useFetch();
-  const { showAlert } = useAlertStore();
+  } = useToggleStore(
+    useShallow((state) => ({
+      toggle: state.toggle,
+      inputValues: state.inputValues,
+      title: state.title,
+      btnSubmit: state.btnSubmit,
+      errors: state.errors,
+      onCloseModal: state.onCloseModal,
+      setErrors: state.setErrors,
+      onChangeInput: state.onChangeInput,
+    }))
+  );
+
+  const { showAlert } = useAlertStore(
+    useShallow((state) => ({
+      showAlert: state.showAlert,
+    }))
+  );
 
   // Handle mutation function for useSWRMutation
   const mutationFn = () => {

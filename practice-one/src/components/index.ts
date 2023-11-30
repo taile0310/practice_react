@@ -20,3 +20,5 @@ export { default as CartItem } from "./ListCart/CartItem/index";
 export { default as DetailDish } from "./ListCart/DetailDish/index";
 export { default as QuantitySelector } from "./ListCart/QuantitySelector/index";
 export { default as ErrorBoundary } from "./ErrorBoundary/index";
+export { default as Confirm } from "./Confirm/index";
+export { default as Alert } from "./Alert/index";

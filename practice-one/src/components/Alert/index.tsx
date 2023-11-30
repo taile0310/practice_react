@@ -1,21 +1,40 @@
+// CSS
 import "./Alert.css";
+// React
 import { FC, ReactNode, useEffect } from "react";
+
+//Store
 import { useAlertStore } from "../../stores/useAlertStore";
+
+// Constants
 import { ERROR_MESSAGES, NOTIFY } from "../../constants";
+import { useShallow } from "zustand/react/shallow";
+
+// Define props for Alert
 type TAlertProps = {
   children: ReactNode;
 };
+
 const Alert: FC<TAlertProps> = ({ children }) => {
-  const { message, isAlertVisible, hideAlert } = useAlertStore();
+  // Use hooks to get functions
+  const { message, isAlertVisible, hideAlert } = useAlertStore(
+    useShallow((state) => ({
+      message: state.message,
+      isAlertVisible: state.isAlertVisible,
+      hideAlert: state.hideAlert,
+    }))
+  );
 
   useEffect(() => {
+    // Check if the alert is currently visible
     if (isAlertVisible) {
-      const timeoutId = setTimeout(() => {
+      // Set a timeout to automatically hide the alert after 2000 milliseconds (2 seconds)
+      const timeOut = setTimeout(() => {
         hideAlert();
       }, 2000);
 
       return () => {
-        clearTimeout(timeoutId);
+        clearTimeout(timeOut);
       };
     }
   }, [isAlertVisible, hideAlert]);
