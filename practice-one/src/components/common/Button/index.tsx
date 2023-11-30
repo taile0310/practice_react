@@ -7,6 +7,7 @@ import { ButtonHTMLAttributes, FC, ReactElement, ReactNode, memo } from "react";
 // Type
 import { TButtonSize, TButtonText, VARIANT } from "../../../types";
 
+// Define props for button
 export interface CustomBtnProps
   extends ButtonHTMLAttributes<HTMLButtonElement> {
   children?: ReactNode;

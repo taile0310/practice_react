@@ -45,12 +45,19 @@ export const useToggleStore = create<TToggleState>()((set) => ({
     image: null,
     price: null,
   },
+
+  // * Closes the modal by toggling the 'toggle' state between ON and OFF.
   onCloseModal: () =>
     set((state) => ({
       ...state,
       toggle: state.toggle === TOGGLE.OFF ? TOGGLE.ON : TOGGLE.OFF,
     })),
 
+  /**
+   * Toggles and sets up the state for updating a product.
+   * @param product - The product information for updating.
+   * @returns The updated state.
+   */
   handleToggleUpdateProduct: (product) =>
     set((state) => ({
       toggle: state.toggle === TOGGLE.OFF ? TOGGLE.ON : TOGGLE.OFF,
@@ -67,6 +74,11 @@ export const useToggleStore = create<TToggleState>()((set) => ({
         price: null,
       },
     })),
+
+  /**
+   * Toggles and sets up the state for adding a new product.
+   * @returns The updated state.
+   */
   onToggleAddProduct: () =>
     set((state) => ({
       title: "ADD PRODUCT",
@@ -84,6 +96,13 @@ export const useToggleStore = create<TToggleState>()((set) => ({
         price: null,
       },
     })),
+
+  /**
+   * Handles changes in input values and updates errors accordingly.
+   * @param field - The field being updated.
+   * @param value - The new value for the field.
+   * @returns The updated state.
+   */
   onChangeInput: (field, value) =>
     set((state) => {
       const errors = { ...state.errors };
@@ -107,6 +126,11 @@ export const useToggleStore = create<TToggleState>()((set) => ({
       };
     }),
 
+  /**
+   * Sets errors in the state.
+   * @param errors - The error object containing name, image, and price errors.
+   * @returns The updated state.
+   */
   setErrors: (errors: {
     name: string | null;
     image: string | null;

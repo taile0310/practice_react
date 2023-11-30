@@ -14,16 +14,18 @@ import { Image } from "..";
 // Stores
 import { useCartStore } from "../../../stores";
 
+// Define props for navbar
 export type CustomNavbarProps = {
   width?: number;
 };
 
 const Navbar: FC<CustomNavbarProps> = ({ width }): ReactElement => {
+  // Use hooks to get functions
+  const { getLength, handleCheckout } = useCartStore();
+
   const widthNavbar = {
     width: `${width}px`,
   };
-
-  const { getLength, handleCheckout } = useCartStore();
 
   return (
     <nav className="nav-menu font-family" style={widthNavbar}>

@@ -7,6 +7,7 @@ import { Button } from "../..";
 // Stores and Type
 import { TAction, VARIANT } from "../../../types";
 
+// Define props for QuantitySelector
 type TQuantitySelector = {
   id: string;
   quantity: number;
@@ -23,11 +24,12 @@ const QuantitySelector: FC<TQuantitySelector> = ({
   const widthQuantitySelector = {
     width: `${width}px`,
   };
-
+  // Handle when the decrement button is pressed
   const handleDecreaseQuantity = useCallback(() => {
     onUpdateQuantity(id, "decrease");
   }, [onUpdateQuantity, id]);
 
+  // Handle when the increase quantity button is pressed
   const handleIncreaseQuantity = useCallback(() => {
     onUpdateQuantity(id, "increase");
   }, [onUpdateQuantity, id]);

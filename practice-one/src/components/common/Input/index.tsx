@@ -4,6 +4,7 @@ import "./Input.css";
 // React
 import { FC, InputHTMLAttributes, ReactElement, memo } from "react";
 
+// Define props for input
 interface CustomInputProps extends InputHTMLAttributes<HTMLInputElement> {
   className?: string;
 }

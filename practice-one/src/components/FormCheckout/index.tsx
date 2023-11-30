@@ -14,6 +14,7 @@ import { useForm } from "../../hooks";
 import { VARIANT } from "../../types";
 
 const FormCheckout: FC = (): ReactElement => {
+  // Use hooks to get functions
   const { values, errors, handleChange, handleCheckoutSuccessful } = useForm();
 
   return (
