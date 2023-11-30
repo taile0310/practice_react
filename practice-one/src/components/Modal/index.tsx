@@ -64,7 +64,7 @@ const Modal: FC = (): ReactElement => {
   // Use useSWRMutation to handle mutations and update the UI
   const { trigger } = useSWRMutation(key, mutationFn, {
     onSuccess: () => {
-      showAlert(NOTIFY.SUCCESS);
+      showAlert(NOTIFY.HANDLE_SUCCESS);
       onCloseModal();
     },
     onError: (error) => {
