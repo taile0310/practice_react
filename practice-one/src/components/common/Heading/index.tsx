@@ -7,6 +7,7 @@ import { THeading } from "../../../types";
 // Helper
 import { getFontSize } from "../../../helpers";
 
+// Define props for heading
 export type HeadingProps = {
   className?: string;
   element: THeading;

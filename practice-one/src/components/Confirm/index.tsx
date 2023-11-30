@@ -4,6 +4,7 @@ import { useConfirmStore } from "../../stores/useConfirmStores";
 import { Button } from "..";
 import { VARIANT } from "../../types";
 
+// Define props for confirm
 interface ConfirmProps {
   children: string;
   onConfirm: () => void;
@@ -11,6 +12,7 @@ interface ConfirmProps {
 }
 
 const Confirm: FC<ConfirmProps> = ({ children, onConfirm, onCancel }) => {
+  // Use hooks to get functions
   const { productInfo, productId, isVisible, showConfirm, hideConfirm } =
     useConfirmStore();
 

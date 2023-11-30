@@ -13,6 +13,7 @@ import useSWRMutation from "swr/mutation";
 import { useAlertStore } from "../../stores/useAlertStore";
 import { ERROR_MESSAGES, NOTIFY } from "../../constants";
 const Modal: FC = (): ReactElement => {
+  // Use hooks to get functions
   const {
     toggle,
     inputValues,
@@ -23,17 +24,19 @@ const Modal: FC = (): ReactElement => {
     setErrors,
     onChangeInput,
   } = useToggleStore();
-
   const { handleUpdateProduct, handleAddProduct } = useFetch();
   const { showAlert } = useAlertStore();
 
+  // Handle mutation function for useSWRMutation
   const mutationFn = () => {
     btnSubmit === "Save Changes"
       ? handleUpdateProduct(inputValues.id)
       : handleAddProduct(inputValues);
   };
+  // Handle key for useSWRMutation
   const key = btnSubmit === "Save Changes" ? inputValues.id : inputValues;
 
+  // Use useSWRMutation to handle mutations and update the UI
   const { trigger } = useSWRMutation(key, mutationFn, {
     onSuccess: () => {
       showAlert(NOTIFY.SUCCESS);
@@ -45,8 +48,11 @@ const Modal: FC = (): ReactElement => {
     },
   });
 
+  // Handle when the form is submitted
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
+
+    // Check and display errors if information fields are invalid
     if (
       !inputValues.name ||
       !inputValues.image ||
@@ -64,9 +70,11 @@ const Modal: FC = (): ReactElement => {
       });
       return;
     }
+    // Call the trigger function to execute the mutation
     trigger();
   };
 
+  // Handle when the input value changes
   const handleChangeInput = useCallback(
     (name: string, value: string) => {
       onChangeInput(name, value);
@@ -74,6 +82,7 @@ const Modal: FC = (): ReactElement => {
     [onChangeInput]
   );
 
+  // Handle when closing the modal
   const handleCloseModal = useCallback(() => {
     onCloseModal();
   }, [onCloseModal]);

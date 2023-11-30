@@ -13,6 +13,7 @@ import { useFetch } from "../../hooks";
 
 // Component ListProduct
 const ListProduct: FC = (): ReactElement => {
+  // Use hooks to get functions
   const {
     data,
     isLoading,
@@ -27,10 +28,12 @@ const ListProduct: FC = (): ReactElement => {
 
   const { handleAddToCart, handleRemoveFromCart } = useCartStore();
 
+  // Handle when the "Add Product" button is pressed
   const handleToggleAddProduct = useCallback(() => {
     onToggleAddProduct();
   }, [onToggleAddProduct]);
 
+  // Handle when the "Load more" button is pressed
   const handleShowMore = useCallback(() => {
     handleShowMoreProducts();
   }, [handleShowMoreProducts]);

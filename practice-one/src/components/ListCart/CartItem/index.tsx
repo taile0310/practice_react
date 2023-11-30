@@ -8,6 +8,7 @@ import { DetailDish, Image, QuantitySelector } from "../..";
 import { Remove } from "../../../assets/image";
 import { TAction } from "../../../types";
 
+// Define props for CartItem
 type TCartItemProps = {
   id: string;
   name: string;
@@ -35,6 +36,7 @@ const CartItem: FC<TCartItemProps> = ({
     listStyle: `${listStyle}`,
   };
 
+  // Handle when the delete from cart button is pressed
   const handleRemoveFromCart = useCallback(() => {
     onRemoveFromCart(id);
   }, [id, onRemoveFromCart]);

@@ -14,10 +14,11 @@ import { Button, Heading, Input } from "..";
 // Helper
 import { calculatorTotalPrice, getListCart } from "../../../helpers";
 
-// Context
+// Stores
 import { useCartStore } from "../../../stores/useCartStore";
 import { useAlertStore } from "../../../stores/useAlertStore";
 
+// Define of props for card
 type CustomCardProps = {
   showInput?: boolean;
   className?: string;
@@ -37,13 +38,15 @@ const Card: FC<CustomCardProps> = ({
   variants = "primary",
   onSubmit,
 }): ReactElement => {
+  // Use hooks to get functions
   const { carts } = useCartStore();
+  const navigate = useNavigate();
+  const { showAlert } = useAlertStore();
 
   const widthCard = {
     width: `${width}px`,
   };
-  const navigate = useNavigate();
-  const { showAlert } = useAlertStore();
+
   // Handles clicking Confirm Order
   const handleConfirmOrder = useCallback(() => {
     // Get current URL
@@ -62,6 +65,7 @@ const Card: FC<CustomCardProps> = ({
     }
   }, [navigate, onSubmit, showAlert, titleButton]);
 
+  // Calculate total price
   const totalPrice = useMemo(() => calculatorTotalPrice(carts), [carts]);
 
   return (

@@ -1,12 +1,12 @@
 // React
 import { FC, LabelHTMLAttributes, ReactElement } from "react";
 
+// Define props for label
 export interface CustomLabelProps
   extends LabelHTMLAttributes<HTMLLabelElement> {
   className?: string;
   titleLabel: string;
 }
-
 const Label: FC<CustomLabelProps> = ({
   className,
   titleLabel,

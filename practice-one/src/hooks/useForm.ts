@@ -17,8 +17,10 @@ type FormValues = {
 };
 
 const useForm = () => {
+  // Use hooks to get functions
   const { clearCarts } = useCartStore();
   const navigate = useNavigate();
+
   const [values, setValues] = useState<FormValues>({
     name: "",
     email: "",

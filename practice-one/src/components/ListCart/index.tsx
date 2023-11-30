@@ -17,6 +17,7 @@ export type ListCartProps = {
 
 // Component ListCart
 const ListCart: FC<ListCartProps> = ({ className }): ReactElement => {
+  // Use hooks to get functions
   const { carts, handleRemoveFromCart, handleUpdateQuantity } = useCartStore();
 
   return (

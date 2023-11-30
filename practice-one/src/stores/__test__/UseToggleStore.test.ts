@@ -9,11 +9,6 @@ describe("useToggleStore", () => {
     image: "https://sushi-restaurant-phi.vercel.app/item1.fb0267f5.jpg",
     price: 10,
   };
-  beforeAll(() => {
-    act(() => {
-      TOGGLE.OFF;
-    });
-  });
 
   it("Initialize with default values", () => {
     const { result } = renderHook(() => useToggleStore());

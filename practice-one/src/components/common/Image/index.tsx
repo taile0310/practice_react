@@ -4,6 +4,7 @@ import "./Image.css";
 // React
 import { FC, ImgHTMLAttributes, ReactElement, memo } from "react";
 
+// Define for image
 interface CustomImageProps extends ImgHTMLAttributes<HTMLImageElement> {
   className?: string;
 }

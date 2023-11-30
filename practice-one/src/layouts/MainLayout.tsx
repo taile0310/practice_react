@@ -12,6 +12,7 @@ import { NOTIFY } from "../constants";
 import { Success, Warning } from "../assets/image";
 
 const MainLayout: FC = (): ReactElement => {
+  // Use hooks to get functions
   const { toggle } = useToggleStore();
   const { isAlertVisible } = useAlertStore();
   const { message } = useAlertStore();
