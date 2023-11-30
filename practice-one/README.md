@@ -33,7 +33,7 @@
 
 [Figma](<https://www.figma.com/file/f4UERtJo8ZKzQTsSQ6BX3Z/Restaurant-Website-(Shop)-(Community)?node-id=7%3A23&mode=dev>)
 
-## Requirments:
+## Requirement:
 
 [Link](https://docs.google.com/document/d/16mqK44TYwOQ_CTbO6kFt70ak-5gIFesOBs9JdFJytyw/edit)
 
