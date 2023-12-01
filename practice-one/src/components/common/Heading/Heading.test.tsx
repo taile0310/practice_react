@@ -1,13 +1,12 @@
 import { render } from "@testing-library/react";
 import "@testing-library/jest-dom";
-import Heading from ".";
-import { THeading } from "../../../types/Heading";
+import Heading, { HeadingProps } from ".";
 
 describe("Heading Component", () => {
   const props = {
-    element: "h1" as THeading,
+    element: "h1",
     children: "Shushi",
-  };
+  } as HeadingProps;
   it("Render correctly with default props", () => {
     const container = render(<Heading {...props} />);
     expect(container).toMatchSnapshot();
