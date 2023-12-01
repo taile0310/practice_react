@@ -11,13 +11,6 @@ module.exports = {
   parser: "@typescript-eslint/parser",
   plugins: ["react-refresh"],
   rules: {
-    "react-refresh/only-export-components": [
-      "warn",
-      { allowConstantExport: true },
-    ],
     "react-refresh/only-export-components": "off",
-  },
-  compilerOptions: {
-    lib: ["es5", "es6", "dom", "dom.iterable"],
   },
 };

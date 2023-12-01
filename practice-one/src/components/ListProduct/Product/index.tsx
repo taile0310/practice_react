@@ -8,11 +8,10 @@ import { Button, Image, Confirm } from "../..";
 
 // Stores, Contants and Type
 import { CustomProductProps, TOGGLE, VARIANT } from "../../../types";
-import { useCartStore } from "../../../stores";
+import { cartStore, productStore } from "../../../stores";
 import { Edit, TrashCan } from "../../../assets/image";
 import { NOTIFY } from "../../../constants";
-import { useAlertStore } from "../../../stores/useAlertStore";
-import { useConfirmStore } from "../../../stores/useConfirmStores";
+import { alertStore } from "../../../stores/AlertStore";
 
 // Define props for Product
 type TProductProps = {
@@ -43,11 +42,11 @@ const Product: FC<TProductProps> = ({
     width: `${width}px`,
   };
   // Use hooks to get functions
-  const { isInCart } = useCartStore(
+  const { isInCart } = cartStore(
     useShallow((state) => ({ isInCart: state.isInCart }))
   );
 
-  const { showAlert } = useAlertStore(
+  const { showAlert } = alertStore(
     useShallow((state) => ({ showAlert: state.showAlert }))
   );
 
@@ -58,7 +57,7 @@ const Product: FC<TProductProps> = ({
     productInfo,
     showConfirm,
     hideConfirm,
-  } = useConfirmStore(
+  } = productStore(
     useShallow((state) => ({
       productId: state.productId,
       isVisible: state.isVisible,
@@ -81,10 +80,6 @@ const Product: FC<TProductProps> = ({
     onAddToCart,
     hideConfirm,
   ]);
-
-  const handleToggleUpdateProduct = useCallback(() => {
-    onToggleUpdateProduct(product);
-  }, [onToggleUpdateProduct, product]);
 
   const { trigger } = useSWRMutation(productId, onRemoveProduct, {
     onSuccess: () => {
@@ -122,7 +117,7 @@ const Product: FC<TProductProps> = ({
           typeText="uppercase"
           variants={VARIANT.PRIMARY}
           children={<Image className="icon-control" src={Edit} />}
-          onClick={handleToggleUpdateProduct}
+          onClick={() => onToggleUpdateProduct(product)}
         />
       </div>
       {isVisible && (

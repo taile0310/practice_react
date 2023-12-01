@@ -4,7 +4,7 @@ import "./Alert.css";
 import { FC, ReactNode, useEffect } from "react";
 
 //Store
-import { useAlertStore } from "../../stores/useAlertStore";
+import { alertStore } from "../../stores/AlertStore";
 
 // Constants
 import { ERROR_MESSAGES, NOTIFY } from "../../constants";
@@ -17,7 +17,7 @@ type TAlertProps = {
 
 const Alert: FC<TAlertProps> = ({ children }) => {
   // Use hooks to get functions
-  const { message, isAlertVisible, hideAlert } = useAlertStore(
+  const { message, isAlertVisible, hideAlert } = alertStore(
     useShallow((state) => ({
       message: state.message,
       isAlertVisible: state.isAlertVisible,
@@ -41,7 +41,7 @@ const Alert: FC<TAlertProps> = ({ children }) => {
 
   return (
     <div
-      className={`alert ${isAlertVisible && "show"} ${
+      className={`font-family alert ${isAlertVisible && "show"} ${
         message === ERROR_MESSAGES.FETCH
           ? "alert-error"
           : message === NOTIFY.EMPTY

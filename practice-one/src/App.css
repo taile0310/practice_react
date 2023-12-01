@@ -137,6 +137,5 @@
 }
 
 .modal-open {
-  filter: blur(2px);
   pointer-events: none;
 }

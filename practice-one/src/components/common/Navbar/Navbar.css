@@ -5,6 +5,7 @@
   background: var(--secondary-color);
   gap: 21px;
   height: 852px;
+  box-shadow: 30px 20px 52px 0px #c9c9c9;
 }
 
 .nav-item {

@@ -1,10 +1,10 @@
 import { renderHook, act } from "@testing-library/react";
-import { useAlertStore } from "../useAlertStore";
+import { alertStore } from "../AlertStore";
 import { NOTIFY } from "../../constants";
 
-describe("useAlertStore", () => {
+describe("alertStore", () => {
   it("Show alert when showAlert is called", () => {
-    const { result } = renderHook(() => useAlertStore());
+    const { result } = renderHook(() => alertStore());
 
     act(() => {
       result.current.showAlert(NOTIFY.SUCCESS);
@@ -15,7 +15,7 @@ describe("useAlertStore", () => {
   });
 
   it("Hide alert when hideAlert is called", () => {
-    const { result } = renderHook(() => useAlertStore());
+    const { result } = renderHook(() => alertStore());
 
     act(() => {
       result.current.showAlert(NOTIFY.SUCCESS);

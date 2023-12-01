@@ -17,7 +17,7 @@ const Label: FC<CustomLabelProps> = ({
       {titleLabel === "Description" || titleLabel === "Payment Method" ? (
         ""
       ) : (
-        <span className="required-input"> *</span>
+        <span className="required-input">*</span>
       )}
     </>
   );

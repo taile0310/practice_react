@@ -8,7 +8,7 @@ import { FC } from "react";
 import { useShallow } from "zustand/react/shallow";
 
 // Store
-import { useConfirmStore } from "../../stores/useConfirmStores";
+import { productStore } from "../../stores";
 
 // Component
 import { Button } from "..";
@@ -26,7 +26,7 @@ interface ConfirmProps {
 const Confirm: FC<ConfirmProps> = ({ children, onConfirm, onCancel }) => {
   // Use hooks to get functions
   const { productInfo, productId, isVisible, showConfirm, hideConfirm } =
-    useConfirmStore(
+    productStore(
       useShallow((state) => ({
         productInfo: state.productInfo,
         productId: state.productId,

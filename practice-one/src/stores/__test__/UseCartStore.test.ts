@@ -1,9 +1,9 @@
 import { act, renderHook } from "@testing-library/react";
-import { useCartStore } from "..";
+import { cartStore } from "..";
 
 global.window.confirm = jest.fn(() => true);
 
-describe("useCartStore", () => {
+describe("cartStore", () => {
   beforeEach(() => {
     localStorage.clear();
   });
@@ -16,7 +16,7 @@ describe("useCartStore", () => {
   };
 
   it("Add product to cart", () => {
-    const { result } = renderHook(() => useCartStore());
+    const { result } = renderHook(() => cartStore());
 
     act(() => {
       result.current.handleAddToCart(product);
@@ -27,7 +27,7 @@ describe("useCartStore", () => {
   });
 
   it("Remove product from cart", () => {
-    const { result } = renderHook(() => useCartStore());
+    const { result } = renderHook(() => cartStore());
 
     act(() => {
       result.current.handleAddToCart(product);
@@ -41,7 +41,7 @@ describe("useCartStore", () => {
   });
 
   it("Update quantity of a product in the cart", () => {
-    const { result } = renderHook(() => useCartStore());
+    const { result } = renderHook(() => cartStore());
 
     act(() => {
       result.current.handleAddToCart(product);

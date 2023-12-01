@@ -52,6 +52,7 @@
 
 .btn-disabled {
   opacity: 0.2;
+  cursor: no-drop;
 }
 
 .handle-btn {

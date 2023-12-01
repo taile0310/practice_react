@@ -12,21 +12,20 @@ import { BASE_URL } from "../constants/BaseUrl";
 import { CustomProductProps } from "../types/Product";
 
 // Store
-import { useCartStore, useToggleStore } from "../stores";
+import { cartStore, productStore } from "../stores";
 
 const useFetch = () => {
   // Use hooks to get functions
-  const { inputValues } = useToggleStore(
+  const { inputValues } = productStore(
     useShallow((state) => ({ inputValues: state.inputValues }))
   );
 
-  const { handleUpdateCartAfterRemove, handleUpdateProductInCart } =
-    useCartStore(
-      useShallow((state) => ({
-        handleUpdateCartAfterRemove: state.handleUpdateCartAfterRemove,
-        handleUpdateProductInCart: state.handleUpdateProductInCart,
-      }))
-    );
+  const { handleUpdateCartAfterRemove, handleUpdateProductInCart } = cartStore(
+    useShallow((state) => ({
+      handleUpdateCartAfterRemove: state.handleUpdateCartAfterRemove,
+      handleUpdateProductInCart: state.handleUpdateProductInCart,
+    }))
+  );
 
   // The getKey function is used to create a key for each data page, based on pageIndex and previousPageData.
   const getKey = (pageIndex: number) => {

@@ -1,7 +1,7 @@
 // CSS
 import "./ListProduct.css";
 // React
-import { FC, ReactElement, memo, useCallback } from "react";
+import { FC, ReactElement, memo } from "react";
 import { useShallow } from "zustand/react/shallow";
 
 // Component
@@ -10,7 +10,7 @@ import { Button, Error, ErrorBoundary, Heading, Loading, Product } from "..";
 // Type and Store
 import { CustomProductProps, VARIANT } from "../../types";
 import { ERROR_MESSAGES } from "../../constants";
-import { useCartStore, useToggleStore } from "../../stores";
+import { cartStore, productStore } from "../../stores";
 
 // Hooks custom
 import { useFetch } from "../../hooks";
@@ -28,7 +28,7 @@ const ListProduct: FC = (): ReactElement => {
   } = useFetch();
 
   const { toggle, handleToggleUpdateProduct, onToggleAddProduct } =
-    useToggleStore(
+    productStore(
       useShallow((state) => ({
         toggle: state.toggle,
         handleToggleUpdateProduct: state.handleToggleUpdateProduct,
@@ -36,22 +36,12 @@ const ListProduct: FC = (): ReactElement => {
       }))
     );
 
-  const { handleAddToCart, handleRemoveFromCart } = useCartStore(
+  const { handleAddToCart, handleRemoveFromCart } = cartStore(
     useShallow((state) => ({
       handleAddToCart: state.handleAddToCart,
       handleRemoveFromCart: state.handleRemoveFromCart,
     }))
   );
-
-  // Handle when the "Add Product" button is pressed
-  const handleToggleAddProduct = useCallback(() => {
-    onToggleAddProduct();
-  }, [onToggleAddProduct]);
-
-  // Handle when the "Load more" button is pressed
-  const handleShowMore = useCallback(() => {
-    handleShowMoreProducts();
-  }, [handleShowMoreProducts]);
 
   return (
     <section className="section-menu font-family overlay">
@@ -65,13 +55,13 @@ const ListProduct: FC = (): ReactElement => {
           size="sm"
           typeText="uppercase"
           children="Add Product"
-          onClick={handleToggleAddProduct}
+          onClick={onToggleAddProduct}
           style={{ width: "fit-content", alignSelf: "end" }}
         />
       )}
       <ul className="list-menu">
-        {data?.map((page: CustomProductProps[]) => {
-          return page.map((product: CustomProductProps) => {
+        {data?.map((products: CustomProductProps[]) => {
+          return products.map((product: CustomProductProps) => {
             const { id, name, image } = product;
             return (
               <ErrorBoundary>
@@ -103,7 +93,7 @@ const ListProduct: FC = (): ReactElement => {
         <Button
           children="Load more"
           className={`btn-item secondary-text-btn ${isFull && "isFull"}`}
-          onClick={handleShowMore}
+          onClick={handleShowMoreProducts}
           variants={VARIANT.SECONDARY}
           size="sm"
           typeText="uppercase"

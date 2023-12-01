@@ -7,4 +7,7 @@ export const REGEX = {
 
   // Regular expression to check the format of a phone
   phone: /^(0)+[3|5|7|8|9]+([0-9]{8})$/,
+
+  // Regular expression to check the format of a image
+  image: /^(https?:\/\/.*\.(?:png|jpg))$/,
 };

@@ -4,6 +4,5 @@ export interface CustomProductProps {
   price: number;
   image: string;
   quantity?: number;
-  isExist?: boolean;
   errorQuantity?: string;
 }

@@ -1,5 +1,5 @@
 import { render } from "@testing-library/react";
-import MainLayout from "./MainLayout";
+import MainLayout from ".";
 import { BrowserRouter } from "react-router-dom";
 
 describe("MainLayout Component", () => {
