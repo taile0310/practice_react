@@ -1,6 +1,7 @@
 import { act, renderHook } from "@testing-library/react";
 import { productStore } from "..";
-import { TOGGLE } from "../../types";
+import { CustomProductProps, TOGGLE } from "../../types";
+import { NOTIFY } from "../../constants";
 
 describe("productStore", () => {
   const product = {
@@ -15,7 +16,7 @@ describe("productStore", () => {
 
     expect(result.current.toggle).toBe(TOGGLE.OFF);
     expect(result.current.title).toBe("");
-    expect(result.current.btnSubmit).toBe("");
+    expect(result.current.onSubmit).toBe("");
     expect(result.current.productInfo).toBeNull();
     expect(result.current.inputValues).toEqual({
       id: "",
@@ -34,7 +35,7 @@ describe("productStore", () => {
 
     expect(result.current.toggle).toBe(TOGGLE.ON);
     expect(result.current.title).toBe("UPDATE PRODUCT");
-    expect(result.current.btnSubmit).toBe("Save Changes");
+    expect(result.current.onSubmit).toBe("Save Changes");
     expect(result.current.productInfo).toEqual(product);
     expect(result.current.inputValues).toEqual(product);
   });
@@ -48,7 +49,7 @@ describe("productStore", () => {
 
     expect(result.current.toggle).toBe(TOGGLE.OFF);
     expect(result.current.title).toBe("ADD PRODUCT");
-    expect(result.current.btnSubmit).toBe("Save Product");
+    expect(result.current.onSubmit).toBe("Save Product");
     expect(result.current.inputValues).toEqual({
       id: "",
       name: "",
@@ -65,5 +66,38 @@ describe("productStore", () => {
     });
 
     expect(result.current.inputValues.name).toBe("New Product");
+  });
+  it("Confirm with correct data when showConfirm is called", () => {
+    const { result } = renderHook(() => productStore());
+
+    const product: CustomProductProps = {
+      id: "1",
+      name: "Test Product",
+      image: "test-image.jpg",
+      price: 10,
+    };
+
+    act(() => {
+      result.current.showConfirm("1", NOTIFY.ADD_PRODUCT, product);
+    });
+
+    expect(result.current.productId).toBe("1");
+    expect(result.current.isVisible).toBe(true);
+    expect(result.current.children).toBe(NOTIFY.ADD_PRODUCT);
+    expect(result.current.productInfo).toEqual(product);
+  });
+
+  it("Hide confirmation when hideConfirm is called", () => {
+    const { result } = renderHook(() => productStore());
+
+    act(() => {
+      result.current.showConfirm("1", NOTIFY.ADD_PRODUCT, null);
+    });
+
+    act(() => {
+      result.current.hideConfirm();
+    });
+
+    expect(result.current.isVisible).toBe(false);
   });
 });

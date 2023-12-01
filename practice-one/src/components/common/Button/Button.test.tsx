@@ -1,19 +1,17 @@
 import { fireEvent, render } from "@testing-library/react";
 import "@testing-library/jest-dom";
 
-import Button from ".";
+import Button, { CustomBtnProps } from ".";
 import { VARIANT } from "../../../types/Variant";
-import { TButtonSize } from "../../../types/Button/Size";
-import { TButtonText } from "../../../types/Button/Text";
 
 describe("Button Component", () => {
   const props = {
     variant: VARIANT.PRIMARY,
-    size: "xl" as TButtonSize,
-    typeText: "uppercase" as TButtonText,
+    size: "xl",
+    typeText: "uppercase",
     children: "Click me",
     onClick: jest.fn(),
-  };
+  } as CustomBtnProps;
 
   it("Render correctly with default props", () => {
     const container = render(<Button {...props} />);
