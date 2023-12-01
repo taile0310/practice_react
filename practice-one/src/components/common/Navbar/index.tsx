@@ -12,7 +12,7 @@ import { NAV_LINKS } from "../../../constants";
 import { Image } from "..";
 
 // Stores
-import { useCartStore } from "../../../stores";
+import { cartStore } from "../../../stores";
 
 // Define props for navbar
 export type CustomNavbarProps = {
@@ -21,7 +21,7 @@ export type CustomNavbarProps = {
 
 const Navbar: FC<CustomNavbarProps> = ({ width }): ReactElement => {
   // Use hooks to get functions
-  const { getLength, handleCheckout } = useCartStore();
+  const { getLength, handleCheckout } = cartStore();
 
   const widthNavbar = {
     width: `${width}px`,
@@ -29,8 +29,8 @@ const Navbar: FC<CustomNavbarProps> = ({ width }): ReactElement => {
 
   return (
     <nav className="nav-menu font-family" style={widthNavbar}>
-      {NAV_LINKS.map((navLinks) => {
-        const { id, name, icon, path } = navLinks;
+      {NAV_LINKS.map((navItem) => {
+        const { id, name, icon, path } = navItem;
         return (
           <NavLink
             className="nav-item"

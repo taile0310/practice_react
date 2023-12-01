@@ -5,6 +5,11 @@
   line-height: 38px;
   font-size: 18px;
 }
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
 
 .input::placeholder {
   font-size: var(--fs-medium);

@@ -10,7 +10,7 @@ type AlertStore = {
 };
 
 // Create store using Zustand
-export const useAlertStore = create<AlertStore>((set) => ({
+export const alertStore = create<AlertStore>((set) => ({
   message: "",
   isAlertVisible: false,
   /**

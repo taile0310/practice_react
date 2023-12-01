@@ -7,10 +7,10 @@ import { CustomProductProps } from "../types/Product";
 import { ERROR_MESSAGES } from "../constants";
 
 // Define props for Toggle
-type TToggleState = {
+type TProductState = {
   toggle: TOGGLE;
   title: string;
-  btnSubmit: string;
+  onSubmit: string;
   productInfo: CustomProductProps | null;
   inputValues: {
     id: string;
@@ -23,7 +23,15 @@ type TToggleState = {
     image: string | null;
     price: string | null;
   };
-
+  productId: string;
+  isVisible: boolean;
+  children: string;
+  showConfirm: (
+    productId: string,
+    children: string,
+    product: CustomProductProps | null
+  ) => void;
+  hideConfirm: () => void;
   onCloseModal: () => void;
   setErrors: (errors: {
     name: string | null;
@@ -35,10 +43,10 @@ type TToggleState = {
   onChangeInput: (field: string, value: string | number) => void;
 };
 
-export const useToggleStore = create<TToggleState>()((set) => ({
+export const productStore = create<TProductState>()((set) => ({
   toggle: TOGGLE.OFF,
   title: "",
-  btnSubmit: "",
+  onSubmit: "",
   productInfo: null,
   inputValues: {
     id: "",
@@ -51,6 +59,22 @@ export const useToggleStore = create<TToggleState>()((set) => ({
     image: null,
     price: null,
   },
+  isVisible: false,
+  productId: "",
+  children: "",
+
+  /**
+   * Displays a confirmation box with product information and a confirmation button.
+   * @param id
+   * @param children
+   * @param product
+   * @returns
+   */
+  showConfirm: (id, children, product) =>
+    set({ productId: id, isVisible: true, children, productInfo: product }),
+
+  // Hide confirm
+  hideConfirm: () => set({ isVisible: false }),
 
   // * Closes the modal by toggling the 'toggle' state between ON and OFF.
   onCloseModal: () =>
@@ -69,7 +93,7 @@ export const useToggleStore = create<TToggleState>()((set) => ({
       toggle: state.toggle === TOGGLE.OFF ? TOGGLE.ON : TOGGLE.OFF,
       productInfo: product,
       title: "UPDATE PRODUCT",
-      btnSubmit: "Save Changes",
+      onSubmit: "Save Changes",
       inputValues: {
         ...state.inputValues,
         ...product,
@@ -88,7 +112,7 @@ export const useToggleStore = create<TToggleState>()((set) => ({
   onToggleAddProduct: () =>
     set((state) => ({
       title: "ADD PRODUCT",
-      btnSubmit: "Save Product",
+      onSubmit: "Save Product",
       toggle: state.toggle === TOGGLE.OFF ? TOGGLE.ON : TOGGLE.OFF,
       inputValues: {
         id: "",

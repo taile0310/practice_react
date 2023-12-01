@@ -1,18 +1,16 @@
 // React
 import { FC, ReactElement, memo } from "react";
 
-// Type
-import { THeading } from "../../../types";
-
 // Helper
 import { getFontSize } from "../../../helpers";
 
 // Define props for heading
-export type HeadingProps = {
+type HeadingProps = {
   className?: string;
   element: THeading;
   children: React.ReactNode;
 };
+type THeading = "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
 
 const Heading: FC<HeadingProps> = ({
   element,

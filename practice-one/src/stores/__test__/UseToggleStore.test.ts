@@ -1,8 +1,8 @@
 import { act, renderHook } from "@testing-library/react";
-import { useToggleStore } from "..";
+import { productStore } from "..";
 import { TOGGLE } from "../../types";
 
-describe("useToggleStore", () => {
+describe("productStore", () => {
   const product = {
     id: "1",
     name: "Yin & Yang",
@@ -11,7 +11,7 @@ describe("useToggleStore", () => {
   };
 
   it("Initialize with default values", () => {
-    const { result } = renderHook(() => useToggleStore());
+    const { result } = renderHook(() => productStore());
 
     expect(result.current.toggle).toBe(TOGGLE.OFF);
     expect(result.current.title).toBe("");
@@ -26,7 +26,7 @@ describe("useToggleStore", () => {
   });
 
   it("Handle toggle for updating product", () => {
-    const { result } = renderHook(() => useToggleStore());
+    const { result } = renderHook(() => productStore());
 
     act(() => {
       result.current.handleToggleUpdateProduct(product);
@@ -40,7 +40,7 @@ describe("useToggleStore", () => {
   });
 
   it("Handle toggle for adding product", () => {
-    const { result } = renderHook(() => useToggleStore());
+    const { result } = renderHook(() => productStore());
 
     act(() => {
       result.current.onToggleAddProduct();
@@ -58,7 +58,7 @@ describe("useToggleStore", () => {
   });
 
   it("Handle input changes", () => {
-    const { result } = renderHook(() => useToggleStore());
+    const { result } = renderHook(() => productStore());
 
     act(() => {
       result.current.onChangeInput("name", "New Product");

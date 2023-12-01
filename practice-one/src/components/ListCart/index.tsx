@@ -9,7 +9,7 @@ import { FC, ReactElement, memo } from "react";
 import { useShallow } from "zustand/react/shallow";
 
 // Stores and Type
-import { useCartStore } from "../../stores";
+import { cartStore } from "../../stores";
 import { VARIANT } from "../../types";
 
 export type ListCartProps = {
@@ -19,7 +19,7 @@ export type ListCartProps = {
 // Component ListCart
 const ListCart: FC<ListCartProps> = ({ className }): ReactElement => {
   // Use hooks to get functions
-  const { carts, handleRemoveFromCart, handleUpdateQuantity } = useCartStore(
+  const { carts, handleRemoveFromCart, handleUpdateQuantity } = cartStore(
     useShallow((state) => ({
       carts: state.carts,
       handleRemoveFromCart: state.handleRemoveFromCart,

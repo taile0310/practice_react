@@ -5,8 +5,8 @@ import { FC, ReactElement, memo, useCallback } from "react";
 import { DetailDish, Image, QuantitySelector } from "../..";
 
 // Image
-import { Remove } from "../../../assets/image";
 import { TAction } from "../../../types";
+import { Remove } from "../../../assets/image";
 
 // Define props for CartItem
 type TCartItemProps = {

@@ -16,6 +16,7 @@
 
 .required-input {
   color: red;
+  margin-left: 5px;
 }
 
 .form-input {

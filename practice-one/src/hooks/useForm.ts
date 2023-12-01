@@ -14,7 +14,7 @@ import {
 } from "../helpers/Validations";
 
 // Store
-import { useCartStore } from "../stores";
+import { cartStore } from "../stores";
 
 // Define props for useForm
 type FormValues = {
@@ -26,7 +26,7 @@ type FormValues = {
 
 const useForm = () => {
   // Use hooks to get functions
-  const { clearCarts } = useCartStore(
+  const { clearCarts } = cartStore(
     useShallow((state) => ({
       clearCarts: state.clearCarts,
     }))

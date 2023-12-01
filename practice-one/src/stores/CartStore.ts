@@ -7,10 +7,8 @@ import { CustomProductProps } from "../types/Product";
 import { getListCart, setListCart } from "../helpers/DataLocalStorage";
 
 // Store
-import { useAlertStore } from "./useAlertStore";
-
-// Define action
-type TAction = "increase" | "decrease";
+import { alertStore } from "./AlertStore";
+import { TAction } from "../types";
 
 // Define state
 type TState = {
@@ -33,7 +31,7 @@ type TActions = {
   handleUpdateCartAfterRemove: (productId: string) => void;
 };
 // Create store using Zustand
-export const useCartStore = create<TState & TActions>((set, get) => ({
+export const cartStore = create<TState & TActions>((set, get) => ({
   // Initialize shopping cart from data stored in localStorage
   carts: getListCart(),
 
@@ -44,7 +42,6 @@ export const useCartStore = create<TState & TActions>((set, get) => ({
   handleAddToCart: (product: CustomProductProps): void => {
     try {
       product.quantity = 1;
-      product.isExist = true;
       set((state) => {
         const newState = { ...state, carts: [...state.carts, product] };
         setListCart(newState.carts);
@@ -118,7 +115,7 @@ export const useCartStore = create<TState & TActions>((set, get) => ({
    */
   handleCheckout: (event: React.MouseEvent<HTMLAnchorElement>): void => {
     if (get().carts.length <= 0) {
-      useAlertStore.getState().showAlert(NOTIFY.EMPTY);
+      alertStore.getState().showAlert(NOTIFY.EMPTY);
       event.preventDefault();
     }
   },

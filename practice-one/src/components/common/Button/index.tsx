@@ -5,17 +5,18 @@ import "./Button.css";
 import { ButtonHTMLAttributes, FC, ReactElement, ReactNode, memo } from "react";
 
 // Type
-import { TButtonSize, TButtonText, VARIANT } from "../../../types";
+import { VARIANT } from "../../../types";
 
 // Define props for button
-export interface CustomBtnProps
-  extends ButtonHTMLAttributes<HTMLButtonElement> {
+interface CustomBtnProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   children?: ReactNode;
   className?: string;
   size?: TButtonSize;
   variants?: VARIANT;
   typeText?: TButtonText;
 }
+type TButtonText = "uppercase" | "capitalize";
+type TButtonSize = "xl" | "lg" | "md" | "sm" | "xs";
 
 const Button: FC<CustomBtnProps> = ({
   className,

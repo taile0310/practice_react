@@ -59,10 +59,12 @@ practice-one
 
 ```
 |-- src
+    |-- APIService
     |-- assets
         |-- font
         |-- image
     |-- components
+        |-- Alert
         |-- common
             |-- Button
             |-- Card
@@ -74,12 +76,14 @@ practice-one
             |-- Error
             |-- Loading
             |-- index
+        |-- Confirm
         |-- Footer
         |-- FormCheckout
         |-- ListCart
         |-- ListProduct
         |-- ErrorBoundary
         |-- Modal
+        |-- MainLayout
         |-- index
     |-- constants
         |-- BaseUrl
@@ -93,12 +97,7 @@ practice-one
         |-- FontSize
         |-- Vaildation
         |-- FetchData
-        |-- AddProduct
-        |-- RemoveProduct
-        |-- UpdateProduct
         |-- index
-    |-- layout
-        |-- MainLayout
     |-- hooks
         |-- __test__
             |-- UseFetch.test
@@ -115,16 +114,15 @@ practice-one
         |-- index
     |-- types
         |-- TAction
-        |-- TButton
-        |-- THeading
         |-- TProduct
         |-- Toggle
         |-- TVariant
         |-- index
     |-- stores
         |-- index
-        |-- useCartStore
-        |-- useToggleStore
+        |-- AlertStore
+        |-- CartStore
+        |-- ProductStore
     |-- App.tsx
     |-- main.tsx
     |-- index.css

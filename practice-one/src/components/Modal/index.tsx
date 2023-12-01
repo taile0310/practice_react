@@ -16,9 +16,9 @@ import { useFetch } from "../../hooks";
 
 // Type, Constants and Store
 import { VARIANT } from "../../types";
-import { useToggleStore } from "../../stores";
-import { useAlertStore } from "../../stores/useAlertStore";
-import { ERROR_MESSAGES, NOTIFY } from "../../constants";
+import { productStore } from "../../stores";
+import { alertStore } from "../../stores/AlertStore";
+import { ERROR_MESSAGES, NOTIFY, REGEX } from "../../constants";
 
 const Modal: FC = (): ReactElement => {
   // Use hooks to get functions
@@ -28,17 +28,17 @@ const Modal: FC = (): ReactElement => {
     toggle,
     inputValues,
     title,
-    btnSubmit,
+    onSubmit,
     errors,
     onCloseModal,
     setErrors,
     onChangeInput,
-  } = useToggleStore(
+  } = productStore(
     useShallow((state) => ({
       toggle: state.toggle,
       inputValues: state.inputValues,
       title: state.title,
-      btnSubmit: state.btnSubmit,
+      onSubmit: state.onSubmit,
       errors: state.errors,
       onCloseModal: state.onCloseModal,
       setErrors: state.setErrors,
@@ -46,7 +46,7 @@ const Modal: FC = (): ReactElement => {
     }))
   );
 
-  const { showAlert } = useAlertStore(
+  const { showAlert } = alertStore(
     useShallow((state) => ({
       showAlert: state.showAlert,
     }))
@@ -54,12 +54,12 @@ const Modal: FC = (): ReactElement => {
 
   // Handle mutation function for useSWRMutation
   const mutationFn = () => {
-    btnSubmit === "Save Changes"
+    onSubmit === "Save Changes"
       ? handleUpdateProduct(inputValues.id)
       : handleAddProduct(inputValues);
   };
   // Handle key for useSWRMutation
-  const key = btnSubmit === "Save Changes" ? inputValues.id : inputValues;
+  const key = onSubmit === "Save Changes" ? inputValues.id : inputValues;
 
   // Use useSWRMutation to handle mutations and update the UI
   const { trigger } = useSWRMutation(key, mutationFn, {
@@ -82,11 +82,21 @@ const Modal: FC = (): ReactElement => {
       !inputValues.name ||
       !inputValues.image ||
       !inputValues.price ||
+      inputValues.name.length > 18 ||
+      !REGEX.image.test(inputValues.image) ||
       inputValues.price <= 0
     ) {
       setErrors({
-        name: !inputValues.name ? `${ERROR_MESSAGES.FIELD_EMPTY}` : null,
-        image: !inputValues.image ? `${ERROR_MESSAGES.FIELD_EMPTY}` : null,
+        name: !inputValues.name
+          ? `${ERROR_MESSAGES.FIELD_EMPTY}`
+          : inputValues.name.length > 18
+          ? `${ERROR_MESSAGES.NAME_PRODUCT}`
+          : null,
+        image: !inputValues.image
+          ? `${ERROR_MESSAGES.FIELD_EMPTY}`
+          : !REGEX.image.test(inputValues.image)
+          ? `${ERROR_MESSAGES.IMAGE_PRODUCT}`
+          : null,
         price: !inputValues.price
           ? `${ERROR_MESSAGES.FIELD_EMPTY}`
           : inputValues.price <= 0
@@ -135,7 +145,10 @@ const Modal: FC = (): ReactElement => {
               value={inputValues.name}
               onChange={(e) => handleChangeInput("name", e.target.value)}
             />
-            <Error className="messages-error" content={errors.name!} />
+            <Error
+              className="messages-error text-x-small"
+              content={errors.name!}
+            />
           </div>
         </div>
         <div className="modal-content">
@@ -151,7 +164,10 @@ const Modal: FC = (): ReactElement => {
               value={inputValues.image}
               onChange={(e) => handleChangeInput("image", e.target.value)}
             />
-            <Error className="messages-error" content={errors.image!} />
+            <Error
+              className="messages-error text-x-small"
+              content={errors.image!}
+            />
           </div>
         </div>
         <div className="modal-content">
@@ -168,7 +184,10 @@ const Modal: FC = (): ReactElement => {
               value={inputValues.price}
               onChange={(e) => handleChangeInput("price", e.target.value)}
             />
-            <Error className="messages-error" content={errors.price!} />
+            <Error
+              className="messages-error text-x-small"
+              content={errors.price!}
+            />
           </div>
         </div>
       </div>
@@ -177,7 +196,7 @@ const Modal: FC = (): ReactElement => {
           className="text-small"
           variants={VARIANT.TRANSPARENT}
           typeText="uppercase"
-          children={btnSubmit}
+          children={onSubmit}
           type="submit"
         />
         <Button

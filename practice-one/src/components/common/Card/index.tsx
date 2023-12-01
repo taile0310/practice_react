@@ -15,8 +15,8 @@ import { Button, Heading, Input } from "..";
 import { calculatorTotalPrice, getListCart } from "../../../helpers";
 
 // Stores
-import { useCartStore } from "../../../stores/useCartStore";
-import { useAlertStore } from "../../../stores/useAlertStore";
+import { cartStore } from "../../../stores/CartStore";
+import { alertStore } from "../../../stores/AlertStore";
 
 // Define of props for card
 type CustomCardProps = {
@@ -39,9 +39,9 @@ const Card: FC<CustomCardProps> = ({
   onSubmit,
 }): ReactElement => {
   // Use hooks to get functions
-  const { carts } = useCartStore();
+  const { carts } = cartStore();
   const navigate = useNavigate();
-  const { showAlert } = useAlertStore();
+  const { showAlert } = alertStore();
 
   const widthCard = {
     width: `${width}px`,

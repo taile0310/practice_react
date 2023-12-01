@@ -6,6 +6,8 @@ export const ERROR_MESSAGES = {
   PHONE: "Invalid phone format, Ex: 0365 xxx xxx",
   ADDRESS: "Invalid address format, Ex: 10 Nguyen Van Linh",
   FIELD_EMPTY: "This field cannot be left blank",
+  NAME_PRODUCT: "No larger than 18 characters",
+  IMAGE_PRODUCT: "Wrong format Ex: http:'...'.jpg/.png",
 };
 export const NOTIFY = {
   EMPTY:

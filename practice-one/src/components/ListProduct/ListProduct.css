@@ -25,6 +25,7 @@
 .spinner {
   width: 150px;
   height: 150px;
+  align-self: center;
 }
 
 .added-to-cart {

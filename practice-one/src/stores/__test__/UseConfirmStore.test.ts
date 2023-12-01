@@ -1,11 +1,11 @@
 import { renderHook, act } from "@testing-library/react";
 import { CustomProductProps } from "../../types";
-import { useConfirmStore } from "../useConfirmStores";
+import { productStore } from "../ConfirmStores";
 import { NOTIFY } from "../../constants";
 
-describe("useConfirmStore", () => {
+describe("productStore", () => {
   it("Confirm with correct data when showConfirm is called", () => {
-    const { result } = renderHook(() => useConfirmStore());
+    const { result } = renderHook(() => productStore());
 
     const product: CustomProductProps = {
       id: "1",
@@ -25,7 +25,7 @@ describe("useConfirmStore", () => {
   });
 
   it("Hide confirmation when hideConfirm is called", () => {
-    const { result } = renderHook(() => useConfirmStore());
+    const { result } = renderHook(() => productStore());
 
     act(() => {
       result.current.showConfirm("1", NOTIFY.ADD_PRODUCT, null);
